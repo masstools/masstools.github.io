@@ -4,22 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OG Mentor - Free Online Tools</title>
-  <meta name="description" content="Free online tools for file conversion, text editing, calculators, and games.">
-  <meta name="keywords" content="free tools, file converters, calculators, games">
+  <meta name="description" content="Free online tools for file conversion, text editing, calculators, and games. No signup required.">
+  <meta name="keywords" content="free tools, file converters, calculators, games, online utilities">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="icon" href="assets/img/favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    :root {
   --primary-color: #FF4500;
   --secondary-color: #FFA500;
   --dark-color: #1A1A1A;
   --light-color: #F8F9FA;
   --text-color: #2C2C2C;
   --text-light: #6C757D;
-  --border-radius: 12px;
+  --border-radius: 8px;
   --transition: all 0.3s ease;
+  --gradient: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
 }
 
 * {
@@ -42,9 +44,10 @@ body {
   padding: 0 24px;
 }
 
+/* Header & Navbar */
 header {
   background: var(--light-color);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -58,34 +61,44 @@ header {
 }
 
 .logo {
-  font-size: 26px;
-  font-weight: 800;
-  color: var(--primary-color);
-  text-decoration: none;
   display: flex;
   align-items: center;
   gap: 8px;
+  text-decoration: none;
 }
 
-.logo img {
-  height: 40px;
+.logo-icon {
+  font-size: 28px;
+  color: var(--primary-color);
 }
 
 .logo span {
-  color: var(--secondary-color);
+  font-size: 24px;
+  font-weight: 800;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
 }
 
 nav ul {
   display: flex;
   list-style: none;
-  gap: 16px;
+  gap: 24px;
 }
 
 nav ul li a {
   text-decoration: none;
   color: var(--text-color);
   font-weight: 500;
-  padding: 10px 16px;
+  font-size: 16px;
+  padding: 8px 16px;
   border-radius: var(--border-radius);
   transition: var(--transition);
 }
@@ -99,16 +112,56 @@ nav ul li a:hover {
   display: none;
   background: none;
   border: none;
-  font-size: 28px;
+  font-size: 24px;
+  color: var(--text-color);
   cursor: pointer;
 }
 
+/* Search Bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 50px;
+  padding: 8px 16px;
+  transition: var(--transition);
+}
+
+.search-bar:hover, .search-bar:focus-within {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  padding: 8px;
+  width: 200px;
+}
+
+.search-bar button {
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-size: 16px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.search-bar button:hover {
+  color: var(--primary-color);
+}
+
+/* Hero Section */
 .hero {
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background: var(--gradient);
   color: var(--light-color);
-  padding: 100px 0;
+  padding: 120px 0;
   text-align: center;
   position: relative;
+  overflow: hidden;
 }
 
 .hero h1 {
@@ -125,13 +178,17 @@ nav ul li a:hover {
 
 .cta-button {
   display: inline-flex;
+  align-items: center;
+  gap: 8px;
   background: var(--light-color);
   color: var(--primary-color);
-  padding: 14px 32px;
+  padding: 12px 28px;
   border-radius: 50px;
   text-decoration: none;
   font-weight: 600;
+  font-size: 16px;
   transition: var(--transition);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .cta-button:hover {
@@ -140,8 +197,10 @@ nav ul li a:hover {
   transform: translateY(-4px);
 }
 
+/* Tools Section */
 .tools {
   padding: 80px 0;
+  background: var(--light-color);
 }
 
 .section-title {
@@ -152,6 +211,14 @@ nav ul li a:hover {
 .section-title h2 {
   font-size: 36px;
   color: var(--dark-color);
+  margin-bottom: 16px;
+}
+
+.section-title p {
+  color: var(--text-light);
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 18px;
 }
 
 .tools-container {
@@ -161,89 +228,193 @@ nav ul li a:hover {
 }
 
 .tool-card {
-  background: var(--light-color);
+  background: #fff;
   border-radius: var(--border-radius);
   padding: 24px;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: var(--transition);
 }
 
 .tool-card:hover {
-  background: var(--primary-color);
-  color: var(--light-color);
-  transform: translateY(-4px);
+  transform: translateY(-8px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.tool-icon {
+  font-size: 32px;
+  color: var(--primary-color);
+  margin-bottom: 16px;
 }
 
 .tool-card h3 a {
-  color: var(--primary-color);
+  color: var(--dark-color);
   text-decoration: none;
+  font-size: 20px;
+  transition: var(--transition);
 }
 
-.tool-card:hover h3 a, .tool-card:hover p {
-  color: var(--light-color);
+.tool-card:hover h3 a {
+  color: var(--primary-color);
 }
 
-.sidebar {
-  background: var(--light-color);
-  padding: 24px;
+.tool-card p {
+  color: var(--text-light);
+  font-size: 14px;
+  margin-top: 12px;
+}
+
+/* About Section */
+.about {
+  padding: 80px 0;
+  background: linear-gradient(to bottom, var(--light-color), #f1f3f5);
+}
+
+.about-content {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 48px;
   border-radius: var(--border-radius);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  position: sticky;
-  top: 100px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
+.about-content h2 {
+  font-size: 36px;
+  color: var(--dark-color);
+  margin-bottom: 24px;
+}
+
+.about-content p {
+  font-size: 16px;
+  color: var(--text-color);
+  margin-bottom: 16px;
+}
+
+/* Footer */
 footer {
   background: var(--dark-color);
   color: var(--light-color);
-  padding: 64px 0 24px;
+  padding: 48px 0 24px;
 }
 
 .footer-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 32px;
+  margin-bottom: 32px;
+}
+
+.footer-column h3 {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.footer-column ul {
+  list-style: none;
+}
+
+.footer-column ul li {
+  margin-bottom: 12px;
+}
+
+.footer-column ul li a {
+  color: #CED4DA;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.footer-column ul li a:hover {
+  color: var(--primary-color);
+}
+
+.copyright {
+  text-align: center;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .search-bar input {
+    width: 150px;
+  }
 }
 
 @media (max-width: 768px) {
   .mobile-menu-btn {
     display: block;
   }
-  nav ul {
+  nav {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
     background: var(--light-color);
-    flex-direction: column;
     padding: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
-  nav ul.show {
+  nav.active {
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  nav ul {
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
+  .search-bar {
+    margin-top: 16px;
+    width: 100%;
   }
   .hero h1 {
     font-size: 36px;
   }
+  .hero p {
+    font-size: 18px;
+  }
 }
-    </style>
+
+@media (max-width: 576px) {
+  .hero h1 {
+    font-size: 28px;
+  }
+  .hero p {
+    font-size: 16px;
+  }
+  .section-title h2 {
+    font-size: 28px;
+  }
+}
+  </style>
 </head>
 <body>
   <!-- Header -->
   <header>
     <div class="container header-container">
       <a href="index.html" class="logo">
-        <img src="assets/img/logo.png" alt="OG Mentor Logo">
-        OG<span>Mentor</span>
+        <i class="fas fa-tools logo-icon"></i>
+        <span>OG Mentor</span>
       </a>
-      <input id="mobile-menu-toggle" type="checkbox">
-      <label class="mobile-menu-btn" for="mobile-menu-toggle">☰</label>
+      <button class="mobile-menu-btn" aria-label="Toggle Menu">
+        <i class="fas fa-bars"></i>
+      </button>
       <nav>
         <ul id="nav-menu">
           <li><a href="#tools">Tools</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
+        <div class="search-bar">
+          <input type="text" placeholder="Search tools..." aria-label="Search">
+          <button type="submit" aria-label="Search">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
       </nav>
     </div>
   </header>
@@ -253,9 +424,9 @@ footer {
     <!-- Hero Section -->
     <section class="hero">
       <div class="container">
-        <h1>100% Free Online Tools</h1>
-        <p>Explore our powerful digital tools—no signup required. From file converters to calculators and mini-games, everything is free and accessible.</p>
-        <a class="cta-button" href="#tools">Discover Tools Now</a>
+        <h1>Free Online Tools for Everyone</h1>
+        <p>Discover a wide range of powerful tools for file conversion, text editing, calculations, and games—all free, no signup required.</p>
+        <a class="cta-button" href="#tools">Explore Tools</a>
       </div>
     </section>
 
@@ -263,15 +434,26 @@ footer {
     <section class="tools" id="tools">
       <div class="container">
         <div class="section-title">
-          <h2>Our Free Tools Collection</h2>
-          <p>Browse our extensive range of free online tools designed to simplify your digital tasks.</p>
+          <h2>Our Tools Collection</h2>
+          <p>Simplify your tasks with our curated set of free, high-quality online tools.</p>
         </div>
         <div class="tools-container">
           <div class="tool-card">
+            <i class="fas fa-file-image tool-icon"></i>
             <h3><a href="tools/eps-to-image.html">EPS to Image Converter</a></h3>
-            <p>Convert EPS files to various image formats effortlessly.</p>
+            <p>Convert EPS files to PNG, JPG, or other formats effortlessly.</p>
           </div>
-          <!-- Add more tool cards here -->
+          <div class="tool-card">
+            <i class="fas fa-file-pdf tool-icon"></i>
+            <h3><a href="tools/pdf-to-image.html">PDF to Image Converter</a></h3>
+            <p>Transform PDF pages into high-quality images.</p>
+          </div>
+          <div class="tool-card">
+            <i class="fas fa-image tool-icon"></i>
+            <h3><a href="tools/image-to-pdf.html">Image to PDF Converter</a></h3>
+            <p>Turn images into professional PDF documents.</p>
+          </div>
+          <!-- Add more tool cards as needed -->
         </div>
       </div>
     </section>
@@ -281,32 +463,13 @@ footer {
       <div class="container">
         <div class="about-content">
           <h2>About OG Mentor</h2>
-          <p>OG Mentor is your go-to platform for free, high-quality online tools...</p>
+          <p>OG Mentor is your trusted platform for free, high-quality online tools. From file converters to calculators and games, we empower users worldwide to simplify their digital tasks without any hassle.</p>
+          <p>Our mission is to provide accessible, reliable, and innovative tools that enhance productivity and creativity.</p>
           <a class="cta-button" href="#tools">Start Exploring</a>
         </div>
       </div>
     </section>
   </main>
-
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <div class="container">
-      <div class="widget">
-        <h3>Search</h3>
-        <form action="/search">
-          <input type="text" placeholder="Search tools..." name="q">
-          <button type="submit">Search</button>
-        </form>
-      </div>
-      <div class="widget">
-        <h3>Popular Tools</h3>
-        <ul>
-          <li><a href="tools/eps-to-image.html">EPS to Image Converter</a></li>
-          <!-- Add more -->
-        </ul>
-      </div>
-    </div>
-  </aside>
 
   <!-- Footer -->
   <footer>
@@ -314,7 +477,7 @@ footer {
       <div class="footer-container">
         <div class="footer-column">
           <h3>OG Mentor</h3>
-          <p>Your trusted source for free online tools.</p>
+          <p>Empowering you with free, high-quality online tools.</p>
         </div>
         <div class="footer-column">
           <h3>Quick Links</h3>
@@ -327,45 +490,51 @@ footer {
         <div class="footer-column">
           <h3>Connect</h3>
           <ul>
-            <li><a href="#">Twitter</a></li>
-            <li><a href="#">Facebook</a></li>
+            <li><a href="#" target="_blank">Twitter</a></li>
+            <li><a href="#" target="_blank">Facebook</a></li>
+            <li><a href="#">Privacy Policy</a></li>
           </ul>
         </div>
       </div>
       <div class="copyright">
-        <p>© 2025 OG Mentor. All rights reserved.</p>
+        <p>&copy; 2025 OG Mentor. All rights reserved.</p>
       </div>
     </div>
   </footer>
 
   <script src="assets/js/main.js"></script>
-    <script>
-        // Mobile Menu Toggle
-const menuBtn = document.querySelector('.mobile-menu-btn');
-const navMenu = document.getElementById('nav-menu');
-if (menuBtn && navMenu) {
-  menuBtn.addEventListener('click', () => {
-    navMenu.classList.toggle('show');
-  });
-}
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+  // Mobile Menu Toggle
+  const menuBtn = document.querySelector('.mobile-menu-btn');
+  const nav = document.querySelector('nav');
+  if (menuBtn && nav) {
+    menuBtn.addEventListener('click', () => {
+      nav.classList.toggle('active');
+      const icon = menuBtn.querySelector('i');
+      icon.classList.toggle('fa-bars');
+      icon.classList.toggle('fa-times');
+    });
+  ..
 
-// Smooth Scrolling
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', (e) => {
-    e.preventDefault();
-    const target = document.querySelector(anchor.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
-    if (navMenu && navMenu.classList.contains('show')) {
-      navMenu.classList.remove('show');
-      document.getElementById('mobile-menu-toggle').checked = false;
-    }
+  // Smooth Scrolling
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(anchor.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+      if (nav && nav.classList.contains('active')) {
+        nav.classList.remove('active');
+        const icon = menuBtn.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    });
   });
-});
 
-// Lazy Load Images
-document.addEventListener('DOMContentLoaded', () => {
+  // Lazy Load Images
   const images = document.querySelectorAll('img[loading="lazy"]');
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
@@ -380,6 +549,6 @@ document.addEventListener('DOMContentLoaded', () => {
     images.forEach(img => observer.observe(img));
   }
 });
-    </script>
+  </script>
 </body>
 </html>
