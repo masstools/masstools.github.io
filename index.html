@@ -19,9 +19,9 @@
       --light-color: #F8F9FA;
       --text-color: #2C2C2C;
       --text-light: #6C757D;
-      --border-radius: 8px;
+      --border-radius: 12px;
       --transition: all 0.3s ease;
-      --gradient: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+      --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     }
 
     * {
@@ -41,13 +41,13 @@
     .container {
       max-width: 1280px;
       margin: 0 auto;
-      padding: 0 16px;
+      padding: 0 24px;
     }
 
     /* Header & Navbar */
     header {
       background: var(--light-color);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -65,6 +65,8 @@
       align-items: center;
       gap: 8px;
       text-decoration: none;
+      font-size: 24px;
+      font-weight: 800;
     }
 
     .logo-icon {
@@ -73,8 +75,6 @@
     }
 
     .logo span {
-      font-size: 20px;
-      font-weight: 800;
       background: var(--gradient);
       -webkit-background-clip: text;
       background-clip: text;
@@ -84,7 +84,7 @@
     nav {
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 16px;
     }
 
     nav ul {
@@ -98,7 +98,7 @@
       color: var(--text-color);
       font-weight: 500;
       font-size: 14px;
-      padding: 6px 12px;
+      padding: 8px 12px;
       border-radius: var(--border-radius);
       transition: var(--transition);
     }
@@ -113,9 +113,13 @@
       display: none;
       background: none;
       border: none;
-      font-size: 20px;
+      font-size: 24px;
       color: var(--text-color);
       cursor: pointer;
+    }
+
+    #mobile-menu-toggle {
+      display: none;
     }
 
     /* Search Bar */
@@ -159,14 +163,14 @@
     .hero {
       background: var(--gradient);
       color: var(--light-color);
-      padding: 80px 0;
+      padding: 100px 0;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
 
     .hero h1 {
-      font-size: 40px;
+      font-size: 48px;
       font-weight: 800;
       margin-bottom: 20px;
     }
@@ -201,7 +205,7 @@
 
     /* Tools Section */
     .tools {
-      padding: 60px 0;
+      padding: 80px 0;
       background: var(--light-color);
     }
 
@@ -211,7 +215,7 @@
     }
 
     .section-title h2 {
-      font-size: 32px;
+      font-size: 36px;
       color: var(--dark-color);
       margin-bottom: 12px;
     }
@@ -234,13 +238,13 @@
       border-radius: var(--border-radius);
       padding: 20px;
       text-align: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
       transition: var(--transition);
     }
 
     .tool-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     }
 
     .tool-icon {
@@ -280,7 +284,7 @@
 
     /* About Section */
     .about {
-      padding: 60px 0;
+      padding: 80px 0;
       background: linear-gradient(to bottom, var(--light-color), #f1f3f5);
     }
 
@@ -288,14 +292,14 @@
       max-width: 800px;
       margin: 0 auto;
       background: #fff;
-      padding: 40px;
+      padding: 32px;
       border-radius: var(--border-radius);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
       text-align: center;
     }
 
     .about-content h2 {
-      font-size: 32px;
+      font-size: 36px;
       color: var(--dark-color);
       margin-bottom: 20px;
     }
@@ -323,7 +327,6 @@
     .footer-column h3 {
       font-size: 16px;
       margin-bottom: 12px;
-扶持
     }
 
     .footer-column ul {
@@ -369,6 +372,12 @@
     }
 
     @media (max-width: 768px) {
+      .container {
+        padding: 0 12px;
+      }
+      .header-container {
+        padding: 12px 0;
+      }
       .mobile-menu-btn {
         display: block;
       }
@@ -382,7 +391,7 @@
         padding: 12px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       }
-      nav.active {
+      nav.show {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -399,11 +408,23 @@
       .search-bar input {
         width: 100%;
       }
+      .hero {
+        padding: 64px 0;
+      }
       .hero h1 {
-        font-size: 32px;
+        font-size: 36px;
       }
       .hero p {
         font-size: 16px;
+      }
+      .tools {
+        padding: 60px 0;
+      }
+      .section-title h2 {
+        font-size: 30px;
+      }
+      .category-section h3 {
+        font-size: 22px;
       }
     }
 
@@ -415,13 +436,13 @@
         grid-template-columns: 1fr; /* 1 column on mobile */
       }
       .hero h1 {
-        font-size: 24px;
+        font-size: 28px;
       }
       .hero p {
         font-size: 14px;
       }
       .section-title h2 {
-        font-size: 24px;
+        font-size: 26px;
       }
       .section-title p {
         font-size: 14px;
@@ -438,14 +459,20 @@
       .category-section h3 {
         font-size: 20px;
       }
+      .about {
+        padding: 60px 0;
+      }
       .about-content {
         padding: 24px;
       }
       .about-content h2 {
-        font-size: 24px;
+        font-size: 26px;
       }
       .about-content p {
         font-size: 14px;
+      }
+      .footer-container {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -458,13 +485,14 @@
         <i class="fas fa-tools logo-icon"></i>
         <span>Mass Tools</span>
       </a>
-      <button class="mobile-menu-btn" aria-label="Toggle Menu">
+      <input id="mobile-menu-toggle" type="checkbox">
+      <label class="mobile-menu-btn" for="mobile-menu-toggle">
         <i class="fas fa-bars"></i>
-      </button>
-      <nav>
-        <ul id="nav-menu">
+      </label>
+      <nav id="nav-menu">
+        <ul>
           <li><a href="#tools">Tools</a></li>
-          <li><a href="about.html">About</a></li>
+          <li><a href="#about">About</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
         <div class="search-bar">
@@ -574,7 +602,7 @@
           <h3>Quick Links</h3>
           <ul>
             <li><a href="#tools">Tools</a></li>
-            <li><a href="about.html">About</a></li>
+            <li><a href="#about">About</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
@@ -597,14 +625,11 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Mobile Menu Toggle
-      const menuBtn = document.querySelector('.mobile-menu-btn');
-      const nav = document.querySelector('nav');
-      if (menuBtn && nav) {
-        menuBtn.addEventListener('click', () => {
-          nav.classList.toggle('active');
-          const icon = menuBtn.querySelector('i');
-          icon.classList.toggle('fa-bars');
-          icon.classList.toggle('fa-times');
+      const menuToggle = document.getElementById('mobile-menu-toggle');
+      const nav = document.getElementById('nav-menu');
+      if (menuToggle && nav) {
+        menuToggle.addEventListener('change', () => {
+          nav.classList.toggle('show', menuToggle.checked);
         });
       }
 
@@ -616,11 +641,9 @@
           if (target) {
             target.scrollIntoView({ behavior: 'smooth' });
           }
-          if (nav && nav.classList.contains('active')) {
-            nav.classList.remove('active');
-            const icon = menuBtn.querySelector('i');
- icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
+          if (nav && nav.classList.contains('show')) {
+            nav.classList.remove('show');
+            menuToggle.checked = false;
           }
         });
       });
