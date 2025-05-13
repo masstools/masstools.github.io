@@ -1,434 +1,385 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OG Mentor - Free Online Tools</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OG Mentor - Free Online Tools</title>
+  <meta name="description" content="Free online tools for file conversion, text editing, calculators, and games.">
+  <meta name="keywords" content="free tools, file converters, calculators, games">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="assets/img/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-    --primary: #FE5803;
-    --primary-light: #FF8C44;
-    --secondary: #6E6F71;
-    --light-gray: #f5f5f5;
-    --dark-gray: #333;
-    --white: #fff;
-    --black: #000;
+  --primary-color: #FF4500;
+  --secondary-color: #FFA500;
+  --dark-color: #1A1A1A;
+  --light-color: #F8F9FA;
+  --text-color: #2C2C2C;
+  --text-light: #6C757D;
+  --border-radius: 12px;
+  --transition: all 0.3s ease;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
 }
 
 body {
-    background-color: var(--light-gray);
-    color: var(--dark-gray);
-    line-height: 1.6;
+  background: var(--light-color);
+  color: var(--text-color);
+  font-size: 16px;
+  line-height: 1.7;
 }
 
 .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
-/* Header Styles */
-.header {
-    background-color: var(--white);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    padding: 15px 0;
+header {
+  background: var(--light-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-.logo a {
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--primary);
-    text-decoration: none;
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
 }
 
-.main-nav ul {
-    display: flex;
-    list-style: none;
+.logo {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--primary-color);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.main-nav ul li {
-    margin-left: 20px;
-    position: relative;
+.logo img {
+  height: 40px;
 }
 
-.main-nav ul li a {
-    text-decoration: none;
-    color: var(--secondary);
-    font-weight: 500;
-    transition: color 0.3s;
+.logo span {
+  color: var(--secondary-color);
 }
 
-.main-nav ul li a:hover {
-    color: var(--primary);
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 16px;
 }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: var(--white);
-    min-width: 600px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    z-index: 1;
-    padding: 20px;
-    border-radius: 5px;
-    left: -100px;
+nav ul li a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  padding: 10px 16px;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
 }
 
-.dropdown:hover .dropdown-content {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.dropdown-column {
-    flex: 1;
-    min-width: 150px;
-    padding: 0 10px;
-}
-
-.dropdown-column h4 {
-    color: var(--primary);
-    margin-bottom: 10px;
-    font-size: 16px;
-}
-
-.dropdown-column a {
-    display: block;
-    padding: 5px 0;
-    color: var(--secondary);
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.dropdown-column a:hover {
-    color: var(--primary);
+nav ul li a:hover {
+  background: var(--primary-color);
+  color: var(--light-color);
 }
 
 .mobile-menu-btn {
-    display: none;
-    font-size: 24px;
-    cursor: pointer;
+  display: none;
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
 }
 
-/* Main Content Layout */
-.main-content {
-    padding: 30px 0;
+.hero {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: var(--light-color);
+  padding: 100px 0;
+  text-align: center;
+  position: relative;
 }
 
-.content-area {
-    background-color: var(--white);
-    border-radius: 8px;
-    padding: 30px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+.hero h1 {
+  font-size: 48px;
+  font-weight: 800;
+  margin-bottom: 24px;
+}
+
+.hero p {
+  font-size: 20px;
+  max-width: 800px;
+  margin: 0 auto 32px;
+}
+
+.cta-button {
+  display: inline-flex;
+  background: var(--light-color);
+  color: var(--primary-color);
+  padding: 14px 32px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.cta-button:hover {
+  background: var(--primary-color);
+  color: var(--light-color);
+  transform: translateY(-4px);
+}
+
+.tools {
+  padding: 80px 0;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.section-title h2 {
+  font-size: 36px;
+  color: var(--dark-color);
+}
+
+.tools-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.tool-card {
+  background: var(--light-color);
+  border-radius: var(--border-radius);
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: var(--transition);
+}
+
+.tool-card:hover {
+  background: var(--primary-color);
+  color: var(--light-color);
+  transform: translateY(-4px);
+}
+
+.tool-card h3 a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.tool-card:hover h3 a, .tool-card:hover p {
+  color: var(--light-color);
 }
 
 .sidebar {
-    width: 250px;
-    float: left;
-    margin-right: 30px;
+  background: var(--light-color);
+  padding: 24px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 100px;
 }
 
-.sidebar-widget {
-    background-color: var(--white);
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+footer {
+  background: var(--dark-color);
+  color: var(--light-color);
+  padding: 64px 0 24px;
 }
 
-.sidebar-widget h3 {
-    color: var(--primary);
-    margin-bottom: 15px;
-    font-size: 18px;
-}
-
-.sidebar-widget ul {
-    list-style: none;
-}
-
-.sidebar-widget ul li {
-    margin-bottom: 8px;
-}
-
-.sidebar-widget ul li a {
-    text-decoration: none;
-    color: var(--secondary);
-    transition: color 0.3s;
-}
-
-.sidebar-widget ul li a:hover {
-    color: var(--primary);
-}
-
-/* Tool Categories */
-.tool-categories {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 30px;
-}
-
-.category-card {
-    background-color: var(--white);
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.category-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.category-card i {
-    font-size: 40px;
-    color: var(--primary);
-    margin-bottom: 15px;
-}
-
-.category-card h3 {
-    margin-bottom: 10px;
-    color: var(--dark-gray);
-}
-
-.category-card p {
-    color: var(--secondary);
-    margin-bottom: 15px;
-    font-size: 14px;
-}
-
-.btn {
-    display: inline-block;
-    background-color: var(--primary);
-    color: var(--white);
-    padding: 8px 20px;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: background-color 0.3s;
-}
-
-.btn:hover {
-    background-color: var(--primary-light);
-}
-
-/* Footer Styles */
-.footer {
-    background-color: var(--secondary);
-    color: var(--white);
-    padding: 40px 0 20px;
-    clear: both;
-}
-
-.footer-column {
-    float: left;
-    width: 33.33%;
-    padding: 0 15px;
-}
-
-.footer-column h4 {
-    margin-bottom: 20px;
-    font-size: 18px;
-}
-
-.footer-column p {
-    font-size: 14px;
-    margin-bottom: 15px;
-}
-
-.footer-column ul {
-    list-style: none;
-}
-
-.footer-column ul li {
-    margin-bottom: 10px;
-}
-
-.footer-column ul li a {
-    color: var(--white);
-    text-decoration: none;
-    font-size: 14px;
-    transition: color 0.3s;
-}
-
-.footer-column ul li a:hover {
-    color: var(--primary-light);
-}
-
-.social-links a {
-    display: inline-block;
-    margin-right: 15px;
-    color: var(--white);
-    font-size: 20px;
-    transition: color 0.3s;
-}
-
-.social-links a:hover {
-    color: var(--primary-light);
-}
-
-.copyright {
-    text-align: center;
-    padding-top: 20px;
-    margin-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: 14px;
-}
-
-/* Responsive Design */
-@media (max-width: 992px) {
-    .sidebar {
-        width: 100%;
-        float: none;
-        margin-right: 0;
-        margin-bottom: 30px;
-    }
-    
-    .footer-column {
-        width: 100%;
-        margin-bottom: 30px;
-    }
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 32px;
 }
 
 @media (max-width: 768px) {
-    .main-nav {
-        display: none;
-    }
-    
-    .mobile-menu-btn {
-        display: block;
-    }
-    
-    .dropdown-content {
-        min-width: 300px;
-        left: 0;
-    }
+  .mobile-menu-btn {
+    display: block;
+  }
+  nav ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--light-color);
+    flex-direction: column;
+    padding: 16px;
+  }
+  nav ul.show {
+    display: flex;
+  }
+  .hero h1 {
+    font-size: 36px;
+  }
 }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <a href="index.html">OG Mentor</a>
-            </div>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li class="dropdown">
-                        <a href="#">Tools <i class="fas fa-chevron-down"></i></a>
-                        <div class="dropdown-content">
-                            <div class="dropdown-column">
-                                <h4>Converters</h4>
-                                <a href="tools/converters/eps-to-image.html">EPS to Image</a>
-                                <a href="tools/converters/pdf-to-image.html">PDF to Image</a>
-                                <!-- More converter links -->
-                            </div>
-                            <div class="dropdown-column">
-                                <h4>Generators</h4>
-                                <a href="tools/generators/password.html">Password Generator</a>
-                                <a href="tools/generators/email.html">Email Generator</a>
-                                <!-- More generator links -->
-                            </div>
-                            <!-- More dropdown columns -->
-                        </div>
-                    </li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </nav>
-            <div class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </header>
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <img src="assets/img/logo.png" alt="OG Mentor Logo">
+        OG<span>Mentor</span>
+      </a>
+      <input id="mobile-menu-toggle" type="checkbox">
+      <label class="mobile-menu-btn" for="mobile-menu-toggle">☰</label>
+      <nav>
+        <ul id="nav-menu">
+          <li><a href="#tools">Tools</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <!-- Main Content (this will change per page) -->
-    <main class="main-content">
-        <div class="container">
-            <div class="sidebar">
-                <!-- Sidebar content -->
-                <div class="sidebar-widget">
-                    <h3>Popular Tools</h3>
-                    <ul>
-                        <li><a href="tools/converters/pdf-to-image.html">PDF to Image</a></li>
-                        <li><a href="tools/generators/password.html">Password Generator</a></li>
-                        <li><a href="tools/text-tools/word-count.html">Word Count</a></li>
-                        <li><a href="tools/calculators/bmi.html">BMI Calculator</a></li>
-                    </ul>
-                </div>
-                <div class="sidebar-widget">
-                    <h3>Recently Used</h3>
-                    <ul>
-                        <!-- Dynamically filled by JavaScript -->
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="content-area">
-                <!-- Page-specific content goes here -->
-                <h1>Welcome to OG Mentor</h1>
-                <p class="tagline">Powerful digital tools, 100% free for everyone</p>
-                
-                <div class="tool-categories">
-                    <!-- Tool category cards -->
-                    <div class="category-card">
-                        <i class="fas fa-exchange-alt"></i>
-                        <h3>Converters</h3>
-                        <p>Convert between file formats easily</p>
-                        <a href="#" class="btn">Explore</a>
-                    </div>
-                    <!-- More category cards -->
-                </div>
-            </div>
-        </div>
-    </main>
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <h1>100% Free Online Tools</h1>
+        <p>Explore our powerful digital tools—no signup required. From file converters to calculators and mini-games, everything is free and accessible.</p>
+        <a class="cta-button" href="#tools">Discover Tools Now</a>
+      </div>
+    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-column">
-                <h4>OG Mentor</h4>
-                <p>Providing free online tools since 2025. Our mission is to make powerful digital tools accessible to everyone.</p>
-            </div>
-            <div class="footer-column">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Connect</h4>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
+    <!-- Tools Section -->
+    <section class="tools" id="tools">
+      <div class="container">
+        <div class="section-title">
+          <h2>Our Free Tools Collection</h2>
+          <p>Browse our extensive range of free online tools designed to simplify your digital tasks.</p>
         </div>
-        <div class="copyright">
-            <p>&copy; 2025 OG Mentor. All rights reserved.</p>
+        <div class="tools-container">
+          <div class="tool-card">
+            <h3><a href="tools/eps-to-image.html">EPS to Image Converter</a></h3>
+            <p>Convert EPS files to various image formats effortlessly.</p>
+          </div>
+          <!-- Add more tool cards here -->
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <script src="js/main.js"></script>
+    <!-- About Section -->
+    <section class="about" id="about">
+      <div class="container">
+        <div class="about-content">
+          <h2>About OG Mentor</h2>
+          <p>OG Mentor is your go-to platform for free, high-quality online tools...</p>
+          <a class="cta-button" href="#tools">Start Exploring</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="container">
+      <div class="widget">
+        <h3>Search</h3>
+        <form action="/search">
+          <input type="text" placeholder="Search tools..." name="q">
+          <button type="submit">Search</button>
+        </form>
+      </div>
+      <div class="widget">
+        <h3>Popular Tools</h3>
+        <ul>
+          <li><a href="tools/eps-to-image.html">EPS to Image Converter</a></li>
+          <!-- Add more -->
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-column">
+          <h3>OG Mentor</h3>
+          <p>Your trusted source for free online tools.</p>
+        </div>
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#tools">Tools</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Connect</h3>
+          <ul>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">Facebook</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2025 OG Mentor. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+    <script>
+        // Mobile Menu Toggle
+const menuBtn = document.querySelector('.mobile-menu-btn');
+const navMenu = document.getElementById('nav-menu');
+if (menuBtn && navMenu) {
+  menuBtn.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
+  });
+}
+
+// Smooth Scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(anchor.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+    if (navMenu && navMenu.classList.contains('show')) {
+      navMenu.classList.remove('show');
+      document.getElementById('mobile-menu-toggle').checked = false;
+    }
+  });
+});
+
+// Lazy Load Images
+document.addEventListener('DOMContentLoaded', () => {
+  const images = document.querySelectorAll('img[loading="lazy"]');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.src = img.dataset.src || img.src;
+          observer.unobserve(img);
+        }
+      });
+    });
+    images.forEach(img => observer.observe(img));
+  }
+});
+    </script>
 </body>
 </html>
