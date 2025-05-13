@@ -7,7 +7,7 @@
   <meta name="description" content="Mass Tools offers free, user-friendly online tools for image conversion, text manipulation, fitness calculators, and more. Simplify your tasks with our accessible utilities.">
   <meta name="keywords" content="free online tools, web tools, image converter, text tools, fitness calculators">
   <meta name="robots" content="index, follow">
-  <link rel="icon" href="/assets/img/favicon-tools.icov=2" type="image/x-icon">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiPjxwYXRoIGZpbGw9IiNmOTU4MDEiIGQ9Ik0wIDUxMmwxMjgtMTI4TDI1NiA1MTJoMjU2VjM1MkgzNTJsLTk2LTk2IDk2LTk2aDE2MFYwSDI1NkwxMjggMTI4IDAgMHY1MTJ6bTE5Mi00MTZsNjQgNjRoLTY0Vjk2em0xMjggMjU2bC02NC02NGg2NHY2NHoiLz48L3N2Zz4=">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <style>
@@ -584,11 +584,11 @@
       <div class="container">
         <h1>Free <span>Online Tools</span> for Everyone</h1>
         <p>Discover a collection of user-friendly web tools designed to simplify your tasks, from image conversion to text manipulation.</p>
-        <a class="cta-button" href="#tools"><i class="fas fa-tools"></i> Explore Tools</a>
+        <a class="cta-button" href="/#tools"><i class="fas fa-tools"></i> Explore Tools</a>
       </div>
     </section>
 
-    <section class="image-converters-section" id="image-converters">
+    <section class="image-converters-section" id="tools">
       <div class="container">
         <h2>Image Converters</h2>
         <p>Effortlessly convert, resize, and optimize your images with our free image converter tools, designed for speed and simplicity.</p>
@@ -659,7 +659,7 @@
     <div class="container">
       <div class="footer-container">
         <div class="footer-column">
-          <a href="/index.html" class="footer-column-logo">
+          <a href="/" class="footer-column-logo">
             <i class="fas fa-tools footer-column-logo-icon"></i>
             <span>Mass Tools</span>
           </a>
@@ -667,7 +667,7 @@
         </div>
         <div class="footer-column">
           <ul>
-            <li><a href="/index.html#tools">Tools</a></li>
+            <li><a href="/#tools">Tools</a></li>
             <li><a href="/about-us.html">About Us</a></li>
             <li><a href="/contact-us.html">Contact Us</a></li>
           </ul>
@@ -700,13 +700,35 @@
         });
       }
 
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      // Smooth scroll for anchor links
+      const scrollToSection = (hash) => {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+          return true;
+        }
+        return false;
+      };
+
+      // Handle anchor link clicks
+      document.querySelectorAll('a[href*="#"]').forEach(anchor => {
         anchor.addEventListener('click', (e) => {
           e.preventDefault();
-          const target = document.querySelector(anchor.getAttribute('href'));
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
+          const href = anchor.getAttribute('href');
+          const [path, hash] = href.split('#');
+          const isHome = path === '/' || path === '' || path === '/index.html';
+
+          if (isHome && hash) {
+            // Scroll on the homepage
+            scrollToSection(`#${hash}`);
+            // Update URL without reloading
+            history.pushState(null, null, `/#${hash}`);
+          } else {
+            // Navigate to another page with hash
+            window.location.href = href;
           }
+
+          // Close mobile menu if open
           if (nav && nav.classList.contains('show')) {
             nav.classList.remove('show');
             menuToggle.checked = false;
@@ -714,6 +736,14 @@
         });
       });
 
+      // Handle hash on page load
+      if (window.location.hash) {
+        setTimeout(() => {
+          scrollToSection(window.location.hash);
+        }, 100); // Small delay to ensure page is loaded
+      }
+
+      // Scroll-to-top button
       const scrollTopBtn = document.querySelector('.scroll-to-top');
       if (scrollTopBtn) {
         window.addEventListener('scroll', () => {
@@ -728,6 +758,7 @@
         });
       }
 
+      // Search functionality
       const searchInput = document.querySelector('.search-bar input');
       const searchButton = document.querySelector('.search-bar button');
       if (searchInput && searchButton) {
