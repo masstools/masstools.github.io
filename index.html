@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mass Tools - Free Online Tools</title>
+  <meta name="description" content="Discover a wide range of powerful tools for file conversion, text editing, calculations, and games—all free, no signup required.">
+  <meta name="keywords" content="free tools, file converters, calculators, games, online utilities">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="assets/img/favicon-tools.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #FF4500;
+      --secondary-color: #FFA500;
+      --dark-color: #1A1A1A;
+      --light-color: #F8F9FA;
+      --text-color: #2C2C2C;
+      --text-light: #6C757D;
+      --border-radius: 12px;
+      --transition: all 0.3s ease;
+      --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: var(--light-color);
+      color: var(--text-color);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header & Navbar */
+    header {
+      background: var(--light-color);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .logo-icon {
+      font-size: 24px;
+      color: var(--primary-color);
+    }
+
+    .logo span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 16px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+      font-size: 14px;
+      padding: 8px 12px;
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover {
+      background: var(--primary-color);
+      color: var(--light-color);
+      text-decoration: none;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--text-color);
+      cursor: pointer;
+    }
+
+    #mobile-menu-toggle {
+      display: none;
+    }
+
+    /* Search Bar */
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 50px;
+      padding: 6px 12px;
+      transition: var(--transition);
+    }
+
+    .search-bar:hover, .search-bar:focus-within {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-bar input {
+      border: none;
+      outline: none;
+      font-size: 13px;
+      padding: 6px;
+      width: 160px;
+    }
+
+    .search-bar button {
+      background: none;
+      border: none;
+      color: var(--text-light);
+      font-size: 14px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .search-bar button:hover {
+      color: var(--primary-color);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: var(--gradient);
+      color: var(--light-color);
+      padding: 100px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 700px;
+      margin: 0 auto 24px;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--light-color);
+      color: var(--primary-color);
+      padding: 10px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .cta-button:hover {
+      background: var(--primary-color);
+      color: var(--light-color);
+      transform: translateY(-4px);
+      text-decoration: none;
+    }
+
+    /* Tools Section */
+    .tools {
+      padding: 80px 0;
+      background: var(--light-color);
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .section-title h2 {
+      font-size: 36px;
+      color: var(--dark-color);
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 16px;
+    }
+
+    .tools-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .tool-card {
+      background: #fff;
+      border-radius: var(--border-radius);
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: var(--transition);
+    }
+
+    .tool-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .tool-icon {
+      font-size: 28px;
+      color: var(--primary-color);
+      margin-bottom: 12px;
+    }
+
+    .tool-card h3 a {
+      color: var(--dark-color);
+      text-decoration: none;
+      font-size: 18px;
+      transition: var(--transition);
+    }
+
+    .tool-card:hover h3 a {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .tool-card p {
+      color: var(--text-light);
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    .category-section {
+      margin-bottom: 40px;
+    }
+
+    .category-section h3 {
+      font-size: 24px;
+      color: var(--dark-color);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    /* About Section */
+    .about {
+      padding: 80px 0;
+      background: linear-gradient(to bottom, var(--light-color), #f1f3f5);
+    }
+
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 32px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+
+    .about-content h2 {
+      font-size: 36px;
+      color: var(--dark-color);
+      margin-bottom: 20px;
+    }
+
+    .about-content p {
+      font-size: 15px;
+      color: var(--text-color);
+      margin-bottom: 12px;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark-color);
+      color: var(--light-color);
+      padding: 40px 0 20px;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .footer-column h3 {
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    .footer-column ul {
+      list-style: none;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-column ul li a {
+      color: #CED4DA;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-column ul li a:hover {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 13px;
+    }
+
+    /* Responsive Design */
+    @media (min-width: 992px) {
+      .tools-container {
+        grid-template-columns: repeat(4, 1fr); /* Exactly 4 columns */
+      }
+    }
+
+    @media (max-width: 992px) {
+      .tools-container {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* 2 or 3 columns */
+      }
+      .search-bar input {
+        width: 120px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 12px;
+      }
+      .header-container {
+        padding: 12px 0;
+      }
+      .mobile-menu-btn {
+        display: block;
+      }
+      nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--light-color);
+        padding: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      nav.show {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+      }
+      .search-bar {
+        margin-top: 12px;
+        width: 100%;
+      }
+      .search-bar input {
+        width: 100%;
+      }
+      .hero {
+        padding: 64px 0;
+      }
+      .hero h1 {
+        font-size: 36px;
+      }
+      .hero p {
+        font-size: 16px;
+      }
+      .tools {
+        padding: 60px 0;
+      }
+      .section-title h2 {
+        font-size: 30px;
+      }
+      .category-section h3 {
+        font-size: 22px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .container {
+        padding: 0 12px;
+      }
+      .tools-container {
+        grid-template-columns: 1fr; /* 1 column on mobile */
+      }
+      .hero h1 {
+        font-size: 28px;
+      }
+      .hero p {
+        font-size: 14px;
+      }
+      .section-title h2 {
+        font-size: 26px;
+      }
+      .section-title p {
+        font-size: 14px;
+      }
+      .tool-card {
+        padding: 16px;
+      }
+      .tool-card h3 a {
+        font-size: 16px;
+      }
+      .tool-card p {
+        font-size: 12px;
+      }
+      .category-section h3 {
+        font-size: 20px;
+      }
+      .about {
+        padding: 60px 0;
+      }
+      .about-content {
+        padding: 24px;
+      }
+      .about-content h2 {
+        font-size: 26px;
+      }
+      .about-content p {
+        font-size: 14px;
+      }
+      .footer-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <i class="fas fa-tools logo-icon"></i>
+        <span>Mass Tools</span>
+      </a>
+      <input id="mobile-menu-toggle" type="checkbox">
+      <label class="mobile-menu-btn" for="mobile-menu-toggle">
+        <i class="fas fa-bars"></i>
+      </label>
+      <nav id="nav-menu">
+        <ul>
+          <li><a href="#tools">Tools</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="search-bar">
+          <input type="text" placeholder="Search tools..." aria-label="Search">
+          <button type="submit" aria-label="Search">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <h1>Free Online Tools for Everyone</h1>
+        <p>Discover a wide range of powerful tools for file conversion, text editing, calculations, and games—all free, no signup required.</p>
+        <a class="cta-button" href="#tools">Explore Tools</a>
+      </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section class="tools" id="tools">
+      <div class="container">
+        <div class="section-title">
+          <h2>Our Tools Collection</h2>
+          <p>Simplify your tasks with our curated set of free, high-quality online tools.</p>
+        </div>
+
+        <!-- Image Converters Category -->
+        <div class="category-section">
+          <h3>Image Converters</h3>
+          <div class="tools-container">
+            <div class="tool-card">
+              <i class="fas fa-file-image tool-icon"></i>
+              <h3><a href="tools/eps-to-image.html">EPS to Image Converter</a></h3>
+              <p>Convert EPS files to PNG, JPG, or other formats effortlessly.</p>
+            </div>
+            <div class="tool-card">
+              <i class="fas fa-file-pdf tool-icon"></i>
+              <h3><a href="tools/pdf-to-image.html">PDF to Image Converter</a></h3>
+              <p>Transform PDF pages into high-quality images.</p>
+            </div>
+            <div class="tool-card">
+              <i class="fas fa-image tool-icon"></i>
+              <h3><a href="tools/image-to-pdf.html">Image to PDF Converter</a></h3>
+              <p>Turn images into professional PDF documents.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Text Tools Category -->
+        <div class="category-section">
+          <h3>Text Tools</h3>
+          <div class="tools-container">
+            <div class="tool-card">
+              <i class="fas fa-font tool-icon"></i>
+              <h3><a href="tools/text-to-uppercase.html">Text to Uppercase</a></h3>
+              <p>Convert your text to uppercase instantly.</p>
+            </div>
+            <div class="tool-card">
+              <i class="fas fa-align-left tool-icon"></i>
+              <h3><a href="tools/word-counter.html">Word Counter</a></h3>
+              <p>Count words, characters, and sentences in your text.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Calculators Category -->
+        <div class="category-section">
+          <h3>Calculators</h3>
+          <div class="tools-container">
+            <div class="tool-card">
+              <i class="fas fa-calculator tool-icon"></i>
+              <h3><a href="tools/bmi-calculator.html">BMI Calculator</a></h3>
+              <p>Calculate your Body Mass Index quickly.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+      <div class="container">
+        <div class="about-content">
+          <h2>About Mass Tools</h2>
+          <p>Mass Tools is your trusted platform for free, high-quality online tools. From file converters to calculators and games, we empower users worldwide to simplify their digital tasks without any hassle.</p>
+          <p>Our mission is to provide accessible, reliable, and innovative tools that enhance productivity and creativity.</p>
+          <a class="cta-button" href="#tools">Start Exploring</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-column">
+          <h3>Mass Tools</h3>
+          <p>Empowering you with free, high-quality online tools.</p>
+        </div>
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#tools">Tools</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Connect</h3>
+          <ul>
+            <li><a href="#" target="_blank">Twitter</a></li>
+            <li><a href="#" target="_blank">Facebook</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2025 Mass Tools. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Mobile Menu Toggle
+      const menuToggle = document.getElementById('mobile-menu-toggle');
+      const nav = document.getElementById('nav-menu');
+      if (menuToggle && nav) {
+        menuToggle.addEventListener('change', () => {
+          nav.classList.toggle('show', menuToggle.checked);
+        });
+      }
+
+      // Smooth Scrolling
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = document.querySelector(anchor.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+          if (nav && nav.classList.contains('show')) {
+            nav.classList.remove('show');
+            menuToggle.checked = false;
+          }
+        });
+      });
+
+      // Lazy Load Images
+      const images = document.querySelectorAll('img[loading="lazy"]');
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              img.src = img.dataset.src || img.src;
+              observer.unobserve(img);
+            }
+          });
+        });
+        images.forEach(img => observer.observe(img));
+      }
+    });
+  </script>
+</body>
+</html>
