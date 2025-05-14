@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image to DXF Converter - Mass Tools</title>
+  <meta name="description" content="Convert images to DXF format for free with Mass Tools' Image to DXF Converter. Create CAD-compatible vector files for AutoCAD and other software.">
+  <meta name="keywords" content="image to dxf converter, mass tools, free online tools, image conversion, dxf format, cad, autocad">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-68CX9G7BKF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-68CX9G7BKF');
+  </script>
+  <style>
+    :root {
+      --primary-color: #FF4500;
+      --secondary-color: #FFA500;
+      --dark-color: #1A1A1A;
+      --light-color: #F8F9FA;
+      --text-color: #2C2C2C;
+      --text-light: #6C757D;
+      --border-radius: 12px;
+      --transition: all 0.3s ease;
+      --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: var(--light-color);
+      color: var(--text-color);
+      font-size: 16px;
+      line-height: 1.7;
+      scrollbar-width: none;
+    }
+
+    body::-webkit-scrollbar {
+      display: none;
+    }
+
+    .progress-bar, [class*="progress"], [id*="progress"] {
+      display: none !important;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      background: var(--light-color);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-size: 24px;
+      font-weight: 800;
+      margin-left: 8px;
+    }
+
+    .logo-icon {
+      font-size: 24px;
+      color: var(--primary-color);
+    }
+
+    .logo span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 16px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+      font-size: 14px;
+      padding: 8px 12px;
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover {
+      background: var(--primary-color);
+      color: var(--light-color);
+      text-decoration: none;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--text-color);
+      cursor: pointer;
+      margin-right: 8px;
+    }
+
+    #mobile-menu-toggle {
+      display: none;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 50px;
+      padding: 6px 12px;
+      transition: var(--transition);
+      max-width: 200px;
+    }
+
+    .search-bar:hover, .search-bar:focus-within {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-bar input {
+      border: none;
+      outline: none;
+      font-size: 13px;
+      padding: 6px;
+      width: 100%;
+    }
+
+    .search-bar button {
+      background: none;
+      border: none;
+      color: var(--text-light);
+      font-size: 14px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .search-bar button:hover {
+      color: var(--primary-color);
+    }
+
+    .tool-section {
+      padding: 80px 0;
+      background: var(--light-color);
+    }
+
+    .tool-content {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 32px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .tool-content h1 {
+      font-size: 36px;
+      color: var(--dark-color);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .tool-content p {
+      font-size: 15px;
+      color: var(--text-color);
+      margin-bottom: 12px;
+    }
+
+    .tool-content .upload-area {
+      border: 2px dashed var(--text-light);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+      transition: var(--transition);
+    }
+
+    .tool-content .upload-area:hover {
+      border-color: var(--primary-color);
+      background: rgba(255, 69, 0, 0.05);
+    }
+
+    .tool-content .upload-area.dragover {
+      border-color: var(--primary-color);
+      background: rgba(255, 69, 0, 0.1);
+    }
+
+    .tool-content .upload-area i {
+      font-size: 32px;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    .tool-content .upload-area p {
+      font-size: 14px;
+      color: var(--text-light);
+    }
+
+    .tool-content .upload-area input[type="file"] {
+      display: none;
+    }
+
+    .tool-content .options-control {
+      margin-bottom: 20px;
+      text-align: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    .tool-content .options-control label {
+      font-size: 14px;
+      font-weight: 500;
+      margin-right: 10px;
+      align-self: center;
+    }
+
+    .tool-content .options-control select {
+      padding: 8px 16px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      min-width: 200px;
+    }
+
+    .tool-content .preview-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .tool-content .preview-box {
+      flex: 1;
+      min-width: 300px;
+      text-align: center;
+    }
+
+    .tool-content .preview-box img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--border-radius);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      display: none;
+    }
+
+    .tool-content .preview-box img.visible {
+      display: block;
+    }
+
+    .tool-content .preview-box p {
+      font-size: 14px;
+      font-weight: 500;
+      margin-top: 10px;
+    }
+
+    .tool-content .action-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .tool-content .action-buttons button,
+    .tool-content .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gradient);
+      color: #FFFFFF !important;
+      padding: 10px 24px;
+      border: none;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    .tool-content .action-buttons button:hover,
+    .tool-content .cta-button:hover {
+      background: var(--primary-color);
+      color: #FFFFFF !important;
+      transform: translateY(-4px);
+      text-decoration: none;
+    }
+
+    .tool-content .action-buttons button:disabled {
+      background: var(--text-light);
+      color: var(--light-color) !important;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .tool-content .loading {
+      display: none;
+      font-size: 14px;
+      color: var(--primary-color);
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .tool-content .loading.visible {
+      display: block;
+    }
+
+    .tool-content .tool-article {
+      margin-top: 40px;
+    }
+
+    .tool-content .tool-article h2 {
+      font-size: 24px;
+      color: var(--dark-color);
+      margin: 24px 0 12px;
+    }
+
+    .tool-content .tool-article h3 {
+      font-size: 20px;
+      color: var(--dark-color);
+      margin: 20px 0 10px;
+    }
+
+    .tool-content .tool-article p {
+      font-size: 15px;
+      color: var(--text-color);
+      margin-bottom: 12px;
+    }
+
+    .tool-content .tool-article ul {
+      list-style: none;
+      margin: 12px 0;
+      padding-left: 20px;
+    }
+
+    .tool-content .tool-article ul li {
+      font-size: 15px;
+      color: var(--text-color);
+      margin-bottom: 8px;
+      position: relative;
+    }
+
+    .tool-content .tool-article ul li::before {
+      content: '✔';
+      color: var(--primary-color);
+      position: absolute;
+      left: -20px;
+    }
+
+    .tool-content .tool-article a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .tool-content .tool-article a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background: var(--dark-color);
+      color: var(--light-color);
+      padding: 40px 0 20px;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .footer-column-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .footer-column-logo-icon {
+      font-size: 24px;
+      color: var(--primary-color);
+    }
+
+    .footer-column-logo span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .footer-column ul {
+      list-style: none;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-column ul li a {
+      color: #CED4DA;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-column ul li a:hover {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 13px;
+    }
+
+    .scroll-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--gradient);
+      color: var(--light-color);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    .scroll-to-top i {
+      -webkit-text-stroke: 0;
+      color: var(--light-color);
+    }
+
+    .scroll-to-top:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .scroll-to-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 992px) {
+      .search-bar {
+        max-width: 180px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 16px !important;
+      }
+      .header-container {
+        padding: 12px 16px;
+      }
+      .mobile-menu-btn {
+        display: block;
+      }
+      nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        align-items: flex-start;
+        border-radius: 0 0 12px 12px;
+        border: 1px solid #e0e0e0;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      nav.show {
+        display: flex !important;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 18px;
+        width: 100%;
+      }
+      nav ul li a {
+        font-size: 18px;
+        padding: 12px 20px;
+        width: 100%;
+        text-align: left;
+        border-radius: 8px;
+      }
+      .search-bar {
+        margin-top: 20px;
+        width: 100%;
+        max-width: none;
+        padding: 10px 20px;
+        border-radius: 50px;
+      }
+      .search-bar input {
+        font-size: 15px;
+        padding: 8px;
+      }
+      .search-bar button {
+        font-size: 16px;
+      }
+      .tool-section {
+        padding: 60px 0;
+      }
+      .tool-content h1 {
+        font-size: 30px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .container {
+        padding: 0 16px !important;
+      }
+      .header-container {
+        padding: 10px 16px !important;
+        margin: 0;
+      }
+      .logo {
+        font-size: 20px;
+        margin-left: 0;
+      }
+      .logo-icon {
+        font-size: 20px;
+      }
+      .mobile-menu-btn {
+        margin-right: 0;
+      }
+      .search-bar {
+        padding: 8px 16px;
+        margin: 16px 0;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .search-bar input {
+        font-size: 14px;
+      }
+      .tool-content {
+        padding: 24px;
+      }
+      .tool-content h1 {
+        font-size: 26px;
+      }
+      .tool-content p, .tool-content .tool-article p, .tool-content .tool-article ul li {
+        font-size: 14px;
+      }
+      .tool-content .tool-article h2 {
+        font-size: 20px;
+      }
+      .tool-content .tool-article h3 {
+        font-size: 18px;
+      }
+      .tool-content .upload-area {
+        padding: 16px;
+      }
+      .tool-content .options-control {
+        flex-direction: column;
+        align-items: center;
+      }
+      .tool-content .options-control select {
+        width: 100%;
+        padding: 10px 16px;
+        font-size: 15px;
+      }
+      .tool-content .preview-box {
+        min-width: 100%;
+      }
+      .tool-content .action-buttons {
+        flex-direction: column;
+        gap: 40px;
+        margin-bottom: 24px;
+      }
+      .scroll-to-top {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        bottom: 16px;
+        right: 16px;
+      }
+      .footer-column-logo {
+        font-size: 20px;
+      }
+      .footer-column-logo-icon {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <a href="/" class="logo">
+        <i class="fas fa-tools logo-icon"></i>
+        <span>Mass Tools</span>
+      </a>
+      <input id="mobile-menu-toggle" type="checkbox">
+      <label class="mobile-menu-btn" for="mobile-menu-toggle">
+        <i class="fas fa-bars"></i>
+      </label>
+      <nav id="nav-menu">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#tools">Tools</a></li>
+          <li><a href="/about-us.html">About Us</a></li>
+          <li><a href="/contact-us.html">Contact Us</a></li>
+          <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="/terms-and-conditions.html">Terms</a></li>
+          <li><a href="/Disclaimer.html">Disclaimer</a></li>
+        </ul>
+        <div class="search-bar">
+          <input type="text" placeholder="Search tools..." aria-label="Search">
+          <button type="submit" aria-label="Search">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="tool-section">
+      <div class="container">
+        <div class="tool-content">
+          <h1>Image to DXF Converter</h1>
+          <p>Convert images (JPG, PNG, GIF, etc.) to DXF format with Mass Tools' free Image to DXF Converter. Create CAD-compatible vector files for AutoCAD and other software.</p>
+          
+          <div class="upload-area" id="uploadArea">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <p>Drag and drop your image here or click to upload</p>
+            <input type="file" id="imageInput" accept="image/*" aria-label="Upload image">
+          </div>
+
+          <div class="options-control">
+            <div>
+              <label for="detailLevel">Detail Level:</label>
+              <select id="detailLevel" aria-label="Select DXF detail level">
+                <option value="high" selected>High Detail</option>
+                <option value="low">Low Detail (Simpler Paths)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="preview-container">
+            <div class="preview-box">
+              <p>Original Image</p>
+              <img id="originalPreview" alt="Original image preview">
+            </div>
+            <div class="preview-box">
+              <p>Vector Preview (Approximation)</p>
+              <img id="vectorPreview" alt="Vector preview">
+            </div>
+          </div>
+
+          <div class="action-buttons">
+            <button id="convertBtn" disabled>Convert to DXF</button>
+            <button id="downloadBtn" disabled>Download DXF</button>
+            <button id="resetBtn">Reset</button>
+          </div>
+          <p class="loading" id="loadingIndicator">Converting...</p>
+
+          <a class="cta-button" href="/index.html#tools">Explore Our Tools</a>
+
+          <div class="tool-article">
+            <h2>About the Image to DXF Converter</h2>
+            <p>The Image to DXF Converter by <a href="/about-us.html">Mass Tools</a> is a free tool that converts raster images (JPG, PNG, GIF, etc.) into DXF (Drawing Exchange Format) files. DXF is a vector format used in CAD software like AutoCAD. This tool traces images to create vector paths, generating a single-layer DXF in your browser for privacy and speed without server uploads.</p>
+            
+            <h3>Why Convert Images to DXF?</h3>
+            <p>DXF is a standard format for CAD, supporting precise vector designs. According to <a href="https://en.wikipedia.org/wiki/AutoCAD_DXF" target="_blank" rel="noopener">Wikipedia</a>, DXF is widely used for 2D and 3D drawings. Key benefits include:</p>
+            <ul>
+              <li><strong>CAD Compatibility</strong>: Open in AutoCAD, Fusion 360, or other CAD software.</li>
+              <li><strong>Vector Precision</strong>: Convert raster images to scalable vector paths.</li>
+              <li><strong>Editing</strong>: Modify designs in CAD for engineering or architecture.</li>
+              <li><strong>Interoperability</strong>: Share designs across CAD platforms.</li>
+            </ul>
+
+            <h3>How to Use the Image to DXF Converter</h3>
+            <p>Our Image to DXF Converter is simple and supports customization. Follow these steps:</p>
+            <ul>
+              <li><strong>Upload Your Image</strong>: Click the upload area or drag and drop your image (JPG, PNG, GIF, etc.).</li>
+              <li><strong>Select Detail Level</strong>: Choose High Detail (more paths) or Low Detail (simpler paths).</li>
+              <li><strong>Convert</strong>: Click "Convert to DXF" to process the image. Previews show the original and a vector approximation (DXF cannot be displayed directly).</li>
+              <li><strong>Download</strong>: Click "Download DXF" to save the file, named with "masstools.github.io" (e.g., converted-image-masstools.github.io.dxf).</li>
+              <li><strong>Reset</strong>: Click "Reset" to clear uploads and start over.</li>
+            </ul>
+            <p>The tool supports drag-and-drop and works offline after loading. Note: This tool creates a single-layer DXF with basic polylines; for complex designs, use professional CAD software.</p>
+
+            <h3>Use Cases for DXF Conversion</h3>
+            <p>The Image to DXF Converter is ideal for various scenarios, including:</p>
+            <ul>
+              <li><strong>Engineering</strong>: Convert sketches to CAD-compatible DXF files.</li>
+              <li><strong>Architecture</strong>: Create vector plans from raster blueprints.</li>
+              <li><strong>CNC Machining</strong>: Prepare designs for cutting or milling.</li>
+              <li><strong>Graphic Design</strong>: Convert logos to vector for CAD workflows.</li>
+            </ul>
+
+            <h3>Tips for Optimizing DXF Files</h3>
+            <p>To get the best results from DXF conversion, consider these tips:</p>
+            <ul>
+              <li><strong>High-Contrast Images</strong>: Use images with clear edges for better tracing.</li>
+              <li><strong>Detail Level</strong>: Choose Low Detail for simpler designs to reduce file size.</li>
+              <li><strong>Pre-Process</strong>: Use our <a href="/tools/image-resizer.html">Image Resizer</a> to adjust dimensions.</li>
+              <li><strong>Test Output</strong>: Open DXF in AutoCAD or FreeCAD to verify paths.</li>
+              <li><strong>Alternative Formats</strong>: Try our <a href="/tools/image-to-svg.html">Image to SVG Converter</a> for vector graphics.</li>
+              <li><strong>Batch Processing</strong>: Need multiple DXF files? Contact us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a>.</li>
+            </ul>
+
+            <h3>Why Choose Mass Tools?</h3>
+            <p>At Mass Tools, we provide free, high-quality tools to simplify your tasks. Our Image to DXF Converter joins our suite, including the <a href="/tools/image-to-png.html">Image to PNG Converter</a>, <a href="/tools/image-to-jpg.html">Image to JPG Converter</a>, <a href="/tools/image-to-webp.html">Image to WebP Converter</a>, <a href="/tools/image-to-svg.html">Image to SVG Converter</a>, <a href="/tools/image-to-tiff.html">Image to TIFF Converter</a>, <a href="/tools/image-to-heic.html">Image to HEIC Converter</a>, <a href="/tools/image-to-pdf.html">Image to PDF Converter</a>, <a href="/tools/image-to-bmp.html">Image to BMP Converter</a>, <a href="/tools/image-to-ico.html">Image to ICO Converter</a>, <a href="/tools/image-to-avif.html">Image to AVIF Converter</a>, <a href="/tools/image-to-eps.html">Image to EPS Converter</a>, <a href="/tools/image-to-psd.html">Image to PSD Converter</a>, and <a href="/tools/image-to-base64.html">Image to Base64 Converter</a>. We prioritize privacy, speed, and ease of use. Learn more on our <a href="/about-us.html">About Us</a> page.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-column">
+          <a href="/" class="footer-column-logo">
+            <i class="fas fa-tools footer-column-logo-icon"></i>
+            <span>Mass Tools</span>
+          </a>
+          <p>Empowering you with free, high-quality online tools.</p>
+        </div>
+        <div class="footer-column">
+          <ul>
+            <li><a href="/#tools">Tools</a></li>
+            <li><a href="/about-us.html">About Us</a></li>
+            <li><a href="/contact-us.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <ul>
+            <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="/terms-and-conditions.html">Terms</a></li>
+            <li><a href="/Disclaimer.html">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2025 Mass Tools. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-to-top" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script src="https://cdn.jsdelivr.net/npm/potrace@2.1.8/dist/potrace.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuToggle = document.getElementById('mobile-menu-toggle');
+      const nav = document.getElementById('nav-menu');
+      if (menuToggle && nav) {
+        menuToggle.addEventListener('change', () => {
+          nav.classList.toggle('show', menuToggle.checked);
+        });
+      }
+
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = document.querySelector(anchor.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+          if (nav && nav.classList.contains('show')) {
+            nav.classList.remove('show');
+            menuToggle.checked = false;
+          }
+        });
+      });
+
+      document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+          const href = anchor.getAttribute('href');
+          const [path, hash] = href.split('#');
+          const isHome = path === '/' || path === '' || path === '/index.html';
+          if (isHome && hash && (window.location.pathname === '/' || window.location.pathname === '/index.html')) {
+            e.preventDefault();
+            const target = document.querySelector(`#${hash}`);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth' });
+              history.pushState(null, null, `/#${hash}`);
+            }
+          } else {
+            window.location.href = href;
+          }
+          if (nav && nav.classList.contains('show')) {
+            nav.classList.remove('show');
+            menuToggle.checked = false;
+          }
+        });
+      });
+
+      const scrollTopBtn = document.querySelector('.scroll-to-top');
+      if (scrollTopBtn) {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 200) {
+            scrollTopBtn.classList.add('show');
+          } else {
+            scrollTopBtn.classList.remove('show');
+          }
+        });
+        scrollTopBtn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+
+      const searchInput = document.querySelector('.search-bar input');
+      const searchButton = document.querySelector('.search-bar button');
+      if (searchInput && searchButton) {
+        const tools = [
+          { name: 'EPS to Image Converter', url: '/tools/eps-to-image.html' },
+          { name: 'PNG to JPEG Converter', url: '/tools/png-to-jpeg.html' },
+          { name: 'Image Resizer', url: '/tools/image-resizer.html' },
+          { name: 'WebP Converter', url: '/tools/webp-converter.html' },
+          { name: 'Word Counter', url: '/tools/word-counter.html' },
+          { name: 'Case Converter', url: '/tools/case-converter.html' },
+          { name: 'Text to ASCII', url: '/tools/text-to-ascii.html' },
+          { name: 'Lorem Ipsum Generator', url: '/tools/lorem-ipsum-generator.html' },
+          { name: 'BMI Calculator', url: '/tools/bmi-calculator.html' },
+          { name: 'Image to JPG Converter', url: '/tools/image-to-jpg.html' },
+          { name: 'Image to PNG Converter', url: '/tools/image-to-png.html' },
+          { name: 'Image to WebP Converter', url: '/tools/image-to-webp.html' },
+          { name: 'Image to SVG Converter', url: '/tools/image-to-svg.html' },
+          { name: 'Image to TIFF Converter', url: '/tools/image-to-tiff.html' },
+          { name: 'Image to HEIC Converter', url: '/tools/image-to-heic.html' },
+          { name: 'Image to PDF Converter', url: '/tools/image-to-pdf.html' },
+          { name: 'Image to BMP Converter', url: '/tools/image-to-bmp.html' },
+          { name: 'Image to ICO Converter', url: '/tools/image-to-ico.html' },
+          { name: 'Image to AVIF Converter', url: '/tools/image-to-avif.html' },
+          { name: 'Image to EPS Converter', url: '/tools/image-to-eps.html' },
+          { name: 'Image to PSD Converter', url: '/tools/image-to-psd.html' },
+          { name: 'Image to Base64 Converter', url: '/tools/image-to-base64.html' },
+          { name: 'Image to DXF Converter', url: '/tools/image-to-dxf.html' }
+        ];
+        searchButton.addEventListener('click', () => {
+          const query = searchInput.value.trim().toLowerCase();
+          const matchedTool = tools.find(tool => tool.name.toLowerCase().includes(query));
+          if (matchedTool) {
+            window.location.href = matchedTool.url;
+          } else {
+            alert('No tools found matching your search.');
+          }
+        });
+        searchInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            searchButton.click();
+          }
+        });
+      }
+
+      const uploadArea = document.getElementById('uploadArea');
+      const imageInput = document.getElementById('imageInput');
+      const detailLevelSelect = document.getElementById('detailLevel');
+      const originalPreview = document.getElementById('originalPreview');
+      const vectorPreview = document.getElementById('vectorPreview');
+      const convertBtn = document.getElementById('convertBtn');
+      const downloadBtn = document.getElementById('downloadBtn');
+      const resetBtn = document.getElementById('resetBtn');
+      const loadingIndicator = document.getElementById('loadingIndicator');
+
+      let originalImage = null;
+      let dxfBlob = null;
+
+      const resetForm = () => {
+        originalImage = null;
+        dxfBlob = null;
+        imageInput.value = '';
+        originalPreview.src = '';
+        originalPreview.classList.remove('visible');
+        vectorPreview.src = '';
+        vectorPreview.classList.remove('visible');
+        convertBtn.disabled = true;
+        downloadBtn.disabled = true;
+        detailLevelSelect.value = 'high';
+        loadingIndicator.classList.remove('visible');
+      };
+
+      const handleFile = (file) => {
+        if (!file) {
+          alert('No file selected. Please upload an image.');
+          return;
+        }
+        if (!file.type.startsWith('image/')) {
+          alert('Please upload a valid image file (JPG, PNG, GIF, etc.).');
+          return;
+        }
+        originalImage = file;
+        convertBtn.disabled = false;
+        downloadBtn.disabled = true;
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          originalPreview.src = e.target.result;
+          originalPreview.classList.add('visible');
+          vectorPreview.src = '';
+          vectorPreview.classList.remove('visible');
+        };
+        reader.readAsDataURL(file);
+      };
+
+      uploadArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadArea.classList.add('dragover');
+      });
+
+      uploadArea.addEventListener('dragleave', () => {
+        uploadArea.classList.remove('dragover');
+      });
+
+      uploadArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        uploadArea.classList.remove('dragover');
+        const file = e.dataTransfer.files[0];
+        handleFile(file);
+      });
+
+      uploadArea.addEventListener('click', () => {
+        imageInput.click();
+      });
+
+      imageInput.addEventListener('change', () => {
+        if (imageInput.files[0]) handleFile(imageInput.files[0]);
+      });
+
+      const generateDXF = (paths, width, height) => {
+        let dxfContent = `0
+SECTION
+2
+HEADER
+9
+$ACADVER
+1
+AC1009
+0
+ENDSEC
+0
+SECTION
+2
+ENTITIES
+`;
+        paths.forEach((path, index) => {
+          const points = path.getAttribute('d').match(/M\s*([\d.-]+)\s*([\d.-]+)\s*L\s*([\d.-]+)\s*([\d.-]+)/g) || [];
+          points.forEach(point => {
+            const coords = point.match(/[\d.-]+/g);
+            if (coords.length >= 4) {
+              const x1 = parseFloat(coords[0]);
+              const y1 = parseFloat(coords[1]);
+              const x2 = parseFloat(coords[2]);
+              const y2 = parseFloat(coords[3]);
+              dxfContent += `0
+LINE
+8
+Layer${index + 1}
+10
+${x1}
+20
+${y1}
+30
+0.0
+11
+${x2}
+21
+${y2}
+31
+0.0
+0
+`;
+            }
+          });
+        });
+        dxfContent += `ENDSEC
+0
+EOF
+`;
+        return dxfContent;
+      };
+
+      convertBtn.addEventListener('click', () => {
+        if (!originalImage) {
+          alert('No image uploaded. Please upload an image first.');
+          return;
+        }
+
+        if (!window.Potrace) {
+          alert('DXF conversion is not supported in this browser. Please use a modern browser.');
+          return;
+        }
+
+        if (originalImage.size > 5 * 1024 * 1024) {
+          alert('Image is too large (over 5MB). Please resize using our Image Resizer.');
+          return;
+        }
+
+        loadingIndicator.classList.add('visible');
+        convertBtn.disabled = true;
+
+        const isHighDetail = detailLevelSelect.value === 'high';
+        const img = new Image();
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+          img.src = e.target.result;
+          img.onload = () => {
+            try {
+              const canvas = document.createElement('canvas');
+              canvas.width = img.width;
+              canvas.height = img.height;
+              const ctx = canvas.getContext('2d');
+              ctx.drawImage(img, 0, 0);
+
+              Potrace.loadImageFromUrl(canvas.toDataURL('image/png'));
+              Potrace.process(() => {
+                const svg = Potrace.getSVG(1);
+                const parser = new DOMParser();
+                const svgDoc = parser.parseFromString(svg, 'image/svg+xml');
+                const paths = svgDoc.querySelectorAll('path');
+
+                const dxfContent = generateDXF(paths, img.width, img.height);
+                dxfBlob = new Blob([dxfContent], { type: 'application/dxf' });
+
+                vectorPreview.src = canvas.toDataURL('image/png');
+                vectorPreview.classList.add('visible');
+                downloadBtn.disabled = false;
+
+                if (window.gtag) {
+                  gtag('event', 'convert_dxf', {
+                    event_category: 'Tool Usage',
+                    event_label: 'Image to DXF Conversion',
+                    value: isHighDetail ? 1 : 0
+                  });
+                }
+              });
+            } catch (error) {
+              console.error('DXF conversion error:', error);
+              alert('Error converting to DXF. Please try again with a different image.');
+            } finally {
+              loadingIndicator.classList.remove('visible');
+              convertBtn.disabled = false;
+            }
+          };
+          img.onerror = () => {
+            alert('Error loading image. Please try a different file.');
+            loadingIndicator.classList.remove('visible');
+            convertBtn.disabled = false;
+          };
+        };
+        reader.readAsDataURL(originalImage);
+      });
+
+      downloadBtn.addEventListener('click', () => {
+        if (!dxfBlob) return;
+
+        const originalName = originalImage.name.split('.')[0];
+        const downloadName = `converted-${originalName}-masstools.github.io.dxf`;
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(dxfBlob);
+        link.download = downloadName;
+        link.click();
+        URL.revokeObjectURL(link.href);
+
+        if (window.gtag) {
+          gtag('event', 'download_dxf', {
+            event_category: 'Tool Usage',
+            event_label: 'DXF Download',
+            value: 1
+          });
+        }
+      });
+
+      resetBtn.addEventListener('click', resetForm);
+    });
+  </script>
+</body>
+</html>
