@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us - Mass Tools</title>
-  <meta name="description" content="Learn about Mass Tools, your ultimate destination for free, easy-to-use web tools designed to simplify your digital life.">
-  <meta name="keywords" content="about mass tools, free web tools, online utilities">
+  <title>Contact Us - Mass Tools</title>
+  <meta name="description" content="Get in touch with Mass Tools! Reach out via email or social media for questions, feedback, or collaboration opportunities.">
+  <meta name="keywords" content="contact mass tools, free web tools, online utilities">
   <meta name="robots" content="index, follow">
-    <link rel="icon" type="image/png" href="/favicon.png">
+ <link rel="icon" type="image/png" href="/favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <!-- Google Analytics -->
+  <!-- Google Tag Manager (Google Analytics) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-68CX9G7BKF"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -176,12 +176,12 @@
       color: var(--primary-color);
     }
 
-    .about-section {
+    .contact-section {
       padding: 80px 0;
       background: var(--light-color);
     }
 
-    .about-content {
+    .contact-content {
       max-width: 800px;
       margin: 0 auto;
       background: #fff;
@@ -190,51 +190,61 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
 
-    .about-content h1 {
+    .contact-content h1 {
       font-size: 36px;
       color: var(--dark-color);
       margin-bottom: 20px;
       text-align: center;
     }
 
-    .about-content h2 {
+    .contact-content h2 {
       font-size: 24px;
       color: var(--dark-color);
       margin: 24px 0 12px;
     }
 
-    .about-content p {
+    .contact-content p {
       font-size: 15px;
       color: var(--text-color);
       margin-bottom: 12px;
     }
 
-    .about-content ul {
+    .contact-content ul {
       list-style: none;
       margin: 12px 0;
       padding-left: 20px;
     }
 
-    .about-content ul li {
+    .contact-content ul li {
       font-size: 15px;
       color: var(--text-color);
       margin-bottom: 8px;
       position: relative;
     }
 
-    .about-content ul li::before {
+    .contact-content ul li::before {
       content: '✔';
       color: var(--primary-color);
       position: absolute;
       left: -20px;
     }
 
-    .cta-button {
+    .contact-content a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .contact-content a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-content .cta-button {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       background: var(--gradient);
-      color: var(--light-color);
+      color: #FFFFFF !important; /* White text in normal state */
       padding: 10px 24px;
       border-radius: 50px;
       text-decoration: none;
@@ -245,9 +255,25 @@
       margin-top: 16px;
     }
 
-    .cta-button:hover {
+    .contact-content .social-icons {
+      display: flex;
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .contact-content .social-icons a {
+      font-size: 24px;
+      color: var(--text-color);
+      transition: var(--transition);
+    }
+
+    .contact-content .social-icons a:hover {
+      color: var(--primary-color);
+    }
+
+    .contact-content .cta-button:hover {
       background: var(--primary-color);
-      color: var(--light-color);
+      color: #FFFFFF !important; /* White text in hover state */
       transform: translateY(-4px);
       text-decoration: none;
     }
@@ -416,10 +442,10 @@
       .search-bar button {
         font-size: 16px;
       }
-      .about-section {
+      .contact-section {
         padding: 60px 0;
       }
-      .about-content h1 {
+      .contact-content h1 {
         font-size: 30px;
       }
     }
@@ -452,19 +478,19 @@
       .search-bar input {
         font-size: 14px;
       }
-      .about-content {
+      .contact-content {
         padding: 24px;
       }
-      .about-content h1 {
+      .contact-content h1 {
         font-size: 26px;
       }
-      .about-content h2 {
+      .contact-content h2 {
         font-size: 20px;
       }
-      .about-content p, .about-content ul li {
+      .contact-content p, .contact-content ul li {
         font-size: 14px;
       }
-      .cta-button {
+      .contact-content .cta-button {
         padding: 8px 16px;
         font-size: 13px;
       }
@@ -516,49 +542,31 @@
   </header>
 
   <main>
-    <section class="about-section">
+    <section class="contact-section">
       <div class="container">
-        <div class="about-content">
-          <h1>About Mass Tools</h1>
-          <p>Welcome to <a href="https://masstools.github.io/" target="_blank">Mass Tools</a>, your ultimate online destination for free, easy-to-use web tools designed to simplify your digital life.</p>
+        <div class="contact-content">
+          <h1>Contact Mass Tools</h1>
+          <p>We’d love to hear from you! Whether you have questions, feedback, or business inquiries, the <strong>Mass Tools</strong> team is here to help.</p>
 
-          <h2>Our Mission</h2>
-          <p>At Mass Tools, we believe in empowering users with accessible tools that make everyday tasks effortless. Our mission is to provide a comprehensive collection of web utilities that help you:</p>
+          <h2>Get in Touch</h2>
           <ul>
-            <li>Calculate fitness metrics with precision</li>
-            <li>Manipulate and optimize text efficiently</li>
-            <li>Convert and edit images seamlessly</li>
-            <li>And much more—all in one convenient location</li>
+            <li><strong>Email</strong>: Reach us directly at <a href="mailto:byrolaa@gmail.com" rel="noopener">byrolaa@gmail.com</a>.</li>
+            <li><strong>Social Media</strong>: Follow us on our social media platforms to stay updated and send us a message anytime.
+              <div class="social-icons">
+                <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              </div>
+            </li>
           </ul>
 
-          <h2>What We Offer</h2>
-          <p><strong>🏋️ Fitness Calculators</strong></p>
-          <p>Track your health journey with our accurate fitness calculators, including BMI calculators, calorie counters, workout planners, and more.</p>
-          <p><strong>✍️ Text Tools</strong></p>
-          <p>Enhance your writing with our text utilities—word counters, case converters, generators, and other essential text manipulation tools.</p>
-          <p><strong>🖼️ Image Converters</strong></p>
-          <p>Transform your images effortlessly between formats, resize, compress, and apply basic edits without complex software.</p>
-          <p><strong>🔧 And More!</strong></p>
-          <p>We continuously expand our toolset to include the most useful web utilities for your personal and professional needs.</p>
+          <h2>Feedback and Suggestions</h2>
+          <p>Your opinions matter to us! If you have suggestions for content, ideas to improve our website, or just want to share your thoughts, don’t hesitate to reach out via <a href="mailto:byrolaa@gmail.com" rel="noopener">email</a>.</p>
 
-          <h2>Why Choose Mass Tools?</h2>
-          <ul>
-            <li><strong>100% Free</strong> - No hidden costs or premium paywalls</li>
-            <li><strong>No Registration Required</strong> - Instant access to all tools</li>
-            <li><strong>User-Friendly</strong> - Simple interfaces for quick results</li>
-            <li><strong>Privacy-Focused</strong> - We respect your data privacy</li>
-          </ul>
+          <h2>Collaborations and Partnerships</h2>
+          <p>Interested in collaborating with <strong>Mass Tools</strong>? We’re always open to working with creative minds and businesses. Drop us an email at <a href="mailto:byrolaa@gmail.com" rel="noopener">byrolaa@gmail.com</a>, and we’ll get back to you as soon as possible.</p>
 
-          <h2>Our Commitment</h2>
-          <p>We're dedicated to improving Mass Tools daily by:</p>
-          <ul>
-            <li>Adding new tools based on user needs</li>
-            <li>Optimizing existing tools for better performance</li>
-            <li>Ensuring our platform remains accessible to everyone</li>
-          </ul>
-
-          <h2>Connect With Us</h2>
-          <p>Have suggestions or feedback? We'd love to hear from you! Reach out through our <a href="/contact-us.html">contact form</a>.</p>
+          <p>Thank you for connecting with us. We look forward to hearing from you!</p>
           <a class="cta-button" href="/#tools">Explore Our Tools</a>
         </div>
       </div>
