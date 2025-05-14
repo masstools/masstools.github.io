@@ -19,7 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <style>
-  :root {
+    :root {
       --primary-color: #FF4500;
       --secondary-color: #FFA500;
       --dark-color: #1A1A1A;
@@ -43,6 +43,15 @@
       color: var(--text-color);
       font-size: 16px;
       line-height: 1.7;
+      scrollbar-width: none;
+    }
+
+    body::-webkit-scrollbar {
+      display: none;
+    }
+
+    .progress-bar, [class*="progress"], [id*="progress"] {
+      display: none !important;
     }
 
     .container {
@@ -248,6 +257,9 @@
       text-align: center;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
       transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      min-height: 260px;
     }
 
     .tool-card:hover {
@@ -271,20 +283,23 @@
       font-size: 14px;
       color: var(--text-light);
       margin-bottom: 16px;
+      flex-grow: 1;
     }
 
     .tool-card a {
       display: inline-flex;
       align-items: center;
+      justify-content: center; /* Center icon and text horizontally */
       gap: 8px;
       background: var(--gradient);
       color: var(--light-color);
-      padding: 8px 24px;
+      padding: 8px 24px; /* Restored original padding */
       border-radius: 50px;
       text-decoration: none;
       font-weight: 600;
-      font-size: 14px;
+      font-size: 14px; /* Restored original font size */
       transition: var(--transition);
+      margin-top: auto;
     }
 
     .tool-card a:hover {
@@ -512,127 +527,15 @@
         padding: 10px 24px;
         font-size: 14px;
       }
-.tools-section {
-      padding: 80px 0;
-      background: var(--light-color);
-    }
-
-    .tools-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      justify-content: center;
-      margin-bottom: 32px;
-    }
-
-    .tools-icon {
-      font-size: 32px;
-      color: var(--primary-color);
-    }
-
-    .tools-header h1 {
-      font-size: 36px;
-      color: var(--dark-color);
-      margin: 0;
-    }
-
-    .tools-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 24px;
-    }
-
-    .tool-card {
-      background: #fff;
-      padding: 24px;
-      border-radius: var(--border-radius);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      text-align: center;
-      transition: var(--transition);
-    }
-
-    .tool-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-    }
-
-    .tool-card .tool-icon {
-      font-size: 40px;
-      color: var(--primary-color);
-      margin-bottom: 16px;
-    }
-
-    .tool-card h3 {
-      font-size: 20px;
-      color: var(--dark-color);
-      margin-bottom: 12px;
-    }
-
-    .tool-card p {
-      font-size: 15px;
-      color: var(--text-color);
-      margin-bottom: 16px;
-    }
-
-    .tool-card .cta-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--gradient);
-      color: #FFFFFF !important;
-      padding: 10px 24px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 14px;
-      transition: var(--transition);
-    }
-
-    .tool-card .cta-button:hover {
-      background: var(--primary-color);
-      color: #FFFFFF !important;
-      text-decoration: none;
-    }
-
-    .tool-card .cta-button i {
-      font-size: 14px;
-      color: #FFFFFF !important;
-    }
-
-    @media (max-width: 768px) {
-      .tools-section {
-        padding: 60px 0;
-      }
-      .tools-header h1 {
-        font-size: 30px;
-      }
-      .tools-icon {
-        font-size: 28px;
-      }
-      .tool-card .tool-icon {
-        font-size: 36px;
-      }
-      .tool-card .cta-button {
-        padding: 8px 16px;
-        font-size: 13px;
-      }
-      .tool-card .cta-button i {
-        font-size: 13px;
-      }
-    }
-
-    @media (max-width: 576px) {
-      .tools-header h1 {
+      .image-converters-section h2, .text-tools-section h2 {
         font-size: 26px;
       }
-      .tools-icon {
-        font-size: 24px;
+      .image-converters-section p, .text-tools-section p {
+        font-size: 14px;
       }
       .tool-card {
         padding: 16px;
-      }
-      .tool-card .tool-icon {
-        font-size: 32px;
+        min-height: 240px;
       }
       .tool-card h3 {
         font-size: 18px;
@@ -640,10 +543,10 @@
       .tool-card p {
         font-size: 14px;
       }
-      .tool-card .cta-button {
-        font-size: 13px;
+      .tool-card a {
+        padding: 8px 24px; /* Restored original padding */
+        font-size: 14px; /* Restored original font size */
       }
-    }
       .scroll-to-top {
         width: 40px;
         height: 40px;
@@ -729,12 +632,6 @@
             <p>Convert images to or from WebP format for optimized web performance.</p>
             <a href="/tools/webp-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
-      <div class="tool-card">
-  <i class="fas fa-image"></i>
-  <h3>Image to JPG Converter</h3>
-  <p>Convert images to JPG for smooth, fast web performance.</p>
-  <a href="/image-to-jpg-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-</div>
         </div>
       </div>
     </section>
@@ -767,6 +664,12 @@
             <h3>Lorem Ipsum Generator</h3>
             <p>Generate placeholder text for design and content prototyping.</p>
             <a href="/tools/lorem-ipsum-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
+          </div>
+          <div class="tool-card">
+            <i class="fas fa-calculator tool-icon"></i>
+            <h3>Character Counter</h3>
+            <p>Count the number of characters in your text, with or without spaces.</p>
+            <a href="/tools/character-counter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
         </div>
       </div>
@@ -805,7 +708,7 @@
   </footer>
 
   <button class="scroll-to-top" aria-label="Scroll to top">
-    <i class="fas fa-arrow-up"></i>
+    <i class="fas fa-arrow-right"></i>
   </button>
 
   <script>
@@ -889,7 +792,8 @@
           { name: 'Case Converter', url: '/tools/case-converter.html' },
           { name: 'Text to ASCII', url: '/tools/text-to-ascii.html' },
           { name: 'Lorem Ipsum Generator', url: '/tools/lorem-ipsum-generator.html' },
-          { name: 'BMI Calculator', url: '/tools/bmi-calculator.html' }
+          { name: 'BMI Calculator', url: '/tools/bmi-calculator.html' },
+          { name: 'Character Counter', url: '/tools/character-counter.html' }
         ];
         searchButton.addEventListener('click', () => {
           const query = searchInput.value.trim().toLowerCase();
