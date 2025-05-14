@@ -259,7 +259,7 @@
       transition: var(--transition);
       display: flex;
       flex-direction: column;
-      min-height: 260px;
+      min-height: 220px;
     }
 
     .tool-card:hover {
@@ -267,16 +267,11 @@
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     }
 
-    .tool-icon {
-      font-size: 40px;
-      color: var(--primary-color);
-      margin-bottom: 16px;
-    }
-
     .tool-card h3 {
       font-size: 20px;
       color: var(--dark-color);
       margin-bottom: 12px;
+      margin-top: 16px;
     }
 
     .tool-card p {
@@ -289,15 +284,15 @@
     .tool-card a {
       display: inline-flex;
       align-items: center;
-      justify-content: center; /* Center icon and text horizontally */
+      justify-content: center;
       gap: 8px;
       background: var(--gradient);
       color: var(--light-color);
-      padding: 8px 24px; /* Restored original padding */
+      padding: 8px 24px;
       border-radius: 50px;
       text-decoration: none;
       font-weight: 600;
-      font-size: 14px; /* Restored original font size */
+      font-size: 14px;
       transition: var(--transition);
       margin-top: auto;
     }
@@ -535,17 +530,18 @@
       }
       .tool-card {
         padding: 16px;
-        min-height: 240px;
+        min-height: 200px;
       }
       .tool-card h3 {
         font-size: 18px;
+        margin-top: 12px;
       }
       .tool-card p {
         font-size: 14px;
       }
       .tool-card a {
-        padding: 8px 24px; /* Restored original padding */
-        font-size: 14px; /* Restored original font size */
+        padding: 8px 24px;
+        font-size: 14px;
       }
       .scroll-to-top {
         width: 40px;
@@ -609,31 +605,21 @@
         <p>Effortlessly convert, resize, and optimize your images with our free image converter tools, designed for speed and simplicity.</p>
         <div class="tools-container">
           <div class="tool-card">
-            <i class="fa-solid fa-image"></i>
-            <h3>Image To JPG Converter</h3>
-            <p>Convert images to or from WebP format for optimized web performance.</p>
-            <a href="/image-to-jpg-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-            <i class="fas fa-image tool-icon"></i>
             <h3>EPS to Image Converter</h3>
             <p>Convert EPS files to popular image formats like PNG, JPEG, and more with ease.</p>
             <a href="/tools/eps-to-image.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-            <i class="fas fa-file-image tool-icon"></i>
             <h3>PNG to JPEG Converter</h3>
             <p>Transform PNG images to JPEG format for smaller file sizes and compatibility.</p>
             <a href="/tools/png-to-jpeg.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-            <i class="fas fa-compress tool-icon"></i>
             <h3>Image Resizer</h3>
             <p>Resize images to custom dimensions without losing quality, perfect for web and print.</p>
             <a href="/tools/image-resizer.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-            <i class="fas fa-globe tool-icon"></i>
             <h3>WebP Converter</h3>
             <p>Convert images to or from WebP format for optimized web performance.</p>
             <a href="/tools/webp-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
@@ -648,31 +634,26 @@
         <p>Enhance your text with our versatile tools for counting, formatting, and generating content with ease.</p>
         <div class="tools-container">
           <div class="tool-card">
-            <i class="fas fa-font tool-icon"></i>
             <h3>Word Counter</h3>
             <p>Count words, characters, and sentences in your text instantly.</p>
             <a href="/tools/word-counter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-            <i class="fas fa-text-height tool-icon"></i>
             <h3>Case Converter</h3>
             <p>Convert text to uppercase, lowercase, or title case effortlessly.</p>
             <a href="/tools/case-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-            <i class="fas fa-code tool-icon"></i>
             <h3>Text to ASCII</h3>
             <p>Convert text to ASCII art for creative and decorative outputs.</p>
             <a href="/tools/text-to-ascii.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-            <i class="fas fa-file-alt tool-icon"></i>
             <h3>Lorem Ipsum Generator</h3>
             <p>Generate placeholder text for design and content prototyping.</p>
             <a href="/tools/lorem-ipsum-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-            <i class="fas fa-calculator tool-icon"></i>
             <h3>Character Counter</h3>
             <p>Count the number of characters in your text, with or without spaces.</p>
             <a href="/tools/character-counter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
@@ -714,7 +695,7 @@
   </footer>
 
   <button class="scroll-to-top" aria-label="Scroll to top">
-    <i class="fas fa-arrow-right"></i>
+    <i class="fas fa-arrow-up"></i>
   </button>
 
   <script>
@@ -790,7 +771,6 @@
       const searchButton = document.querySelector('.search-bar button');
       if (searchInput && searchButton) {
         const tools = [
-          { name: 'Image To JPG Converter', url: '/image-to-jpg-converter.html' },
           { name: 'EPS to Image Converter', url: '/tools/eps-to-image.html' },
           { name: 'PNG to JPEG Converter', url: '/tools/png-to-jpeg.html' },
           { name: 'Image Resizer', url: '/tools/image-resizer.html' },
