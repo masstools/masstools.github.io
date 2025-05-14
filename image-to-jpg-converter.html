@@ -8,7 +8,7 @@
   <meta name="keywords" content="image to jpg converter, mass tools, free online tools, image conversion, optimize images">
   <meta name="robots" content="index, follow">
 <link rel="icon" type="image/png" href="/favicon.png">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <!-- Google Tag Manager (Google Analytics) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-68CX9G7BKF"></script>
@@ -323,65 +323,55 @@
       transform: none;
     }
 
-    .article-section {
-      padding: 40px 0;
-      background: var(--light-color);
+    .tool-content .tool-article {
+      margin-top: 40px;
     }
 
-    .article-content {
-      max-width: 800px;
-      margin: 0 auto;
-      background: #fff;
-      padding: 32px;
-      border-radius: var(--border-radius);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    }
-
-    .article-content h2 {
+    .tool-content .tool-article h2 {
       font-size: 24px;
       color: var(--dark-color);
       margin: 24px 0 12px;
     }
 
-    .article-content h3 {
+    .tool-content .tool-article h3 {
       font-size: 20px;
       color: var(--dark-color);
       margin: 20px 0 10px;
     }
 
-    .article-content p {
+    .tool-content .tool-article p {
       font-size: 15px;
       color: var(--text-color);
       margin-bottom: 12px;
     }
 
-    .article-content ul {
+    .tool-content .tool-article ul {
       list-style: none;
       margin: 12px 0;
       padding-left: 20px;
     }
 
-    .article-content ul li {
+    .tool-content .tool-article ul li {
       font-size: 15px;
       color: var(--text-color);
       margin-bottom: 8px;
       position: relative;
     }
 
-    .article-content ul li::before {
+    .tool-content .tool-article ul li::before {
       content: '✔';
       color: var(--primary-color);
       position: absolute;
       left: -20px;
     }
 
-    .article-content a {
+    .tool-content .tool-article a {
       color: var(--primary-color);
       text-decoration: none;
       transition: var(--transition);
     }
 
-    .article-content a:hover {
+    .tool-content .tool-article a:hover {
       text-decoration: underline;
     }
 
@@ -543,10 +533,10 @@
       .search-bar button {
         font-size: 16px;
       }
-      .tool-section, .article-section {
+      .tool-section {
         padding: 60px 0;
       }
-      .tool-content h1, .article-content h1 {
+      .tool-content h1 {
         font-size: 30px;
       }
       .tool-content .action-buttons button,
@@ -584,19 +574,19 @@
       .search-bar input {
         font-size: 14px;
       }
-      .tool-content, .article-content {
+      .tool-content {
         padding: 24px;
       }
-      .tool-content h1, .article-content h1 {
+      .tool-content h1 {
         font-size: 26px;
       }
-      .tool-content p, .article-content p, .article-content ul li {
+      .tool-content p, .tool-content .tool-article p, .tool-content .tool-article ul li {
         font-size: 14px;
       }
-      .article-content h2 {
+      .tool-content .tool-article h2 {
         font-size: 20px;
       }
-      .article-content h3 {
+      .tool-content .tool-article h3 {
         font-size: 18px;
       }
       .tool-content .upload-area {
@@ -693,54 +683,50 @@
           </div>
 
           <a class="cta-button" href="/#tools">Explore Our Tools</a>
-        </div>
-      </div>
-    </section>
 
-    <section class="article-section">
-      <div class="container">
-        <div class="article-content">
-          <h2>About the Image to JPG Converter</h2>
-          <p>The Image to JPG Converter by <a href="/about-us.html">Mass Tools</a> is a free, user-friendly tool designed to help you convert images from various formats, such as PNG, WebP, BMP, and GIF, into the widely used JPG format. Whether you’re preparing images for a website, sharing photos on social media, or reducing file sizes for easier storage, this tool offers a fast and reliable solution. All conversions happen directly in your browser, ensuring your images remain private and secure without the need for server uploads.</p>
-          
-          <h3>Why Convert Images to JPG?</h3>
-          <p>JPG (or JPEG) is one of the most popular image formats due to its balance of quality and file size. According to <a href="https://en.wikipedia.org/wiki/JPEG" target="_blank" rel="noopener">Wikipedia</a>, JPG uses lossy compression, which reduces file size while maintaining acceptable visual quality, making it ideal for web use and sharing. Here are some key benefits of using JPG:</p>
-          <ul>
-            <li><strong>Smaller File Sizes</strong>: JPG files are typically smaller than PNG or WebP, saving storage space and reducing website load times.</li>
-            <li><strong>Wide Compatibility</strong>: JPG is supported by virtually all devices, browsers, and platforms, unlike newer formats like WebP.</li>
-            <li><strong>Adjustable Quality</strong>: Our tool lets you control the compression level (from 0.1 to 1.0), allowing you to prioritize quality or file size.</li>
-          </ul>
+          <div class="tool-article">
+            <h2>About the Image to JPG Converter</h2>
+            <p>The Image to JPG Converter by <a href="/about-us.html">Mass Tools</a> is a free, user-friendly tool designed to help you convert images from various formats, such as PNG, WebP, BMP, and GIF, into the widely used JPG format. Whether you’re preparing images for a website, sharing photos on social media, or reducing file sizes for easier storage, this tool offers a fast and reliable solution. All conversions happen directly in your browser, ensuring your images remain private and secure without the need for server uploads.</p>
+            
+            <h3>Why Convert Images to JPG?</h3>
+            <p>JPG (or JPEG) is one of the most popular image formats due to its balance of quality and file size. According to <a href="https://en.wikipedia.org/wiki/JPEG" target="_blank" rel="noopener">Wikipedia</a>, JPG uses lossy compression, which reduces file size while maintaining acceptable visual quality, making it ideal for web use and sharing. Here are some key benefits of using JPG:</p>
+            <ul>
+              <li><strong>Smaller File Sizes</strong>: JPG files are typically smaller than PNG or WebP, saving storage space and reducing website load times.</li>
+              <li><strong>Wide Compatibility</strong>: JPG is supported by virtually all devices, browsers, and platforms, unlike newer formats like WebP.</li>
+              <li><strong>Adjustable Quality</strong>: Our tool lets you control the compression level (from 0.1 to 1.0), allowing you to prioritize quality or file size.</li>
+            </ul>
 
-          <h3>How to Use the Image to JPG Converter</h3>
-          <p>Using our Image to JPG Converter is straightforward. Follow these steps to convert your images:</p>
-          <ul>
-            <li><strong>Upload Your Image</strong>: Click the upload area or drag and drop your image (PNG, WebP, BMP, GIF, etc.) into the tool.</li>
-            <li><strong>Adjust Quality</strong>: Use the quality slider to set the desired JPG compression level (0.1 for smallest size, 1.0 for highest quality).</li>
-            <li><strong>Convert</strong>: Click the "Convert to JPG" button to process the image. You’ll see a preview of both the original and converted images.</li>
-            <li><strong>Download</strong>: Click "Download JPG" to save the converted file, which will be named with "masstools.github.io" (e.g., converted-photo-masstools.github.io.jpg).</li>
-          </ul>
-          <p>The tool supports drag-and-drop functionality and works offline, making it convenient for quick conversions on any device.</p>
+            <h3>How to Use the Image to JPG Converter</h3>
+            <p>Using our Image to JPG Converter is straightforward. Follow these steps to convert your images:</p>
+            <ul>
+              <li><strong>Upload Your Image</strong>: Click the upload area or drag and drop your image (PNG, WebP, BMP, GIF, etc.) into the tool.</li>
+              <li><strong>Adjust Quality</strong>: Use the quality slider to set the desired JPG compression level (0.1 for smallest size, 1.0 for highest quality).</li>
+              <li><strong>Convert</strong>: Click the "Convert to JPG" button to process the image. You’ll see a preview of both the original and converted images.</li>
+              <li><strong>Download</strong>: Click "Download JPG" to save the converted file, which will be named with "masstools.github.io" (e.g., converted-photo-masstools.github.io.jpg).</li>
+            </ul>
+            <p>The tool supports drag-and-drop functionality and works offline, making it convenient for quick conversions on any device.</p>
 
-          <h3>Use Cases for JPG Conversion</h3>
-          <p>The Image to JPG Converter is versatile and caters to various needs, including:</p>
-          <ul>
-            <li><strong>Web Development</strong>: Convert high-resolution PNGs to JPG to optimize website performance. Pair this with our <a href="/tools/image-resizer.html">Image Resizer</a> for even better results.</li>
-            <li><strong>Social Media</strong>: Platforms like Instagram and Facebook often prefer JPG for uploads due to its compatibility and smaller size.</li>
-            <li><strong>Email Attachments</strong>: Reduce file sizes to meet email attachment limits without sacrificing too much quality.</li>
-            <li><strong>Photography</strong>: Convert RAW or BMP images to JPG for easier sharing or printing.</li>
-          </ul>
+            <h3>Use Cases for JPG Conversion</h3>
+            <p>The Image to JPG Converter is versatile and caters to various needs, including:</p>
+            <ul>
+              <li><strong>Web Development</strong>: Convert high-resolution PNGs to JPG to optimize website performance. Pair this with our <a href="/tools/image-resizer.html">Image Resizer</a> for even better results.</li>
+              <li><strong>Social Media</strong>: Platforms like Instagram and Facebook often prefer JPG for uploads due to its compatibility and smaller size.</li>
+              <li><strong>Email Attachments</strong>: Reduce file sizes to meet email attachment limits without sacrificing too much quality.</li>
+              <li><strong>Photography</strong>: Convert RAW or BMP images to JPG for easier sharing or printing.</li>
+            </ul>
 
-          <h3>Tips for Optimizing JPG Images</h3>
-          <p>To get the most out of your JPG images, consider these optimization tips:</p>
-          <ul>
-            <li><strong>Balance Quality and Size</strong>: Start with a quality setting of 0.8–0.9 for a good balance. Lower settings (e.g., 0.5) are suitable for thumbnails or low-priority images.</li>
-            <li><strong>Resize Before Converting</strong>: Use our <a href="/tools/image-resizer.html">Image Resizer</a> to adjust dimensions before conversion to further reduce file size.</li>
-            <li><strong>Test on Your Platform</strong>: After conversion, test the JPG on your target platform (e.g., website, social media) to ensure clarity and compatibility.</li>
-            <li><strong>Batch Processing</strong>: If you need to convert multiple images, try our <a href="/tools/webp-converter.html">WebP Converter</a> or contact us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a> for custom solutions.</li>
-          </ul>
+            <h3>Tips for Optimizing JPG Images</h3>
+            <p>To get the most out of your JPG images, consider these optimization tips:</p>
+            <ul>
+              <li><strong>Balance Quality and Size</strong>: Start with a quality setting of 0.8–0.9 for a good balance. Lower settings (e.g., 0.5) are suitable for thumbnails or low-priority images.</li>
+              <li><strong>Resize Before Converting</strong>: Use our <a href="/tools/image-resizer.html">Image Resizer</a> to adjust dimensions before conversion to further reduce file size.</li>
+              <li><strong>Test on Your Platform</strong>: After conversion, test the JPG on your target platform (e.g., website, social media) to ensure clarity and compatibility.</li>
+              <li><strong>Batch Processing</strong>: If you need to convert multiple images, try our <a href="/tools/webp-converter.html">WebP Converter</a> or contact us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a> for custom solutions.</li>
+            </ul>
 
-          <h3>Why Choose Mass Tools?</h3>
-          <p>At Mass Tools, we’re committed to providing free, high-quality tools to make your tasks easier. Our Image to JPG Converter is part of a growing suite of utilities, including the <a href="/tools/png-to-jpeg.html">PNG to JPEG Converter</a> and <a href="/tools/word-counter.html">Word Counter</a>. We prioritize user privacy, speed, and simplicity, ensuring you can get the job done without hassle. Explore our full range of tools or learn more about our mission on our <a href="/about-us.html">About Us</a> page.</p>
+            <h3>Why Choose Mass Tools?</h3>
+            <p>At Mass Tools, we’re committed to providing free, high-quality tools to make your tasks easier. Our Image to JPG Converter is part of a growing suite of utilities, including the <a href="/tools/png-to-jpeg.html">PNG to JPEG Converter</a> and <a href="/tools/word-counter.html">Word Counter</a>. We prioritize user privacy, speed, and simplicity, ensuring you can get the job done without hassle. Explore our full range of tools or learn more about our mission on our <a href="/about-us.html">About Us</a> page.</p>
+          </div>
         </div>
       </div>
     </section>
