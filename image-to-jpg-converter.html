@@ -7,7 +7,7 @@
   <meta name="description" content="Convert images to JPG format for free with Mass Tools' Image to JPG Converter. Fast, offline, and easy to use. Learn how to optimize your images for web and more.">
   <meta name="keywords" content="image to jpg converter, mass tools, free online tools, image conversion, optimize images">
   <meta name="robots" content="index, follow">
-<link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="icon" type="image/png" href="/favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <!-- Google Tag Manager (Google Analytics) -->
@@ -239,6 +239,7 @@
 
     .tool-content .quality-control {
       margin-bottom: 20px;
+      text-align: center;
     }
 
     .tool-content .quality-control label {
@@ -275,6 +276,11 @@
       height: auto;
       border-radius: var(--border-radius);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      display: none; /* Hide images by default */
+    }
+
+    .tool-content .preview-box img.visible {
+      display: block; /* Show images when they have src */
     }
 
     .tool-content .preview-box p {
@@ -792,6 +798,27 @@
         });
       });
 
+      document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+          e.preventDefault();
+          const href = anchor.getAttribute('href');
+          const [path, hash] = href.split('#');
+          const isHome = path === '/' || path === '' || path === '/index.html';
+
+          if (isHome && hash) {
+            document.querySelector(`#${hash}`).scrollIntoView({ behavior: 'smooth' });
+            history.pushState(null, null, `/#${hash}`);
+          } else {
+            window.location.href = href;
+          }
+
+          if (nav && nav.classList.contains('show')) {
+            nav.classList.remove('show');
+            menuToggle.checked = false;
+          }
+        });
+      });
+
       const scrollTopBtn = document.querySelector('.scroll-to-top');
       if (scrollTopBtn) {
         window.addEventListener('scroll', () => {
@@ -820,7 +847,8 @@
           { name: 'Text to ASCII', url: '/tools/text-to-ascii.html' },
           { name: 'Lorem Ipsum Generator', url: '/tools/lorem-ipsum-generator.html' },
           { name: 'BMI Calculator', url: '/tools/bmi-calculator.html' },
-          { name: 'Image to JPG Converter', url: '/tools/image-to-jpg.html' }
+          { name: 'Image to JPG Converter', url: '/tools/image-to-jpg.html' },
+          { name: 'Image to PNG Converter', url: '/tools/image-to-png.html' }
         ];
         searchButton.addEventListener('click', () => {
           const query = searchInput.value.trim().toLowerCase();
@@ -869,7 +897,9 @@
         const reader = new FileReader();
         reader.onload = (e) => {
           originalPreview.src = e.target.result;
+          originalPreview.classList.add('visible'); // Show original preview
           convertedPreview.src = '';
+          convertedPreview.classList.remove('visible'); // Hide converted preview
         };
         reader.readAsDataURL(file);
       };
@@ -916,6 +946,7 @@
             ctx.drawImage(img, 0, 0);
             convertedImageUrl = canvas.toDataURL('image/jpeg', parseFloat(qualitySlider.value));
             convertedPreview.src = convertedImageUrl;
+            convertedPreview.classList.add('visible'); // Show converted preview
             downloadBtn.disabled = false;
           };
         };
