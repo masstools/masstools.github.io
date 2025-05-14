@@ -293,6 +293,7 @@
       gap: 12px;
       justify-content: center;
       flex-wrap: wrap;
+      margin-bottom: 24px; /* Added spacing before CTA button */
     }
 
     .tool-content .action-buttons button,
@@ -544,11 +545,7 @@
       .tool-content h1 {
         font-size: 30px;
       }
-      .tool-content .action-buttons button,
-      .tool-content .cta-button {
-        padding: 8px 16px;
-        font-size: 13px;
-      }
+      /* Removed padding and font-size reduction for action-buttons */
     }
 
     @media (max-width: 576px) {
@@ -602,12 +599,7 @@
       }
       .tool-content .action-buttons {
         flex-direction: column;
-        gap: 24px; /* Increased vertical gap for stacked buttons */
-      }
-      .tool-content .action-buttons button,
-      .tool-content .cta-button {
-        padding: 8px 16px;
-        font-size: 13px;
+        gap: 24px;
       }
       .scroll-to-top {
         width: 40px;
@@ -807,7 +799,7 @@
           const [path, hash] = href.split('#');
           const isHome = path === '/' || path === '' || path === '/index.html';
 
-          if (isHome && hash && window.location.pathname === '/' || window.location.pathname === '/index.html') {
+          if (isHome && hash && (window.location.pathname === '/' || window.location.pathname === '/index.html')) {
             e.preventDefault();
             const target = document.querySelector(`#${hash}`);
             if (target) {
@@ -815,7 +807,7 @@
               history.pushState(null, null, `/#${hash}`);
             }
           } else {
-            window.location.href = href; // Navigate to the full URL
+            window.location.href = href;
           }
 
           if (nav && nav.classList.contains('show')) {
