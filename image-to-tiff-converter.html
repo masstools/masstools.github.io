@@ -10,7 +10,6 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <!-- Google Tag Manager (Google Analytics) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-68CX9G7BKF"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -270,11 +269,11 @@
       height: auto;
       border-radius: var(--border-radius);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      display: none; /* Hide images by default */
+      display: none;
     }
 
     .tool-content .preview-box img.visible {
-      display: block; /* Show images when they have src */
+      display: block;
     }
 
     .tool-content .preview-box p {
@@ -288,6 +287,7 @@
       gap: 12px;
       justify-content: center;
       flex-wrap: wrap;
+      margin-bottom: 24px;
     }
 
     .tool-content .action-buttons button,
@@ -539,11 +539,6 @@
       .tool-content h1 {
         font-size: 30px;
       }
-      .tool-content .action-buttons button,
-      .tool-content .cta-button {
-        padding: 8px 16px;
-        font-size: 13px;
-      }
     }
 
     @media (max-width: 576px) {
@@ -595,10 +590,9 @@
       .tool-content .preview-box {
         min-width: 100%;
       }
-      .tool-content .action-buttons button,
-      .tool-content .cta-button {
-        padding: 8px 16px;
-        font-size: 13px;
+      .tool-content .action-buttons {
+        flex-direction: column;
+        gap: 24px;
       }
       .scroll-to-top {
         width: 40px;
@@ -681,7 +675,7 @@
             <button id="downloadBtn" disabled>Download TIFF</button>
           </div>
 
-          <a class="cta-button" href="/#tools">Explore Our Tools</a>
+          <a class="cta-button" href="/index.html#tools">Explore Our Tools</a>
 
           <div class="tool-article">
             <h2>About the Image to TIFF Converter</h2>
@@ -770,7 +764,6 @@
   <script src="https://cdn.jsdelivr.net/npm/utif@2.0.1/utif.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Navigation and Scroll-to-Top
       const menuToggle = document.getElementById('mobile-menu-toggle');
       const nav = document.getElementById('nav-menu');
       if (menuToggle && nav) {
@@ -779,16 +772,33 @@
         });
       }
 
-      document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', (e) => {
           e.preventDefault();
+          const target = document.querySelector(anchor.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+          if (nav && nav.classList.contains('show')) {
+            nav.classList.remove('show');
+            menuToggle.checked = false;
+          }
+        });
+      });
+
+      document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
           const href = anchor.getAttribute('href');
           const [path, hash] = href.split('#');
           const isHome = path === '/' || path === '' || path === '/index.html';
 
-          if (isHome && hash) {
-            document.querySelector(`#${hash}`).scrollIntoView({ behavior: 'smooth' });
-            history.pushState(null, null, `/#${hash}`);
+          if (isHome && hash && (window.location.pathname === '/' || window.location.pathname === '/index.html')) {
+            e.preventDefault();
+            const target = document.querySelector(`#${hash}`);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth' });
+              history.pushState(null, null, `/#${hash}`);
+            }
           } else {
             window.location.href = href;
           }
@@ -814,7 +824,6 @@
         });
       }
 
-      // Search Functionality
       const searchInput = document.querySelector('.search-bar input');
       const searchButton = document.querySelector('.search-bar button');
       if (searchInput && searchButton) {
@@ -850,7 +859,6 @@
         });
       }
 
-      // Image to TIFF Converter Logic
       const uploadArea = document.getElementById('uploadArea');
       const imageInput = document.getElementById('imageInput');
       const originalPreview = document.getElementById('originalPreview');
@@ -862,7 +870,6 @@
       let originalImage = null;
       let tiffBlob = null;
 
-      // Handle file upload
       const handleFile = (file) => {
         if (!file.type.startsWith('image/')) {
           alert('Please upload a valid image file.');
@@ -875,14 +882,13 @@
         const reader = new FileReader();
         reader.onload = (e) => {
           originalPreview.src = e.target.result;
-          originalPreview.classList.add('visible'); // Show original preview
+          originalPreview.classList.add('visible');
           convertedPreview.src = '';
-          convertedPreview.classList.remove('visible'); // Hide converted preview
+          convertedPreview.classList.remove('visible');
         };
         reader.readAsDataURL(file);
       };
 
-      // Drag and drop
       uploadArea.addEventListener('dragover', (e) => {
         e.preventDefault();
         uploadArea.classList.add('dragover');
@@ -899,7 +905,6 @@
         if (file) handleFile(file);
       });
 
-      // Click to upload
       uploadArea.addEventListener('click', () => {
         imageInput.click();
       });
@@ -908,7 +913,6 @@
         if (imageInput.files[0]) handleFile(imageInput.files[0]);
       });
 
-      // Convert to TIFF
       convertBtn.addEventListener('click', () => {
         if (!originalImage) return;
 
@@ -923,30 +927,27 @@
             const ctx = canvas.getContext('2d');
             ctx.drawImage(img, 0, 0);
 
-            // Generate PNG preview (since TIFF can't be displayed)
             const previewDataUrl = canvas.toDataURL('image/png');
             convertedPreview.src = previewDataUrl;
-            convertedPreview.classList.add('visible'); // Show converted preview
+            convertedPreview.classList.add('visible');
 
-            // Get image data
             const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
             const rgbData = new Uint8Array(canvas.width * canvas.height * 3);
             for (let i = 0, j = 0; i < imageData.data.length; i += 4, j += 3) {
-              rgbData[j] = imageData.data[i];     // R
-              rgbData[j + 1] = imageData.data[i + 1]; // G
-              rgbData[j + 2] = imageData.data[i + 2]; // B
+              rgbData[j] = imageData.data[i];
+              rgbData[j + 1] = imageData.data[i + 1];
+              rgbData[j + 2] = imageData.data[i + 2];
             }
 
-            // Create TIFF using UTIF.js
             const ifd = {
-              "t256": canvas.width,  // Width
-              "t257": canvas.height, // Height
-              "t258": [8, 8, 8],    // Bits per sample (RGB)
-              "t259": compressionCheckbox.checked ? 5 : 1, // Compression: 5=LZW, 1=None
-              "t262": 2,            // Photometric: RGB
-              "t277": 3,            // Samples per pixel
-              "t278": 1,            // Rows per strip
-              "t279": canvas.width * canvas.height * 3 // Strip byte counts
+              "t256": canvas.width,
+              "t257": canvas.height,
+              "t258": [8, 8, 8],
+              "t259": compressionCheckbox.checked ? 5 : 1,
+              "t262": 2,
+              "t277": 3,
+              "t278": 1,
+              "t279": canvas.width * canvas.height * 3
             };
             const tiffArray = UTIF.encodeImage(rgbData, ifd);
             tiffBlob = new Blob([tiffArray], { type: 'image/tiff' });
@@ -956,7 +957,6 @@
         reader.readAsDataURL(originalImage);
       });
 
-      // Download TIFF
       downloadBtn.addEventListener('click', () => {
         if (!tiffBlob) return;
 
