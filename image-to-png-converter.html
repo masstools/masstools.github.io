@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Image to PNG Converter - Mass Tools</title>
-  <meta name="description" content="Convert images to PNG format for free with Mass Tools' Image to PNG Converter. Fast, offline, and easy to use. Ideal for transparency and high-quality images.">
+  <meta name="description" content="Convert images to PNG format for free with Mass Tools' Image to PNG Converter. Fast, offline, and easy to use with transparency support.">
   <meta name="keywords" content="image to png converter, mass tools, free online tools, image conversion, transparent images">
   <meta name="robots" content="index, follow">
   <link rel="icon" type="image/png" href="/favicon.png">
@@ -255,6 +255,11 @@
       height: auto;
       border-radius: var(--border-radius);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      display: none; /* Hide images by default */
+    }
+
+    .tool-content .preview-box img.visible {
+      display: block; /* Show images when they have src */
     }
 
     .tool-content .preview-box p {
@@ -632,7 +637,7 @@
       <div class="container">
         <div class="tool-content">
           <h1>Image to PNG Converter</h1>
-          <p>Convert your images (JPG, WebP, BMP, GIF, etc.) to PNG format quickly and easily with Mass Tools' free Image to PNG Converter. Download your converted image instantly with support for transparency.</p>
+          <p>Convert your images (JPG, WebP, BMP, GIF, etc.) to PNG format quickly and easily with Mass Tools' free Image to PNG Converter. Download your converted image with transparency support instantly.</p>
           
           <div class="upload-area" id="uploadArea">
             <i class="fas fa-cloud-upload-alt"></i>
@@ -660,45 +665,45 @@
 
           <div class="tool-article">
             <h2>About the Image to PNG Converter</h2>
-            <p>The Image to PNG Converter by <a href="/about-us.html">Mass Tools</a> is a free, user-friendly tool designed to help you convert images from various formats, such as JPG, WebP, BMP, and GIF, into the versatile PNG format. Whether you need images with transparency for web design, high-quality graphics for editing, or lossless compression for storage, this tool offers a fast and reliable solution. All conversions happen directly in your browser, ensuring your images remain private and secure without server uploads.</p>
+            <p>The Image to PNG Converter by <a href="/about-us.html">Mass Tools</a> is a free, user-friendly tool designed to convert images from various formats, such as JPG, WebP, BMP, and GIF, into the versatile PNG format. Ideal for graphic design, web development, or preserving image quality with transparency, this tool processes conversions directly in your browser, ensuring privacy and speed without server uploads.</p>
             
             <h3>Why Convert Images to PNG?</h3>
-            <p>PNG (Portable Network Graphics) is a popular image format known for its lossless compression and support for transparency. According to <a href="https://en.wikipedia.org/wiki/Portable_Network_Graphics" target="_blank" rel="noopener">Wikipedia</a>, PNG is widely used for web graphics and professional editing due to its ability to maintain quality. Here are some key benefits of using PNG:</p>
+            <p>PNG (Portable Network Graphics) is a popular format known for its lossless compression and support for transparency. According to <a href="https://en.wikipedia.org/wiki/Portable_Network_Graphics" target="_blank" rel="noopener">Wikipedia</a>, PNG is widely used for images requiring high quality or transparent backgrounds. Here are some key benefits of using PNG:</p>
             <ul>
               <li><strong>Lossless Compression</strong>: PNG preserves image quality without loss, unlike JPG’s lossy compression.</li>
-              <li><strong>Transparency Support</strong>: PNG supports alpha channels, making it ideal for logos, overlays, and web graphics with transparent backgrounds.</li>
-              <li><strong>High Compatibility</strong>: PNG is supported by all modern browsers, design software, and platforms.</li>
+              <li><strong>Transparency Support</strong>: PNG supports alpha channels for transparent backgrounds, perfect for logos and graphics.</li>
+              <li><strong>Wide Compatibility</strong>: PNG is supported by most browsers, design software, and platforms.</li>
             </ul>
 
             <h3>How to Use the Image to PNG Converter</h3>
-            <p>Using our Image to PNG Converter is simple and intuitive. Follow these steps to convert your images:</p>
+            <p>Using our Image to PNG Converter is simple and intuitive. Follow these steps:</p>
             <ul>
               <li><strong>Upload Your Image</strong>: Click the upload area or drag and drop your image (JPG, WebP, BMP, GIF, etc.) into the tool.</li>
               <li><strong>Convert</strong>: Click the "Convert to PNG" button to process the image. You’ll see a preview of both the original and converted images.</li>
               <li><strong>Download</strong>: Click "Download PNG" to save the converted file, named with "masstools.github.io" (e.g., converted-photo-masstools.github.io.png).</li>
             </ul>
-            <p>The tool supports drag-and-drop functionality and works offline, making it convenient for quick conversions on any device.</p>
+            <p>The tool supports drag-and-drop and works offline, making it convenient for quick conversions on any device.</p>
 
             <h3>Use Cases for PNG Conversion</h3>
-            <p>The Image to PNG Converter is versatile and caters to various needs, including:</p>
+            <p>The Image to PNG Converter is versatile and suits various scenarios, including:</p>
             <ul>
-              <li><strong>Web Design</strong>: Convert images to PNG for transparent backgrounds in logos, icons, or overlays. Pair with our <a href="/tools/image-resizer.html">Image Resizer</a> for perfect dimensions.</li>
-              <li><strong>Graphic Design</strong>: Convert JPG or BMP to PNG for lossless editing in tools like Photoshop or GIMP.</li>
-              <li><strong>Presentation Graphics</strong>: Use PNG for high-quality images in slides or documents that require transparency.</li>
-              <li><strong>Game Development</strong>: Convert sprite sheets to PNG for use in game engines that support transparency.</li>
+              <li><strong>Graphic Design</strong>: Convert images to PNG for transparent backgrounds in logos, icons, or overlays using tools like Photoshop or Canva.</li>
+              <li><strong>Web Development</strong>: Use PNGs for high-quality images or elements requiring transparency. Pair with our <a href="/tools/image-resizer.html">Image Resizer</a> for optimization.</li>
+              <li><strong>Presentations</strong>: Convert JPGs to PNG for crisp, transparent images in PowerPoint or Google Slides.</li>
+              <li><strong>Social Media</strong>: Create professional graphics with transparent backgrounds for platforms like Instagram or LinkedIn.</li>
             </ul>
 
             <h3>Tips for Optimizing PNG Images</h3>
-            <p>To get the most out of your PNG images, consider these optimization tips:</p>
+            <p>To maximize the benefits of PNG images, consider these tips:</p>
             <ul>
-              <li><strong>Reduce Colors</strong>: For simpler images (e.g., logos), use tools to reduce the color palette before conversion to minimize file size.</li>
-              <li><strong>Resize Before Converting</strong>: Use our <a href="/tools/image-resizer.html">Image Resizer</a> to adjust dimensions, as PNG files can be large.</li>
-              <li><strong>Use Transparency Wisely</strong>: Ensure your image needs transparency, as non-transparent PNGs can often be replaced with smaller JPGs for web use.</li>
-              <li><strong>Batch Processing</strong>: For multiple images, try our <a href="/tools/webp-converter.html">WebP Converter</a> or contact us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a> for custom solutions.</li>
+              <li><strong>Simplify Images</strong>: PNG files can be larger than JPGs. Use simple graphics or fewer colors to reduce file size.</li>
+              <li><strong>Resize Before Converting</strong>: Use our <a href="/tools/image-resizer.html">Image Resizer</a> to adjust dimensions before conversion for smaller files.</li>
+              <li><strong>Test Transparency</strong>: After conversion, check the PNG on your target platform to ensure transparency is preserved.</li>
+              <li><strong>Batch Processing</strong>: Need to convert multiple images? Try our <a href="/tools/webp-converter.html">WebP Converter</a> or contact us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a> for custom solutions.</li>
             </ul>
 
             <h3>Why Choose Mass Tools?</h3>
-            <p>At Mass Tools, we’re committed to providing free, high-quality tools to simplify your tasks. Our Image to PNG Converter is part of a growing suite of utilities, including the <a href="/tools/image-to-jpg.html">Image to JPG Converter</a> and <a href="/tools/word-counter.html">Word Counter</a>. We prioritize user privacy, speed, and simplicity, ensuring you can get the job done without hassle. Explore our full range of tools or learn more about our mission on our <a href="/about-us.html">About Us</a> page.</p>
+            <p>At Mass Tools, we’re dedicated to providing free, high-quality tools to simplify your tasks. Our Image to PNG Converter is part of a growing suite, including the <a href="/tools/image-to-jpg.html">Image to JPG Converter</a> and <a href="/tools/word-counter.html">Word Counter</a>. We prioritize user privacy, speed, and ease of use, ensuring a seamless experience. Explore our full range of tools or learn more about our mission on our <a href="/about-us.html">About Us</a> page.</p>
           </div>
         </div>
       </div>
@@ -750,20 +755,6 @@
           nav.classList.toggle('show', menuToggle.checked);
         });
       }
-
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', (e) => {
-          e.preventDefault();
-          const target = document.querySelector(anchor.getAttribute('href'));
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-          }
-          if (nav && nav.classList.contains('show')) {
-            nav.classList.remove('show');
-            menuToggle.checked = false;
-          }
-        });
-      });
 
       document.querySelectorAll('a[href*="#"]').forEach(anchor => {
         anchor.addEventListener('click', (e) => {
@@ -857,7 +848,9 @@
         const reader = new FileReader();
         reader.onload = (e) => {
           originalPreview.src = e.target.result;
+          originalPreview.classList.add('visible'); // Show original preview
           convertedPreview.src = '';
+          convertedPreview.classList.remove('visible'); // Hide converted preview
         };
         reader.readAsDataURL(file);
       };
@@ -904,6 +897,7 @@
             ctx.drawImage(img, 0, 0);
             convertedImageUrl = canvas.toDataURL('image/png');
             convertedPreview.src = convertedImageUrl;
+            convertedPreview.classList.add('visible'); // Show converted preview
             downloadBtn.disabled = false;
           };
         };
