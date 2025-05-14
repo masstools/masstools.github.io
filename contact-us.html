@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Mass Tools</title>
+  <meta name="description" content="Get in touch with Mass Tools! Reach out via email or social media for questions, feedback, or collaboration opportunities.">
+  <meta name="keywords" content="contact mass tools, free web tools, online utilities">
+  <meta name="robots" content="index, follow">
+<link rel="icon" type="image/png" href="/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <!-- Google Tag Manager (Google Analytics) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-68CX9G7BKF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-68CX9G7BKF');
+  </script>
+  <style>
+    :root {
+      --primary-color: #FF4500;
+      --secondary-color: #FFA500;
+      --dark-color: #1A1A1A;
+      --light-color: #F8F9FA;
+      --text-color: #2C2C2C;
+      --text-light: #6C757D;
+      --border-radius: 12px;
+      --transition: all 0.3s ease;
+      --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: var(--light-color);
+      color: var(--text-color);
+      font-size: 16px;
+      line-height: 1.7;
+      scrollbar-width: none;
+    }
+
+    body::-webkit-scrollbar {
+      display: none;
+    }
+
+    .progress-bar, [class*="progress"], [id*="progress"] {
+      display: none !important;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      background: var(--light-color);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-size: 24px;
+      font-weight: 800;
+      margin-left: 8px;
+    }
+
+    .logo-icon {
+      font-size: 24px;
+      color: var(--primary-color);
+    }
+
+    .logo span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 16px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+      font-size: 14px;
+      padding: 8px 12px;
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover {
+      background: var(--primary-color);
+      color: var(--light-color);
+      text-decoration: none;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--text-color);
+      cursor: pointer;
+      margin-right: 8px;
+    }
+
+    #mobile-menu-toggle {
+      display: none;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 50px;
+      padding: 6px 12px;
+      transition: var(--transition);
+      max-width: 200px;
+    }
+
+    .search-bar:hover, .search-bar:focus-within {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-bar input {
+      border: none;
+      outline: none;
+      font-size: 13px;
+      padding: 6px;
+      width: 100%;
+    }
+
+    .search-bar button {
+      background: none;
+      border: none;
+      color: var(--text-light);
+      font-size: 14px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .search-bar button:hover {
+      color: var(--primary-color);
+    }
+
+    .contact-section {
+      padding: 80px 0;
+      background: var(--light-color);
+    }
+
+    .contact-content {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 32px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .contact-content h1 {
+      font-size: 36px;
+      color: var(--dark-color);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .contact-content h2 {
+      font-size: 24px;
+      color: var(--dark-color);
+      margin: 24px 0 12px;
+    }
+
+    .contact-content p {
+      font-size: 15px;
+      color: var(--text-color);
+      margin-bottom: 12px;
+    }
+
+    .contact-content ul {
+      list-style: none;
+      margin: 12px 0;
+      padding-left: 20px;
+    }
+
+    .contact-content ul li {
+      font-size: 15px;
+      color: var(--text-color);
+      margin-bottom: 8px;
+      position: relative;
+    }
+
+    .contact-content ul li::before {
+      content: '✔';
+      color: var(--primary-color);
+      position: absolute;
+      left: -20px;
+    }
+
+    .contact-content a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .contact-content a:hover {
+      text-decoration: underline;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gradient);
+      color: #FFFFFF; /* Changed to white for better visibility */
+      padding: 10px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-top: 16px;
+    }
+
+    .contact-content .social-icons {
+      display: flex;
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .contact-content .social-icons a {
+      font-size: 24px;
+      color: var(--text-color);
+      transition: var(--transition);
+    }
+
+    .contact-content .social-icons a:hover {
+      color: var(--primary-color);
+    }
+
+    .cta-button:hover {
+      background: var(--primary-color);
+      color: #FFFFFF; /* Ensure hover state text remains white */
+      transform: translateY(-4px);
+      text-decoration: none;
+    }
+
+    footer {
+      background: var(--dark-color);
+      color: var(--light-color);
+      padding: 40px 0 20px;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .footer-column-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .footer-column-logo-icon {
+      font-size: 24px;
+      color: var(--primary-color);
+    }
+
+    .footer-column-logo span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .footer-column ul {
+      list-style: none;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-column ul li a {
+      color: #CED4DA;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-column ul li a:hover {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 13px;
+    }
+
+    .scroll-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--gradient);
+      color: var(--light-color);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    .scroll-to-top i {
+      -webkit-text-stroke: 0;
+      color: var(--light-color);
+    }
+
+    .scroll-to-top:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .scroll-to-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    @media (min-width: 992px) {
+      .tools-container {
+        grid-template-columns: repeat(4, 1fr) !important;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .search-bar {
+        max-width: 180px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 16px !important;
+      }
+      .header-container {
+        padding: 12px 16px;
+      }
+      .mobile-menu-btn {
+        display: block;
+      }
+      nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        align-items: flex-start;
+        border-radius: 0 0 12px 12px;
+        border: 1px solid #e0e0e0;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      nav.show {
+        display: flex !important;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 18px;
+        width: 100%;
+      }
+      nav ul li a {
+        font-size: 18px;
+        padding: 12px 20px;
+        width: 100%;
+        text-align: left;
+        border-radius: 8px;
+      }
+      .search-bar {
+        margin-top: 20px;
+        width: 100%;
+        max-width: none;
+        padding: 10px 20px;
+        border-radius: 50px;
+      }
+      .search-bar input {
+        font-size: 15px;
+        padding: 8px;
+      }
+      .search-bar button {
+        font-size: 16px;
+      }
+      .contact-section {
+        padding: 60px 0;
+      }
+      .contact-content h1 {
+        font-size: 30px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .container {
+        padding: 0 16px !important;
+      }
+      .header-container {
+        padding: 10px 16px !important;
+        margin: 0;
+      }
+      .logo {
+        font-size: 20px;
+        margin-left: 0;
+      }
+      .logo-icon {
+        font-size: 20px;
+      }
+      .mobile-menu-btn {
+        margin-right: 0;
+      }
+      .search-bar {
+        padding: 8px 16px;
+        margin: 16px 0;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .search-bar input {
+        font-size: 14px;
+      }
+      .contact-content {
+        padding: 24px;
+      }
+      .contact-content h1 {
+        font-size: 26px;
+      }
+      .contact-content h2 {
+        font-size: 20px;
+      }
+      .contact-content p, .contact-content ul li {
+        font-size: 14px;
+      }
+      .cta-button {
+        padding: 8px 16px;
+        font-size: 13px;
+      }
+      .scroll-to-top {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        bottom: 16px;
+        right: 16px;
+      }
+      .footer-column-logo {
+        font-size: 20px;
+      }
+      .footer-column-logo-icon {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <a href="/" class="logo">
+        <i class="fas fa-tools logo-icon"></i>
+        <span>Mass Tools</span>
+      </a>
+      <input id="mobile-menu-toggle" type="checkbox">
+      <label class="mobile-menu-btn" for="mobile-menu-toggle">
+        <i class="fas fa-bars"></i>
+      </label>
+      <nav id="nav-menu">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#tools">Tools</a></li>
+          <li><a href="/about-us.html">About Us</a></li>
+          <li><a href="/contact-us.html">Contact Us</a></li>
+          <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="/terms-and-conditions.html">Terms</a></li>
+          <li><a href="/Disclaimer.html">Disclaimer</a></li>
+        </ul>
+        <div class="search-bar">
+          <input type="text" placeholder="Search tools..." aria-label="Search">
+          <button type="submit" aria-label="Search">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="contact-section">
+      <div class="container">
+        <div class="contact-content">
+          <h1>Contact Mass Tools</h1>
+          <p>We’d love to hear from you! Whether you have questions, feedback, or business inquiries, the <strong>Mass Tools</strong> team is here to help.</p>
+
+          <h2>Get in Touch</h2>
+          <ul>
+            <li><strong>Email</strong>: Reach us directly at <a href="mailto:byrolaa@gmail.com" rel="noopener">byrolaa@gmail.com</a>.</li>
+            <li><strong>Social Media</strong>: Follow us on our social media platforms to stay updated and send us a message anytime.
+              <div class="social-icons">
+                <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              </div>
+            </li>
+          </ul>
+
+          <h2>Feedback and Suggestions</h2>
+          <p>Your opinions matter to us! If you have suggestions for content, ideas to improve our website, or just want to share your thoughts, don’t hesitate to reach out via <a href="mailto:byrolaa@gmail.com" rel="noopener">email</a>.</p>
+
+          <h2>Collaborations and Partnerships</h2>
+          <p>Interested in collaborating with <strong>Mass Tools</strong>? We’re always open to working with creative minds and businesses. Drop us an email at <a href="mailto:byrolaa@gmail.com" rel="noopener">byrolaa@gmail.com</a>, and we’ll get back to you as soon as possible.</p>
+
+          <p>Thank you for connecting with us. We look forward to hearing from you!</p>
+          <a class="cta-button" href="/#tools">Explore Our Tools</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-column">
+          <a href="/" class="footer-column-logo">
+            <i class="fas fa-tools footer-column-logo-icon"></i>
+            <span>Mass Tools</span>
+          </a>
+          <p>Empowering you with free, high-quality online tools.</p>
+        </div>
+        <div class="footer-column">
+          <ul>
+            <li><a href="/#tools">Tools</a></li>
+            <li><a href="/about-us.html">About Us</a></li>
+            <li><a href="/contact-us.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <ul>
+            <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="/terms-and-conditions.html">Terms</a></li>
+            <li><a href="/Disclaimer.html">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2025 Mass Tools. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-to-top" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuToggle = document.getElementById('mobile-menu-toggle');
+      const nav = document.getElementById('nav-menu');
+      if (menuToggle && nav) {
+        menuToggle.addEventListener('change', () => {
+          nav.classList.toggle('show', menuToggle.checked);
+        });
+      }
+
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = document.querySelector(anchor.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+          if (nav && nav.classList.contains('show')) {
+            nav.classList.remove('show');
+            menuToggle.checked = false;
+          }
+        });
+      });
+
+      const scrollTopBtn = document.querySelector('.scroll-to-top');
+      if (scrollTopBtn) {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 200) {
+            scrollTopBtn.classList.add('show');
+          } else {
+            scrollTopBtn.classList.remove('show');
+          }
+        });
+        scrollTopBtn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+
+      const searchInput = document.querySelector('.search-bar input');
+      const searchButton = document.querySelector('.search-bar button');
+      if (searchInput && searchButton) {
+        const tools = [
+          { name: 'EPS to Image Converter', url: '/tools/eps-to-image.html' },
+          { name: 'PNG to JPEG Converter', url: '/tools/png-to-jpeg.html' },
+          { name: 'Image Resizer', url: '/tools/image-resizer.html' },
+          { name: 'WebP Converter', url: '/tools/webp-converter.html' },
+          { name: 'Word Counter', url: '/tools/word-counter.html' },
+          { name: 'Case Converter', url: '/tools/case-converter.html' },
+          { name: 'Text to ASCII', url: '/tools/text-to-ascii.html' },
+          { name: 'Lorem Ipsum Generator', url: '/tools/lorem-ipsum-generator.html' },
+          { name: 'BMI Calculator', url: '/tools/bmi-calculator.html' }
+        ];
+        searchButton.addEventListener('click', () => {
+          const query = searchInput.value.trim().toLowerCase();
+          const matchedTool = tools.find(tool => tool.name.toLowerCase().includes(query));
+          if (matchedTool) {
+            window.location.href = matchedTool.url;
+          } else {
+            alert('No tools found matching your search.');
+          }
+        });
+        searchInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            searchButton.click();
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
