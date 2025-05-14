@@ -10,7 +10,6 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <!-- Google Tag Manager (Google Analytics) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-68CX9G7BKF"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -255,11 +254,11 @@
       height: auto;
       border-radius: var(--border-radius);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      display: none; /* Hide images by default */
+      display: none;
     }
 
     .tool-content .preview-box img.visible {
-      display: block; /* Show images when they have src */
+      display: block;
     }
 
     .tool-content .preview-box p {
@@ -295,6 +294,7 @@
       gap: 12px;
       justify-content: center;
       flex-wrap: wrap;
+      margin-bottom: 24px;
     }
 
     .tool-content .action-buttons button,
@@ -546,11 +546,6 @@
       .tool-content h1 {
         font-size: 30px;
       }
-      .tool-content .action-buttons button,
-      .tool-content .cta-button {
-        padding: 8px 16px;
-        font-size: 13px;
-      }
     }
 
     @media (max-width: 576px) {
@@ -602,10 +597,9 @@
       .tool-content .preview-box {
         min-width: 100%;
       }
-      .tool-content .action-buttons button,
-      .tool-content .cta-button {
-        padding: 8px 16px;
-        font-size: 13px;
+      .tool-content .action-buttons {
+        flex-direction: column;
+        gap: 24px;
       }
       .tool-content .quality-control input[type="range"] {
         width: 100%;
@@ -692,7 +686,7 @@
             <button id="downloadBtn" disabled>Download WebP</button>
           </div>
 
-          <a class="cta-button" href="/#tools">Explore Our Tools</a>
+          <a class="cta-button" href="/index.html#tools">Explore Our Tools</a>
 
           <div class="tool-article">
             <h2>About the Image to WebP Converter</h2>
@@ -780,7 +774,6 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Navigation and Scroll-to-Top
       const menuToggle = document.getElementById('mobile-menu-toggle');
       const nav = document.getElementById('nav-menu');
       if (menuToggle && nav) {
@@ -789,16 +782,33 @@
         });
       }
 
-      document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', (e) => {
           e.preventDefault();
+          const target = document.querySelector(anchor.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+          if (nav && nav.classList.contains('show')) {
+            nav.classList.remove('show');
+            menuToggle.checked = false;
+          }
+        });
+      });
+
+      document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
           const href = anchor.getAttribute('href');
           const [path, hash] = href.split('#');
           const isHome = path === '/' || path === '' || path === '/index.html';
 
-          if (isHome && hash) {
-            document.querySelector(`#${hash}`).scrollIntoView({ behavior: 'smooth' });
-            history.pushState(null, null, `/#${hash}`);
+          if (isHome && hash && (window.location.pathname === '/' || window.location.pathname === '/index.html')) {
+            e.preventDefault();
+            const target = document.querySelector(`#${hash}`);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth' });
+              history.pushState(null, null, `/#${hash}`);
+            }
           } else {
             window.location.href = href;
           }
@@ -824,7 +834,6 @@
         });
       }
 
-      // Search Functionality
       const searchInput = document.querySelector('.search-bar input');
       const searchButton = document.querySelector('.search-bar button');
       if (searchInput && searchButton) {
@@ -840,7 +849,8 @@
           { name: 'BMI Calculator', url: '/tools/bmi-calculator.html' },
           { name: 'Image to JPG Converter', url: '/tools/image-to-jpg.html' },
           { name: 'Image to PNG Converter', url: '/tools/image-to-png.html' },
-          { name: 'Image to WebP Converter', url: '/tools/image-to-webp.html' }
+          { name: 'Image to WebP Converter', url: '/tools/image-to-webp.html' },
+          { name: 'Image to SVG Converter', url: '/tools/image-to-svg.html' }
         ];
         searchButton.addEventListener('click', () => {
           const query = searchInput.value.trim().toLowerCase();
@@ -858,7 +868,6 @@
         });
       }
 
-      // Image to WebP Converter Logic
       const uploadArea = document.getElementById('uploadArea');
       const imageInput = document.getElementById('imageInput');
       const originalPreview = document.getElementById('originalPreview');
@@ -871,12 +880,10 @@
       let originalImage = null;
       let convertedImageUrl = null;
 
-      // Update quality value display
       qualityRange.addEventListener('input', () => {
         qualityValue.textContent = `${qualityRange.value}%`;
       });
 
-      // Handle file upload
       const handleFile = (file) => {
         if (!file.type.startsWith('image/')) {
           alert('Please upload a valid image file.');
@@ -889,14 +896,13 @@
         const reader = new FileReader();
         reader.onload = (e) => {
           originalPreview.src = e.target.result;
-          originalPreview.classList.add('visible'); // Show original preview
+          originalPreview.classList.add('visible');
           convertedPreview.src = '';
-          convertedPreview.classList.remove('visible'); // Hide converted preview
+          convertedPreview.classList.remove('visible');
         };
         reader.readAsDataURL(file);
       };
 
-      // Drag and drop
       uploadArea.addEventListener('dragover', (e) => {
         e.preventDefault();
         uploadArea.classList.add('dragover');
@@ -913,7 +919,6 @@
         if (file) handleFile(file);
       });
 
-      // Click to upload
       uploadArea.addEventListener('click', () => {
         imageInput.click();
       });
@@ -922,7 +927,6 @@
         if (imageInput.files[0]) handleFile(imageInput.files[0]);
       });
 
-      // Convert to WebP
       convertBtn.addEventListener('click', () => {
         if (!originalImage) return;
 
@@ -939,14 +943,13 @@
             const quality = qualityRange.value / 100;
             convertedImageUrl = canvas.toDataURL('image/webp', quality);
             convertedPreview.src = convertedImageUrl;
-            convertedPreview.classList.add('visible'); // Show converted preview
+            convertedPreview.classList.add('visible');
             downloadBtn.disabled = false;
           };
         };
         reader.readAsDataURL(originalImage);
       });
 
-      // Download WebP
       downloadBtn.addEventListener('click', () => {
         if (!convertedImageUrl) return;
 
