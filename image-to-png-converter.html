@@ -10,7 +10,6 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <!-- Google Tag Manager (Google Analytics) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-68CX9G7BKF"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -255,11 +254,11 @@
       height: auto;
       border-radius: var(--border-radius);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      display: none; /* Hide images by default */
+      display: none;
     }
 
     .tool-content .preview-box img.visible {
-      display: block; /* Show images when they have src */
+      display: block;
     }
 
     .tool-content .preview-box p {
@@ -273,6 +272,7 @@
       gap: 12px;
       justify-content: center;
       flex-wrap: wrap;
+      margin-bottom: 24px; /* Added spacing before CTA button */
     }
 
     .tool-content .action-buttons button,
@@ -524,11 +524,7 @@
       .tool-content h1 {
         font-size: 30px;
       }
-      .tool-content .action-buttons button,
-      .tool-content .cta-button {
-        padding: 8px 16px;
-        font-size: 13px;
-      }
+      /* Removed padding and font-size reduction for action-buttons and cta-button */
     }
 
     @media (max-width: 576px) {
@@ -580,10 +576,9 @@
       .tool-content .preview-box {
         min-width: 100%;
       }
-      .tool-content .action-buttons button,
-      .tool-content .cta-button {
-        padding: 8px 16px;
-        font-size: 13px;
+      .tool-content .action-buttons {
+        flex-direction: column;
+        gap: 24px; /* Increased vertical gap for stacked buttons */
       }
       .scroll-to-top {
         width: 40px;
@@ -661,7 +656,7 @@
             <button id="downloadBtn" disabled>Download PNG</button>
           </div>
 
-          <a class="cta-button" href="/#tools">Explore Our Tools</a>
+          <a class="cta-button" href="/index.html#tools">Explore Our Tools</a>
 
           <div class="tool-article">
             <h2>About the Image to PNG Converter</h2>
@@ -756,16 +751,33 @@
         });
       }
 
-      document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', (e) => {
           e.preventDefault();
+          const target = document.querySelector(anchor.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+          if (nav && nav.classList.contains('show')) {
+            nav.classList.remove('show');
+            menuToggle.checked = false;
+          }
+        });
+      });
+
+      document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
           const href = anchor.getAttribute('href');
           const [path, hash] = href.split('#');
           const isHome = path === '/' || path === '' || path === '/index.html';
 
-          if (isHome && hash) {
-            document.querySelector(`#${hash}`).scrollIntoView({ behavior: 'smooth' });
-            history.pushState(null, null, `/#${hash}`);
+          if (isHome && hash && (window.location.pathname === '/' || window.location.pathname === '/index.html')) {
+            e.preventDefault();
+            const target = document.querySelector(`#${hash}`);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth' });
+              history.pushState(null, null, `/#${hash}`);
+            }
           } else {
             window.location.href = href;
           }
@@ -848,9 +860,9 @@
         const reader = new FileReader();
         reader.onload = (e) => {
           originalPreview.src = e.target.result;
-          originalPreview.classList.add('visible'); // Show original preview
+          originalPreview.classList.add('visible');
           convertedPreview.src = '';
-          convertedPreview.classList.remove('visible'); // Hide converted preview
+          convertedPreview.classList.remove('visible');
         };
         reader.readAsDataURL(file);
       };
@@ -897,7 +909,7 @@
             ctx.drawImage(img, 0, 0);
             convertedImageUrl = canvas.toDataURL('image/png');
             convertedPreview.src = convertedImageUrl;
-            convertedPreview.classList.add('visible'); // Show converted preview
+            convertedPreview.classList.add('visible');
             downloadBtn.disabled = false;
           };
         };
