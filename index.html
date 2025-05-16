@@ -749,6 +749,7 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      console.log('DOM loaded, checking for tools.js...');
       const menuToggle = document.getElementById('mobile-menu-toggle');
       const nav = document.getElementById('nav-menu');
       if (menuToggle && nav) {
@@ -802,12 +803,15 @@
       }
 
       const populateTools = () => {
+        console.log('Attempting to populate tools...');
         const toolsContainer = document.getElementById('tools-container');
         const toolsMenu = document.getElementById('tools-menu');
         if (!window.toolsData) {
-          toolsContainer.innerHTML = '<p class="error-message">Error: Tools data not loaded. Please check if tools.js is included.</p>';
+          console.error('toolsData is undefined');
+          toolsContainer.innerHTML = '<p class="error-message">Error: Tools data not loaded. Please ensure tools.js is included in the root directory.</p>';
           return;
         }
+        console.log('toolsData found:', window.toolsData);
 
         toolsMenu.innerHTML = window.toolsData.map(category => `
           <div class="category">${category.category}</div>
@@ -830,14 +834,25 @@
         `).join('');
       };
 
-      if (document.querySelector('script[src="/tools.js"]')) {
+      const toolsScript = document.querySelector('script[src="/tools.js"]');
+      if (toolsScript) {
+        console.log('tools.js script tag found');
         if (window.toolsData) {
+          console.log('toolsData already loaded');
           populateTools();
         } else {
-          document.querySelector('script[src="/tools.js"]').addEventListener('load', populateTools);
+          toolsScript.addEventListener('load', () => {
+            console.log('tools.js loaded');
+            populateTools();
+          });
+          toolsScript.addEventListener('error', () => {
+            console.error('Failed to load tools.js');
+            document.getElementById('tools-container').innerHTML = '<p class="error-message">Error: Failed to load tools.js. Please check the file path or network.</p>';
+          });
         }
       } else {
-        document.getElementById('tools-container').innerHTML = '<p class="error-message">Error: tools.js not found.</p>';
+        console.error('tools.js script tag not found');
+        document.getElementById('tools-container').innerHTML = '<p class="error-message">Error: tools.js script tag missing in index.html.</p>';
       }
 
       const searchInput = document.querySelector('.search-bar input');
@@ -847,7 +862,9 @@
       const toolsSection = document.getElementById('tools');
       if (searchInput && searchButton && searchResults && searchResultsGrid) {
         const performSearch = () => {
+          console.log('Performing search...');
           if (!window.toolsData) {
+            console.error('toolsData not available for search');
             alert('Tools data not loaded. Please check tools.js.');
             return;
           }
