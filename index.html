@@ -673,7 +673,6 @@
               <a href="/word-counter.html">Word Counter</a>
               <a href="/replace-quotes.html">Replace Smart/Straight Quotes</a>
               <a href="/add-commas-to-numbers.html">Add Commas to Numbers</a>
-              <!-- Dynamically updated -->
             </div>
           </li>
           <li><a href="/about-us.html">About Us</a></li>
@@ -756,9 +755,9 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      console.log('DOM loaded, initializing...');
+      console.log('DOM loaded, initializing Mass Tools...');
 
-      // Fallback data if tools.js fails
+      // Fallback data
       const fallbackToolsData = [
         {
           category: "Image Converters",
@@ -786,7 +785,7 @@
         });
       }
 
-      // Smooth scroll to section
+      // Smooth scroll
       const scrollToSection = (hash) => {
         const target = document.querySelector(hash);
         if (target) {
@@ -821,7 +820,7 @@
         }, 100);
       }
 
-      // Scroll to top button
+      // Scroll to top
       const scrollTopBtn = document.querySelector('.scroll-to-top');
       if (scrollTopBtn) {
         window.addEventListener('scroll', () => {
@@ -832,13 +831,12 @@
         });
       }
 
-      // Populate tools and menu
+      // Populate tools
       const populateTools = (toolsData) => {
-        console.log('Populating tools with data:', toolsData);
+        console.log('Populating tools:', toolsData);
         const toolsContainer = document.getElementById('tools-container');
         const toolsMenu = document.getElementById('tools-menu');
 
-        // Update tools container
         toolsContainer.innerHTML = toolsData.map(category => `
           <div class="category-section" id="${category.category.toLowerCase().replace(/\s+/g, '-')}">
             <h3>${category.category}</h3>
@@ -854,19 +852,18 @@
           </div>
         `).join('');
 
-        // Update tools menu
         toolsMenu.innerHTML = toolsData.map(category => `
           <div class="category">${category.category}</div>
           ${category.tools.map(tool => `<a href="${tool.url}">${tool.name}</a>`).join('')}
         `).join('');
       };
 
-      // Check for tools.js
+      // Check tools.js
       const toolsScript = document.querySelector('script[src="/tools.js"]');
       if (toolsScript) {
         console.log('tools.js script tag found');
         if (window.toolsData) {
-          console.log('toolsData already loaded');
+          console.log('toolsData loaded');
           populateTools(window.toolsData);
         } else {
           toolsScript.addEventListener('load', () => {
@@ -875,17 +872,17 @@
           });
           toolsScript.addEventListener('error', () => {
             console.error('Failed to load tools.js');
-            document.getElementById('tools-container').innerHTML = '<p class="error-message">Using fallback tools due to loading error.</p>';
+            document.getElementById('tools-container').innerHTML = '<p class="error-message">Using fallback tools.</p>';
             populateTools(fallbackToolsData);
           });
         }
       } else {
-        console.error('tools.js script tag not found');
+        console.error('tools.js script tag missing');
         document.getElementById('tools-container').innerHTML = '<p class="error-message">Using fallback tools.</p>';
         populateTools(fallbackToolsData);
       }
 
-      // Search functionality
+      // Search
       const searchInput = document.querySelector('.search-bar input');
       const searchButton = document.querySelector('.search-bar button');
       const searchResults = document.getElementById('searchResults');
@@ -893,7 +890,7 @@
       const toolsSection = document.getElementById('tools');
       if (searchInput && searchButton && searchResults && searchResultsGrid) {
         const performSearch = () => {
-          console.log('Performing search...');
+          console.log('Searching...');
           const toolsData = window.toolsData || fallbackToolsData;
           const query = searchInput.value.trim().toLowerCase();
           if (!query) {
