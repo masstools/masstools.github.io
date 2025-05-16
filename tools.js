@@ -58,5 +58,4 @@ const toolsData = [
       { name: "Add Commas to Numbers", url: "/add-commas-to-numbers.html", keywords: ["commas", "numbers", "text"] }
     ]
   }
-  // Add more categories like "Fitness Calculators" here if needed
 ];
