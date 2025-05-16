@@ -666,7 +666,14 @@
           <li class="dropdown">
             <a href="/#tools">Tools</a>
             <div class="dropdown-content" id="tools-menu">
-              <!-- Dynamically populated -->
+              <div class="category">Image Converters</div>
+              <a href="/image-to-jpg-converter.html">Image To JPG Converter</a>
+              <a href="/image-to-png-converter.html">Image To PNG Converter</a>
+              <div class="category">Text Tools</div>
+              <a href="/word-counter.html">Word Counter</a>
+              <a href="/replace-quotes.html">Replace Smart/Straight Quotes</a>
+              <a href="/add-commas-to-numbers.html">Add Commas to Numbers</a>
+              <!-- Dynamically updated -->
             </div>
           </li>
           <li><a href="/about-us.html">About Us</a></li>
@@ -749,7 +756,28 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      console.log('DOM loaded, checking for tools.js...');
+      console.log('DOM loaded, initializing...');
+
+      // Fallback data if tools.js fails
+      const fallbackToolsData = [
+        {
+          category: "Image Converters",
+          tools: [
+            { name: "Image To JPG Converter", url: "/image-to-jpg-converter.html", keywords: ["image", "jpg", "converter"] },
+            { name: "Image To PNG Converter", url: "/image-to-png-converter.html", keywords: ["image", "png", "converter"] }
+          ]
+        },
+        {
+          category: "Text Tools",
+          tools: [
+            { name: "Word Counter", url: "/word-counter.html", keywords: ["word", "count", "text"] },
+            { name: "Replace Smart/Straight Quotes", url: "/replace-quotes.html", keywords: ["quotes", "smart", "straight", "text"] },
+            { name: "Add Commas to Numbers", url: "/add-commas-to-numbers.html", keywords: ["commas", "numbers", "text"] }
+          ]
+        }
+      ];
+
+      // Mobile menu toggle
       const menuToggle = document.getElementById('mobile-menu-toggle');
       const nav = document.getElementById('nav-menu');
       if (menuToggle && nav) {
@@ -758,6 +786,7 @@
         });
       }
 
+      // Smooth scroll to section
       const scrollToSection = (hash) => {
         const target = document.querySelector(hash);
         if (target) {
@@ -792,6 +821,7 @@
         }, 100);
       }
 
+      // Scroll to top button
       const scrollTopBtn = document.querySelector('.scroll-to-top');
       if (scrollTopBtn) {
         window.addEventListener('scroll', () => {
@@ -802,23 +832,14 @@
         });
       }
 
-      const populateTools = () => {
-        console.log('Attempting to populate tools...');
+      // Populate tools and menu
+      const populateTools = (toolsData) => {
+        console.log('Populating tools with data:', toolsData);
         const toolsContainer = document.getElementById('tools-container');
         const toolsMenu = document.getElementById('tools-menu');
-        if (!window.toolsData) {
-          console.error('toolsData is undefined');
-          toolsContainer.innerHTML = '<p class="error-message">Error: Tools data not loaded. Please ensure tools.js is included in the root directory.</p>';
-          return;
-        }
-        console.log('toolsData found:', window.toolsData);
 
-        toolsMenu.innerHTML = window.toolsData.map(category => `
-          <div class="category">${category.category}</div>
-          ${category.tools.map(tool => `<a href="${tool.url}">${tool.name}</a>`).join('')}
-        `).join('');
-
-        toolsContainer.innerHTML = window.toolsData.map(category => `
+        // Update tools container
+        toolsContainer.innerHTML = toolsData.map(category => `
           <div class="category-section" id="${category.category.toLowerCase().replace(/\s+/g, '-')}">
             <h3>${category.category}</h3>
             <div class="tools-container">
@@ -832,29 +853,39 @@
             </div>
           </div>
         `).join('');
+
+        // Update tools menu
+        toolsMenu.innerHTML = toolsData.map(category => `
+          <div class="category">${category.category}</div>
+          ${category.tools.map(tool => `<a href="${tool.url}">${tool.name}</a>`).join('')}
+        `).join('');
       };
 
+      // Check for tools.js
       const toolsScript = document.querySelector('script[src="/tools.js"]');
       if (toolsScript) {
         console.log('tools.js script tag found');
         if (window.toolsData) {
           console.log('toolsData already loaded');
-          populateTools();
+          populateTools(window.toolsData);
         } else {
           toolsScript.addEventListener('load', () => {
             console.log('tools.js loaded');
-            populateTools();
+            populateTools(window.toolsData || fallbackToolsData);
           });
           toolsScript.addEventListener('error', () => {
             console.error('Failed to load tools.js');
-            document.getElementById('tools-container').innerHTML = '<p class="error-message">Error: Failed to load tools.js. Please check the file path or network.</p>';
+            document.getElementById('tools-container').innerHTML = '<p class="error-message">Using fallback tools due to loading error.</p>';
+            populateTools(fallbackToolsData);
           });
         }
       } else {
         console.error('tools.js script tag not found');
-        document.getElementById('tools-container').innerHTML = '<p class="error-message">Error: tools.js script tag missing in index.html.</p>';
+        document.getElementById('tools-container').innerHTML = '<p class="error-message">Using fallback tools.</p>';
+        populateTools(fallbackToolsData);
       }
 
+      // Search functionality
       const searchInput = document.querySelector('.search-bar input');
       const searchButton = document.querySelector('.search-bar button');
       const searchResults = document.getElementById('searchResults');
@@ -863,11 +894,7 @@
       if (searchInput && searchButton && searchResults && searchResultsGrid) {
         const performSearch = () => {
           console.log('Performing search...');
-          if (!window.toolsData) {
-            console.error('toolsData not available for search');
-            alert('Tools data not loaded. Please check tools.js.');
-            return;
-          }
+          const toolsData = window.toolsData || fallbackToolsData;
           const query = searchInput.value.trim().toLowerCase();
           if (!query) {
             searchResults.classList.remove('active');
@@ -875,7 +902,7 @@
             return;
           }
           const results = [];
-          window.toolsData.forEach(category => {
+          toolsData.forEach(category => {
             category.tools.forEach(tool => {
               if (tool.name.toLowerCase().includes(query) || tool.keywords.some(k => k.includes(query))) {
                 results.push(tool);
