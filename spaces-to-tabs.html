@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spaces to Tabs Converter - Mass Tools</title>
+  <meta name="description" content="Convert spaces to tabs in your text instantly with Mass Tools' free Spaces to Tabs Converter. Customize the number of spaces per tab for coding and text formatting.">
+  <meta name="keywords" content="spaces to tabs, text converter, online tool, text formatting, coding tool">
+  <meta name="robots" content="index, follow">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-68CX9G7BKF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-68CX9G7BKF');
+  </script>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #FF4500;
+      --secondary-color: #FFA500;
+      --dark-color: #1A1A1A;
+      --light-color: #F8F9FA;
+      --text-color: #2C2C2C;
+      --text-light: #6C757D;
+      --border-radius: 12px;
+      --transition: all 0.3s ease;
+      --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: var(--light-color);
+      color: var(--text-color);
+      font-size: 16px;
+      line-height: 1.7;
+      scrollbar-width: none;
+    }
+
+    body::-webkit-scrollbar {
+      display: none;
+    }
+
+    .progress-bar, [class*="progress"], [id*="progress"] {
+      display: none !important;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      background: var(--light-color);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-size: 24px;
+      font-weight: 800;
+      margin-left: 8px;
+    }
+
+    .logo-icon {
+      font-size: 24px;
+      color: var(--primary-color);
+    }
+
+    .logo span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 16px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+      font-size: 14px;
+      padding: 8px 12px;
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover {
+      background: var(--primary-color);
+      color: var(--light-color);
+      text-decoration: none;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--text-color);
+      cursor: pointer;
+      margin-right: 8px;
+    }
+
+    #mobile-menu-toggle {
+      display: none;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 50px;
+      padding: 6px 12px;
+      transition: var(--transition);
+      max-width: 200px;
+    }
+
+    .search-bar:hover, .search-bar:focus-within {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-bar input {
+      border: none;
+      outline: none;
+      font-size: 13px;
+      padding: 6px;
+      width: 100%;
+    }
+
+    .search-bar button {
+      background: none;
+      border: none;
+      color: var(--text-light);
+      font-size: 14px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .search-bar button:hover {
+      color: var(--primary-color);
+    }
+
+    .tool-section {
+      padding: 80px 0;
+      background: var(--light-color);
+    }
+
+    .tool-content {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 32px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .tool-content h1 {
+      font-size: 36px;
+      color: var(--dark-color);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .tool-content p {
+      font-size: 15px;
+      color: var(--text-color);
+      margin-bottom: 12px;
+    }
+
+    .tool-content .input-area {
+      margin-bottom: 20px;
+    }
+
+    .tool-content .input-area textarea {
+      width: 100%;
+      min-height: 150px;
+      padding: 12px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      resize: vertical;
+      background: var(--light-color);
+    }
+
+    .tool-content .settings {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .tool-content .settings label {
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+      color: var(--text-color);
+      min-width: 150px;
+    }
+
+    .tool-content .settings input[type="number"] {
+      margin-top: 8px;
+      padding: 8px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .tool-content .result-area {
+      margin-bottom: 20px;
+    }
+
+    .tool-content .result-area textarea {
+      width: 100%;
+      min-height: 150px;
+      padding: 12px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      resize: vertical;
+      background: var(--light-color);
+    }
+
+    .tool-content .action-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .tool-content .action-buttons button,
+    .tool-content .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gradient);
+      color: #FFFFFF !important;
+      padding: 10px 24px;
+      border: none;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    .tool-content .action-buttons button:hover,
+    .tool-content .cta-button:hover {
+      background: var(--primary-color);
+      color: #FFFFFF !important;
+      transform: translateY(-4px);
+      text-decoration: none;
+    }
+
+    .tool-content .action-buttons button:disabled {
+      background: var(--text-light);
+      color: var(--light-color) !important;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .tool-content .tool-article {
+      margin-top: 40px;
+    }
+
+    .tool-content .tool-article h2 {
+      font-size: 24px;
+      color: var(--dark-color);
+      margin: 24px 0 12px;
+    }
+
+    .tool-content .tool-article h3 {
+      font-size: 20px;
+      color: var(--dark-color);
+      margin: 20px 0 10px;
+    }
+
+    .tool-content .tool-article p {
+      font-size: 15px;
+      color: var(--text-color);
+      margin-bottom: 12px;
+    }
+
+    .tool-content .tool-article ul {
+      list-style: none;
+      margin: 12px 0;
+      padding-left: 20px;
+    }
+
+    .tool-content .tool-article ul li {
+      font-size: 15px;
+      color: var(--text-color);
+      margin-bottom: 8px;
+      position: relative;
+    }
+
+    .tool-content .tool-article ul li::before {
+      content: '✔';
+      color: var(--primary-color);
+      position: absolute;
+      left: -20px;
+    }
+
+    .tool-content .tool-article a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .tool-content .tool-article a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background: var(--dark-color);
+      color: var(--light-color);
+      padding: 40px 0 20px;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .footer-column-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .footer-column-logo-icon {
+      font-size: 24px;
+      color: var(--primary-color);
+    }
+
+    .footer-column-logo span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .footer-column ul {
+      list-style: none;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-column ul li a {
+      color: #CED4DA;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-column ul li a:hover {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 13px;
+    }
+
+    .scroll-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--gradient);
+      color: var(--light-color);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    .scroll-to-top i {
+      -webkit-text-stroke: 0;
+      color: var(--light-color);
+    }
+
+    .scroll-to-top:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .scroll-to-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 992px) {
+      .search-bar {
+        max-width: 180px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 16px !important;
+      }
+
+      .header-container {
+        padding: 12px 16px;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        align-items: flex-start;
+        border-radius: 0 0 12px 12px;
+        border: 1px solid #e0e0e0;
+        width: 100%;
+      }
+
+      nav.show {
+        display: flex !important;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 18px;
+        width: 100%;
+      }
+
+      nav ul li a {
+        font-size: 18px;
+        padding: 12px 20px;
+        width: 100%;
+        text-align: left;
+        border-radius: 8px;
+      }
+
+      .search-bar {
+        margin-top: 20px;
+        width: 100%;
+        max-width: none;
+        padding: 10px 20px;
+        border-radius: 50px;
+      }
+
+      .search-bar input {
+        font-size: 15px;
+        padding: 8px;
+      }
+
+      .search-bar button {
+        font-size: 16px;
+      }
+
+      .tool-section {
+        padding: 60px 0;
+      }
+
+      .tool-content {
+        padding: 24px;
+      }
+
+      .tool-content h1 {
+        font-size: 30px;
+      }
+
+      .tool-content p,
+      .tool-content .tool-article p,
+      .tool-content .tool-article ul li {
+        font-size: 14px;
+      }
+
+      .tool-content .tool-article h2 {
+        font-size: 20px;
+      }
+
+      .tool-content .tool-article h3 {
+        font-size: 18px;
+      }
+
+      .tool-content .settings {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .tool-content .settings label {
+        width: 100%;
+      }
+
+      .tool-content .action-buttons {
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .header-container {
+        padding: 10px 16px !important;
+        margin: 0;
+      }
+
+      .logo {
+        font-size: 20px;
+        margin-left: 0;
+      }
+
+      .logo-icon {
+        font-size: 20px;
+      }
+
+      .mobile-menu-btn {
+        margin-right: 0;
+      }
+
+      .search-bar {
+        padding: 8px 16px;
+        margin: 16px 0;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .search-bar input {
+        font-size: 14px;
+      }
+
+      .tool-content h1 {
+        font-size: 26px;
+      }
+
+      .tool-content .input-area textarea,
+      .tool-content .result-area textarea {
+        min-height: 120px;
+        font-size: 13px;
+      }
+
+      .tool-content .settings input[type="number"] {
+        font-size: 13px;
+      }
+
+      .tool-content .action-buttons button,
+      .tool-content .cta-button {
+        width: 100%;
+        justify-content: center;
+        padding: 8px 20px;
+        font-size: 13px;
+      }
+
+      .scroll-to-top {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        bottom: 16px;
+        right: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <a href="/" class="logo">
+        <i class="fas fa-tools logo-icon"></i>
+        <span>Mass Tools</span>
+      </a>
+      <input id="mobile-menu-toggle" type="checkbox">
+      <label class="mobile-menu-btn" for="mobile-menu-toggle">
+        <i class="fas fa-bars"></i>
+      </label>
+      <nav id="nav-menu">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#tools">Tools</a></li>
+          <li><a href="/about-us.html">About Us</a></li>
+          <li><a href="/contact-us.html">Contact Us</a></li>
+          <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="/terms-and-conditions.html">Terms</a></li>
+          <li><a href="/Disclaimer.html">Disclaimer</a></li>
+        </ul>
+        <div class="search-bar">
+          <input type="text" placeholder="Search tools..." aria-label="Search">
+          <button type="submit" aria-label="Search">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="tool-section">
+      <div class="container">
+        <div class="tool-content">
+          <h1>Spaces to Tabs Converter</h1>
+          <p>Convert spaces to tabs in your text instantly with Mass Tools' free Spaces to Tabs Converter. Customize the number of spaces per tab for coding, formatting, or data processing.</p>
+
+          <div class="input-area">
+            <textarea id="inputText" placeholder="Paste your text here (e.g., text with spaces)..." aria-label="Input text for spaces to tabs"></textarea>
+          </div>
+
+          <div class="settings">
+            <label>
+              Number of Spaces per Tab
+              <input type="number" id="spacesCount" value="4" min="1" max="8" aria-label="Number of spaces per tab">
+            </label>
+          </div>
+
+          <div class="result-area">
+            <textarea id="outputText" readonly aria-label="Converted text output"></textarea>
+          </div>
+
+          <div class="action-buttons">
+            <button id="convertBtn"><i class="fas fa-exchange-alt"></i> Convert</button>
+            <button id="copyBtn" disabled><i class="fas fa-copy"></i> Copy Output</button>
+            <button id="clearBtn"><i class="fas fa-trash"></i> Clear</button>
+          </div>
+
+          <a class="cta-button" href="/index.html#tools">Explore Our Tools</a>
+
+          <div class="tool-article">
+            <h2>About the Spaces to Tabs Converter</h2>
+            <p>The Spaces to Tabs Converter by <a href="/about-us.html">Mass Tools</a> is a free tool to convert space characters to tabs in your text. Customize the number of spaces per tab and process text securely in your browser.</p>
+
+            <h3>Why Use the Spaces to Tabs Converter?</h3>
+            <p>This tool is ideal for formatting text for coding and data processing. Use it to:</p>
+            <ul>
+              <li><strong>Code Formatting</strong>: Convert spaces to tabs for editors that prefer tabs.</li>
+              <li><strong>Text Alignment</strong>: Standardize indentation in text editors.</li>
+              <li><strong>Data Processing</strong>: Convert space-separated data to tab-separated formats.</li>
+              <li><strong>Documentation</strong>: Format plain text files with tabs for consistency.</li>
+            </ul>
+
+            <h3>How to Use the Spaces to Tabs Converter</h3>
+            <p>Our Spaces to Tabs Converter is simple to use. Follow these steps:</p>
+            <ul>
+              <li><strong>Paste Text</strong>: Enter text containing spaces in the input textarea.</li>
+              <li><strong>Set Spaces</strong>: Specify the number of spaces per tab (1-8).</li>
+              <li><strong>Convert</strong>: Click "Convert" to see the result in the output textarea.</li>
+              <li><strong>Copy Output</strong>: Click "Copy Output" to copy the converted text to your clipboard.</li>
+              <li><strong>Clear</strong>: Click "Clear" to reset the input and output fields.</li>
+            </ul>
+            <p>The tool processes text locally in your browser for privacy and works offline after loading.</p>
+
+            <h3>Use Cases for Spaces to Tabs Converter</h3>
+            <p>This tool is perfect for various scenarios, including:</p>
+            <ul>
+              <li><strong>Programming</strong>: Convert spaces to tabs in code for editors like Vim or specific IDEs.</li>
+              <li><strong>Data Analysis</strong>: Convert space-separated values to tab-separated for TSV files.</li>
+              <li><strong>Text Editing</strong>: Standardize indentation in plain text documentation.</li>
+              <li><strong>Code Migration</strong>: Adapt code to projects that use tabs instead of spaces.</li>
+            </ul>
+
+            <h3>Tips for Using the Spaces to Tabs Converter</h3>
+            <p>To get the best results, consider these tips:</p>
+            <ul>
+              <li><strong>Choose Standard Spaces</strong>: Use 2 or 4 spaces to match common coding conventions.</li>
+              <li><strong>Test Small Inputs</strong>: Start with a small text sample to verify tab conversion.</li>
+              <li><strong>Combine Tools</strong>: Use with our <a href="/case-converter.html">Case Converter</a>, <a href="/word-counter.html">Word Counter</a>, <a href="/text-to-ascii-converter.html">Text to ASCII Converter</a>, <a href="/lorem-ipsum-generator.html">Lorem Ipsum Generator</a>, <a href="/character-counter.html">Character Counter</a>, <a href="/sort-text.html">Sort Text</a>, <a href="/find-replace-text.html">Find and Replace Text</a>, <a href="/reverse-list.html">Reverse List</a>, <a href="/difference-checker.html">Difference Checker</a>, <a href="/add-prefix-suffix.html">Add Prefix/Suffix</a>, or <a href="/tabs-to-spaces.html">Tabs to Spaces</a> for advanced text processing.</li>
+              <li><strong>Contact Us</strong>: Need bulk processing? Email us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a>.</li>
+            </ul>
+
+            <h3>Why Choose Mass Tools?</h3>
+            <p>At Mass Tools, we provide free, high-quality tools to simplify your tasks. Our Spaces to Tabs Converter joins our suite, including the <a href="/image-to-png-converter.html">Image to PNG Converter</a>, <a href="/image-to-jpg-converter.html">Image to JPG Converter</a>, <a href="/image-to-webp-converter.html">Image to WebP Converter</a>, <a href="/image-to-svg-converter.html">Image to SVG Converter</a>, <a href="/image-to-tiff-converter.html">Image to TIFF Converter</a>, <a href="/image-to-heic-converter.html">Image to HEIC Converter</a>, <a href="/image-to-pdf-converter.html">Image to PDF Converter</a>, <a href="/image-to-bmp-converter.html">Image to BMP Converter</a>, <a href="/image-to-ico-converter.html">Image to ICO Converter</a>, <a href="/image-to-avif-converter.html">Image to AVIF Converter</a>, <a href="/image-to-eps-converter.html">Image to EPS Converter</a>, <a href="/image-to-psd-converter.html">Image to PSD Converter</a>, <a href="/image-to-base64-converter.html">Image to Base64 Converter</a>, <a href="/image-to-dxf-converter.html">Image to DXF Converter</a>, <a href="/image-to-exr-converter.html">Image to EXR Converter</a>, <a href="/pdf-to-image-converter.html">PDF to Image Converter</a>, <a href="/image-resizer-tool.html">Image Resizer Tool</a>, <a href="/image-compressor-tool.html">Image Compressor Tool</a>, <a href="/psd-to-image-converter.html">PSD to Image Converter</a>, <a href="/eps-to-image-converter.html">EPS to Image Converter</a>, <a href="/word-counter.html">Word Counter</a>, <a href="/case-converter.html">Case Converter</a>, <a href="/text-to-ascii-converter.html">Text to ASCII Converter</a>, <a href="/lorem-ipsum-generator.html">Lorem Ipsum Generator</a>, <a href="/character-counter.html">Character Counter</a>, <a href="/sort-text.html">Sort Text</a>, <a href="/find-replace-text.html">Find and Replace Text</a>, <a href="/reverse-list.html">Reverse List</a>, <a href="/difference-checker.html">Difference Checker</a>, <a href="/add-prefix-suffix.html">Add Prefix/Suffix</a>, and <a href="/tabs-to-spaces.html">Tabs to Spaces</a>. We prioritize privacy, speed, and ease of use. Learn more on our <a href="/about-us.html">About Us</a> page.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-column">
+          <a href="/" class="footer-column-logo">
+            <i class="fas fa-tools footer-column-logo-icon"></i>
+            <span>Mass Tools</span>
+          </a>
+          <p>Empowering you with free, high-quality online tools.</p>
+        </div>
+        <div class="footer-column">
+          <ul>
+            <li><a href="/#tools">Tools</a></li>
+            <li><a href="/about-us.html">About Us</a></li>
+            <li><a href="/contact-us.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <ul>
+            <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="/terms-and-conditions.html">Terms</a></li>
+            <li><a href="/Disclaimer.html">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2025 Mass Tools. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-to-top" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('Spaces to Tabs tool loaded');
+
+      // Mobile menu toggle
+      const menuToggle = document.getElementById('mobile-menu-toggle');
+      const nav = document.getElementById('nav-menu');
+      if (menuToggle && nav) {
+        menuToggle.addEventListener('change', () => {
+          nav.classList.toggle('show', menuToggle.checked);
+          console.log('Mobile menu toggled:', menuToggle.checked);
+        });
+      }
+
+      // Scroll-to-top button
+      const scrollTopBtn = document.querySelector('.scroll-to-top');
+      if (scrollTopBtn) {
+        window.addEventListener('scroll', () => {
+          scrollTopBtn.classList.toggle('show', window.scrollY > 200);
+          console.log('Scroll-to-top visibility:', window.scrollY > 200);
+        });
+        scrollTopBtn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          console.log('Scrolled to top');
+        });
+      }
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = document.querySelector(anchor.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+          if (nav && nav.classList.contains('show')) {
+            nav.classList.remove('show');
+            menuToggle.checked = false;
+          }
+        });
+      });
+
+      document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+          const href = anchor.getAttribute('href');
+          const [path, hash] = href.split('#');
+          const isHome = path === '/' || path === '' || path === '/index.html';
+          if (isHome && hash && (window.location.pathname === '/' || window.location.pathname === '/index.html')) {
+            e.preventDefault();
+            const target = document.querySelector(`#${hash}`);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth' });
+              history.pushState(null, null, `/#${hash}`);
+            }
+          } else {
+            window.location.href = href;
+          }
+          if (nav && nav.classList.contains('show')) {
+            nav.classList.remove('show');
+            menuToggle.checked = false;
+          }
+        });
+      });
+
+      // Tool functionality
+      const inputText = document.getElementById('inputText');
+      const spacesCount = document.getElementById('spacesCount');
+      const convertBtn = document.getElementById('convertBtn');
+      const copyBtn = document.getElementById('copyBtn');
+      const clearBtn = document.getElementById('clearBtn');
+      const outputText = document.getElementById('outputText');
+
+      // Convert spaces to tabs
+      convertBtn.addEventListener('click', () => {
+        console.log('Convert button clicked');
+        const text = inputText.value;
+        const spaces = parseInt(spacesCount.value) || 4;
+        if (!text) {
+          alert('Please enter text to convert.');
+          console.warn('No input text provided');
+          return;
+        }
+        if (spaces < 1 || spaces > 8) {
+          alert('Number of spaces must be between 1 and 8.');
+          console.warn('Invalid spaces count:', spaces);
+          return;
+        }
+        const spacesRegex = new RegExp(` {${spaces}}`, 'g');
+        const converted = text.replace(spacesRegex, '\t');
+        outputText.value = converted;
+        copyBtn.disabled = !converted;
+        console.log('Text converted, spaces per tab:', spaces);
+        if (window.gtag) {
+          gtag('event', 'convert', {
+            event_category: 'Tool Usage',
+            event_label: 'Spaces to Tabs',
+            value: text.length
+          });
+        }
+      });
+
+      // Copy output text
+      copyBtn.addEventListener('click', () => {
+        console.log('Copy button clicked');
+        if (!outputText.value) {
+          alert('Nothing to copy. Please convert text first.');
+          console.warn('No output text to copy');
+          return;
+        }
+        outputText.select();
+        try {
+          document.execCommand('copy');
+          alert('Text copied to clipboard!');
+          console.log('Output text copied');
+          if (window.gtag) {
+            gtag('event', 'copy_output', {
+              event_category: 'Tool Usage',
+              event_label: 'Spaces to Tabs Copy',
+              value: 1
+            });
+          }
+        } catch (err) {
+          console.error('Copy failed:', err);
+          alert('Failed to copy text.');
+        }
+      });
+
+      // Clear input and output
+      clearBtn.addEventListener('click', () => {
+        console.log('Clear button clicked');
+        inputText.value = '';
+        outputText.value = '';
+        spacesCount.value = 4;
+        copyBtn.disabled = true;
+        console.log('Input and output cleared');
+      });
+    });
+  </script>
+</body>
+</html>
