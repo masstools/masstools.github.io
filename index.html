@@ -17,7 +17,7 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <script src="/tools.js"></script>
+  <script src="/tools.js" defer></script>
   <style>
     :root {
       --primary-color: #FF4500;
@@ -374,6 +374,13 @@
       text-align: center;
     }
 
+    .error-message {
+      text-align: center;
+      color: var(--text-light);
+      font-size: 16px;
+      margin: 20px 0;
+    }
+
     footer {
       background: var(--dark-color);
       color: var(--light-color);
@@ -699,7 +706,7 @@
         <h2>Our Tools</h2>
         <p>Explore our collection of free tools for image conversion, text processing, and more.</p>
         <div id="tools-container">
-          <!-- Dynamically populated -->
+          <p class="error-message">Loading tools, please wait...</p>
         </div>
       </div>
     </section>
@@ -794,16 +801,19 @@
         });
       }
 
-      const toolsMenu = document.getElementById('tools-menu');
-      if (toolsMenu && window.toolsData) {
+      const populateTools = () => {
+        const toolsContainer = document.getElementById('tools-container');
+        const toolsMenu = document.getElementById('tools-menu');
+        if (!window.toolsData) {
+          toolsContainer.innerHTML = '<p class="error-message">Error: Tools data not loaded. Please check if tools.js is included.</p>';
+          return;
+        }
+
         toolsMenu.innerHTML = window.toolsData.map(category => `
           <div class="category">${category.category}</div>
           ${category.tools.map(tool => `<a href="${tool.url}">${tool.name}</a>`).join('')}
         `).join('');
-      }
 
-      const toolsContainer = document.getElementById('tools-container');
-      if (toolsContainer && window.toolsData) {
         toolsContainer.innerHTML = window.toolsData.map(category => `
           <div class="category-section" id="${category.category.toLowerCase().replace(/\s+/g, '-')}">
             <h3>${category.category}</h3>
@@ -818,6 +828,16 @@
             </div>
           </div>
         `).join('');
+      };
+
+      if (document.querySelector('script[src="/tools.js"]')) {
+        if (window.toolsData) {
+          populateTools();
+        } else {
+          document.querySelector('script[src="/tools.js"]').addEventListener('load', populateTools);
+        }
+      } else {
+        document.getElementById('tools-container').innerHTML = '<p class="error-message">Error: tools.js not found.</p>';
       }
 
       const searchInput = document.querySelector('.search-bar input');
@@ -825,8 +845,12 @@
       const searchResults = document.getElementById('searchResults');
       const searchResultsGrid = document.getElementById('searchResultsGrid');
       const toolsSection = document.getElementById('tools');
-      if (searchInput && searchButton && searchResults && searchResultsGrid && window.toolsData) {
+      if (searchInput && searchButton && searchResults && searchResultsGrid) {
         const performSearch = () => {
+          if (!window.toolsData) {
+            alert('Tools data not loaded. Please check tools.js.');
+            return;
+          }
           const query = searchInput.value.trim().toLowerCase();
           if (!query) {
             searchResults.classList.remove('active');
