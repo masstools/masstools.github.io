@@ -7,7 +7,6 @@
   <meta name="description" content="Mass Tools offers free, user-friendly online tools for image conversion, text manipulation, fitness calculators, and more. Simplify your tasks with our accessible utilities.">
   <meta name="keywords" content="free online tools, web tools, image converter, text tools, fitness calculators">
   <meta name="robots" content="index, follow">
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-68CX9G7BKF"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -18,6 +17,7 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <script src="/tools.js"></script>
   <style>
     :root {
       --primary-color: #FF4500;
@@ -109,6 +109,10 @@
       gap: 16px;
     }
 
+    nav ul li {
+      position: relative;
+    }
+
     nav ul li a {
       text-decoration: none;
       color: var(--text-color);
@@ -123,6 +127,45 @@
       background: var(--primary-color);
       color: var(--light-color);
       text-decoration: none;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: #fff;
+      min-width: 200px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      border-radius: var(--border-radius);
+      z-index: 1;
+      top: 100%;
+      left: 0;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 12px 16px;
+      font-size: 14px;
+      color: var(--text-color);
+    }
+
+    .dropdown-content a:hover {
+      background: var(--primary-color);
+      color: var(--light-color);
+    }
+
+    .dropdown-content .category {
+      font-weight: 600;
+      padding: 12px 16px;
+      background: #f0f0f0;
+      color: var(--dark-color);
     }
 
     .mobile-menu-btn {
@@ -224,24 +267,34 @@
       text-decoration: none;
     }
 
-    .image-converters-section, .text-tools-section {
+    .tools-section {
       padding: 80px 0;
       background: #fff;
     }
 
-    .image-converters-section h2, .text-tools-section h2 {
+    .tools-section h2 {
       font-size: 36px;
       color: var(--dark-color);
       text-align: center;
       margin-bottom: 16px;
     }
 
-    .image-converters-section p, .text-tools-section p {
+    .tools-section p {
       font-size: 16px;
       color: var(--text-light);
       text-align: center;
       max-width: 800px;
       margin: 0 auto 40px;
+    }
+
+    .category-section {
+      margin-bottom: 40px;
+    }
+
+    .category-section h3 {
+      font-size: 28px;
+      color: var(--dark-color);
+      margin-bottom: 24px;
     }
 
     .tools-container {
@@ -260,6 +313,8 @@
       display: flex;
       flex-direction: column;
       min-height: 220px;
+      text-decoration: none;
+      color: var(--text-color);
     }
 
     .tool-card:hover {
@@ -301,6 +356,22 @@
       background: var(--primary-color);
       transform: translateY(-4px);
       text-decoration: none;
+    }
+
+    .search-results {
+      display: none;
+      padding: 40px 0;
+      background: #fff;
+    }
+
+    .search-results.active {
+      display: block;
+    }
+
+    .search-results h2 {
+      font-size: 28px;
+      margin-bottom: 24px;
+      text-align: center;
     }
 
     footer {
@@ -453,6 +524,15 @@
         text-align: left;
         border-radius: 8px;
       }
+      .dropdown-content {
+        position: static;
+        box-shadow: none;
+        background: none;
+        width: 100%;
+      }
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
       .search-bar {
         margin-top: 20px;
         width: 100%;
@@ -476,11 +556,14 @@
       .hero-section p {
         font-size: 16px;
       }
-      .image-converters-section, .text-tools-section {
+      .tools-section {
         padding: 60px 0;
       }
-      .image-converters-section h2, .text-tools-section h2 {
+      .tools-section h2 {
         font-size: 30px;
+      }
+      .category-section h3 {
+        font-size: 24px;
       }
     }
 
@@ -522,11 +605,11 @@
         padding: 10px 24px;
         font-size: 14px;
       }
-      .image-converters-section h2, .text-tools-section h2 {
+      .tools-section h2 {
         font-size: 26px;
       }
-      .image-converters-section p, .text-tools-section p {
-        font-size: 14px;
+      .category-section h3 {
+        font-size: 20px;
       }
       .tool-card {
         padding: 16px;
@@ -573,7 +656,12 @@
       <nav id="nav-menu">
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="/#tools">Tools</a></li>
+          <li class="dropdown">
+            <a href="/#tools">Tools</a>
+            <div class="dropdown-content" id="tools-menu">
+              <!-- Dynamically populated -->
+            </div>
+          </li>
           <li><a href="/about-us.html">About Us</a></li>
           <li><a href="/contact-us.html">Contact Us</a></li>
           <li><a href="/privacy-policy.html">Privacy Policy</a></li>
@@ -599,260 +687,19 @@
       </div>
     </section>
 
-    <section class="image-converters-section" id="tools">
+    <section class="search-results" id="searchResults">
       <div class="container">
-        <h2>Image Converters</h2>
-        <p>Effortlessly convert, resize, and optimize your images with our free image converter tools, designed for speed and simplicity.</p>
-        <div class="tools-container">
-          <div class="tool-card">
-            <h3>Image To JPG Converter</h3>
-            <p>Optimize images with smaller, high-quality JPGs.</p>
-            <a href="/image-to-jpg-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-            <h3>Image to PNG Converter</h3>
-            <p>Preserve quality with transparent, lossless PNGs.</p>
-            <a href="image-to-png-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-              <div class="tool-card">
-            <h3>Image TO SVG Converter</h3>
-            <p>Convert images to crisp, scalable SVGs for perfect quality at any size.</p>
-            <a href="/image-to-svg-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-            <h3>Image to WEBP Converter</h3>
-            <p>Optimize images with smaller, high-quality WebP files.</p>
-            <a href="/image-to-webp-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-            <h3>Image to TIFF Converter</h3>
-            <p>Convert images to high-quality, lossless TIFF files for professional use.</p>
-            <a href="/image-to-tiff-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-            <h3>Image to HEIC Converter</h3>
-            <p>Preserve quality with modern, high-efficiency HEIC images.</p>
-            <a href="/image-to-heic-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-           <div class="tool-card">
-            <h3>Image to PDF Converter</h3>
-            <p>Preserve quality with secure, shareable PDF documents.</p>
-            <a href="/image-to-pdf-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-            <h3>Image to BMP Converter</h3>
-            <p>Convert images to uncompressed BMP format for raw quality and compatibility.</p>
-            <a href="/image-to-bmp-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-             <div class="tool-card">
-            <h3>Image to ICO Converter</h3>
-            <p>Convert images into ICO format for use as website or app icons.</p>
-            <a href="/image-to-ico-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-             <div class="tool-card">
-            <h3>Image to AVIF Converter</h3>
-            <p>Convert images to ultra-efficient AVIF format for next-gen web performance.</p>
-            <a href="/image-to-avif-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-           <div class="tool-card">
-            <h3>Image to EPS Converter</h3>
-            <p>Convert images to EPS vector format for print and graphic design workflows.</p>
-            <a href="/image-to-eps-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-            <div class="tool-card">
-            <h3>Image to PSD Converter</h3>
-            <p>Convert images to layered PSD files for easy editing in Adobe Photoshop.</p>
-            <a href="/image-to-psd-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-           <div class="tool-card">
-            <h3>Image to Base64 Converter</h3>
-            <p>Convert images to Base64 strings for embedding directly in HTML or CSS.</p>
-            <a href="/image-to-base64-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-            <h3>Image to DXF Converter</h3>
-            <p>Convert images (especially drawings or line art) to DXF format for CAD use.</p>
-            <a href="/image-to-dxf-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-            <h3>Image to EXR Converter</h3>
-            <p>Convert images to high-dynamic-range EXR format for VFX and 3D rendering.</p>
-            <a href="/image-to-exr-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-            <h3>PDF to Image Converter</h3>
-            <p>Convert PDFs to high-quality images for easy sharing, archiving, and content repurposing.</p>
-            <a href="/pdf-to-image-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-           <div class="tool-card">
-            <h3>Image Resizer</h3>
-            <p>Resize images to perfect dimensions for web, print, and social media—without losing quality.</p>
-            <a href="/image-resizer-tool.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-            <h3>Image Compressor Tool</h3>
-            <p>Compress images to reduce file size while preserving quality—ideal for web, email, and faster loading times.</p>
-            <a href="/image-compressor-tool.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-            <h3>PSD To Image Converter</h3>
-            <p>Convert layered PSD files to standard image formats for easy viewing, sharing, and publishing.</p>
-            <a href="/psd-to-image-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-             <div class="tool-card">
-            <h3>EPS To Image Converter</h3>
-            <p>Convert vector EPS files to high-quality images for web, print, and presentations with ease.</p>
-            <a href="/eps-to-image-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-        </div>
+        <h2>Search Results</h2>
+        <div class="tools-container" id="searchResultsGrid"></div>
       </div>
     </section>
 
-    <section class="text-tools-section" id="text-tools">
+    <section class="tools-section" id="tools">
       <div class="container">
-        <h2>Text Tools</h2>
-        <p>Enhance your text with our versatile tools for counting, formatting, and generating content with ease.</p>
-        <div class="tools-container">
-          <div class="tool-card">
-            <h3>Word Counter</h3>
-            <p>Count words, characters, and sentences in your text instantly.</p>
-            <a href="/word-counter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-            <h3>Case Converter</h3>
-            <p>Convert text to uppercase, lowercase, or title case effortlessly.</p>
-            <a href="/case-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-            <h3>Text to ASCII</h3>
-            <p>Convert text to ASCII art for creative and decorative outputs.</p>
-            <a href="/text-to-ascii-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-            <h3>Lorem Ipsum Generator</h3>
-            <p>Generate placeholder text for design and content prototyping.</p>
-            <a href="/lorem-ipsum-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-            <h3>Character Counter</h3>
-            <p>Count the number of characters in your text, with or without spaces.</p>
-            <a href="/character-counter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-            <div class="tool-card">
-            <h3>Sort Text</h3>
-            <p>Quickly sort lines of text alphabetically, numerically, or by length—ideal for data cleanup and content organization.</p>
-            <a href="/sort-text.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-            <h3>Find And Replace</h3>
-            <p>Search and replace text instantly across documents—perfect for editing, coding, and data correction.</p>
-            <a href="/find-and-replace-text.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-           <div class="tool-card">
-            <h3>Reverse List</h3>
-            <p>Instantly reverse the order of items in a list—great for data formatting, coding, and text manipulation.</p>
-            <a href="/reverse-list.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-           <div class="tool-card">
-            <h3>Difference Checker</h3>
-            <p>Compare text side-by-side to spot differences instantly—ideal for code reviews, document edits, and version control.</p>
-            <a href="/difference-checker.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-            <h3>Add Prefix/Suffix</h3>
-            <p>Easily prepend or append text to any string or list—perfect for formatting, coding, and data processing.</p>
-            <a href="/add-prefix-suffix.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-            <h3>Add Line Breaks</h3>
-            <p>Insert line breaks exactly where you need them—great for formatting paragraphs, code, or CSV data.</p>
-            <a href="/add-line-breaks.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-          <h3>Remove Line Breaks</h3>
-            <p>Insert line breaks exactly where you need them—great for formatting paragraphs, code, or CSV data.</p>
-            <a href="/remove-line-breaks.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-           <div class="tool-card">
-          <h3>Concatenate Text</h3>
-            <p>Merge multiple lines or strings into one—perfect for coding, data manipulation, and bulk text formatting.</p>
-            <a href="/concatenate-text.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-          <h3>Split Text</h3>
-            <p>Break text into parts using custom delimiters—ideal for data parsing, formatting, and content extraction.</p>
-            <a href="/split-text.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-          <h3>Extract Column</h3>
-            <p>Pull specific columns from text or data files—perfect for working with CSV, TSV, and structured text.</p>
-            <a href="/extract-column.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-           <div class="tool-card">
-          <h3>Swap Columns</h3>
-            <p>Easily switch the position of columns in structured text—ideal for rearranging CSV, TSV, or tabular data.</p>
-            <a href="/swap-column.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-          <h3>Reverse Words</h3>
-            <p>Flip the order of words in a sentence or line—great for text manipulation, coding, and creative formatting.</p>
-            <a href="/reverse-words.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-           <div class="tool-card">
-          <h3>Reverse Letters</h3>
-            <p>Reverse the letters in each word or line—perfect for puzzles, text effects, and fun transformations.</p>
-            <a href="/reverse-letters.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-          <h3>Remove Extra Spaces</h3>
-            <p>Clean up text by removing extra spaces—ideal for formatting, data cleanup, and streamlined content.</p>
-            <a href="/remove-extra-spaces.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-             <div class="tool-card">
-          <h3>Remove Duplicate Lines</h3>
-            <p>Eliminate repeated lines from your text—perfect for data cleaning, sorting, and content deduplication.</p>
-            <a href="/remove-duplicate-lines.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-            <div class="tool-card">
-          <h3>Remove Empty Lines</h3>
-            <p>Delete blank lines to tighten up your text—great for code cleanup, formatting, and content organization.</p>
-            <a href="/remove-empty-lines.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-           <div class="tool-card">
-          <h3>Remove Letter Accents</h3>
-            <p>Strip accents from characters for plain ASCII text—ideal for SEO, database cleanup, and text normalization.</p>
-            <a href="/remove-letter-accents.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-          <h3>Remove Unwanted Characters</h3>
-            <p>Clean your text by removing special or non-standard characters—perfect for data sanitization, coding, and formatting.</p>
-            <a href="/remove-unwanted-characters.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-                    <div class="tool-card">
-          <h3>Remove Lines Containing/Not Containing</h3>
-            <p> Filter text by keeping or removing lines based on keywords—ideal for data filtering, log analysis, and content refinement.</p>
-            <a href="/remove-lines-containing.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-          <h3>Remove Emojis</h3>
-            <p>Strip emojis from text for clean, professional content—perfect for data processing, moderation, and plain text formatting.</p>
-            <a href="/remove-emojis.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-          <h3>Strip HTML Tags</h3>
-            <p>Remove HTML tags to extract clean text—ideal for web scraping, content cleanup, and text analysis.</p>
-            <a href="/strip-html-tags.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-           <div class="tool-card">
-          <h3>Add Line Numbers</h3>
-            <p>Add line numbers to your text—perfect for code snippets, document reviews, and organized formatting.</p>
-            <a href="/add-line-numbers.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-          <h3>Replace Smart/Straight Quotes</h3>
-            <p>Convert between curly and straight quotes—perfect for typographic cleanup, coding, and publishing consistency.</p>
-            <a href="/replace-quotes.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
+        <h2>Our Tools</h2>
+        <p>Explore our collection of free tools for image conversion, text processing, and more.</p>
+        <div id="tools-container">
+          <!-- Dynamically populated -->
         </div>
       </div>
     </section>
@@ -903,7 +750,6 @@
         });
       }
 
-      // Smooth scroll for anchor links
       const scrollToSection = (hash) => {
         const target = document.querySelector(hash);
         if (target) {
@@ -913,25 +759,18 @@
         return false;
       };
 
-      // Handle anchor link clicks
       document.querySelectorAll('a[href*="#"]').forEach(anchor => {
         anchor.addEventListener('click', (e) => {
           e.preventDefault();
           const href = anchor.getAttribute('href');
           const [path, hash] = href.split('#');
           const isHome = path === '/' || path === '' || path === '/index.html';
-
           if (isHome && hash) {
-            // Scroll on the homepage
             scrollToSection(`#${hash}`);
-            // Update URL without reloading
             history.pushState(null, null, `/#${hash}`);
           } else {
-            // Navigate to another page with hash
             window.location.href = href;
           }
-
-          // Close mobile menu if open
           if (nav && nav.classList.contains('show')) {
             nav.classList.remove('show');
             menuToggle.checked = false;
@@ -939,93 +778,90 @@
         });
       });
 
-      // Handle hash on page load
       if (window.location.hash) {
         setTimeout(() => {
           scrollToSection(window.location.hash);
-        }, 100); // Small delay to ensure page is loaded
+        }, 100);
       }
 
-      // Scroll-to-top button
       const scrollTopBtn = document.querySelector('.scroll-to-top');
       if (scrollTopBtn) {
         window.addEventListener('scroll', () => {
-          if (window.scrollY > 200) {
-            scrollTopBtn.classList.add('show');
-          } else {
-            scrollTopBtn.classList.remove('show');
-          }
+          scrollTopBtn.classList.toggle('show', window.scrollY > 200);
         });
         scrollTopBtn.addEventListener('click', () => {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         });
       }
 
-      // Search functionality
+      const toolsMenu = document.getElementById('tools-menu');
+      if (toolsMenu && window.toolsData) {
+        toolsMenu.innerHTML = window.toolsData.map(category => `
+          <div class="category">${category.category}</div>
+          ${category.tools.map(tool => `<a href="${tool.url}">${tool.name}</a>`).join('')}
+        `).join('');
+      }
+
+      const toolsContainer = document.getElementById('tools-container');
+      if (toolsContainer && window.toolsData) {
+        toolsContainer.innerHTML = window.toolsData.map(category => `
+          <div class="category-section" id="${category.category.toLowerCase().replace(/\s+/g, '-')}">
+            <h3>${category.category}</h3>
+            <div class="tools-container">
+              ${category.tools.map(tool => `
+                <a href="${tool.url}" class="tool-card">
+                  <h3>${tool.name}</h3>
+                  <p>Simplify your tasks with ${tool.name}</p>
+                  <a href="${tool.url}"><i class="fas fa-arrow-right"></i> Try Now</a>
+                </a>
+              `).join('')}
+            </div>
+          </div>
+        `).join('');
+      }
+
       const searchInput = document.querySelector('.search-bar input');
       const searchButton = document.querySelector('.search-bar button');
-      if (searchInput && searchButton) {
-        const tools = [
-          { name: 'Image To JPG Converter', url: '/image-to-jpg-converter.html' },
-          { name: 'Image To PNG Converter', url: '/image-to-png-converter.html' },
-          { name: 'Image To SVG', url: '/image-to-svg-converter.html' },
-          { name: 'Image To WEBP Converter', url: '/image-to-webp-converter.html' },
-          { name: 'Image To TIFF Converter', url: '/image-to-tiff-converter.html' },
-          { name: 'Image To HEIC Converter', url: '/image-to-heic-converter.html' },
-          { name: 'Image To PDF Converter', url: '/image-to-pdf-converter.html' },
-          { name: 'Image To BMP Converter', url: '/image-to-bmp-converter.html' },
-          { name: 'Image To ICO Converter', url: '/image-to-ico-converter.html' },
-          { name: 'Image To AVIF Converter', url: '/image-to-avif-converter.html' },
-          { name: 'Image To EPS Converter', url: '/image-to-eps-converter.html' },
-          { name: 'Image To PSD Converter', url: '/image-to-psd-converter.html' },
-          { name: 'Image To Base64 Converter', url: '/image-to-base64-converter.html' },
-          { name: 'Image To DXF Converter', url: '/image-to-dxf-converter.html' },
-          { name: 'Image To EXR Converter', url: '/image-to-exr-converter.html' },
-          { name: 'PDF To Image Converter', url: '/pdf-to-image-converter.html' },
-          { name: 'Image Resizer Tool', url: '/image-resizer-tool.html' },
-          { name: 'Image Compressor Tool', url: '/image-resizer-tool.html' },
-          { name: 'PSD To Image Converter', url: '/pdf-to-image-converter.html' },
-          { name: 'EPS To Image Converter', url: '/eps-to-image-converter.html' },
-          { name: 'Word Counter', url: '/word-counter.html' },
-          { name: 'Case Converter', url: '/case-converter.html' },
-          { name: 'Text To ASCII', url: '/text-to-ascii-converter.html' },
-          { name: 'Lorem Ipsum Generator', url: '/lorem-ipsum-genrator.html' },
-          { name: 'Character Counter', url: '/character-counter.html' },
-          { name: 'Sort Text', url: '/sort-text.html' },
-          { name: 'Find And Replace', url: '/find-and-replace-text.html' },
-          { name: 'Reverse List', url: '/reverse-list.html' },
-          { name: 'Difference Checker', url: '/difference-checker.html' },
-          { name: 'Add Prefix/Suffix', url: '/add-prefix-suffix.html' },
-          { name: 'Add Line Breaks', url: '/add-line-breaks.html' },
-          { name: 'Remove Line Breaks', url: '/remove-line-breaks.html' },
-          { name: 'Concatenate Text', url: '/concatenate-text.html' },
-          { name: 'Split Text', url: '/split-text.html' },
-          { name: 'Extract Column', url: '/extract-column.html' },
-          { name: 'Swap Column', url: '/swap-column.html' },
-          { name: 'Reverse Words', url: '/reverse-words.html' },
-          { name: 'Reverse Letters', url: '/reverse-letters.html' },
-          { name: 'Remove Extra Spaces', url: '/remove-extra-spaces.html' },
-          { name: 'Remove Duplicate Lines', url: '/remove-duplicate-lines.html' },
-          { name: 'Remove Empty Lines', url: '/remove-empty-lines.html' },
-          { name: 'Remove Letter Accents', url: '/remove-letter-accents.html' },
-          { name: 'Remove Unwanted Characters', url: '/remove-unwanted-characters.html' },
-          { name: 'Remove Lines Containing/Not Containing', url: '/remove-lines-containing.html' },
-          { name: 'Remove Emojis', url: '/remove-emojis.html' },
-          { name: 'Strip HTML Tags', url: '/strip-html-tags.html' },
-          { name: 'Add Line Numbers', url: '/add-line-numbers.html' },
-        ];
-        searchButton.addEventListener('click', () => {
+      const searchResults = document.getElementById('searchResults');
+      const searchResultsGrid = document.getElementById('searchResultsGrid');
+      const toolsSection = document.getElementById('tools');
+      if (searchInput && searchButton && searchResults && searchResultsGrid && window.toolsData) {
+        const performSearch = () => {
           const query = searchInput.value.trim().toLowerCase();
-          const matchedTool = tools.find(tool => tool.name.toLowerCase().includes(query));
-          if (matchedTool) {
-            window.location.href = matchedTool.url;
-          } else {
-            alert('No tools found matching your search.');
+          if (!query) {
+            searchResults.classList.remove('active');
+            toolsSection.style.display = 'block';
+            return;
           }
-        });
+          const results = [];
+          window.toolsData.forEach(category => {
+            category.tools.forEach(tool => {
+              if (tool.name.toLowerCase().includes(query) || tool.keywords.some(k => k.includes(query))) {
+                results.push(tool);
+              }
+            });
+          });
+          searchResultsGrid.innerHTML = results.length ? results.map(tool => `
+            <a href="${tool.url}" class="tool-card">
+              <h3>${tool.name}</h3>
+              <p>Simplify your tasks with ${tool.name}</p>
+              <a href="${tool.url}"><i class="fas fa-arrow-right"></i> Try Now</a>
+            </a>
+          `).join('') : '<p>No tools found matching your search.</p>';
+          searchResults.classList.add('active');
+          toolsSection.style.display = 'none';
+          if (window.gtag) {
+            gtag('event', 'search', {
+              event_category: 'Tool Usage',
+              event_label: 'Search',
+              value: query.length
+            });
+          }
+        };
+        searchButton.addEventListener('click', performSearch);
         searchInput.addEventListener('keypress', (e) => {
           if (e.key === 'Enter') {
-            searchButton.click();
+            performSearch();
           }
         });
       }
