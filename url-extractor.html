@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Extractor - Mass Tools</title>
+  <meta name="description" content="Extract URLs from text, websites, or files with Mass Tools' free URL Extractor. Customize output with unique links, sorting, and domain filters for web scraping or link management.">
+  <meta name="keywords" content="url extractor, extract links, online tool, link finder">
+  <meta name="robots" content="index, follow">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-68CX9G7BKF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-68CX9G7BKF');
+  </script>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #FF4500;
+      --secondary-color: #FFA500;
+      --dark-color: #1A1A1A;
+      --light-color: #F8F9FA;
+      --text-color: #2C2C2C;
+      --text-light: #6C757D;
+      --border-radius: 12px;
+      --transition: all 0.3s ease;
+      --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: var(--light-color);
+      color: var(--text-color);
+      font-size: 16px;
+      line-height: 1.7;
+      scrollbar-width: none;
+    }
+
+    body::-webkit-scrollbar {
+      display: none;
+    }
+
+    .progress-bar, [class*="progress"], [id*="progress"] {
+      display: none !important;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      background: var(--light-color);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-size: 24px;
+      font-weight: 800;
+      margin-left: 8px;
+    }
+
+    .logo-icon {
+      font-size: 24px;
+      color: var(--primary-color);
+    }
+
+    .logo span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 16px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+      font-size: 14px;
+      padding: 8px 12px;
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover {
+      background: var(--primary-color);
+      color: var(--light-color);
+      text-decoration: none;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--text-color);
+      cursor: pointer;
+      margin-right: 8px;
+    }
+
+    #mobile-menu-toggle {
+      display: none;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 50px;
+      padding: 6px 12px;
+      transition: var(--transition);
+      max-width: 200px;
+    }
+
+    .search-bar:hover, .search-bar:focus-within {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-bar input {
+      border: none;
+      outline: none;
+      font-size: 13px;
+      padding: 6px;
+      width: 100%;
+    }
+
+    .search-bar button {
+      background: none;
+      border: none;
+      color: var(--text-light);
+      font-size: 14px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .search-bar button:hover {
+      color: var(--primary-color);
+    }
+
+    .tool-section {
+      padding: 80px 0;
+      background: var(--light-color);
+    }
+
+    .tool-content {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 32px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .tool-content h1 {
+      font-size: 36px;
+      color: var(--dark-color);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .tool-content p {
+      font-size: 15px;
+      color: var(--text-color);
+      margin-bottom: 12px;
+    }
+
+    .tool-content .settings-area {
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .tool-content .settings-area label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-color);
+      margin-right: 8px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .tool-content .settings-area input[type="text"],
+    .tool-content .settings-area input[type="file"],
+    .tool-content .settings-area textarea {
+      padding: 8px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      background: var(--light-color);
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .tool-content .settings-area textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .tool-content .settings-area .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .tool-content .settings-area input[type="checkbox"] {
+      margin-right: 4px;
+    }
+
+    .tool-content .result-area {
+      margin-bottom: 20px;
+    }
+
+    .tool-content .result-area textarea {
+      width: 100%;
+      min-height: 150px;
+      padding: 12px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      background: var(--light-color);
+      resize: vertical;
+      color: var(--text-color);
+    }
+
+    .tool-content .action-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .tool-content .action-buttons button,
+    .tool-content .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gradient);
+      color: #FFFFFF !important;
+      padding: 10px 24px;
+      border: none;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    .tool-content .action-buttons button:hover,
+    .tool-content .cta-button:hover {
+      background: var(--primary-color);
+      color: #FFFFFF !important;
+      transform: translateY(-4px);
+      text-decoration: none;
+    }
+
+    .tool-content .action-buttons button:disabled {
+      background: var(--text-light);
+      color: var(--light-color) !important;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .tool-content .tool-article {
+      margin-top: 40px;
+    }
+
+    .tool-content .tool-article h2 {
+      font-size: 24px;
+      color: var(--dark-color);
+      margin: 24px 0 12px;
+    }
+
+    .tool-content .tool-article h3 {
+      font-size: 20px;
+      color: var(--dark-color);
+      margin: 20px 0 10px;
+    }
+
+    .tool-content .tool-article p {
+      font-size: 15px;
+      color: var(--text-color);
+      margin-bottom: 12px;
+    }
+
+    .tool-content .tool-article ul {
+      list-style: none;
+      margin: 12px 0;
+      padding-left: 20px;
+    }
+
+    .tool-content .tool-article ul li {
+      font-size: 15px;
+      color: var(--text-color);
+      margin-bottom: 8px;
+      position: relative;
+    }
+
+    .tool-content .tool-article ul li::before {
+      content: '✔';
+      color: var(--primary-color);
+      position: absolute;
+      left: -20px;
+    }
+
+    .tool-content .tool-article a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .tool-content .tool-article a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background: var(--dark-color);
+      color: var(--light-color);
+      padding: 40px 0 20px;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .footer-column-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .footer-column-logo-icon {
+      font-size: 24px;
+      color: var(--primary-color);
+    }
+
+    .footer-column-logo span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .footer-column ul {
+      list-style: none;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-column ul li a {
+      color: #CED4DA;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-column ul li a:hover {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 13px;
+    }
+
+    .scroll-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--gradient);
+      color: var(--light-color);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    .scroll-to-top i {
+      -webkit-text-stroke: 0;
+      color: var(--light-color);
+    }
+
+    .scroll-to-top:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .scroll-to-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 992px) {
+      .search-bar {
+        max-width: 180px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 16px !important;
+      }
+
+      .header-container {
+        padding: 12px 16px;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        align-items: flex-start;
+        border-radius: 0 0 12px 12px;
+        border: 1px solid #e0e0e0;
+        width: 100%;
+      }
+
+      nav.show {
+        display: flex !important;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 18px;
+        width: 100%;
+      }
+
+      nav ul li a {
+        font-size: 18px;
+        padding: 12px 20px;
+        width: 100%;
+        text-align: left;
+        border-radius: 8px;
+      }
+
+      .search-bar {
+        margin-top: 20px;
+        width: 100%;
+        max-width: none;
+        padding: 10px 20px;
+        border-radius: 50px;
+      }
+
+      .search-bar input {
+        font-size: 15px;
+        padding: 8px;
+      }
+
+      .search-bar button {
+        font-size: 16px;
+      }
+
+      .tool-section {
+        padding: 60px 0;
+      }
+
+      .tool-content {
+        padding: 24px;
+      }
+
+      .tool-content h1 {
+        font-size: 30px;
+      }
+
+      .tool-content p,
+      .tool-content .tool-article p,
+      .tool-content .tool-article ul li {
+        font-size: 14px;
+      }
+
+      .tool-content .tool-article h2 {
+        font-size: 20px;
+      }
+
+      .tool-content .tool-article h3 {
+        font-size: 18px;
+      }
+
+      .tool-content .action-buttons {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .tool-content .settings-area {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .tool-content .settings-area input[type="text"],
+      .tool-content .settings-area input[type="file"],
+      .tool-content .settings-area textarea {
+        width: 100%;
+        max-width: none;
+      }
+
+      .tool-content .result-area textarea {
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .header-container {
+        padding: 10px 16px !important;
+        margin: 0;
+      }
+
+      .logo {
+        font-size: 20px;
+        margin-left: 0;
+      }
+
+      .logo-icon {
+        font-size: 20px;
+      }
+
+      .mobile-menu-btn {
+        margin-right: 0;
+      }
+
+      .search-bar {
+        padding: 8px 16px;
+        margin: 16px 0;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .search-bar input {
+        font-size: 14px;
+      }
+
+      .tool-content h1 {
+        font-size: 26px;
+      }
+
+      .tool-content .result-area textarea {
+        font-size: 12px;
+        min-height: 120px;
+      }
+
+      .tool-content .settings-area label {
+        font-size: 13px;
+      }
+
+      .tool-content .action-buttons button,
+      .tool-content .cta-button {
+        width: 100%;
+        justify-content: center;
+        padding: 8px 20px;
+        font-size: 13px;
+      }
+
+      .scroll-to-top {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        bottom: 16px;
+        right: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <a href="/" class="logo">
+        <i class="fas fa-tools logo-icon"></i>
+        <span>Mass Tools</span>
+      </a>
+      <input id="mobile-menu-toggle" type="checkbox">
+      <label class="mobile-menu-btn" for="mobile-menu-toggle">
+        <i class="fas fa-bars"></i>
+      </label>
+      <nav id="nav-menu">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#tools">Tools</a></li>
+          <li><a href="/about-us.html">About Us</a></li>
+          <li><a href="/contact-us.html">Contact Us</a></li>
+          <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="/terms-and-conditions.html">Terms</a></li>
+          <li><a href="/Disclaimer.html">Disclaimer</a></li>
+        </ul>
+        <div class="search-bar">
+          <input type="text" placeholder="Search tools..." aria-label="Search">
+          <button type="submit" aria-label="Search">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="tool-section">
+      <div class="container">
+        <div class="tool-content">
+          <h1>URL Extractor</h1>
+          <p>Extract URLs from text, websites, or files with Mass Tools' free URL Extractor. Customize output with unique links, sorting, and domain or protocol filters for web scraping, SEO, or link management.</p>
+
+          <div class="settings-area">
+            <div>
+              <label for="inputText">Paste Text:</label>
+              <textarea id="inputText" placeholder="Paste text containing URLs..." aria-label="Text input"></textarea>
+            </div>
+            <div>
+              <label for="inputUrl">Website URL:</label>
+              <input type="text" id="inputUrl" placeholder="e.g., https://example.com" aria-label="URL input">
+            </div>
+            <div>
+              <label for="inputFile">Upload File (TXT, PDF, CSV):</label>
+              <input type="file" id="inputFile" accept=".txt,.pdf,.csv" aria-label="File input">
+            </div>
+            <div>
+              <label for="filter">Filter (Domain or Protocol, optional):</label>
+              <input type="text" id="filter" placeholder="e.g., example.com or https" aria-label="Filter">
+            </div>
+            <div class="checkbox-group">
+              <label><input type="checkbox" id="unique" checked> Unique URLs</label>
+              <label><input type="checkbox" id="sort"> Sort Alphabetically</label>
+            </div>
+          </div>
+
+          <div class="result-area">
+            <textarea id="output" readonly aria-label="Extracted URLs">Click Extract to find URLs</textarea>
+          </div>
+
+          <div class="action-buttons">
+            <button id="extractBtn"><i class="fas fa-search"></i> Extract</button>
+            <button id="copyBtn" disabled><i class="fas fa-copy"></i> Copy URLs</button>
+            <button id="downloadBtn" disabled><i class="fas fa-download"></i> Download (CSV)</button>
+            <button id="resetBtn"><i class="fas fa-undo"></i> Reset</button>
+          </div>
+
+          <a class="cta-button" href="/index.html#tools">Explore Our Tools</a>
+
+          <div class="tool-article">
+            <h2>About the URL Extractor</h2>
+            <p>The URL Extractor by <a href="/about-us.html">Mass Tools</a> is a free tool to extract URLs from text, websites, or files. Ideal for web scraping, SEO, or link management, it processes data locally in your browser for privacy. <strong>Important</strong>: Ensure compliance with website Terms of Service and privacy laws when extracting URLs.</p>
+
+            <h3>Why Use the URL Extractor?</h3>
+            <p>This tool simplifies collecting URLs for various purposes:</p>
+            <ul>
+              <li><strong>Web Scraping</strong>: Extract links from pages for data analysis.</li>
+              <li><strong>SEO Analysis</strong>: Gather URLs for auditing backlinks or site structure.</li>
+              <li><strong>Link Management</strong>: Organize links from documents or websites.</li>
+              <li><strong>Research</strong>: Collect URLs for content aggregation or crawling (with permission).</li>
+            </ul>
+
+            <h3>How to Use the URL Extractor</h3>
+            <p>Follow these steps to extract URLs:</p>
+            <ul>
+              <li><strong>Paste Text</strong>: Copy and paste text containing URLs into the text area.</li>
+              <li><strong>Enter Website URL</strong>: Provide a website URL to scan for links (ensure permission).</li>
+              <li><strong>Upload File</strong>: Upload a TXT, PDF, or CSV file to extract URLs.</li>
+              <li><strong>Set Options</strong>: Enable "Unique URLs" to remove duplicates, "Sort Alphabetically" for ordered output, or add a filter (e.g., example.com or https).</li>
+              <li><strong>Extract</strong>: Click "Extract" to find URLs.</li>
+              <li><strong>Copy</strong>: Click "Copy URLs" to copy to your clipboard.</li>
+              <li><strong>Download</strong>: Click "Download (CSV)" to save as a CSV file.</li>
+              <li><strong>Reset</strong>: Click "Reset" to clear inputs and settings.</li>
+            </ul>
+            <p>The tool works locally in your browser and supports offline use after loading.</p>
+
+            <h3>Use Cases for URL Extractor</h3>
+            <p>This tool is versatile for various scenarios:</p>
+            <ul>
+              <li><strong>Web Development</strong>: Extract links from HTML for debugging or migration.</li>
+              <li><strong>Marketing</strong>: Collect URLs from competitor sites for analysis (with permission).</li>
+              <li><strong>Content Curation</strong>: Gather links from documents for aggregation.</li>
+              <li><strong>Education</strong>: Teach web crawling or link extraction concepts.</li>
+            </ul>
+
+            <h3>Tips for Using the URL Extractor</h3>
+            <p>Maximize efficiency with these tips:</p>
+            <ul>
+              <li><strong>Ensure Compliance</strong>: Only extract URLs from public sources or with permission to comply with website Terms of Service.</li>
+              <li><strong>Use Filters</strong>: Narrow results to specific domains or protocols (e.g., https) for targeted lists.</li>
+              <li><strong>Combine Tools</strong>: Pair with our <a href="/email-extractor.html">Email Extractor</a>, <a href="/random-email-generator.html">Random Email Generator</a>, <a href="/random-number-generator.html">Random Number Generator</a>, <a href="/random-word-generator.html">Random Word Generator</a>, <a href="/filler-text-generator.html">Filler Text Generator</a>, <a href="/random-string-generator.html">Random String Generator</a>, <a href="/strong-password-generator.html">Strong Password Generator</a>, <a href="/pronounceable-password-generator.html">Pronounceable Password Generator</a>, <a href="/unique-username-generator.html">Unique Username Generator</a>, <a href="/case-converter.html">Case Converter</a>, <a href="/word-counter.html">Word Counter</a>, <a href="/text-to-ascii-converter.html">Text to ASCII Converter</a>, <a href="/lorem-ipsum-generator.html">Lorem Ipsum Generator</a>, <a href="/character-counter.html">Character Counter</a>, <a href="/sort-text.html">Sort Text</a>, <a href="/find-replace-text.html">Find and Replace Text</a>, <a href="/reverse-list.html">Reverse List</a>, <a href="/difference-checker.html">Difference Checker</a>, <a href="/add-prefix-suffix.html">Add Prefix/Suffix</a>, <a href="/tabs-to-spaces.html">Tabs to Spaces</a>, <a href="/spaces-to-tabs.html">Spaces to Tabs</a>, <a href="/pad-text.html">Pad Text</a>, <a href="/word-wrap.html">Word Wrap</a>, <a href="/justify-text.html">Justify Text</a>, <a href="/center-text.html">Center Text</a>, <a href="/upside-down-text.html">Upside Down Text</a>, <a href="/bold-text-generator.html">Bold Text Generator</a>, <a href="/italic-text-generator.html">Italic Text Generator</a>, <a href="/old-english-text-generator.html">Old English Text Generator</a>, <a href="/cursive-text-generator.html">Cursive Text Generator</a>, <a href="/normalize-unicode-text.html">Normalize Unicode Text</a>, <a href="/url-encode-decode.html">URL Encode Decode</a>, <a href="/html-encode-decode.html">HTML Encode Decode</a>, or <a href="/html-escape-unescape.html">HTML Escape Unescape</a> for enhanced workflows.</li>
+              <li><strong>Contact Us</strong>: Need bulk extraction or custom features? Email us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a>.</li>
+            </ul>
+
+            <h3>Why Choose Mass Tools?</h3>
+            <p>At Mass Tools, we provide free, high-quality tools to simplify your tasks. Our URL Extractor joins our suite, including the <a href="/image-to-png-converter.html">Image to PNG Converter</a>, <a href="/image-to-jpg-converter.html">Image to JPG Converter</a>, <a href="/image-to-webp-converter.html">Image to WebP Converter</a>, <a href="/image-to-svg-converter.html">Image to SVG Converter</a>, <a href="/image-to-tiff-converter.html">Image to TIFF Converter</a>, <a href="/image-to-heic-converter.html">Image to HEIC Converter</a>, <a href="/image-to-pdf-converter.html">Image to PDF Converter</a>, <a href="/image-to-bmp-converter.html">Image to BMP Converter</a>, <a href="/image-to-ico-converter.html">Image to ICO Converter</a>, <a href="/image-to-avif-converter.html">Image to AVIF Converter</a>, <a href="/image-to-eps-converter.html">Image to EPS Converter</a>, <a href="/image-to-psd-converter.html">Image to PSD Converter</a>, <a href="/image-to-base64-converter.html">Image to Base64 Converter</a>, <a href="/image-to-dxf-converter.html">Image to DXF Converter</a>, <a href="/image-to-exr-converter.html">Image to EXR Converter</a>, <a href="/pdf-to-image-converter.html">PDF to Image Converter</a>, <a href="/image-resizer-tool.html">Image Resizer Tool</a>, <a href="/image-compressor-tool.html">Image Compressor Tool</a>, <a href="/psd-to-image-converter.html">PSD to Image Converter</a>, <a href="/eps-to-image-converter.html">EPS to Image Converter</a>, <a href="/word-counter.html">Word Counter</a>, <a href="/case-converter.html">Case Converter</a>, <a href="/text-to-ascii-converter.html">Text to ASCII Converter</a>, <a href="/lorem-ipsum-generator.html">Lorem Ipsum Generator</a>, <a href="/character-counter.html">Character Counter</a>, <a href="/sort-text.html">Sort Text</a>, <a href="/find-replace-text.html">Find and Replace Text</a>, <a href="/reverse-list.html">Reverse List</a>, <a href="/difference-checker.html">Difference Checker</a>, <a href="/add-prefix-suffix.html">Add Prefix/Suffix</a>, <a href="/tabs-to-spaces.html">Tabs to Spaces</a>, <a href="/spaces-to-tabs.html">Spaces to Tabs</a>, <a href="/pad-text.html">Pad Text</a>, <a href="/word-wrap.html">Word Wrap</a>, <a href="/justify-text.html">Justify Text</a>, <a href="/center-text.html">Center Text</a>, <a href="/upside-down-text.html">Upside Down Text</a>, <a href="/bold-text-generator.html">Bold Text Generator</a>, <a href="/italic-text-generator.html">Italic Text Generator</a>, <a href="/old-english-text-generator.html">Old English Text Generator</a>, <a href="/cursive-text-generator.html">Cursive Text Generator</a>, <a href="/normalize-unicode-text.html">Normalize Unicode Text</a>, <a href="/url-encode-decode.html">URL Encode Decode</a>, <a href="/html-encode-decode.html">HTML Encode Decode</a>, <a href="/html-escape-unescape.html">HTML Escape Unescape</a>, <a href="/unique-username-generator.html">Unique Username Generator</a>, <a href="/strong-password-generator.html">Strong Password Generator</a>, <a href="/pronounceable-password-generator.html">Pronounceable Password Generator</a>, <a href="/random-string-generator.html">Random String Generator</a>, <a href="/random-word-generator.html">Random Word Generator</a>, <a href="/filler-text-generator.html">Filler Text Generator</a>, <a href="/random-number-generator.html">Random Number Generator</a>, and <a href="/email-extractor.html">Email Extractor</a>. We prioritize privacy, speed, and ease of use. Learn more on our <a href="/about-us.html">About Us</a> page.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-column">
+          <a href="/" class="footer-column-logo">
+            <i class="fas fa-tools footer-column-logo-icon"></i>
+            <span>Mass Tools</span>
+          </a>
+          <p>Empowering you with free, high-quality online tools.</p>
+        </div>
+        <div class="footer-column">
+          <ul>
+            <li><a href="/#tools">Tools</a></li>
+            <li><a href="/about-us.html">About Us</a></li>
+            <li><a href="/contact-us.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <ul>
+            <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="/terms-and-conditions.html">Terms</a></li>
+            <li><a href="/Disclaimer.html">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2025 Mass Tools. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-to-top" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('URL Extractor tool loaded');
+
+      // Mobile menu toggle
+      const menuToggle = document.getElementById('mobile-menu-toggle');
+      const nav = document.getElementById('nav-menu');
+      if (menuToggle && nav) {
+        menuToggle.addEventListener('change', () => {
+          nav.classList.toggle('show', menuToggle.checked);
+          console.log('Mobile menu toggled:', menuToggle.checked);
+        });
+      }
+
+      // Scroll-to-top button
+      const scrollTopBtn = document.querySelector('.scroll-to-top');
+      if (scrollTopBtn) {
+        window.addEventListener('scroll', () => {
+          scrollTopBtn.classList.toggle('show', window.scrollY > 200);
+          console.log('Scroll-to-top visibility:', window.scrollY > 200);
+        });
+        scrollTopBtn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          console.log('Scrolled to top');
+        });
+      }
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = document.querySelector(anchor.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+          if (nav && nav.classList.contains('show')) {
+            nav.classList.remove('show');
+            menuToggle.checked = false;
+          }
+        });
+      });
+
+      document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+          const href = anchor.getAttribute('href');
+          const [path, hash] = href.split('#');
+          const isHome = path === '/' || path === '' || path === '/index.html';
+          if (isHome && hash && (window.location.pathname === '/' || window.location.pathname === '/index.html')) {
+            e.preventDefault();
+            const target = document.querySelector(`#${hash}`);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth' });
+              history.pushState(null, null, `/#${hash}`);
+            }
+          } else {
+            window.location.href = href;
+          }
+          if (nav && nav.classList.contains('show')) {
+            nav.classList.remove('show');
+            menuToggle.checked = false;
+          }
+        });
+      });
+
+      // Tool functionality
+      const inputText = document.getElementById('inputText');
+      const inputUrl = document.getElementById('inputUrl');
+      const inputFile = document.getElementById('inputFile');
+      const filterInput = document.getElementById('filter');
+      const uniqueCheck = document.getElementById('unique');
+      const sortCheck = document.getElementById('sort');
+      const extractBtn = document.getElementById('extractBtn');
+      const copyBtn = document.getElementById('copyBtn');
+      const downloadBtn = document.getElementById('downloadBtn');
+      const resetBtn = document.getElementById('resetBtn');
+      const output = document.getElementById('output');
+
+      // URL regex
+      const urlRegex = /(https?:\/\/|ftp:\/\/)[^\s/$.?#].[^\s]*/gi;
+
+      // Extract URLs from text
+      function extractUrlsFromText(text) {
+        const urls = text.match(urlRegex) || [];
+        const filter = filterInput.value.trim().toLowerCase();
+        let filteredUrls = filter ? urls.filter(url => url.toLowerCase().includes(filter)) : urls;
+        if (uniqueCheck.checked) {
+          filteredUrls = [...new Set(filteredUrls)];
+        }
+        if (sortCheck.checked) {
+          filteredUrls.sort();
+        }
+        return filteredUrls;
+      }
+
+      // Fetch text from URL
+      async function fetchUrlText(url) {
+        try {
+          // Note: Fetch may be restricted by CORS; consider a proxy for production
+          const response = await fetch(url);
+          if (!response.ok) throw new Error('Failed to fetch URL');
+          const text = await response.text();
+          console.log('Fetched URL content:', text.substring(0, 100) + '...');
+          return text;
+        } catch (err) {
+          console.error('URL fetch error:', err);
+          alert('Failed to fetch URL. Ensure the URL is valid and accessible.');
+          return '';
+        }
+      }
+
+      // Read file content
+      async function readFileContent(file) {
+        const extension = file.name.split('.').pop().toLowerCase();
+        if (extension === 'txt' || extension === 'csv') {
+          return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onload = (e) => resolve(e.target.result);
+            reader.onerror = () => resolve('');
+            reader.readAsText(file);
+          });
+        } else if (extension === 'pdf') {
+          try {
+            const arrayBuffer = await file.arrayBuffer();
+            const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+            let text = '';
+            for (let i = 1; i <= pdf.numPages; i++) {
+              const page = await pdf.getPage(i);
+              const content = await page.getTextContent();
+              text += content.items.map(item => item.str).join(' ') + ' ';
+            }
+            console.log('Extracted PDF text:', text.substring(0, 100) + '...');
+            return text;
+          } catch (err) {
+            console.error('PDF read error:', err);
+            alert('Failed to read PDF file.');
+            return '';
+          }
+        } else {
+          alert('Unsupported file type. Please upload TXT, PDF, or CSV.');
+          return '';
+        }
+      }
+
+      // Extract URLs
+      async function extractUrls() {
+        let urls = [];
+        let text = inputText.value.trim();
+        const url = inputUrl.value.trim();
+        const file = inputFile.files[0];
+
+        if (!text && !url && !file) {
+          alert('Please provide text, a URL, or a file to extract URLs from.');
+          console.warn('No input provided');
+          return [];
+        }
+
+        if (url) {
+          text += ' ' + (await fetchUrlText(url));
+        }
+
+        if (file) {
+          text += ' ' + (await readFileContent(file));
+        }
+
+        urls = extractUrlsFromText(text);
+        return urls;
+      }
+
+      // Generate CSV content
+      function generateCsv(urls) {
+        const headers = ['URL'];
+        const rows = urls.map(url => `"${url}"`);
+        return [headers.join(','), ...rows].join('\n');
+      }
+
+      // Download file
+      function downloadFile(content, fileName, type) {
+        const blob = new Blob([content], { type });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = fileName;
+        a.click();
+        URL.revokeObjectURL(url);
+        console.log('Downloaded file:', fileName);
+      }
+
+      // Extract button
+      extractBtn.addEventListener('click', async () => {
+        console.log('Extract button clicked');
+        const urls = await extractUrls();
+        if (urls.length > 0) {
+          output.value = urls.join('\n');
+          copyBtn.disabled = false;
+          downloadBtn.disabled = false;
+          if (window.gtag) {
+            gtag('event', 'extract_urls', {
+              event_category: 'Tool Usage',
+              event_label: `URL Count: ${urls.length}`,
+              value: urls.length
+            });
+          }
+        } else {
+          output.value = 'No URLs found. Try different input.';
+          copyBtn.disabled = true;
+          downloadBtn.disabled = true;
+        }
+      });
+
+      // Copy button
+      copyBtn.addEventListener('click', () => {
+        console.log('Copy button clicked');
+        if (!output.value || output.value === 'No URLs found. Try different input.' || output.value === 'Click Extract to find URLs') {
+          alert('Nothing to copy. Please extract URLs first.');
+          console.warn('No URLs to copy');
+          return;
+        }
+        output.select();
+        try {
+          document.execCommand('copy');
+          alert('URLs copied to clipboard!');
+          console.log('URLs copied:', output.value.substring(0, 50) + '...');
+          if (window.gtag) {
+            gtag('event', 'copy_urls', {
+              event_category: 'Tool Usage',
+              event_label: 'URLs Copy',
+              value: 1
+            });
+          }
+        } catch (err) {
+          console.error('Copy failed:', err);
+          alert('Failed to copy URLs.');
+        }
+      });
+
+      // Download button
+      downloadBtn.addEventListener('click', () => {
+        console.log('Download button clicked');
+        if (!output.value || output.value === 'No URLs found. Try different input.' || output.value === 'Click Extract to find URLs') {
+          alert('Nothing to download. Please extract URLs first.');
+          console.warn('No URLs to download');
+          return;
+        }
+        const urls = output.value.split('\n').filter(url => url.trim());
+        const csvContent = generateCsv(urls);
+        downloadFile(csvContent, 'extracted_urls.csv', 'text/csv');
+        if (window.gtag) {
+          gtag('event', 'download_urls', {
+            event_category: 'Tool Usage',
+            event_label: 'URLs Download',
+            value: urls.length
+          });
+        }
+      });
+
+      // Reset button
+      resetBtn.addEventListener('click', () => {
+        console.log('Reset button clicked');
+        inputText.value = '';
+        inputUrl.value = '';
+        inputFile.value = '';
+        filterInput.value = '';
+        uniqueCheck.checked = true;
+        sortCheck.checked = false;
+        output.value = 'Click Extract to find URLs';
+        copyBtn.disabled = true;
+        downloadBtn.disabled = true;
+        console.log('Settings and output reset');
+      });
+    });
+  </script>
+</body>
+</html>
