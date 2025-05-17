@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random String Generator - Mass Tools</title>
+  <meta name="description" content="Generate random strings instantly with Mass Tools' free Random String Generator. Customize length, character types, and custom characters for versatile use.">
+  <meta name="keywords" content="random string generator, random string, secure string, API key generator, online tool">
+  <meta name="robots" content="index, follow">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-68CX9G7BKF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-68CX9G7BKF');
+  </script>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #FF4500;
+      --secondary-color: #FFA500;
+      --dark-color: #1A1A1A;
+      --light-color: #F8F9FA;
+      --text-color: #2C2C2C;
+      --text-light: #6C757D;
+      --border-radius: 12px;
+      --transition: all 0.3s ease;
+      --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: var(--light-color);
+      color: var(--text-color);
+      font-size: 16px;
+      line-height: 1.7;
+      scrollbar-width: none;
+    }
+
+    body::-webkit-scrollbar {
+      display: none;
+    }
+
+    .progress-bar, [class*="progress"], [id*="progress"] {
+      display: none !important;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      background: var(--light-color);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-size: 24px;
+      font-weight: 800;
+      margin-left: 8px;
+    }
+
+    .logo-icon {
+      font-size: 24px;
+      color: var(--primary-color);
+    }
+
+    .logo span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 16px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+      font-size: 14px;
+      padding: 8px 12px;
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover {
+      background: var(--primary-color);
+      color: var(--light-color);
+      text-decoration: none;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--text-color);
+      cursor: pointer;
+      margin-right: 8px;
+    }
+
+    #mobile-menu-toggle {
+      display: none;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 50px;
+      padding: 6px 12px;
+      transition: var(--transition);
+      max-width: 200px;
+    }
+
+    .search-bar:hover, .search-bar:focus-within {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-bar input {
+      border: none;
+      outline: none;
+      font-size: 13px;
+      padding: 6px;
+      width: 100%;
+    }
+
+    .search-bar button {
+      background: none;
+      border: none;
+      color: var(--text-light);
+      font-size: 14px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .search-bar button:hover {
+      color: var(--primary-color);
+    }
+
+    .tool-section {
+      padding: 80px 0;
+      background: var(--light-color);
+    }
+
+    .tool-content {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 32px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .tool-content h1 {
+      font-size: 36px;
+      color: var(--dark-color);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .tool-content p {
+      font-size: 15px;
+      color: var(--text-color);
+      margin-bottom: 12px;
+    }
+
+    .tool-content .settings-area {
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .tool-content .settings-area label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-color);
+      margin-right: 8px;
+    }
+
+    .tool-content .settings-area input[type="number"],
+    .tool-content .settings-area input[type="text"] {
+      padding: 8px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      background: var(--light-color);
+      width: 100%;
+      max-width: 200px;
+    }
+
+    .tool-content .settings-area .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .tool-content .settings-area input[type="checkbox"] {
+      margin-right: 4px;
+    }
+
+    .tool-content .result-area {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .tool-content .result-area .output {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--primary-color);
+      background: var(--light-color);
+      padding: 12px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      min-height: 50px;
+      display: inline-block;
+      max-width: 100%;
+      word-break: break-all;
+    }
+
+    .tool-content .action-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .tool-content .action-buttons button,
+    .tool-content .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gradient);
+      color: #FFFFFF !important;
+      padding: 10px 24px;
+      border: none;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    .tool-content .action-buttons button:hover,
+    .tool-content .cta-button:hover {
+      background: var(--primary-color);
+      color: #FFFFFF !important;
+      transform: translateY(-4px);
+      text-decoration: none;
+    }
+
+    .tool-content .action-buttons button:disabled {
+      background: var(--text-light);
+      color: var(--light-color) !important;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .tool-content .tool-article {
+      margin-top: 40px;
+    }
+
+    .tool-content .tool-article h2 {
+      font-size: 24px;
+      color: var(--dark-color);
+      margin: 24px 0 12px;
+    }
+
+    .tool-content .tool-article h3 {
+      font-size: 20px;
+      color: var(--dark-color);
+      margin: 20px 0 10px;
+    }
+
+    .tool-content .tool-article p {
+      font-size: 15px;
+      color: var(--text-color);
+      margin-bottom: 12px;
+    }
+
+    .tool-content .tool-article ul {
+      list-style: none;
+      margin: 12px 0;
+      padding-left: 20px;
+    }
+
+    .tool-content .tool-article ul li {
+      font-size: 15px;
+      color: var(--text-color);
+      margin-bottom: 8px;
+      position: relative;
+    }
+
+    .tool-content .tool-article ul li::before {
+      content: '✔';
+      color: var(--primary-color);
+      position: absolute;
+      left: -20px;
+    }
+
+    .tool-content .tool-article a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .tool-content .tool-article a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background: var(--dark-color);
+      color: var(--light-color);
+      padding: 40px 0 20px;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .footer-column-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .footer-column-logo-icon {
+      font-size: 24px;
+      color: var(--primary-color);
+    }
+
+    .footer-column-logo span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .footer-column ul {
+      list-style: none;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-column ul li a {
+      color: #CED4DA;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-column ul li a:hover {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 13px;
+    }
+
+    .scroll-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--gradient);
+      color: var(--light-color);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    .scroll-to-top i {
+      -webkit-text-stroke: 0;
+      color: var(--light-color);
+    }
+
+    .scroll-to-top:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .scroll-to-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 992px) {
+      .search-bar {
+        max-width: 180px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 16px !important;
+      }
+
+      .header-container {
+        padding: 12px 16px;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        align-items: flex-start;
+        border-radius: 0 0 12px 12px;
+        border: 1px solid #e0e0e0;
+        width: 100%;
+      }
+
+      nav.show {
+        display: flex !important;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 18px;
+        width: 100%;
+      }
+
+      nav ul li a {
+        font-size: 18px;
+        padding: 12px 20px;
+        width: 100%;
+        text-align: left;
+        border-radius: 8px;
+      }
+
+      .search-bar {
+        margin-top: 20px;
+        width: 100%;
+        max-width: none;
+        padding: 10px 20px;
+        border-radius: 50px;
+      }
+
+      .search-bar input {
+        font-size: 15px;
+        padding: 8px;
+      }
+
+      .search-bar button {
+        font-size: 16px;
+      }
+
+      .tool-section {
+        padding: 60px 0;
+      }
+
+      .tool-content {
+        padding: 24px;
+      }
+
+      .tool-content h1 {
+        font-size: 30px;
+      }
+
+      .tool-content p,
+      .tool-content .tool-article p,
+      .tool-content .tool-article ul li {
+        font-size: 14px;
+      }
+
+      .tool-content .tool-article h2 {
+        font-size: 20px;
+      }
+
+      .tool-content .tool-article h3 {
+        font-size: 18px;
+      }
+
+      .tool-content .action-buttons {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .tool-content .settings-area {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .tool-content .settings-area input[type="number"],
+      .tool-content .settings-area input[type="text"] {
+        width: 100%;
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .header-container {
+        padding: 10px 16px !important;
+        margin: 0;
+      }
+
+      .logo {
+        font-size: 20px;
+        margin-left: 0;
+      }
+
+      .logo-icon {
+        font-size: 20px;
+      }
+
+      .mobile-menu-btn {
+        margin-right: 0;
+      }
+
+      .search-bar {
+        padding: 8px 16px;
+        margin: 16px 0;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .search-bar input {
+        font-size: 14px;
+      }
+
+      .tool-content h1 {
+        font-size: 26px;
+      }
+
+      .tool-content .result-area .output {
+        font-size: 16px;
+        padding: 10px;
+      }
+
+      .tool-content .settings-area label {
+        font-size: 13px;
+      }
+
+      .tool-content .action-buttons button,
+      .tool-content .cta-button {
+        width: 100%;
+        justify-content: center;
+        padding: 8px 20px;
+        font-size: 13px;
+      }
+
+      .scroll-to-top {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        bottom: 16px;
+        right: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <a href="/" class="logo">
+        <i class="fas fa-tools logo-icon"></i>
+        <span>Mass Tools</span>
+      </a>
+      <input id="mobile-menu-toggle" type="checkbox">
+      <label class="mobile-menu-btn" for="mobile-menu-toggle">
+        <i class="fas fa-bars"></i>
+      </label>
+      <nav id="nav-menu">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#tools">Tools</a></li>
+          <li><a href="/about-us.html">About Us</a></li>
+          <li><a href="/contact-us.html">Contact Us</a></li>
+          <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="/terms-and-conditions.html">Terms</a></li>
+          <li><a href="/Disclaimer.html">Disclaimer</a></li>
+        </ul>
+        <div class="search-bar">
+          <input type="text" placeholder="Search tools..." aria-label="Search">
+          <button type="submit" aria-label="Search">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="tool-section">
+      <div class="container">
+        <div class="tool-content">
+          <h1>Random String Generator</h1>
+          <p>Generate random strings instantly with Mass Tools' free Random String Generator. Customize length, character types, and custom characters for API keys, tokens, or testing.</p>
+
+          <div class="settings-area">
+            <div>
+              <label for="length">String Length:</label>
+              <input type="number" id="length" min="1" max="100" value="16" aria-label="String length">
+            </div>
+            <div class="checkbox-group">
+              <label><input type="checkbox" id="uppercase" checked> Uppercase Letters (A-Z)</label>
+              <label><input type="checkbox" id="lowercase" checked> Lowercase Letters (a-z)</label>
+              <label><input type="checkbox" id="numbers" checked> Numbers (0-9)</label>
+              <label><input type="checkbox" id="special" checked> Special Characters (!@#$%...)</label>
+              <label><input type="checkbox" id="unique"> Unique Characters (No Duplicates)</label>
+            </div>
+            <div>
+              <label for="custom">Custom Characters (Optional):</label>
+              <input type="text" id="custom" placeholder="e.g., abc123" aria-label="Custom characters">
+            </div>
+          </div>
+
+          <div class="result-area">
+            <div id="output" class="output" aria-label="Generated string">Click Generate to create a string</div>
+          </div>
+
+          <div class="action-buttons">
+            <button id="generateBtn"><i class="fas fa-sync-alt"></i> Generate</button>
+            <button id="copyBtn" disabled><i class="fas fa-copy"></i> Copy String</button>
+            <button id="resetBtn"><i class="fas fa-undo"></i> Reset</button>
+          </div>
+
+          <a class="cta-button" href="/index.html#tools">Explore Our Tools</a>
+
+          <div class="tool-article">
+            <h2>About the Random String Generator</h2>
+            <p>The Random String Generator by <a href="/about-us.html">Mass Tools</a> is a free tool to create random strings for various purposes, such as API keys, tokens, or test data. Customize length, character types, or use custom characters, all processed locally in your browser.</p>
+
+            <h3>Why Use the Random String Generator?</h3>
+            <p>This tool is versatile for multiple applications. Use it to:</p>
+            <ul>
+              <li><strong>Create API Keys</strong>: Generate secure, random strings for API authentication.</li>
+              <li><strong>Produce Tokens</strong>: Create unique tokens for sessions or verification.</li>
+              <li><strong>Generate Test Data</strong>: Create random strings for software testing or simulations.</li>
+              <li><strong>Enhance Security</strong>: Use random strings as temporary passwords or identifiers.</li>
+            </ul>
+
+            <h3>How to Use the Random String Generator</h3>
+            <p>Our Random String Generator is easy to use. Follow these steps:</p>
+            <ul>
+              <li><strong>Set Length</strong>: Choose a string length (1-100 characters).</li>
+              <li><strong>Select Character Types</strong>: Check boxes for uppercase, lowercase, numbers, or special characters.</li>
+              <li><strong>Optional Custom Characters</strong>: Enter specific characters to use (e.g., "abc123").</li>
+              <li><strong>Unique Characters</strong>: Check to avoid duplicate characters (if possible).</li>
+              <li><strong>Generate</strong>: Click "Generate" to create a random string.</li>
+              <li><strong>Copy</strong>: Click "Copy String" to copy to your clipboard.</li>
+              <li><strong>Reset</strong>: Click "Reset" to restore default settings.</li>
+            </ul>
+            <p>The tool works locally in your browser for privacy and supports offline use after loading.</p>
+
+            <h3>Use Cases for Random String Generator</h3>
+            <p>This tool is ideal for various scenarios, including:</p>
+            <ul>
+              <li><strong>Development</strong>: Generate API keys, session tokens, or test data for applications.</li>
+              <li><strong>Security</strong>: Create temporary passwords or unique identifiers.</li>
+              <li><strong>Testing</strong>: Produce random inputs for stress testing or data validation.</li>
+              <li><strong>Education</strong>: Generate random strings for coding exercises or simulations.</li>
+            </ul>
+
+            <h3>Tips for Using the Random String Generator</h3>
+            <p>To get the best results, consider these tips:</p>
+            <ul>
+              <li><strong>Use Custom Characters</strong>: Define a specific character set for tailored strings (e.g., hex digits for UUIDs).</li>
+              <li><strong>Enable Unique Characters</strong>: Ensure no duplicates for shorter, unique strings.</li>
+              <li><strong>Combine Tools</strong>: Pair with our <a href="/strong-password-generator.html">Strong Password Generator</a>, <a href="/pronounceable-password-generator.html">Pronounceable Password Generator</a>, <a href="/unique-username-generator.html">Unique Username Generator</a>, <a href="/case-converter.html">Case Converter</a>, <a href="/word-counter.html">Word Counter</a>, <a href="/text-to-ascii-converter.html">Text to ASCII Converter</a>, <a href="/lorem-ipsum-generator.html">Lorem Ipsum Generator</a>, <a href="/character-counter.html">Character Counter</a>, <a href="/sort-text.html">Sort Text</a>, <a href="/find-replace-text.html">Find and Replace Text</a>, <a href="/reverse-list.html">Reverse List</a>, <a href="/difference-checker.html">Difference Checker</a>, <a href="/add-prefix-suffix.html">Add Prefix/Suffix</a>, <a href="/tabs-to-spaces.html">Tabs to Spaces</a>, <a href="/spaces-to-tabs.html">Spaces to Tabs</a>, <a href="/pad-text.html">Pad Text</a>, <a href="/word-wrap.html">Word Wrap</a>, <a href="/justify-text.html">Justify Text</a>, <a href="/center-text.html">Center Text</a>, <a href="/upside-down-text.html">Upside Down Text</a>, <a href="/bold-text-generator.html">Bold Text Generator</a>, <a href="/italic-text-generator.html">Italic Text Generator</a>, <a href="/old-english-text-generator.html">Old English Text Generator</a>, <a href="/cursive-text-generator.html">Cursive Text Generator</a>, <a href="/normalize-unicode-text.html">Normalize Unicode Text</a>, <a href="/url-encode-decode.html">URL Encode Decode</a>, <a href="/html-encode-decode.html">HTML Encode Decode</a>, or <a href="/html-escape-unescape.html">HTML Escape Unescape</a> for enhanced workflows.</li>
+              <li><strong>Contact Us</strong>: Need bulk string generation? Email us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a>.</li>
+            </ul>
+
+            <h3>Why Choose Mass Tools?</h3>
+            <p>At Mass Tools, we provide free, high-quality tools to simplify your tasks. Our Random String Generator joins our suite, including the <a href="/image-to-png-converter.html">Image to PNG Converter</a>, <a href="/image-to-jpg-converter.html">Image to JPG Converter</a>, <a href="/image-to-webp-converter.html">Image to WebP Converter</a>, <a href="/image-to-svg-converter.html">Image to SVG Converter</a>, <a href="/image-to-tiff-converter.html">Image to TIFF Converter</a>, <a href="/image-to-heic-converter.html">Image to HEIC Converter</a>, <a href="/image-to-pdf-converter.html">Image to PDF Converter</a>, <a href="/image-to-bmp-converter.html">Image to BMP Converter</a>, <a href="/image-to-ico-converter.html">Image to ICO Converter</a>, <a href="/image-to-avif-converter.html">Image to AVIF Converter</a>, <a href="/image-to-eps-converter.html">Image to EPS Converter</a>, <a href="/image-to-psd-converter.html">Image to PSD Converter</a>, <a href="/image-to-base64-converter.html">Image to Base64 Converter</a>, <a href="/image-to-dxf-converter.html">Image to DXF Converter</a>, <a href="/image-to-exr-converter.html">Image to EXR Converter</a>, <a href="/pdf-to-image-converter.html">PDF to Image Converter</a>, <a href="/image-resizer-tool.html">Image Resizer Tool</a>, <a href="/image-compressor-tool.html">Image Compressor Tool</a>, <a href="/psd-to-image-converter.html">PSD to Image Converter</a>, <a href="/eps-to-image-converter.html">EPS to Image Converter</a>, <a href="/word-counter.html">Word Counter</a>, <a href="/case-converter.html">Case Converter</a>, <a href="/text-to-ascii-converter.html">Text to ASCII Converter</a>, <a href="/lorem-ipsum-generator.html">Lorem Ipsum Generator</a>, <a href="/character-counter.html">Character Counter</a>, <a href="/sort-text.html">Sort Text</a>, <a href="/find-replace-text.html">Find and Replace Text</a>, <a href="/reverse-list.html">Reverse List</a>, <a href="/difference-checker.html">Difference Checker</a>, <a href="/add-prefix-suffix.html">Add Prefix/Suffix</a>, <a href="/tabs-to-spaces.html">Tabs to Spaces</a>, <a href="/spaces-to-tabs.html">Spaces to Tabs</a>, <a href="/pad-text.html">Pad Text</a>, <a href="/word-wrap.html">Word Wrap</a>, <a href="/justify-text.html">Justify Text</a>, <a href="/center-text.html">Center Text</a>, <a href="/upside-down-text.html">Upside Down Text</a>, <a href="/bold-text-generator.html">Bold Text Generator</a>, <a href="/italic-text-generator.html">Italic Text Generator</a>, <a href="/old-english-text-generator.html">Old English Text Generator</a>, <a href="/cursive-text-generator.html">Cursive Text Generator</a>, <a href="/normalize-unicode-text.html">Normalize Unicode Text</a>, <a href="/url-encode-decode.html">URL Encode Decode</a>, <a href="/html-encode-decode.html">HTML Encode Decode</a>, <a href="/html-escape-unescape.html">HTML Escape Unescape</a>, <a href="/unique-username-generator.html">Unique Username Generator</a>, <a href="/strong-password-generator.html">Strong Password Generator</a>, and <a href="/pronounceable-password-generator.html">Pronounceable Password Generator</a>. We prioritize privacy, speed, and ease of use. Learn more on our <a href="/about-us.html">About Us</a> page.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-column">
+          <a href="/" class="footer-column-logo">
+            <i class="fas fa-tools footer-column-logo-icon"></i>
+            <span>Mass Tools</span>
+          </a>
+          <p>Empowering you with free, high-quality online tools.</p>
+        </div>
+        <div class="footer-column">
+          <ul>
+            <li><a href="/#tools">Tools</a></li>
+            <li><a href="/about-us.html">About Us</a></li>
+            <li><a href="/contact-us.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <ul>
+            <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="/terms-and-conditions.html">Terms</a></li>
+            <li><a href="/Disclaimer.html">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2025 Mass Tools. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-to-top" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('Random String Generator tool loaded');
+
+      // Mobile menu toggle
+      const menuToggle = document.getElementById('mobile-menu-toggle');
+      const nav = document.getElementById('nav-menu');
+      if (menuToggle && nav) {
+        menuToggle.addEventListener('change', () => {
+          nav.classList.toggle('show', menuToggle.checked);
+          console.log('Mobile menu toggled:', menuToggle.checked);
+        });
+      }
+
+      // Scroll-to-top button
+      const scrollTopBtn = document.querySelector('.scroll-to-top');
+      if (scrollTopBtn) {
+        window.addEventListener('scroll', () => {
+          scrollTopBtn.classList.toggle('show', window.scrollY > 200);
+          console.log('Scroll-to-top visibility:', window.scrollY > 200);
+        });
+        scrollTopBtn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          console.log('Scrolled to top');
+        });
+      }
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = document.querySelector(anchor.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+          if (nav && nav.classList.contains('show')) {
+            nav.classList.remove('show');
+            menuToggle.checked = false;
+          }
+        });
+      });
+
+      document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+          const href = anchor.getAttribute('href');
+          const [path, hash] = href.split('#');
+          const isHome = path === '/' || path === '' || path === '/index.html';
+          if (isHome && hash && (window.location.pathname === '/' || window.location.pathname === '/index.html')) {
+            e.preventDefault();
+            const target = document.querySelector(`#${hash}`);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth' });
+              history.pushState(null, null, `/#${hash}`);
+            }
+          } else {
+            window.location.href = href;
+          }
+          if (nav && nav.classList.contains('show')) {
+            nav.classList.remove('show');
+            menuToggle.checked = false;
+          }
+        });
+      });
+
+      // Tool functionality
+      const lengthInput = document.getElementById('length');
+      const uppercaseCheck = document.getElementById('uppercase');
+      const lowercaseCheck = document.getElementById('lowercase');
+      const numbersCheck = document.getElementById('numbers');
+      const specialCheck = document.getElementById('special');
+      const uniqueCheck = document.getElementById('unique');
+      const customInput = document.getElementById('custom');
+      const generateBtn = document.getElementById('generateBtn');
+      const copyBtn = document.getElementById('copyBtn');
+      const resetBtn = document.getElementById('resetBtn');
+      const output = document.getElementById('output');
+
+      // Random string generation logic
+      function generateString() {
+        const length = parseInt(lengthInput.value);
+        if (length < 1 || length > 100) {
+          alert('String length must be between 1 and 100 characters.');
+          console.warn('Invalid length:', length);
+          return '';
+        }
+
+        const useUppercase = uppercaseCheck.checked;
+        const useLowercase = lowercaseCheck.checked;
+        const useNumbers = numbersCheck.checked;
+        const useSpecial = specialCheck.checked;
+        const useUnique = uniqueCheck.checked;
+        const customChars = customInput.value.trim();
+
+        let chars = '';
+        if (customChars) {
+          chars = customChars;
+        } else {
+          if (useUppercase) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+          if (useLowercase) chars += 'abcdefghijklmnopqrstuvwxyz';
+          if (useNumbers) chars += '0123456789';
+          if (useSpecial) chars += '!@#$%^&*()_+-=[]{}|;:,.<>?';
+        }
+
+        if (!chars) {
+          alert('Please select at least one character type or provide custom characters.');
+          console.warn('No characters available');
+          return '';
+        }
+
+        let string = '';
+        if (useUnique) {
+          // Ensure unique characters
+          if (length > chars.length) {
+            alert(`Length (${length}) exceeds available unique characters (${chars.length}).`);
+            console.warn('Length exceeds unique chars:', length, chars.length);
+            return '';
+          }
+          const charArray = chars.split('');
+          for (let i = charArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [charArray[i], charArray[j]] = [charArray[j], charArray[i]];
+          }
+          string = charArray.slice(0, length).join('');
+        } else {
+          // Allow duplicates
+          for (let i = 0; i < length; i++) {
+            string += chars.charAt(Math.floor(Math.random() * chars.length));
+          }
+        }
+
+        return string;
+      }
+
+      // Generate string
+      generateBtn.addEventListener('click', () => {
+        console.log('Generate button clicked');
+        const string = generateString();
+        if (string) {
+          output.textContent = string;
+          copyBtn.disabled = false;
+          if (window.gtag) {
+            gtag('event', 'generate_string', {
+              event_category: 'Tool Usage',
+              event_label: `String Length: ${lengthInput.value}`,
+              value: parseInt(lengthInput.value)
+            });
+          }
+        } else {
+          output.textContent = 'Click Generate to create a string';
+          copyBtn.disabled = true;
+        }
+      });
+
+      // Copy string
+      copyBtn.addEventListener('click', () => {
+        console.log('Copy button clicked');
+        if (!output.textContent || output.textContent === 'Click Generate to create a string') {
+          alert('Nothing to copy. Please generate a string first.');
+          console.warn('No string to copy');
+          return;
+        }
+        const textarea = document.createElement('textarea');
+        textarea.value = output.textContent;
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+          document.execCommand('copy');
+          alert('String copied to clipboard!');
+          console.log('String copied:', output.textContent);
+          if (window.gtag) {
+            gtag('event', 'copy_string', {
+              event_category: 'Tool Usage',
+              event_label: 'String Copy',
+              value: 1
+            });
+          }
+        } catch (err) {
+          console.error('Copy failed:', err);
+          alert('Failed to copy string.');
+        }
+        document.body.removeChild(textarea);
+      });
+
+      // Reset settings
+      resetBtn.addEventListener('click', () => {
+        console.log('Reset button clicked');
+        lengthInput.value = 16;
+        uppercaseCheck.checked = true;
+        lowercaseCheck.checked = true;
+        numbersCheck.checked = true;
+        specialCheck.checked = true;
+        uniqueCheck.checked = false;
+        customInput.value = '';
+        output.textContent = 'Click Generate to create a string';
+        copyBtn.disabled = true;
+        console.log('Settings and output reset');
+      });
+    });
+  </script>
+</body>
+</html>
