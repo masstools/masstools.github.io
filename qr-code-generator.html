@@ -4,9 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>QR Code Generator - Mass Tools</title>
-  <meta name="description" content="Generate QR codes instantly with Mass Tools' free QR Code Generator. Customize colors, sizes, and export in PNG or SVG. Perfect for URLs, text, and more.">
-  <meta name="keywords" content="qr code generator, qr code maker, free qr code">
+  <meta name="description" content="Generate QR codes quickly with Mass Tools' free QR Code Generator. Enter text or URLs and download the QR code as a PNG file.">
+  <meta name="keywords" content="qr code generator, create qr code, mass tools, free online tools, qr code maker">
   <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-68CX9G7BKF"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -14,9 +17,7 @@
     gtag('js', new Date());
     gtag('config', 'G-68CX9G7BKF');
   </script>
-  <link rel="icon" type="image/png" href="/favicon.png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <style>
     :root {
       --primary-color: #FF4500;
@@ -47,6 +48,10 @@
 
     body::-webkit-scrollbar {
       display: none;
+    }
+
+    .progress-bar, [class*="progress"], [id*="progress"] {
+      display: none !important;
     }
 
     .container {
@@ -198,33 +203,33 @@
       margin-bottom: 12px;
     }
 
-    .tool-content .settings-area {
+    .tool-content .input-area {
       margin-bottom: 20px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      align-items: flex-start;
     }
 
-    .tool-content .settings-area label {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-color);
-      margin-right: 8px;
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .tool-content .settings-area input[type="text"],
-    .tool-content .settings-area input[type="color"],
-    .tool-content .settings-area input[type="number"] {
-      padding: 8px;
+    .tool-content .input-area input[type="text"] {
+      width: 100%;
+      padding: 12px;
       border: 1px solid #e0e0e0;
       border-radius: 8px;
       font-size: 14px;
       background: var(--light-color);
-      width: 100%;
+    }
+
+    .tool-content .qr-code-area {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 20px 0;
+      min-height: 200px;
+    }
+
+    .tool-content .qr-code-area canvas {
       max-width: 100%;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 10px;
+      background: #fff;
     }
 
     .tool-content .action-buttons {
@@ -268,24 +273,68 @@
       transform: none;
     }
 
-    .tool-content .results-area {
-      margin-top: 20px;
-      text-align: center;
-    }
-
-    .tool-content .results-area canvas {
-      max-width: 100%;
-      margin: 0 auto;
-      border: 1px solid #e0e0e0;
-      border-radius: var(--border-radius);
-    }
-
-    .tool-content .no-results {
-      color: var(--primary-color);
-      font-weight: 500;
-      text-align: center;
-      margin-top: 20px;
+    .tool-content .loading {
       display: none;
+      font-size: 14px;
+      color: var(--primary-color);
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .tool-content .loading.visible {
+      display: block;
+    }
+
+    .tool-content .tool-article {
+      margin-top: 40px;
+    }
+
+    .tool-content .tool-article h2 {
+      font-size: 24px;
+      color: var(--dark-color);
+      margin: 24px 0 12px;
+    }
+
+    .tool-content .tool-article h3 {
+      font-size: 20px;
+      color: var(--dark-color);
+      margin: 20px 0 10px;
+    }
+
+    .tool-content .tool-article p {
+      font-size: 15px;
+      color: var(--text-color);
+      margin-bottom: 12px;
+    }
+
+    .tool-content .tool-article ul {
+      list-style: none;
+      margin: 12px 0;
+      padding-left: 20px;
+    }
+
+    .tool-content .tool-article ul li {
+      font-size: 15px;
+      color: var(--text-color);
+      margin-bottom: 8px;
+      position: relative;
+    }
+
+    .tool-content .tool-article ul li::before {
+      content: '✔';
+      color: var(--primary-color);
+      position: absolute;
+      left: -20px;
+    }
+
+    .tool-content .tool-article a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .tool-content .tool-article a:hover {
+      text-decoration: underline;
     }
 
     footer {
@@ -385,57 +434,135 @@
       transform: translateY(0);
     }
 
+    @media (max-width: 992px) {
+      .search-bar {
+        max-width: 180px;
+      }
+    }
+
     @media (max-width: 768px) {
       .container {
         padding: 0 16px !important;
       }
-
+      .header-container {
+        padding: 12px 16px;
+      }
+      .mobile-menu-btn {
+        display: block;
+      }
+      nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        align-items: flex-start;
+        border-radius: 0 0 12px 12px;
+        border: 1px solid #e0e0e0;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      nav.show {
+        display: flex !important;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 18px;
+        width: 100%;
+      }
+      nav ul li a {
+        font-size: 18px;
+        padding: 12px 20px;
+        width: 100%;
+        text-align: left;
+        border-radius: 8px;
+      }
+      .search-bar {
+        margin-top: 20px;
+        width: 100%;
+        max-width: none;
+        padding: 10px 20px;
+        border-radius: 50px;
+      }
+      .search-bar input {
+        font-size: 15px;
+        padding: 8px;
+      }
+      .search-bar button {
+        font-size: 16px;
+      }
       .tool-section {
         padding: 60px 0;
       }
-
-      .tool-content {
-        padding: 24px;
-      }
-
       .tool-content h1 {
         font-size: 30px;
-      }
-
-      .tool-content p {
-        font-size: 14px;
-      }
-
-      .tool-content .action-buttons {
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .tool-content .settings-area {
-        flex-direction: column;
-        align-items: stretch;
       }
     }
 
     @media (max-width: 576px) {
+      .container {
+        padding: 0 16px !important;
+      }
+      .header-container {
+        padding: 10px 16px !important;
+        margin: 0;
+      }
+      .logo {
+        font-size: 20px;
+        margin-left: 0;
+      }
+      .logo-icon {
+        font-size: 20px;
+      }
+      .mobile-menu-btn {
+        margin-right: 0;
+      }
+      .search-bar {
+        padding: 8px 16px;
+        margin: 16px 0;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .search-bar input {
+        font-size: 14px;
+      }
+      .tool-content {
+        padding: 24px;
+      }
       .tool-content h1 {
         font-size: 26px;
       }
-
-      .tool-content .action-buttons button,
-      .tool-content .cta-button {
-        width: 100%;
-        justify-content: center;
-        padding: 8px 20px;
-        font-size: 13px;
+      .tool-content p, .tool-content .tool-article p, .tool-content .tool-article ul li {
+        font-size: 14px;
       }
-
+      .tool-content .tool-article h2 {
+        font-size: 20px;
+      }
+      .tool-content .tool-article h3 {
+        font-size: 18px;
+      }
+      .tool-content .action-buttons {
+        flex-direction: column;
+        gap: 40px;
+        margin-bottom: 24px;
+      }
       .scroll-to-top {
         width: 40px;
         height: 40px;
         font-size: 20px;
         bottom: 16px;
         right: 16px;
+      }
+      .footer-column-logo {
+        font-size: 20px;
+      }
+      .footer-column-logo-icon {
+        font-size: 20px;
       }
     }
   </style>
@@ -476,42 +603,69 @@
       <div class="container">
         <div class="tool-content">
           <h1>QR Code Generator</h1>
-          <p>Create QR codes instantly with Mass Tools' free QR Code Generator. Customize colors, sizes, and export in PNG or SVG formats. Perfect for URLs, text, contact details, and more.</p>
+          <p>Create QR codes instantly with Mass Tools' free QR Code Generator. Enter text or a URL and download the QR code as a PNG file.</p>
 
-          <div class="settings-area">
-            <div>
-              <label for="codeInput">Enter Data:</label>
-              <input type="text" id="codeInput" placeholder="e.g., https://example.com" aria-label="Code input">
-            </div>
-            <div>
-              <label for="fgColor">Foreground Color:</label>
-              <input type="color" id="fgColor" value="#000000" aria-label="Foreground color">
-            </div>
-            <div>
-              <label for="bgColor">Background Color:</label>
-              <input type="color" id="bgColor" value="#FFFFFF" aria-label="Background color">
-            </div>
-            <div>
-              <label for="codeSize">Size (px):</label>
-              <input type="number" id="codeSize" value="200" min="100" max="500" aria-label="Code size">
-            </div>
+          <div class="input-area">
+            <input type="text" id="inputText" placeholder="Enter text or URL (e.g., https://example.com)" aria-label="Input text for QR code">
           </div>
+
+          <div class="qr-code-area" id="qrCode"></div>
 
           <div class="action-buttons">
-            <button id="generateBtn"><i class="fas fa-cog"></i> Generate QR Code</button>
-            <button id="downloadPngBtn" disabled><i class="fas fa-download"></i> Download PNG</button>
-            <button id="downloadSvgBtn" disabled><i class="fas fa-download"></i> Download SVG</button>
-            <button id="resetBtn"><i class="fas fa-undo"></i> Reset</button>
+            <button id="generateBtn">Generate QR Code</button>
+            <button id="downloadBtn" disabled>Download QR Code</button>
+            <button id="resetBtn">Reset</button>
           </div>
+          <p class="loading" id="loadingIndicator">Generating QR code...</p>
 
-          <div class="results-area">
-            <canvas id="codeCanvas"></canvas>
-            <p id="noResultsMessage" class="no-results">
-              Enter data and click "Generate QR Code" to create your QR code.
-            </p>
+          <a class="cta-button" href="/index.html#tools">Explore Our Tools</a>
+
+          <div class="tool-article">
+            <h2>About the QR Code Generator Tool</h2>
+            <p>The QR Code Generator Tool by <a href="/about-us.html">Mass Tools</a> is a free tool to create QR codes from text or URLs. Generate and download QR codes securely in your browser.</p>
+
+            <h3>Why Use the QR Code Generator Tool?</h3>
+            <p>This tool is perfect for creating scannable QR codes. Use it to:</p>
+            <ul>
+              <li><strong>Share Links</strong>: Create QR codes for websites or social media profiles.</li>
+              <li><strong>Business Promotion</strong>: Add QR codes to business cards or flyers.</li>
+              <li><strong>Event Management</strong>: Generate QR codes for event tickets or check-ins.</li>
+              <li><strong>Education</strong>: Share resources or assignments via QR codes.</li>
+            </ul>
+
+            <h3>How to Use the QR Code Generator Tool</h3>
+            <p>Our QR Code Generator Tool is easy to use. Follow these steps:</p>
+            <ul>
+              <li><strong>Enter Text</strong>: Input a URL, text, or any data in the input field.</li>
+              <li><strong>Generate</strong>: Click "Generate QR Code" to create the QR code.</li>
+              <li><strong>Preview</strong>: View the QR code in the display area.</li>
+              <li><strong>Download</strong>: Click "Download QR Code" to save as a PNG file.</li>
+              <li><strong>Reset</strong>: Click "Reset" to clear the input and QR code.</li>
+            </ul>
+            <p>The tool processes data locally and works offline after loading.</p>
+
+            <h3>Use Cases for QR Code Generator Tool</h3>
+            <p>This tool is ideal for various scenarios, including:</p>
+            <ul>
+              <li><strong>Marketing</strong>: Share product pages or promotions via QR codes.</li>
+              <li><strong>Networking</strong>: Encode contact details for easy sharing.</li>
+              <li><strong>Education</strong>: Distribute lecture notes or resources.</li>
+              <li><strong>Retail</strong>: Link to payment gateways or menus.</li>
+            </ul>
+
+            <h3>Tips for Using the QR Code Generator Tool</h3>
+            <p>To get the best results, consider these tips:</p>
+            <ul>
+              <li><strong>Short URLs</strong>: Use URL shorteners for cleaner QR codes.</li>
+              <li><strong>Test QR Codes</strong>: Scan the QR code to ensure it works.</li>
+              <li><strong>High Contrast</strong>: Ensure QR codes are printed with high contrast.</li>
+              <li><strong>Combine Tools</strong>: Use with our <a href="/image-to-png-converter.html">Image to PNG Converter</a>, <a href="/image-resizer-tool.html">Image Resizer Tool</a>, or <a href="/image-compressor-tool.html">Image Compressor Tool</a> for enhanced workflows.</li>
+              <li><strong>Contact Us</strong>: Need bulk QR code generation? Email us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a>.</li>
+            </ul>
+
+            <h3>Why Choose Mass Tools?</h3>
+            <p>At Mass Tools, we provide free, high-quality tools to simplify your tasks. Our QR Code Generator Tool joins our suite, including the <a href="/image-to-png-converter.html">Image to PNG Converter</a>, <a href="/image-to-jpg-converter.html">Image to JPG Converter</a>, <a href="/image-to-webp-converter.html">Image to WebP Converter</a>, <a href="/image-to-svg-converter.html">Image to SVG Converter</a>, <a href="/image-to-tiff-converter.html">Image to TIFF Converter</a>, <a href="/image-to-heic-converter.html">Image to HEIC Converter</a>, <a href="/image-to-pdf-converter.html">Image to PDF Converter</a>, <a href="/image-to-bmp-converter.html">Image to BMP Converter</a>, <a href="/image-to-ico-converter.html">Image to ICO Converter</a>, <a href="/image-to-avif-converter.html">Image to AVIF Converter</a>, <a href="/image-to-eps-converter.html">Image to EPS Converter</a>, <a href="/image-to-psd-converter.html">Image to PSD Converter</a>, <a href="/image-to-base64-converter.html">Image to Base64 Converter</a>, <a href="/image-to-dxf-converter.html">Image to DXF Converter</a>, <a href="/image-to-exr-converter.html">Image to EXR Converter</a>, <a href="/pdf-to-image-converter.html">PDF to Image Converter</a>, <a href="/image-resizer-tool.html">Image Resizer Tool</a>, <a href="/image-compressor-tool.html">Image Compressor Tool</a>, <a href="/psd-to-image-converter.html">PSD to Image Converter</a>, <a href="/eps-to-image-converter.html">EPS to Image Converter</a>, <a href="/word-counter.html">Word Counter</a>, <a href="/case-converter.html">Case Converter</a>, <a href="/text-to-ascii-converter.html">Text to ASCII Converter</a>, <a href="/lorem-ipsum-generator.html">Lorem Ipsum Generator</a>, <a href="/character-counter.html">Character Counter</a>, <a href="/sort-text.html">Sort Text</a>, <a href="/find-replace-text.html">Find and Replace Text</a>, <a href="/reverse-list.html">Reverse List</a>, <a href="/difference-checker.html">Difference Checker</a>, and <a href="/add-prefix-suffix.html">Add Prefix/Suffix</a>. We prioritize privacy, speed, and ease of use. Learn more on our <a href="/about-us.html">About Us</a> page.</p>
           </div>
-
-          <a class="cta-button" href="/#tools">Explore Our Tools</a>
         </div>
       </div>
     </section>
@@ -552,139 +706,199 @@
     <i class="fas fa-arrow-up"></i>
   </button>
 
-  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      console.log('QR Code Generator loaded');
-
       // Mobile menu toggle
       const menuToggle = document.getElementById('mobile-menu-toggle');
       const nav = document.getElementById('nav-menu');
       if (menuToggle && nav) {
         menuToggle.addEventListener('change', () => {
           nav.classList.toggle('show', menuToggle.checked);
-          console.log('Mobile menu toggled:', menuToggle.checked);
         });
       }
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = document.querySelector(anchor.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+          if (nav && nav.classList.contains('show')) {
+            nav.classList.remove('show');
+            menuToggle.checked = false;
+          }
+        });
+      });
+
+      document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+          const href = anchor.getAttribute('href');
+          const [path, hash] = href.split('#');
+          const isHome = path === '/' || path === '' || path === '/index.html';
+          if (isHome && hash && (window.location.pathname === '/' || window.location.pathname === '/index.html')) {
+            e.preventDefault();
+            const target = document.querySelector(`#${hash}`);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth' });
+              history.pushState(null, null, `/#${hash}`);
+            }
+          } else {
+            window.location.href = href;
+          }
+          if (nav && nav.classList.contains('show')) {
+            nav.classList.remove('show');
+            menuToggle.checked = false;
+          }
+        });
+      });
 
       // Scroll-to-top button
       const scrollTopBtn = document.querySelector('.scroll-to-top');
       if (scrollTopBtn) {
         window.addEventListener('scroll', () => {
           scrollTopBtn.classList.toggle('show', window.scrollY > 200);
-          console.log('Scroll-to-top visibility:', window.scrollY > 200);
         });
         scrollTopBtn.addEventListener('click', () => {
           window.scrollTo({ top: 0, behavior: 'smooth' });
-          console.log('Scrolled to top');
+        });
+      }
+
+      // Search functionality
+      const searchInput = document.querySelector('.search-bar input');
+      const searchButton = document.querySelector('.search-bar button');
+      if (searchInput && searchButton) {
+        const tools = [
+          { name: 'Image To JPG Converter', url: '/image-to-jpg-converter.html' },
+          { name: 'Image To PNG Converter', url: '/image-to-png-converter.html' },
+          { name: 'Image To SVG', url: '/image-to-svg-converter.html' },
+          { name: 'Image To WEBP Converter', url: '/image-to-webp-converter.html' },
+          { name: 'Image To TIFF Converter', url: '/image-to-tiff-converter.html' },
+          { name: 'Image To HEIC Converter', url: '/image-to-heic-converter.html' },
+          { name: 'Image To PDF Converter', url: '/image-to-pdf-converter.html' },
+          { name: 'Image To BMP Converter', url: '/image-to-bmp-converter.html' },
+          { name: 'Image To ICO Converter', url: '/image-to-ico-converter.html' },
+          { name: 'Image To AVIF Converter', url: '/image-to-avif-converter.html' },
+          { name: 'Image To EPS Converter', url: '/image-to-eps-converter.html' },
+          { name: 'Image To PSD Converter', url: '/image-to-psd-converter.html' },
+          { name: 'Image To Base64 Converter', url: '/image-to-base64-converter.html' },
+          { name: 'Image To DXF Converter', url: '/image-to-dxf-converter.html' },
+          { name: 'Image To EXR Converter', url: '/image-to-exr-converter.html' },
+          { name: 'PDF To Image Converter', url: '/pdf-to-image-converter.html' },
+          { name: 'Image Resizer Tool', url: '/image-resizer-tool.html' },
+          { name: 'Image Compressor Tool', url: '/image-compressor-tool.html' },
+          { name: 'PSD To Image Converter', url: '/psd-to-image-converter.html' },
+          { name: 'EPS To Image Converter', url: '/eps-to-image-converter.html' },
+          { name: 'Word Counter', url: '/word-counter.html' },
+          { name: 'Case Converter', url: '/case-converter.html' },
+          { name: 'Text to ASCII Converter', url: '/text-to-ascii-converter.html' },
+          { name: 'Lorem Ipsum Generator', url: '/lorem-ipsum-generator.html' },
+          { name: 'Character Counter', url: '/character-counter.html' },
+          { name: 'Sort Text', url: '/sort-text.html' },
+          { name: 'Find and Replace Text', url: '/find-replace-text.html' },
+          { name: 'Reverse List', url: '/reverse-list.html' },
+          { name: 'Difference Checker', url: '/difference-checker.html' },
+          { name: 'Add Prefix/Suffix', url: '/add-prefix-suffix.html' },
+          { name: 'QR Code Generator', url: '/qr-code-generator.html' }
+        ];
+        searchButton.addEventListener('click', () => {
+          const query = searchInput.value.trim().toLowerCase();
+          const matchedTool = tools.find(tool => tool.name.toLowerCase().includes(query));
+          if (matchedTool) {
+            window.location.href = matchedTool.url;
+          } else {
+            alert('No tools found matching your search.');
+          }
+        });
+        searchInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            searchButton.click();
+          }
         });
       }
 
       // Tool functionality
-      const codeInput = document.getElementById('codeInput');
-      const fgColor = document.getElementById('fgColor');
-      const bgColor = document.getElementById('bgColor');
-      const codeSize = document.getElementById('codeSize');
+      const inputText = document.getElementById('inputText');
+      const qrCodeDiv = document.getElementById('qrCode');
       const generateBtn = document.getElementById('generateBtn');
-      const downloadPngBtn = document.getElementById('downloadPngBtn');
-      const downloadSvgBtn = document.getElementById('downloadSvgBtn');
+      const downloadBtn = document.getElementById('downloadBtn');
       const resetBtn = document.getElementById('resetBtn');
-      const codeCanvas = document.getElementById('codeCanvas');
-      const noResultsMessage = document.getElementById('noResultsMessage');
+      const loadingIndicator = document.getElementById('loadingIndicator');
 
-      // Generate QR Code
-      generateBtn.addEventListener('click', () => {
-        const data = codeInput.value.trim();
-        const fg = fgColor.value;
-        const bg = bgColor.value;
-        const size = parseInt(codeSize.value);
+      let qrCode = null;
 
-        if (!data) {
-          noResultsMessage.style.display = 'block';
-          codeCanvas.style.display = 'none';
-          downloadPngBtn.disabled = true;
-          downloadSvgBtn.disabled = true;
-          console.log('No data entered');
-          return;
+      const generateQRCode = (text) => {
+        if (!text.trim()) {
+          alert('Please enter text or a URL to generate a QR code.');
+          return false;
+        }
+        if (text.length > 1000) {
+          alert('Input exceeds 1000 characters. Please use a shorter text or URL.');
+          return false;
         }
 
-        noResultsMessage.style.display = 'none';
-        codeCanvas.style.display = 'block';
-        codeCanvas.width = size;
-        codeCanvas.height = size;
-
-        QRCode.toCanvas(codeCanvas, data, {
-          width: size,
-          color: {
-            dark: fg,
-            light: bg
-          }
-        }, (error) => {
-          if (error) {
-            console.error('QR Code generation failed:', error);
-            noResultsMessage.style.display = 'block';
-            codeCanvas.style.display = 'none';
-            downloadPngBtn.disabled = true;
-            downloadSvgBtn.disabled = true;
-          } else {
-            console.log('QR Code generated:', data);
-            downloadPngBtn.disabled = false;
-            downloadSvgBtn.disabled = false;
-          }
+        loadingIndicator.classList.add('visible');
+        qrCodeDiv.innerHTML = ''; // Clear previous QR code
+        qrCode = new QRCode(qrCodeDiv, {
+          text: text,
+          width: 200,
+          height: 200,
+          colorDark: '#000000',
+          colorLight: '#ffffff',
+          correctLevel: QRCode.CorrectLevel.H
         });
+        setTimeout(() => {
+          loadingIndicator.classList.remove('visible');
+          downloadBtn.disabled = false;
+        }, 100); // Small delay to ensure rendering
+        return true;
+      };
+
+      const resetForm = () => {
+        inputText.value = '';
+        qrCodeDiv.innerHTML = '';
+        downloadBtn.disabled = true;
+        loadingIndicator.classList.remove('visible');
+        qrCode = null;
+      };
+
+      generateBtn.addEventListener('click', () => {
+        const text = inputText.value;
+        const success = generateQRCode(text);
+        if (success && window.gtag) {
+          gtag('event', 'qr_code_generate', {
+            event_category: 'Tool Usage',
+            event_label: 'QR Code Generator',
+            value: text.length
+          });
+        }
       });
 
-      // Download PNG
-      downloadPngBtn.addEventListener('click', () => {
-        const url = codeCanvas.toDataURL('image/png');
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'qrcode.png';
-        a.click();
-        console.log('PNG downloaded');
+      inputText.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          generateBtn.click();
+        }
       });
 
-      // Download SVG
-      downloadSvgBtn.addEventListener('click', () => {
-        QRCode.toString(codeInput.value, {
-          type: 'svg',
-          width: parseInt(codeSize.value),
-          color: {
-            dark: fgColor.value,
-            light: bgColor.value
-          }
-        }, (error, string) => {
-          if (error) {
-            console.error('SVG generation failed:', error);
-            return;
-          }
-          const blob = new Blob([string], { type: 'image/svg+xml' });
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = 'qrcode.svg';
-          a.click();
-          URL.revokeObjectURL(url);
-          console.log('SVG downloaded');
-        });
+      downloadBtn.addEventListener('click', () => {
+        const canvas = qrCodeDiv.querySelector('canvas');
+        if (!canvas) return;
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL('image/png');
+        link.download = 'qr-code-masstools.github.io.png';
+        link.click();
+
+        if (window.gtag) {
+          gtag('event', 'download_qr_code', {
+            event_category: 'Tool Usage',
+            event_label: 'QR Code Generator Download',
+            value: 1
+          });
+        }
       });
 
-      // Reset button
-      resetBtn.addEventListener('click', () => {
-        codeInput.value = '';
-        fgColor.value = '#000000';
-        bgColor.value = '#FFFFFF';
-        codeSize.value = '200';
-        codeCanvas.style.display = 'none';
-        noResultsMessage.style.display = 'block';
-        downloadPngBtn.disabled = true;
-        downloadSvgBtn.disabled = true;
-        console.log('Form reset');
-      });
-
-      // Initial state
-      noResultsMessage.style.display = 'block';
-      codeCanvas.style.display = 'none';
+      resetBtn.addEventListener('click', resetForm);
     });
   </script>
 </body>
