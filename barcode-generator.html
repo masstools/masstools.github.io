@@ -9,7 +9,7 @@
   <meta name="robots" content="index, follow">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-68CX9G7BKF"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -17,8 +17,8 @@
     gtag('js', new Date());
     gtag('config', 'G-68CX9G7BKF');
   </script>
-  <!-- Update this path based on your setup -->
-  <script src="/js/JsBarcode.all.min.js"></script>
+  <!-- Primary CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.6/JsBarcode.all.min.js" crossorigin="anonymous"></script>
   <style>
     :root {
       --primary-color: #FF4500;
@@ -639,7 +639,7 @@
           <p>Create barcodes instantly with Mass Tools' free Barcode Generator. Enter text, select a format, and download the barcode as a PNG file.</p>
 
           <div class="input-area">
-            <input type="text" id="inputText" placeholder="Enter text for barcode (e.g., 123456789)" aria-label="Input text for barcode">
+            <input type="text" id="inputText" placeholder="Enter text for barcode (e.g., ABC123)" aria-label="Input text for barcode">
           </div>
 
           <div class="settings">
@@ -711,7 +711,7 @@
             </ul>
 
             <h3>Why Choose Mass Tools?</h3>
-            <p>At Mass Tools, we provide free, high-quality tools to simplify your tasks. Our Barcode Generator Tool joins our suite, including the <a href="/image-to-png-converter.html">Image to PNG Converter</a>, <a href="/image-to-jpg-converter.html">Image to JPG Converter</a>, <a href="/image-to-webp-converter.html">Image to WebP Converter</a>, <a href="/image-to-svg-converter.html">Image to SVG Converter</a>, <a href="/image-to-tiff-converter.html">Image to TIFF Converter</a>, <a href="/image-to-heic-converter.html">Image to HEIC Converter</a>, <a href="/image-to-pdf-converter.html">Image to PDF Converter</a>, <a href="/image-to-bmp-converter.html">Image to BMP Converter</a>, <a href="/image-to-ico-converter.html">Image to ICO Converter</a>, <a href="/image-to-avif-converter.html">Image to AVIF Converter</a>, <a href="/image-to-eps-converter.html">Image to EPS Converter</a>, <a href="/image-to-psd-converter.html">Image to PSD Converter</a>, <a href="/image-to-base64-converter.html">Image to Base64 Converter</a>, <a href="/image-to-dxf-converter.html">Image to DXF Converter</a>, <a href="/image-to-exr-converter.html">Image to EXR Converter</a>, <a href="/pdf-to-image-converter.html">PDF to Image Converter</a>, <a href="/image-resizer-tool.html">Image Resizer Tool</a>, <a href="/image-compressor-tool.html">Image Compressor Tool</a>, <a href="/psd-to-image-converter.html">PSD to Image Converter</a>, <a href="/eps-to-image-converter.html">EPS to Image Converter</a>, <a href="/word-counter.html">Word Counter</a>, <a href="/case-converter.html">Case Converter</a>, <a href="/text-to-ascii-converter.html">Text to ASCII Converter</a>, <a href="/lorem-ipsum-generator.html">Lorem Ipsum Generator</a>, <a href="/character-counter.html">Character Counter</a href="/character-counter.html">Character Counter</a>, <a href="/sort-text.html">Sort Text</a>, <a href="/find-replace-text.html">Find and Replace Text</a>, <a href="/reverse-list.html">Reverse List</a>, <a href="/difference-checker.html">Difference Checker</a>, <a href="/add-prefix-suffix.html">Add Prefix/Suffix</a>, and <a href="/qr-code-generator.html">QR Code Generator</a>. We prioritize privacy, speed, and ease of use. Learn more on our <a href="/about-us.html">About Us</a> page.</p>
+            <p>At Mass Tools, we provide free, high-quality tools to simplify your tasks. Our Barcode Generator Tool joins our suite, including the <a href="/image-to-png-converter.html">Image to PNG Converter</a>, <a href="/image-to-jpg-converter.html">Image to JPG Converter</a>, <a href="/image-to-webp-converter.html">Image to WebP Converter</a>, <a href="/image-to-svg-converter.html">Image to SVG Converter</a>, <a href="/image-to-tiff-converter.html">Image to TIFF Converter</a>, <a href="/image-to-heic-converter.html">Image to HEIC Converter</a>, <a href="/image-to-pdf-converter.html">Image to PDF Converter</a>, <a href="/image-to-bmp-converter.html">Image to BMP Converter</a>, <a href="/image-to-ico-converter.html">Image to ICO Converter</a>, <a href="/image-to-avif-converter.html">Image to AVIF Converter</a>, <a href="/image-to-eps-converter.html">Image to EPS Converter</a>, <a href="/image-to-psd-converter.html">Image to PSD Converter</a>, <a href="/image-to-base64-converter.html">Image to Base64 Converter</a>, <a href="/image-to-dxf-converter.html">Image to DXF Converter</a>, <a href="/image-to-exr-converter.html">Image to EXR Converter</a>, <a href="/pdf-to-image-converter.html">PDF to Image Converter</a>, <a href="/image-resizer-tool.html">Image Resizer Tool</a>, <a href="/image-compressor-tool.html">Image Compressor Tool</a>, <a href="/psd-to-image-converter.html">PSD to Image Converter</a>, <a href="/eps-to-image-converter.html">EPS to Image Converter</a>, <a href="/word-counter.html">Word Counter</a>, <a href="/case-converter.html">Case Converter</a>, <a href="/text-to-ascii-converter.html">Text to ASCII Converter</a>, <a href="/lorem-ipsum-generator.html">Lorem Ipsum Generator</a>, <a href="/character-counter.html">Character Counter</a>, <a href="/sort-text.html">Sort Text</a>, <a href="/find-replace-text.html">Find and Replace Text</a>, <a href="/reverse-list.html">Reverse List</a>, <a href="/difference-checker.html">Difference Checker</a>, <a href="/add-prefix-suffix.html">Add Prefix/Suffix</a>, and <a href="/qr-code-generator.html">QR Code Generator</a>. We prioritize privacy, speed, and ease of use. Learn more on our <a href="/about-us.html">About Us</a> page.</p>
           </div>
         </div>
       </div>
@@ -757,228 +757,216 @@
     document.addEventListener('DOMContentLoaded', () => {
       console.log('DOM loaded, initializing Barcode Generator at', new Date().toLocaleString());
 
-      // Mobile menu toggle
-      const menuToggle = document.getElementById('mobile-menu-toggle');
-      const nav = document.getElementById('nav-menu');
-      if (menuToggle && nav) {
-        menuToggle.addEventListener('change', () => {
-          console.log('Mobile menu toggled:', menuToggle.checked);
-          nav.classList.toggle('show', menuToggle.checked);
-        });
+      // Fallback to secondary CDN if primary fails
+      if (!window.JsBarcode) {
+        console.log('Primary CDN failed, attempting fallback CDN');
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/jsbarcode@3.11.6/dist/JsBarcode.all.min.js';
+        script.onerror = () => {
+          console.error('Fallback CDN failed to load JsBarcode');
+          alert('Error: Barcode library not loaded. Please try refreshing the page or contact support.');
+        };
+        script.onload = () => {
+          console.log('JsBarcode loaded successfully from fallback CDN');
+          initializeTool();
+        };
+        document.head.appendChild(script);
       } else {
-        console.error('Mobile menu elements not found');
+        console.log('JsBarcode loaded successfully from primary CDN');
+        initializeTool();
       }
 
-      // Smooth scroll for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', (e) => {
-          e.preventDefault();
-          const target = document.querySelector(anchor.getAttribute('href'));
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-          }
-          if (nav && nav.classList.contains('show')) {
-            nav.classList.remove('show');
-            menuToggle.checked = false;
-          }
-        });
-      });
+      function initializeTool() {
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('mobile-menu-toggle');
+        const nav = document.getElementById('nav-menu');
+        if (menuToggle && nav) {
+          menuToggle.addEventListener('change', () => {
+            console.log('Mobile menu toggled:', menuToggle.checked);
+            nav.classList.toggle('show', menuToggle.checked);
+          });
+        } else {
+          console.error('Mobile menu elements not found');
+        }
 
-      document.querySelectorAll('a[href*="#"]').forEach(anchor => {
-        anchor.addEventListener('click', (e) => {
-          const href = anchor.getAttribute('href');
-          const [path, hash] = href.split('#');
-          const isHome = path === '/' || path === '' || path === '/index.html';
-          if (isHome && hash && (window.location.pathname === '/' || window.location.pathname === '/index.html')) {
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', (e) => {
             e.preventDefault();
-            const target = document.querySelector(`#${hash}`);
+            const target = document.querySelector(anchor.getAttribute('href'));
             if (target) {
               target.scrollIntoView({ behavior: 'smooth' });
-              history.pushState(null, null, `/#${hash}`);
             }
-          } else {
-            window.location.href = href;
-          }
-          if (nav && nav.classList.contains('show')) {
-            nav.classList.remove('show');
-            menuToggle.checked = false;
-          }
-        });
-      });
-
-      // Scroll-to-top button
-      const scrollTopBtn = document.querySelector('.scroll-to-top');
-      if (scrollTopBtn) {
-        window.addEventListener('scroll', () => {
-          scrollTopBtn.classList.toggle('show', window.scrollY > 200);
-        });
-        scrollTopBtn.addEventListener('click', () => {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-      } else {
-        console.error('Scroll-to-top button not found');
-      }
-
-      // Tool functionality
-      const inputText = document.getElementById('inputText');
-      const barcodeFormat = document.getElementById('barcodeFormat');
-      const barcodeDiv = document.getElementById('barcode');
-      const generateBtn = document.getElementById('generateBtn');
-      const downloadBtn = document.getElementById('downloadBtn');
-      const resetBtn = document.getElementById('resetBtn');
-      const loadingIndicator = document.getElementById('loadingIndicator');
-
-      if (!inputText || !barcodeFormat || !barcodeDiv || !generateBtn || !downloadBtn || !resetBtn || !loadingIndicator) {
-        console.error('One or more DOM elements missing:', {
-          inputText: !!inputText,
-          barcodeFormat: !!barcodeFormat,
-          barcodeDiv: !!barcodeDiv,
-          generateBtn: !!generateBtn,
-          downloadBtn: !!downloadBtn,
-          resetBtn: !!resetBtn,
-          loadingIndicator: !!loadingIndicator
-        });
-        alert('Error: Tool initialization failed. Please refresh the page.');
-        return;
-      }
-
-      // Verify JsBarcode loaded
-      if (!window.JsBarcode) {
-        console.error('JsBarcode library failed to load. Check if /js/JsBarcode.all.min.js is correctly included.');
-        alert('Error: Barcode library not loaded. Please ensure the JsBarcode file is included and try again.');
-        return;
-      } else {
-        console.log('JsBarcode library loaded successfully');
-      }
-
-      const generateBarcode = (text, format) => {
-        console.log('generateBarcode called with text:', text, 'format:', format);
-        if (!text.trim()) {
-          alert('Please enter text to generate a barcode.');
-          console.log('Validation failed: Empty input');
-          return false;
-        }
-        if (text.length > 100) {
-          alert('Input exceeds 100 characters. Please use a shorter text.');
-          console.log('Validation failed: Input too long');
-          return false;
-        }
-
-        // Validate specific formats
-        if (format === 'EAN13' && !/^\d{12,13}$/.test(text)) {
-          alert('EAN13 requires 12 or 13 digits.');
-          console.log('Validation failed: Invalid EAN13 input');
-          return false;
-        }
-        if (format === 'UPC' && !/^\d{12}$/.test(text)) {
-          alert('UPC requires 12 digits.');
-          console.log('Validation failed: Invalid UPC input');
-          return false;
-        }
-        if (format === 'CODE39' && !/^[A-Z0-9\-.\s$\/+%]*$/.test(text)) {
-          alert('CODE39 supports uppercase letters, numbers, and specific symbols (- . $ / + %).');
-          console.log('Validation failed: Invalid CODE39 input');
-          return false;
-        }
-        if (format === 'ITF' && !/^\d+$/.test(text)) {
-          alert('ITF requires digits only.');
-          console.log('Validation failed: Invalid ITF input');
-          return false;
-        }
-
-        try {
-          console.log('Attempting to generate barcode');
-          loadingIndicator.classList.add('visible');
-          barcodeDiv.innerHTML = ''; // Clear previous barcode
-          const canvas = document.createElement('canvas');
-          canvas.id = 'barcodeCanvas';
-          barcodeDiv.appendChild(canvas);
-          console.log('Canvas created and appended to #barcode');
-          JsBarcode('#barcodeCanvas', text, {
-            format: format,
-            width: 2,
-            height: 100,
-            displayValue: true,
-            background: '#ffffff',
-            lineColor: '#000000',
-            margin: 10
+            if (nav && nav.classList.contains('show')) {
+              nav.classList.remove('show');
+              menuToggle.checked = false;
+            }
           });
-          console.log('Barcode generated successfully');
-          setTimeout(() => {
-            loadingIndicator.classList.remove('visible');
-            downloadBtn.disabled = false;
-            console.log('Download button enabled');
-          }, 500);
-          return true;
-        } catch (error) {
-          console.error('Barcode generation error:', error.message, error.stack);
-          alert('Failed to generate barcode. Please check your input or refresh the page.');
-          loadingIndicator.classList.remove('visible');
-          barcodeDiv.innerHTML = '';
-          downloadBtn.disabled = true;
-          return false;
-        }
-      };
+        });
 
-      const resetForm = () => {
-        console.log('Resetting form');
-        inputText.value = '';
-        barcodeFormat.value = 'CODE128';
-        barcodeDiv.innerHTML = '';
-        downloadBtn.disabled = true;
-        loadingIndicator.classList.remove('visible');
-      };
-
-      generateBtn.addEventListener('click', () => {
-        console.log('Generate button clicked at', new Date().toLocaleString());
-        const text = inputText.value;
-        const format = barcodeFormat.value;
-        const success = generateBarcode(text, format);
-        if (success && window.gtag) {
-          console.log('Tracking barcode generation event');
-          gtag('event', 'barcode_generate', {
-            event_category: 'Tool Usage',
-            event_label: `Barcode Generator - Format: ${format}`,
-            value: text.length
+        document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+          anchor.addEventListener('click', (e) => {
+            const href = anchor.getAttribute('href');
+            const [path, hash] = href.split('#');
+            const isHome = path === '/' || path === '' || path === '/index.html';
+            if (isHome && hash && (window.location.pathname === '/' || window.location.pathname === '/index.html')) {
+              e.preventDefault();
+              const target = document.querySelector(`#${hash}`);
+              if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+                history.pushState(null, null, `/#${hash}`);
+              }
+            } else {
+              window.location.href = href;
+            }
+            if (nav && nav.classList.contains('show')) {
+              nav.classList.remove('show');
+              menuToggle.checked = false;
+            }
           });
-        }
-      });
+        });
 
-      inputText.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-          console.log('Enter key pressed, triggering generate');
-          generateBtn.click();
+        // Scroll-to-top button
+        const scrollTopBtn = document.querySelector('.scroll-to-top');
+        if (scrollTopBtn) {
+          window.addEventListener('scroll', () => {
+            scrollTopBtn.classList.toggle('show', window.scrollY > 200);
+          });
+          scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+        } else {
+          console.error('Scroll-to-top button not found');
         }
-      });
 
-      downloadBtn.addEventListener('click', () => {
-        console.log('Download button clicked');
-        const canvas = document.getElementById('barcodeCanvas');
-        if (!canvas) {
-          alert('No barcode available to download. Please generate a barcode first.');
-          console.log('Download failed: No canvas found');
+        // Tool functionality
+        const inputText = document.getElementById('inputText');
+        const barcodeFormat = document.getElementById('barcodeFormat');
+        const barcodeDiv = document.getElementById('barcode');
+        const generateBtn = document.getElementById('generateBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+
+        if (!inputText || !barcodeFormat || !barcodeDiv || !generateBtn || !downloadBtn || !resetBtn || !loadingIndicator) {
+          console.error('One or more DOM elements missing:', {
+            inputText: !!inputText,
+            barcodeFormat: !!barcodeFormat,
+            barcodeDiv: !!barcodeDiv,
+            generateBtn: !!generateBtn,
+            downloadBtn: !!downloadBtn,
+            resetBtn: !!resetBtn,
+            loadingIndicator: !!loadingIndicator
+          });
+          alert('Error: Tool initialization failed. Please refresh the page.');
           return;
         }
-        try {
-          const link = document.createElement('a');
-          link.href = canvas.toDataURL('image/png');
-          link.download = 'barcode-masstools.png';
-          link.click();
-          console.log('Barcode downloaded');
-          if (window.gtag) {
-            gtag('event', 'download_barcode', {
+
+        const generateBarcode = (text, format) => {
+          console.log('generateBarcode called with text:', text, 'format:', format);
+          if (!text.trim()) {
+            console.log('Validation failed: Empty input');
+            alert('Please enter text to generate a barcode.');
+            return false;
+          }
+
+          try {
+            console.log('Clearing barcode area');
+            barcodeDiv.innerHTML = '';
+            console.log('Creating canvas');
+            const canvas = document.createElement('canvas');
+            canvas.id = 'barcodeCanvas';
+            barcodeDiv.appendChild(canvas);
+            console.log('Canvas appended to #barcode:', canvas);
+            console.log('Calling JsBarcode with selector: #barcodeCanvas');
+            JsBarcode('#barcodeCanvas', text, {
+              format: format,
+              width: 2,
+              height: 100,
+              displayValue: true,
+              background: '#ffffff',
+              lineColor: '#000000',
+              margin: 10
+            });
+            console.log('Barcode generation completed');
+            loadingIndicator.classList.add('visible');
+            setTimeout(() => {
+              loadingIndicator.classList.remove('visible');
+              downloadBtn.disabled = false;
+              console.log('Download button enabled');
+            }, 500);
+            return true;
+          } catch (error) {
+            console.error('Barcode generation error:', error.message, error.stack);
+            alert('Failed to generate barcode: ' + error.message);
+            loadingIndicator.classList.remove('visible');
+            barcodeDiv.innerHTML = '';
+            downloadBtn.disabled = true;
+            return false;
+          }
+        };
+
+        const resetForm = () => {
+          console.log('Resetting form');
+          inputText.value = '';
+          barcodeFormat.value = 'CODE128';
+          barcodeDiv.innerHTML = '';
+          downloadBtn.disabled = true;
+          loadingIndicator.classList.remove('visible');
+        };
+
+        generateBtn.addEventListener('click', () => {
+          console.log('Generate button clicked at', new Date().toLocaleString());
+          const text = inputText.value;
+          const format = barcodeFormat.value;
+          console.log('Input text:', text, 'Selected format:', format);
+          const success = generateBarcode(text, format);
+          if (success && window.gtag) {
+            console.log('Tracking barcode generation event');
+            gtag('event', 'barcode_generate', {
               event_category: 'Tool Usage',
-              event_label: 'Barcode Generator Download',
-              value: 1
+              event_label: `Barcode Generator - Format: ${format}`,
+              value: text.length
             });
           }
-        } catch (error) {
-          console.error('Download error:', error.message, error.stack);
-          alert('Failed to download barcode. Please try again.');
-        }
-      });
+        });
 
-      resetBtn.addEventListener('click', resetForm);
+        inputText.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            console.log('Enter key pressed, triggering generate');
+            generateBtn.click();
+          }
+        });
+
+        downloadBtn.addEventListener('click', () => {
+          console.log('Download button clicked');
+          const canvas = document.getElementById('barcodeCanvas');
+          if (!canvas) {
+            console.log('Download failed: No canvas found');
+            alert('No barcode available to download. Please generate a barcode first.');
+            return;
+          }
+          try {
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL('image/png');
+            link.download = 'barcode-masstools.png';
+            link.click();
+            console.log('Barcode downloaded');
+            if (window.gtag) {
+              gtag('event', 'download_barcode', {
+                event_category: 'Tool Usage',
+                event_label: 'Barcode Generator Download',
+                value: 1
+              });
+            }
+          } catch (error) {
+            console.error('Download error:', error.message, error.stack);
+            alert('Failed to download barcode: ' + error.message);
+          }
+        });
+
+        resetBtn.addEventListener('click', resetForm);
+      }
     });
   </script>
 </body>
