@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code Generator - Mass Tools</title>
+  <meta name="description" content="Generate QR codes instantly with Mass Tools' free QR Code Generator. Customize colors, sizes, and export in PNG or SVG. Perfect for URLs, text, and more.">
+  <meta name="keywords" content="qr code generator, qr code maker, free qr code">
+  <meta name="robots" content="index, follow">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-68CX9G7BKF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-68CX9G7BKF');
+  </script>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #FF4500;
+      --secondary-color: #FFA500;
+      --dark-color: #1A1A1A;
+      --light-color: #F8F9FA;
+      --text-color: #2C2C2C;
+      --text-light: #6C757D;
+      --border-radius: 12px;
+      --transition: all 0.3s ease;
+      --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: var(--light-color);
+      color: var(--text-color);
+      font-size: 16px;
+      line-height: 1.7;
+      scrollbar-width: none;
+    }
+
+    body::-webkit-scrollbar {
+      display: none;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      background: var(--light-color);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-size: 24px;
+      font-weight: 800;
+      margin-left: 8px;
+    }
+
+    .logo-icon {
+      font-size: 24px;
+      color: var(--primary-color);
+    }
+
+    .logo span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 16px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+      font-size: 14px;
+      padding: 8px 12px;
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover {
+      background: var(--primary-color);
+      color: var(--light-color);
+      text-decoration: none;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--text-color);
+      cursor: pointer;
+      margin-right: 8px;
+    }
+
+    #mobile-menu-toggle {
+      display: none;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 50px;
+      padding: 6px 12px;
+      transition: var(--transition);
+      max-width: 200px;
+    }
+
+    .search-bar:hover, .search-bar:focus-within {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-bar input {
+      border: none;
+      outline: none;
+      font-size: 13px;
+      padding: 6px;
+      width: 100%;
+    }
+
+    .search-bar button {
+      background: none;
+      border: none;
+      color: var(--text-light);
+      font-size: 14px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .search-bar button:hover {
+      color: var(--primary-color);
+    }
+
+    .tool-section {
+      padding: 80px 0;
+      background: var(--light-color);
+    }
+
+    .tool-content {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 32px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .tool-content h1 {
+      font-size: 36px;
+      color: var(--dark-color);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .tool-content p {
+      font-size: 15px;
+      color: var(--text-color);
+      margin-bottom: 12px;
+    }
+
+    .tool-content .settings-area {
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .tool-content .settings-area label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-color);
+      margin-right: 8px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .tool-content .settings-area input[type="text"],
+    .tool-content .settings-area input[type="color"],
+    .tool-content .settings-area input[type="number"] {
+      padding: 8px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      background: var(--light-color);
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .tool-content .action-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .tool-content .action-buttons button,
+    .tool-content .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gradient);
+      color: #FFFFFF !important;
+      padding: 10px 24px;
+      border: none;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    .tool-content .action-buttons button:hover,
+    .tool-content .cta-button:hover {
+      background: var(--primary-color);
+      color: #FFFFFF !important;
+      transform: translateY(-4px);
+      text-decoration: none;
+    }
+
+    .tool-content .action-buttons button:disabled {
+      background: var(--text-light);
+      color: var(--light-color) !important;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .tool-content .results-area {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .tool-content .results-area canvas {
+      max-width: 100%;
+      margin: 0 auto;
+      border: 1px solid #e0e0e0;
+      border-radius: var(--border-radius);
+    }
+
+    .tool-content .no-results {
+      color: var(--primary-color);
+      font-weight: 500;
+      text-align: center;
+      margin-top: 20px;
+      display: none;
+    }
+
+    footer {
+      background: var(--dark-color);
+      color: var(--light-color);
+      padding: 40px 0 20px;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .footer-column-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .footer-column-logo-icon {
+      font-size: 24px;
+      color: var(--primary-color);
+    }
+
+    .footer-column-logo span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .footer-column ul {
+      list-style: none;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-column ul li a {
+      color: #CED4DA;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-column ul li a:hover {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 13px;
+    }
+
+    .scroll-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--gradient);
+      color: var(--light-color);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    .scroll-to-top i {
+      -webkit-text-stroke: 0;
+      color: var(--light-color);
+    }
+
+    .scroll-to-top:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .scroll-to-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 16px !important;
+      }
+
+      .tool-section {
+        padding: 60px 0;
+      }
+
+      .tool-content {
+        padding: 24px;
+      }
+
+      .tool-content h1 {
+        font-size: 30px;
+      }
+
+      .tool-content p {
+        font-size: 14px;
+      }
+
+      .tool-content .action-buttons {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .tool-content .settings-area {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .tool-content h1 {
+        font-size: 26px;
+      }
+
+      .tool-content .action-buttons button,
+      .tool-content .cta-button {
+        width: 100%;
+        justify-content: center;
+        padding: 8px 20px;
+        font-size: 13px;
+      }
+
+      .scroll-to-top {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        bottom: 16px;
+        right: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <a href="/" class="logo">
+        <i class="fas fa-tools logo-icon"></i>
+        <span>Mass Tools</span>
+      </a>
+      <input id="mobile-menu-toggle" type="checkbox">
+      <label class="mobile-menu-btn" for="mobile-menu-toggle">
+        <i class="fas fa-bars"></i>
+      </label>
+      <nav id="nav-menu">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#tools">Tools</a></li>
+          <li><a href="/about-us.html">About Us</a></li>
+          <li><a href="/contact-us.html">Contact Us</a></li>
+          <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="/terms-and-conditions.html">Terms</a></li>
+          <li><a href="/Disclaimer.html">Disclaimer</a></li>
+        </ul>
+        <div class="search-bar">
+          <input type="text" placeholder="Search tools..." aria-label="Search">
+          <button type="submit" aria-label="Search">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="tool-section">
+      <div class="container">
+        <div class="tool-content">
+          <h1>QR Code Generator</h1>
+          <p>Create QR codes instantly with Mass Tools' free QR Code Generator. Customize colors, sizes, and export in PNG or SVG formats. Perfect for URLs, text, contact details, and more.</p>
+
+          <div class="settings-area">
+            <div>
+              <label for="codeInput">Enter Data:</label>
+              <input type="text" id="codeInput" placeholder="e.g., https://example.com" aria-label="Code input">
+            </div>
+            <div>
+              <label for="fgColor">Foreground Color:</label>
+              <input type="color" id="fgColor" value="#000000" aria-label="Foreground color">
+            </div>
+            <div>
+              <label for="bgColor">Background Color:</label>
+              <input type="color" id="bgColor" value="#FFFFFF" aria-label="Background color">
+            </div>
+            <div>
+              <label for="codeSize">Size (px):</label>
+              <input type="number" id="codeSize" value="200" min="100" max="500" aria-label="Code size">
+            </div>
+          </div>
+
+          <div class="action-buttons">
+            <button id="generateBtn"><i class="fas fa-cog"></i> Generate QR Code</button>
+            <button id="downloadPngBtn" disabled><i class="fas fa-download"></i> Download PNG</button>
+            <button id="downloadSvgBtn" disabled><i class="fas fa-download"></i> Download SVG</button>
+            <button id="resetBtn"><i class="fas fa-undo"></i> Reset</button>
+          </div>
+
+          <div class="results-area">
+            <canvas id="codeCanvas"></canvas>
+            <p id="noResultsMessage" class="no-results">
+              Enter data and click "Generate QR Code" to create your QR code.
+            </p>
+          </div>
+
+          <a class="cta-button" href="/#tools">Explore Our Tools</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-column">
+          <a href="/" class="footer-column-logo">
+            <i class="fas fa-tools footer-column-logo-icon"></i>
+            <span>Mass Tools</span>
+          </a>
+          <p>Empowering you with free, high-quality online tools.</p>
+        </div>
+        <div class="footer-column">
+          <ul>
+            <li><a href="/#tools">Tools</a></li>
+            <li><a href="/about-us.html">About Us</a></li>
+            <li><a href="/contact-us.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <ul>
+            <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="/terms-and-conditions.html">Terms</a></li>
+            <li><a href="/Disclaimer.html">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2025 Mass Tools. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-to-top" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('QR Code Generator loaded');
+
+      // Mobile menu toggle
+      const menuToggle = document.getElementById('mobile-menu-toggle');
+      const nav = document.getElementById('nav-menu');
+      if (menuToggle && nav) {
+        menuToggle.addEventListener('change', () => {
+          nav.classList.toggle('show', menuToggle.checked);
+          console.log('Mobile menu toggled:', menuToggle.checked);
+        });
+      }
+
+      // Scroll-to-top button
+      const scrollTopBtn = document.querySelector('.scroll-to-top');
+      if (scrollTopBtn) {
+        window.addEventListener('scroll', () => {
+          scrollTopBtn.classList.toggle('show', window.scrollY > 200);
+          console.log('Scroll-to-top visibility:', window.scrollY > 200);
+        });
+        scrollTopBtn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          console.log('Scrolled to top');
+        });
+      }
+
+      // Tool functionality
+      const codeInput = document.getElementById('codeInput');
+      const fgColor = document.getElementById('fgColor');
+      const bgColor = document.getElementById('bgColor');
+      const codeSize = document.getElementById('codeSize');
+      const generateBtn = document.getElementById('generateBtn');
+      const downloadPngBtn = document.getElementById('downloadPngBtn');
+      const downloadSvgBtn = document.getElementById('downloadSvgBtn');
+      const resetBtn = document.getElementById('resetBtn');
+      const codeCanvas = document.getElementById('codeCanvas');
+      const noResultsMessage = document.getElementById('noResultsMessage');
+
+      // Generate QR Code
+      generateBtn.addEventListener('click', () => {
+        const data = codeInput.value.trim();
+        const fg = fgColor.value;
+        const bg = bgColor.value;
+        const size = parseInt(codeSize.value);
+
+        if (!data) {
+          noResultsMessage.style.display = 'block';
+          codeCanvas.style.display = 'none';
+          downloadPngBtn.disabled = true;
+          downloadSvgBtn.disabled = true;
+          console.log('No data entered');
+          return;
+        }
+
+        noResultsMessage.style.display = 'none';
+        codeCanvas.style.display = 'block';
+        codeCanvas.width = size;
+        codeCanvas.height = size;
+
+        QRCode.toCanvas(codeCanvas, data, {
+          width: size,
+          color: {
+            dark: fg,
+            light: bg
+          }
+        }, (error) => {
+          if (error) {
+            console.error('QR Code generation failed:', error);
+            noResultsMessage.style.display = 'block';
+            codeCanvas.style.display = 'none';
+            downloadPngBtn.disabled = true;
+            downloadSvgBtn.disabled = true;
+          } else {
+            console.log('QR Code generated:', data);
+            downloadPngBtn.disabled = false;
+            downloadSvgBtn.disabled = false;
+          }
+        });
+      });
+
+      // Download PNG
+      downloadPngBtn.addEventListener('click', () => {
+        const url = codeCanvas.toDataURL('image/png');
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'qrcode.png';
+        a.click();
+        console.log('PNG downloaded');
+      });
+
+      // Download SVG
+      downloadSvgBtn.addEventListener('click', () => {
+        QRCode.toString(codeInput.value, {
+          type: 'svg',
+          width: parseInt(codeSize.value),
+          color: {
+            dark: fgColor.value,
+            light: bgColor.value
+          }
+        }, (error, string) => {
+          if (error) {
+            console.error('SVG generation failed:', error);
+            return;
+          }
+          const blob = new Blob([string], { type: 'image/svg+xml' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'qrcode.svg';
+          a.click();
+          URL.revokeObjectURL(url);
+          console.log('SVG downloaded');
+        });
+      });
+
+      // Reset button
+      resetBtn.addEventListener('click', () => {
+        codeInput.value = '';
+        fgColor.value = '#000000';
+        bgColor.value = '#FFFFFF';
+        codeSize.value = '200';
+        codeCanvas.style.display = 'none';
+        noResultsMessage.style.display = 'block';
+        downloadPngBtn.disabled = true;
+        downloadSvgBtn.disabled = true;
+        console.log('Form reset');
+      });
+
+      // Initial state
+      noResultsMessage.style.display = 'block';
+      codeCanvas.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
