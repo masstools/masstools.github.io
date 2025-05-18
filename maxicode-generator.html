@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MaxiCode Generator - Mass Tools</title>
+  <meta name="description" content="Generate MaxiCode barcodes instantly with Mass Tools' free MaxiCode Generator. Customize colors, sizes, and export in PNG. Ideal for shipping, logistics, and UPS tracking.">
+  <meta name="keywords" content="maxicode generator, create maxicode, free maxicode, mass tools, 2d barcode, shipping barcode">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-68CX9G7BKF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-68CX9G7BKF');
+  </script>
+  <style>
+    :root {
+      --primary-color: #FF4500;
+      --secondary-color: #FFA500;
+      --dark-color: #1A1A1A;
+      --light-color: #F8F9FA;
+      --text-color: #2C2C2C;
+      --text-light: #6C757D;
+      --border-radius: 12px;
+      --transition: all 0.3s ease;
+      --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: var(--light-color);
+      color: var(--text-color);
+      font-size: 16px;
+      line-height: 1.7;
+      scrollbar-width: none;
+    }
+
+    body::-webkit-scrollbar {
+      display: none;
+    }
+
+    .progress-bar, [class*="progress"], [id*="progress"] {
+      display: none !important;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      background: var(--light-color);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-size: 24px;
+      font-weight: 800;
+      margin-left: 8px;
+    }
+
+    .logo-icon {
+      font-size: 24px;
+      color: var(--primary-color);
+    }
+
+    .logo span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 16px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+      font-size: 14px;
+      padding: 8px 12px;
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover {
+      background: var(--primary-color);
+      color: var(--light-color);
+      text-decoration: none;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--text-color);
+      cursor: pointer;
+      margin-right: 8px;
+    }
+
+    #mobile-menu-toggle {
+      display: none;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 50px;
+      padding: 6px 12px;
+      transition: var(--transition);
+      max-width: 200px;
+    }
+
+    .search-bar:hover, .search-bar:focus-within {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-bar input {
+      border: none;
+      outline: none;
+      font-size: 13px;
+      padding: 6px;
+      width: 100%;
+    }
+
+    .search-bar button {
+      background: none;
+      border: none;
+      color: var(--text-light);
+      font-size: 14px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .search-bar button:hover {
+      color: var(--primary-color);
+    }
+
+    .tool-section {
+      padding: 80px 0;
+      background: var(--light-color);
+    }
+
+    .tool-content {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 32px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .tool-content h1 {
+      font-size: 36px;
+      color: var(--dark-color);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .tool-content p {
+      font-size: 15px;
+      color: var(--text-color);
+      margin-bottom: 12px;
+    }
+
+    .tool-content .settings-area {
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .tool-content .settings-area label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-color);
+      margin-right: 8px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .tool-content .settings-area input[type="text"],
+    .tool-content .settings-area input[type="color"],
+    .tool-content .settings-area input[type="number"] {
+      padding: 8px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      background: var(--light-color);
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .tool-content .action-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .tool-content .action-buttons button,
+    .tool-content .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gradient);
+      color: #FFFFFF !important;
+      padding: 10px 24px;
+      border: none;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    .tool-content .action-buttons button:hover,
+    .tool-content .cta-button:hover {
+      background: var(--primary-color);
+      color: #FFFFFF !important;
+      transform: translateY(-4px);
+      text-decoration: none;
+    }
+
+    .tool-content .action-buttons button:disabled {
+      background: var(--text-light);
+      color: var(--light-color) !important;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .tool-content .results-area {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .tool-content .results-area canvas {
+      max-width: 100%;
+      margin: 0 auto;
+      border: 1px solid #e0e0e0;
+      border-radius: var(--border-radius);
+    }
+
+    .tool-content .no-results {
+      color: var(--primary-color);
+      font-weight: 500;
+      text-align: center;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .tool-content .tool-article {
+      margin-top: 40px;
+    }
+
+    .tool-content .tool-article h2 {
+      font-size: 24px;
+      color: var(--dark-color);
+      margin: 24px 0 12px;
+    }
+
+    .tool-content .tool-article h3 {
+      font-size: 20px;
+      color: var(--dark-color);
+      margin: 20px 0 10px;
+    }
+
+    .tool-content .tool-article p {
+      font-size: 15px;
+      color: var(--text-color);
+      margin-bottom: 12px;
+    }
+
+    .tool-content .tool-article ul {
+      list-style: none;
+      margin: 12px 0;
+      padding-left: 20px;
+    }
+
+    .tool-content .tool-article ul li {
+      font-size: 15px;
+      color: var(--text-color);
+      margin-bottom: 8px;
+      position: relative;
+    }
+
+    .tool-content .tool-article ul li::before {
+      content: '✔';
+      color: var(--primary-color);
+      position: absolute;
+      left: -20px;
+    }
+
+    .tool-content .tool-article a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .tool-content .tool-article a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background: var(--dark-color);
+      color: var(--light-color);
+      padding: 40px 0 20px;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .footer-column-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .footer-column-logo-icon {
+      font-size: 24px;
+      color: var(--primary-color);
+    }
+
+    .footer-column-logo span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .footer-column ul {
+      list-style: none;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-column ul li a {
+      color: #CED4DA;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-column ul li a:hover {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 13px;
+    }
+
+    .scroll-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--gradient);
+      color: var(--light-color);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    .scroll-to-top i {
+      -webkit-text-stroke: 0;
+      color: var(--light-color);
+    }
+
+    .scroll-to-top:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .scroll-to-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 992px) {
+      .search-bar {
+        max-width: 180px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 16px !important;
+      }
+      .header-container {
+        padding: 12px 16px;
+      }
+      .mobile-menu-btn {
+        display: block;
+      }
+      nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        align-items: flex-start;
+        border-radius: 0 0 12px 12px;
+        border: 1px solid #e0e0e0;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      nav.show {
+        display: flex !important;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 18px;
+        width: 100%;
+      }
+      nav ul li a {
+        font-size: 18px;
+        padding: 12px 20px;
+        width: 100%;
+        text-align: left;
+        border-radius: 8px;
+      }
+      .search-bar {
+        margin-top: 20px;
+        width: 100%;
+        max-width: none;
+        padding: 10px 20px;
+        border-radius: 50px;
+      }
+      .search-bar input {
+        font-size: 15px;
+        padding: 8px;
+      }
+      .search-bar button {
+        font-size: 16px;
+      }
+      .tool-section {
+        padding: 60px 0;
+      }
+      .tool-content {
+        padding: 24px;
+      }
+      .tool-content h1 {
+        font-size: 30px;
+      }
+      .tool-content p, .tool-content .tool-article p, .tool-content .tool-article ul li {
+        font-size: 14px;
+      }
+      .tool-content .tool-article h2 {
+        font-size: 20px;
+      }
+      .tool-content .tool-article h3 {
+        font-size: 18px;
+      }
+      .tool-content .action-buttons {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .tool-content .settings-area {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .container {
+        padding: 0 16px !important;
+      }
+      .header-container {
+        padding: 10px 16px !important;
+        margin: 0;
+      }
+      .logo {
+        font-size: 20px;
+        margin-left: 0;
+      }
+      .logo-icon {
+        font-size: 20px;
+      }
+      .mobile-menu-btn {
+        margin-right: 0;
+      }
+      .search-bar {
+        padding: 8px 16px;
+        margin: 16px 0;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .search-bar input {
+        font-size: 14px;
+      }
+      .tool-content {
+        padding: 24px;
+      }
+      .tool-content h1 {
+        font-size: 26px;
+      }
+      .tool-content p, .tool-content .tool-article p, .tool-content .tool-article ul li {
+        font-size: 14px;
+      }
+      .tool-content .tool-article h2 {
+        font-size: 20px;
+      }
+      .tool-content .tool-article h3 {
+        font-size: 18px;
+      }
+      .tool-content .action-buttons {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .tool-content .action-buttons button,
+      .tool-content .cta-button {
+        width: 100%;
+        justify-content: center;
+        padding: 8px 20px;
+        font-size: 13px;
+      }
+      .scroll-to-top {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        bottom: 16px;
+        right: 16px;
+      }
+      .footer-column-logo {
+        font-size: 20px;
+      }
+      .footer-column-logo-icon {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <a href="/" class="logo">
+        <i class="fas fa-tools logo-icon"></i>
+        <span>Mass Tools</span>
+      </a>
+      <input id="mobile-menu-toggle" type="checkbox">
+      <label class="mobile-menu-btn" for="mobile-menu-toggle">
+        <i class="fas fa-bars"></i>
+      </label>
+      <nav id="nav-menu">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#tools">Tools</a></li>
+          <li><a href="/about-us.html">About Us</a></li>
+          <li><a href="/contact-us.html">Contact Us</a></li>
+          <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="/terms-and-conditions.html">Terms</a></li>
+          <li><a href="/Disclaimer.html">Disclaimer</a></li>
+        </ul>
+        <div class="search-bar">
+          <input type="text" placeholder="Search tools..." aria-label="Search">
+          <button type="submit" aria-label="Search">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="tool-section">
+      <div class="container">
+        <div class="tool-content">
+          <h1>MaxiCode Generator</h1>
+          <p>Create MaxiCode barcodes instantly with <a href="/about-us.html">Mass Tools</a>' free MaxiCode Generator. Customize colors, sizes, and export in PNG. Perfect for shipping, logistics, and UPS tracking. Try our <a href="/qr-code-generator.html">QR Code Generator</a>, <a href="/data-matrix-generator.html">Data Matrix Generator</a>, <a href="/barcode-generator.html">Barcode Generator</a>, <a href="/pdf417-generator.html">PDF417 Generator</a>, or <a href="/aztec-code-generator.html">Aztec Code Generator</a> for other coding needs.</p>
+
+          <div class="settings-area">
+            <div>
+              <label for="codeInput">Enter Data:</label>
+              <input type="text" id="codeInput" placeholder="e.g., UPS123456789" aria-label="MaxiCode data">
+            </div>
+            <div>
+              <label for="fgColor">Foreground Color:</label>
+              <input type="color" id="fgColor" value="#000000" aria-label="Foreground color">
+            </div>
+            <div>
+              <label for="bgColor">Background Color:</label>
+              <input type="color" id="bgColor" value="#FFFFFF" aria-label="Background color">
+            </div>
+            <div>
+              <label for="codeSize">Size (px):</label>
+              <input type="number" id="codeSize" value="200" min="100" max="500" aria-label="MaxiCode size">
+            </div>
+          </div>
+
+          <div class="action-buttons">
+            <button id="generateBtn"><i class="fas fa-cog"></i> Generate MaxiCode</button>
+            <button id="downloadPngBtn" disabled><i class="fas fa-download"></i> Download PNG</button>
+            <button id="resetBtn"><i class="fas fa-undo"></i> Reset</button>
+          </div>
+
+          <div class="results-area">
+            <canvas id="codeCanvas"></canvas>
+            <p id="noResultsMessage" class="no-results">
+              Enter data and click "Generate MaxiCode" to create your barcode.
+            </p>
+          </div>
+
+          <a class="cta-button" href="/index.html#tools">Explore Our Tools</a>
+
+          <div class="tool-article">
+            <h2>About the MaxiCode Generator Tool</h2>
+            <p>The MaxiCode Generator Tool by <a href="/about-us.html">Mass Tools</a> is a free tool to create MaxiCode barcodes from text or data. Generate and download MaxiCodes securely in your browser.</p>
+
+            <h3>Why Use the MaxiCode Generator Tool?</h3>
+            <p>This tool is ideal for creating scannable MaxiCode barcodes, commonly used in shipping and logistics. Use it to:</p>
+            <ul>
+              <li><strong>Shipping</strong>: Encode tracking numbers for packages.</li>
+              <li><strong>Logistics</strong>: Manage inventory and supply chain data.</li>
+              <li><strong>UPS Tracking</strong>: Generate barcodes for UPS shipments.</li>
+              <li><strong>Automation</strong>: Integrate with automated sorting systems.</li>
+            </ul>
+
+            <h3>How to Use the MaxiCode Generator Tool</h3>
+            <p>Our MaxiCode Generator Tool is easy to use. Follow these steps:</p>
+            <ul>
+              <li><strong>Enter Data</strong>: Input text or data (up to 93 characters) in the input field.</li>
+              <li><strong>Customize</strong>: Adjust foreground/background colors and size.</li>
+              <li><strong>Generate</strong>: Click "Generate MaxiCode" to create the barcode.</li>
+              <li><strong>Download</strong>: Click "Download PNG" to save as a PNG file.</li>
+              <li><strong>Reset</strong>: Click "Reset" to clear the input and barcode.</li>
+            </ul>
+            <p>The tool processes data locally and works offline after loading.</p>
+
+            <h3>Use Cases for MaxiCode Generator Tool</h3>
+            <p>This tool is perfect for various scenarios, including:</p>
+            <ul>
+              <li><strong>E-commerce</strong>: Generate barcodes for order fulfillment.</li>
+              <li><strong>Warehousing</strong>: Track inventory with scannable codes.</li>
+              <li><strong>Postal Services</strong>: Create barcodes for automated mail sorting.</li>
+              <li><strong>Freight</strong>: Label cargo for international shipping.</li>
+            </ul>
+
+            <h3>Tips for Using the MaxiCode Generator Tool</h3>
+            <p>To get the best results, consider these tips:</p>
+            <ul>
+              <li><strong>High Contrast</strong>: Use high-contrast colors for reliable scanning.</li>
+              <li><strong>Test Barcodes</strong>: Scan the MaxiCode to ensure it works.</li>
+              <li><strong>Data Limit</strong>: Keep data under 93 characters to meet MaxiCode standards.</li>
+              <li><strong>Combine Tools</strong>: Use with our <a href="/image-to-png-converter.html">Image to PNG Converter</a>, <a href="/image-resizer-tool.html">Image Resizer Tool</a>, or <a href="/image-compressor-tool.html">Image Compressor Tool</a> for enhanced workflows.</li>
+              <li><strong>Contact Us</strong>: Need bulk MaxiCode generation? Email us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a>.</li>
+            </ul>
+
+            <h3>Why Choose Mass Tools?</h3>
+            <p>At Mass Tools, we provide free, high-quality tools to simplify your tasks. Our MaxiCode Generator Tool joins our suite, including the <a href="/qr-code-generator.html">QR Code Generator</a>, <a href="/data-matrix-generator.html">Data Matrix Generator</a>, <a href="/barcode-generator.html">Barcode Generator</a>, <a href="/pdf417-generator.html">PDF417 Generator</a>, <a href="/aztec-code-generator.html">Aztec Code Generator</a>, <a href="/image-to-png-converter.html">Image to PNG Converter</a>, <a href="/image-to-jpg-converter.html">Image to JPG Converter</a>, <a href="/image-to-webp-converter.html">Image to WebP Converter</a>, <a href="/image-to-svg-converter.html">Image to SVG Converter</a>, <a href="/image-to-tiff-converter.html">Image to TIFF Converter</a>, <a href="/image-to-heic-converter.html">Image to HEIC Converter</a>, <a href="/image-to-pdf-converter.html">Image to PDF Converter</a>, <a href="/image-to-bmp-converter.html">Image to BMP Converter</a>, <a href="/image-to-ico-converter.html">Image to ICO Converter</a>, <a href="/image-to-avif-converter.html">Image to AVIF Converter</a>, <a href="/image-to-eps-converter.html">Image to EPS Converter</a>, <a href="/image-to-psd-converter.html">Image to PSD Converter</a>, <a href="/image-to-base64-converter.html">Image to Base64 Converter</a>, <a href="/image-to-dxf-converter.html">Image to DXF Converter</a>, <a href="/image-to-exr-converter.html">Image to EXR Converter</a>, <a href="/pdf-to-image-converter.html">PDF to Image Converter</a>, <a href="/image-resizer-tool.html">Image Resizer Tool</a>, <a href="/image-compressor-tool.html">Image Compressor Tool</a>, <a href="/psd-to-image-converter.html">PSD to Image Converter</a>, <a href="/eps-to-image-converter.html">EPS to Image Converter</a>, <a href="/word-counter.html">Word Counter</a>, <a href="/case-converter.html">Case Converter</a>, <a href="/text-to-ascii-converter.html">Text to ASCII Converter</a>, <a href="/lorem-ipsum-generator.html">Lorem Ipsum Generator</a>, <a href="/character-counter.html">Character Counter</a>, <a href="/sort-text.html">Sort Text</a>, <a href="/find-replace-text.html">Find and Replace Text</a>, <a href="/reverse-list.html">Reverse List</a>, <a href="/difference-checker.html">Difference Checker</a>, and <a href="/add-prefix-suffix.html">Add Prefix/Suffix</a>. We prioritize privacy, speed, and ease of use. Learn more on our <a href="/about-us.html">About Us</a> page.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-column">
+          <a href="/" class="footer-column-logo">
+            <i class="fas fa-tools footer-column-logo-icon"></i>
+            <span>Mass Tools</span>
+          </a>
+          <p>Empowering you with free, high-quality online tools.</p>
+        </div>
+        <div class="footer-column">
+          <ul>
+            <li><a href="/#tools">Tools</a></li>
+            <li><a href="/about-us.html">About Us</a></li>
+            <li><a href="/contact-us.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <ul>
+            <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="/terms-and-conditions.html">Terms</a></li>
+            <li><a href="/Disclaimer.html">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2025 Mass Tools. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-to-top" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bwip-js@4.4.0/dist/bwip-js-min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('MaxiCode Generator initialized at', new Date().toLocaleString());
+
+      // Mobile menu toggle
+      const menuToggle = document.getElementById('mobile-menu-toggle');
+      const nav = document.getElementById('nav-menu');
+      if (menuToggle && nav) {
+        menuToggle.addEventListener('change', () => {
+          nav.classList.toggle('show', menuToggle.checked);
+          console.log('Mobile menu toggled:', menuToggle.checked);
+        });
+      }
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = document.querySelector(anchor.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+          if (nav && nav.classList.contains('show')) {
+            nav.classList.remove('show');
+            menuToggle.checked = false;
+          }
+        });
+      });
+
+      document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+          const href = anchor.getAttribute('href');
+          const [path, hash] = href.split('#');
+          const isHome = path === '/' || path === '' || path === '/index.html';
+          if (isHome && hash && (window.location.pathname === '/' || window.location.pathname === '/index.html')) {
+            e.preventDefault();
+            const target = document.querySelector(`#${hash}`);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth' });
+              history.pushState(null, null, `/#${hash}`);
+            }
+          } else {
+            window.location.href = href;
+          }
+          if (nav && nav.classList.contains('show')) {
+            nav.classList.remove('show');
+            menuToggle.checked = false;
+          }
+        });
+      });
+
+      // Scroll-to-top button
+      const scrollTopBtn = document.querySelector('.scroll-to-top');
+      if (scrollTopBtn) {
+        window.addEventListener('scroll', () => {
+          scrollTopBtn.classList.toggle('show', window.scrollY > 200);
+          console.log('Scroll-to-top visibility:', window.scrollY > 200);
+        });
+        scrollTopBtn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          console.log('Scrolled to top');
+        });
+      }
+
+      // Log internal links for debugging
+      const internalLinks = document.querySelectorAll('a[href^="/"]');
+      internalLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          console.log('Internal link clicked:', link.href);
+        });
+      });
+
+      // Search functionality
+      const searchInput = document.querySelector('.search-bar input');
+      const searchButton = document.querySelector('.search-bar button');
+      if (searchInput && searchButton) {
+        const tools = [
+          { name: 'Image To JPG Converter', url: '/image-to-jpg-converter.html' },
+          { name: 'Image To PNG Converter', url: '/image-to-png-converter.html' },
+          { name: 'Image To SVG', url: '/image-to-svg-converter.html' },
+          { name: 'Image To WEBP Converter', url: '/image-to-webp-converter.html' },
+          { name: 'Image To TIFF Converter', url: '/image-to-tiff-converter.html' },
+          { name: 'Image To HEIC Converter', url: '/image-to-heic-converter.html' },
+          { name: 'Image To PDF Converter', url: '/image-to-pdf-converter.html' },
+          { name: 'Image To BMP Converter', url: '/image-to-bmp-converter.html' },
+          { name: 'Image To ICO Converter', url: '/image-to-ico-converter.html' },
+          { name: 'Image To AVIF Converter', url: '/image-to-avif-converter.html' },
+          { name: 'Image To EPS Converter', url: '/image-to-eps-converter.html' },
+          { name: 'Image To PSD Converter', url: '/image-to-psd-converter.html' },
+          { name: 'Image To Base64 Converter', url: '/image-to-base64-converter.html' },
+          { name: 'Image To DXF Converter', url: '/image-to-dxf-converter.html' },
+          { name: 'Image To EXR Converter', url: '/image-to-exr-converter.html' },
+          { name: 'PDF To Image Converter', url: '/pdf-to-image-converter.html' },
+          { name: 'Image Resizer Tool', url: '/image-resizer-tool.html' },
+          { name: 'Image Compressor Tool', url: '/image-compressor-tool.html' },
+          { name: 'PSD To Image Converter', url: '/psd-to-image-converter.html' },
+          { name: 'EPS To Image Converter', url: '/eps-to-image-converter.html' },
+          { name: 'Word Counter', url: '/word-counter.html' },
+          { name: 'Case Converter', url: '/case-converter.html' },
+          { name: 'Text to ASCII Converter', url: '/text-to-ascii-converter.html' },
+          { name: 'Lorem Ipsum Generator', url: '/lorem-ipsum-generator.html' },
+          { name: 'Character Counter', url: '/character-counter.html' },
+          { name: 'Sort Text', url: '/sort-text.html' },
+          { name: 'Find and Replace Text', url: '/find-replace-text.html' },
+          { name: 'Reverse List', url: '/reverse-list.html' },
+          { name: 'Difference Checker', url: '/difference-checker.html' },
+          { name: 'Add Prefix/Suffix', url: '/add-prefix-suffix.html' },
+          { name: 'QR Code Generator', url: '/qr-code-generator.html' },
+          { name: 'Data Matrix Generator', url: '/data-matrix-generator.html' },
+          { name: 'Barcode Generator', url: '/barcode-generator.html' },
+          { name: 'PDF417 Generator', url: '/pdf417-generator.html' },
+          { name: 'Aztec Code Generator', url: '/aztec-code-generator.html' },
+          { name: 'MaxiCode Generator', url: '/maxicode-generator.html' }
+        ];
+        searchButton.addEventListener('click', () => {
+          const query = searchInput.value.trim().toLowerCase();
+          const matchedTool = tools.find(tool => tool.name.toLowerCase().includes(query));
+          if (matchedTool) {
+            window.location.href = matchedTool.url;
+          } else {
+            alert('No tools found matching your search.');
+          }
+        });
+        searchInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            searchButton.click();
+          }
+        });
+      }
+
+      // Tool functionality
+      const codeInput = document.getElementById('codeInput');
+      const fgColor = document.getElementById('fgColor');
+      const bgColor = document.getElementById('bgColor');
+      const codeSize = document.getElementById('codeSize');
+      const generateBtn = document.getElementById('generateBtn');
+      const downloadPngBtn = document.getElementById('downloadPngBtn');
+      const resetBtn = document.getElementById('resetBtn');
+      const codeCanvas = document.getElementById('codeCanvas');
+      const noResultsMessage = document.getElementById('noResultsMessage');
+
+      // Check BWIP-JS library loaded
+      if (typeof bwipjs === 'undefined') {
+        console.error('BWIP-JS library failed to load');
+        noResultsMessage.textContent = 'MaxiCode Generator is unavailable due to a loading issue. Please refresh the page or check your connection.';
+        noResultsMessage.style.display = 'block';
+        generateBtn.disabled = true;
+        // Attempt to load local fallback (optional, if you have a local copy)
+        const script = document.createElement('script');
+        script.src = '/js/bwip-js-min.js';
+        script.onerror = () => {
+          console.error('Local BWIP-JS fallback also failed');
+          noResultsMessage.textContent = 'MaxiCode Generator is unavailable. Please contact support at byrolaa@gmail.com.';
+        };
+        document.head.appendChild(script);
+        return;
+      } else {
+        console.log('BWIP-JS library loaded successfully');
+      }
+
+      // Generate MaxiCode
+      generateBtn.addEventListener('click', () => {
+        const data = codeInput.value.trim();
+        const fg = fgColor.value;
+        const bg = bgColor.value;
+        const size = parseInt(codeSize.value);
+
+        // Input validation
+        if (!data) {
+          noResultsMessage.textContent = 'Please enter data to generate a MaxiCode.';
+          noResultsMessage.style.display = 'block';
+          codeCanvas.style.display = 'none';
+          downloadPngBtn.disabled = true;
+          console.log('No data entered');
+          return;
+        }
+
+        if (data.length > 93) {
+          noResultsMessage.textContent = 'Data must be less than 93 characters for MaxiCode.';
+          noResultsMessage.style.display = 'block';
+          codeCanvas.style.display = 'none';
+          downloadPngBtn.disabled = true;
+          console.log('Data too long:', data.length);
+          return;
+        }
+
+        if (isNaN(size) || size < 100 || size > 500) {
+          noResultsMessage.textContent = 'Size must be between 100 and 500 pixels.';
+          noResultsMessage.style.display = 'block';
+          codeCanvas.style.display = 'none';
+          downloadPngBtn.disabled = true;
+          console.log('Invalid size:', size);
+          return;
+        }
+
+        // Validate UTF-8 encoding
+        try {
+          encodeURIComponent(data);
+        } catch (e) {
+          noResultsMessage.textContent = 'Invalid data format. Please use valid UTF-8 characters.';
+          noResultsMessage.style.display = 'block';
+          codeCanvas.style.display = 'none';
+          downloadPngBtn.disabled = true;
+          console.log('Invalid UTF-8 data:', e);
+          return;
+        }
+
+        noResultsMessage.style.display = 'none';
+        codeCanvas.style.display = 'block';
+        codeCanvas.width = size;
+        codeCanvas.height = size;
+
+        try {
+          bwipjs.toCanvas(codeCanvas, {
+            bcid: 'maxicode',
+            text: data,
+            scale: size / 200,
+            height: 50,
+            width: 50,
+            backgroundcolor: bg.replace('#', ''),
+            barcolor: fg.replace('#', '')
+          });
+          console.log('MaxiCode generated successfully:', data);
+          downloadPngBtn.disabled = false;
+
+          // Google Analytics event
+          if (window.gtag) {
+            gtag('event', 'maxicode_generate', {
+              event_category: 'Tool Usage',
+              event_label: 'MaxiCode Generator',
+              value: data.length
+            });
+          }
+        } catch (error) {
+          console.error('MaxiCode generation failed:', error);
+          noResultsMessage.textContent = 'Failed to generate MaxiCode. Please check your data and try again.';
+          noResultsMessage.style.display = 'block';
+          codeCanvas.style.display = 'none';
+          downloadPngBtn.disabled = true;
+        }
+      });
+
+      // Download PNG
+      downloadPngBtn.addEventListener('click', () => {
+        try {
+          const url = codeCanvas.toDataURL('image/png');
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'maxicode.png';
+          a.click();
+          console.log('PNG downloaded');
+
+          // Google Analytics event
+          if (window.gtag) {
+            gtag('event', 'download_maxicode', {
+              event_category: 'Tool Usage',
+              event_label: 'MaxiCode Generator Download',
+              value: 1
+            });
+          }
+        } catch (error) {
+          console.error('PNG download failed:', error);
+          alert('Failed to download PNG. Please try again.');
+        }
+      });
+
+      // Reset button
+      resetBtn.addEventListener('click', () => {
+        codeInput.value = '';
+        fgColor.value = '#000000';
+        bgColor.value = '#FFFFFF';
+        codeSize.value = '200';
+        codeCanvas.style.display = 'none';
+        noResultsMessage.textContent = 'Enter data and click "Generate MaxiCode" to create your barcode.';
+        noResultsMessage.style.display = 'block';
+        downloadPngBtn.disabled = true;
+        console.log('Form reset');
+      });
+
+      // Initial state
+      noResultsMessage.style.display = 'block';
+      codeCanvas.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
