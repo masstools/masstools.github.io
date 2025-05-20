@@ -726,7 +726,7 @@
               <li><strong>Adjust Quality</strong>: Use the quality slider to balance file size and quality. For web images, 70–80% often suffices.</li>
               <li><strong>Resize Images</strong>: Use our <a href="/image-resizer-tool.html">Image Resizer</a> to adjust dimensions before conversion for smaller files.</li>
               <li><strong>Test Compatibility</strong>: Ensure your target platform supports WebP. For older browsers, consider fallbacks like JPG using our <a href="/image-to-jpg-converter.html">Image to JPG Converter</a>.</li>
-              <li><strong>Batch Processing</strong>: Need to convert multiple images? Contact us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a> for custom solutions or try our <a href="/image-to-jpg-converter.html">PNG to JPEG Converter</a> for bulk needs.</li>
+              <li><strong>Batch Processing</strong>: Need to convert multiple images? Contact us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a> for custom solutions or try our <a href="/image-to-png-converter.html">Image to PNG Converter</a> for bulk needs.</li>
             </ul>
 
             <h3>Why Choose Mass Tools?</h3>
@@ -774,6 +774,7 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // Navigation and Scroll-to-Top
       const menuToggle = document.getElementById('mobile-menu-toggle');
       const nav = document.getElementById('nav-menu');
       if (menuToggle && nav) {
@@ -834,11 +835,12 @@
         });
       }
 
+      // Search Functionality
       const searchInput = document.querySelector('.search-bar input');
       const searchButton = document.querySelector('.search-bar button');
       if (searchInput && searchButton) {
         const tools = [
-         { name: 'Image To JPG Converter', url: '/image-to-jpg-converter.html' },
+          { name: 'Image To JPG Converter', url: '/image-to-jpg-converter.html' },
           { name: 'Image To PNG Converter', url: '/image-to-png-converter.html' },
           { name: 'Image To SVG', url: '/image-to-svg-converter.html' },
           { name: 'Image To WEBP Converter', url: '/image-to-webp-converter.html' },
@@ -913,16 +915,16 @@
           { name: 'URL Extractor', url: '/url-extractor.html' },
           { name: 'Online Notepad', url: '/online-notepad.html' },
           { name: 'Keyword Research Tool', url: '/keyword-research-tool.html' },
-        { name: 'On-Page SEO Analyzer', url: '/on-page-seo-analyzer.html' },
-        { name: 'Technical SEO Auditor', url: '/technical-seo-auditor.html' },
-        { name: 'Backlink Analyzer', url: '/backlink-analyzer.html' },
-        { name: 'Content Optimization Tool', url: '/content-optimization-tool.html' },
-        { name: 'Rank Tracker', url: '/rank-tracker.html' },
-        { name: 'Competitor Analysis Tool', url: '/competitor-analysis-tool.html' },
-        { name: 'SEO Audit and Reporting Tool', url: '/seo-audit-reporting-tool.html' },
-        { name: 'Local SEO Tool', url: '/local-seo-tool.html' },
-        { name: 'AI-Powered SEO Assistant', url: '/ai-seo-assistant.html' },
-        { name: 'QR Code Generator', url: '/qr-code-generator.html' },
+          { name: 'On-Page SEO Analyzer', url: '/on-page-seo-analyzer.html' },
+          { name: 'Technical SEO Auditor', url: '/technical-seo-auditor.html' },
+          { name: 'Backlink Analyzer', url: '/backlink-analyzer.html' },
+          { name: 'Content Optimization Tool', url: '/content-optimization-tool.html' },
+          { name: 'Rank Tracker', url: '/rank-tracker.html' },
+          { name: 'Competitor Analysis Tool', url: '/competitor-analysis-tool.html' },
+          { name: 'SEO Audit and Reporting Tool', url: '/seo-audit-reporting-tool.html' },
+          { name: 'Local SEO Tool', url: '/local-seo-tool.html' },
+          { name: 'AI-Powered SEO Assistant', url: '/ai-seo-assistant.html' },
+          { name: 'QR Code Generator', url: '/qr-code-generator.html' },
           { name: 'Data Matrix Generator', url: '/data-matrix-generator.html' },
           { name: 'Barcode Generator', url: '/barcode-generator.html' },
           { name: 'PDF417 Generator', url: '/pdf417-generator.html' },
@@ -948,6 +950,7 @@
         });
       }
 
+      // Image to WebP Converter Logic
       const uploadArea = document.getElementById('uploadArea');
       const imageInput = document.getElementById('imageInput');
       const originalPreview = document.getElementById('originalPreview');
@@ -960,13 +963,18 @@
       let originalImage = null;
       let convertedImageUrl = null;
 
-      qualityRange.addEventListener('input', () => {
-        qualityValue.textContent = `${qualityRange.value}%`;
-      });
+      // Update quality value display
+      if (qualityRange && qualityValue) {
+        qualityRange.addEventListener('input', () => {
+          qualityValue.textContent = `${qualityRange.value}%`;
+        });
+      }
 
+      // Handle file upload
       const handleFile = (file) => {
         if (!file.type.startsWith('image/')) {
           alert('Please upload a valid image file.');
+          console.error('Invalid file type:', file.type);
           return;
         }
         originalImage = file;
@@ -979,67 +987,143 @@
           originalPreview.classList.add('visible');
           convertedPreview.src = '';
           convertedPreview.classList.remove('visible');
+          console.log('Image uploaded successfully:', file.name);
+        };
+        reader.onerror = () => {
+          alert('Error reading the image file. Please try again.');
+          console.error('FileReader error for file:', file.name);
         };
         reader.readAsDataURL(file);
       };
 
-      uploadArea.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        uploadArea.classList.add('dragover');
-      });
+      // Drag and drop
+      if (uploadArea) {
+        uploadArea.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          uploadArea.classList.add('dragover');
+        });
 
-      uploadArea.addEventListener('dragleave', () => {
-        uploadArea.classList.remove('dragover');
-      });
+        uploadArea.addEventListener('dragleave', () => {
+          uploadArea.classList.remove('dragover');
+        });
 
-      uploadArea.addEventListener('drop', (e) => {
-        e.preventDefault();
-        uploadArea.classList.remove('dragover');
-        const file = e.dataTransfer.files[0];
-        if (file) handleFile(file);
-      });
+        uploadArea.addEventListener('drop', (e) => {
+          e.preventDefault();
+          uploadArea.classList.remove('dragover');
+          const file = e.dataTransfer.files[0];
+          if (file) handleFile(file);
+        });
 
-      uploadArea.addEventListener('click', () => {
-        imageInput.click();
-      });
+        // Click to upload
+        uploadArea.addEventListener('click', () => {
+          imageInput.click();
+        });
+      }
 
-      imageInput.addEventListener('change', () => {
-        if (imageInput.files[0]) handleFile(imageInput.files[0]);
-      });
+      if (imageInput) {
+        imageInput.addEventListener('change', () => {
+          if (imageInput.files[0]) handleFile(imageInput.files[0]);
+        });
+      }
 
-      convertBtn.addEventListener('click', () => {
-        if (!originalImage) return;
+      // Convert to WebP
+      if (convertBtn) {
+        convertBtn.addEventListener('click', () => {
+          if (!originalImage) {
+            alert('No image selected. Please upload an image first.');
+            console.warn('Convert attempted but no image selected.');
+            return;
+          }
 
-        const img = new Image();
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          img.src = e.target.result;
-          img.onload = () => {
-            const canvas = document.createElement('canvas');
-            canvas.width = img.width;
-            canvas.height = img.height;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0);
-            const quality = qualityRange.value / 100;
-            convertedImageUrl = canvas.toDataURL('image/webp', quality);
-            convertedPreview.src = convertedImageUrl;
-            convertedPreview.classList.add('visible');
-            downloadBtn.disabled = false;
+          const img = new Image();
+          img.crossOrigin = 'Anonymous'; // Handle potential cross-origin issues
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            img.src = e.target.result;
+            img.onload = () => {
+              // Determine canvas size (especially for SVG)
+              let canvasWidth = img.width;
+              let canvasHeight = img.height;
+
+              // Handle SVG-specific case
+              if (originalImage.type === 'image/svg+xml') {
+                const defaultSize = 800;
+                const aspectRatio = img.width / img.height || 1;
+                if (!img.width || !img.height || (img.width < defaultSize && img.height < defaultSize)) {
+                  canvasWidth = defaultSize;
+                  canvasHeight = defaultSize / aspectRatio;
+                }
+              }
+
+              const canvas = document.createElement('canvas');
+              canvas.width = canvasWidth;
+              canvas.height = canvasHeight;
+              const ctx = canvas.getContext('2d');
+
+              // Add white background only for non-transparent formats (e.g., JPG)
+              if (originalImage.type === 'image/jpeg' || originalImage.type === 'image/bmp') {
+                ctx.fillStyle = '#FFFFFF';
+                ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+              }
+
+              // Improve rendering quality
+              ctx.imageSmoothingEnabled = true;
+              ctx.imageSmoothingQuality = 'high';
+
+              // Draw the image
+              ctx.drawImage(img, 0, 0, canvasWidth, canvasHeight);
+
+              try {
+                // Convert to WebP with user-specified quality
+                const quality = qualityRange.value / 100;
+                convertedImageUrl = canvas.toDataURL('image/webp', quality);
+                convertedPreview.src = convertedImageUrl;
+                convertedPreview.classList.add('visible');
+                downloadBtn.disabled = false;
+                console.log('Image converted successfully to WebP.');
+              } catch (error) {
+                alert('Error converting image to WebP. Please try again.');
+                console.error('Conversion error:', error);
+              }
+            };
+            img.onerror = () => {
+              alert('Error loading image. Please ensure the file is valid and try again.');
+              console.error('Image load error for file:', originalImage.name);
+            };
           };
-        };
-        reader.readAsDataURL(originalImage);
-      });
+          reader.onerror = () => {
+            alert('Error reading the image file. Please try again.');
+            console.error('FileReader error for file:', originalImage.name);
+          };
+          reader.readAsDataURL(originalImage);
+        });
+      }
 
-      downloadBtn.addEventListener('click', () => {
-        if (!convertedImageUrl) return;
+      // Download WebP
+      if (downloadBtn) {
+        downloadBtn.addEventListener('click', () => {
+          if (!convertedImageUrl) {
+            alert('No converted image available. Please convert an image first.');
+            console.warn('Download attempted but no converted image URL available.');
+            return;
+          }
 
-        const originalName = originalImage.name.split('.')[0];
-        const downloadName = `converted-${originalName}-masstools.github.io.webp`;
-        const link = document.createElement('a');
-        link.href = convertedImageUrl;
-        link.download = downloadName;
-        link.click();
-      });
+          try {
+            const originalName = originalImage.name.split('.')[0];
+            const downloadName = `converted-${originalName}-masstools.github.io.webp`;
+            const link = document.createElement('a');
+            link.href = convertedImageUrl;
+            link.download = downloadName;
+            document.body.appendChild(link); // Append to DOM for compatibility
+            link.click();
+            document.body.removeChild(link); // Clean up
+            console.log('Download initiated for:', downloadName);
+          } catch (error) {
+            alert('Error initiating download. Please try again.');
+            console.error('Download error:', error);
+          }
+        });
+      }
     });
   </script>
 </body>
