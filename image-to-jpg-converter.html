@@ -1077,11 +1077,7 @@
                 convertedPreview.src = convertedImageUrl;
                 convertedPreview.classList.add('visible');
                 downloadBtn.disabled = false;
-
-                // Display approximate file size
-                const byteSize = Math.round((convertedImageUrl.length * 3) / 4 / 1024);
-                alert(`Converted JPG size: ~${byteSize} KB`);
-                console.log('Image converted successfully. Size:', byteSize, 'KB');
+                console.log('Image converted successfully.');
               } catch (error) {
                 alert('Error converting image to JPG. Please try again.');
                 console.error('Conversion error:', error);
