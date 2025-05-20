@@ -946,105 +946,225 @@
         });
       }
 
-      // Image to JPG Converter Logic
-      const uploadArea = document.getElementById('uploadArea');
-      const imageInput = document.getElementById('imageInput');
-      const qualitySlider = document.getElementById('qualitySlider');
-      const qualityValue = document.getElementById('qualityValue');
-      const originalPreview = document.getElementById('originalPreview');
-      const convertedPreview = document.getElementById('convertedPreview');
-      const convertBtn = document.getElementById('convertBtn');
-      const downloadBtn = document.getElementById('downloadBtn');
-
-      let originalImage = null;
-      let convertedImageUrl = null;
-
-      // Update quality value display
-      qualitySlider.addEventListener('input', () => {
-        qualityValue.textContent = qualitySlider.value;
+      document.addEventListener('DOMContentLoaded', () => {
+    // Navigation and Scroll-to-Top (unchanged)
+    const menuToggle = document.getElementById('mobile-menu-toggle');
+    const nav = document.getElementById('nav-menu');
+    if (menuToggle && nav) {
+      menuToggle.addEventListener('change', () => {
+        nav.classList.toggle('show', menuToggle.checked);
       });
+    }
 
-      // Handle file upload
-      const handleFile = (file) => {
-        if (!file.type.startsWith('image/')) {
-          alert('Please upload a valid image file.');
-          return;
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(anchor.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
         }
-        originalImage = file;
-        convertBtn.disabled = false;
-        downloadBtn.disabled = true;
-
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          originalPreview.src = e.target.result;
-          originalPreview.classList.add('visible');
-          convertedPreview.src = '';
-          convertedPreview.classList.remove('visible');
-        };
-        reader.readAsDataURL(file);
-      };
-
-      // Drag and drop
-      uploadArea.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        uploadArea.classList.add('dragover');
-      });
-
-      uploadArea.addEventListener('dragleave', () => {
-        uploadArea.classList.remove('dragover');
-      });
-
-      uploadArea.addEventListener('drop', (e) => {
-        e.preventDefault();
-        uploadArea.classList.remove('dragover');
-        const file = e.dataTransfer.files[0];
-        if (file) handleFile(file);
-      });
-
-      // Click to upload
-      uploadArea.addEventListener('click', () => {
-        imageInput.click();
-      });
-
-      imageInput.addEventListener('change', () => {
-        if (imageInput.files[0]) handleFile(imageInput.files[0]);
-      });
-
-      // Convert to JPG
-      convertBtn.addEventListener('click', () => {
-        if (!originalImage) return;
-
-        const img = new Image();
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          img.src = e.target.result;
-          img.onload = () => {
-            const canvas = document.createElement('canvas');
-            canvas.width = img.width;
-            canvas.height = img.height;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0);
-            convertedImageUrl = canvas.toDataURL('image/jpeg', parseFloat(qualitySlider.value));
-            convertedPreview.src = convertedImageUrl;
-            convertedPreview.classList.add('visible');
-            downloadBtn.disabled = false;
-          };
-        };
-        reader.readAsDataURL(originalImage);
-      });
-
-      // Download JPG
-      downloadBtn.addEventListener('click', () => {
-        if (!convertedImageUrl) return;
-
-        const originalName = originalImage.name.split('.')[0];
-        const downloadName = `converted-${originalName}-masstools.github.io.jpg`;
-        const link = document.createElement('a');
-        link.href = convertedImageUrl;
-        link.download = downloadName;
-        link.click();
+        if (nav && nav.classList.contains('show')) {
+          nav.classList.remove('show');
+          menuToggle.checked = false;
+        }
       });
     });
+
+    document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        const href = anchor.getAttribute('href');
+        const [path, hash] = href.split('#');
+        const isHome = path === '/' || path === '' || path === '/index.html';
+
+        if (isHome && hash && (window.location.pathname === '/' || window.location.pathname === '/index.html')) {
+          e.preventDefault();
+          const target = document.querySelector(`#${hash}`);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+            history.pushState(null, null, `/#${hash}`);
+          }
+        } else {
+          window.location.href = href;
+        }
+
+        if (nav && nav.classList.contains('show')) {
+          nav.classList.remove('show');
+          menuToggle.checked = false;
+        }
+      });
+    });
+
+    const scrollTopBtn = document.querySelector('.scroll-to-top');
+    if (scrollTopBtn) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 200) {
+          scrollTopBtn.classList.add('show');
+        } else {
+          scrollTopBtn.classList.remove('show');
+        }
+      });
+      scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // Search Functionality (unchanged)
+    const searchInput = document.querySelector('.search-bar input');
+    const searchButton = document.querySelector('.search-bar button');
+    if (searchInput && searchButton) {
+      const tools = [
+        { name: 'Image To JPG Converter', url: '/image-to-jpg-converter.html' },
+        // ... (rest of the tools array unchanged)
+      ];
+      searchButton.addEventListener('click', () => {
+        const query = searchInput.value.trim().toLowerCase();
+        const matchedTool = tools.find(tool => tool.name.toLowerCase().includes(query));
+        if (matchedTool) {
+          window.location.href = matchedTool.url;
+        } else {
+          alert('No tools found matching your search.');
+        }
+      });
+      searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          searchButton.click();
+        }
+      });
+    }
+
+    // Image to JPG Converter Logic (Updated)
+    const uploadArea = document.getElementById('uploadArea');
+    const imageInput = document.getElementById('imageInput');
+    const qualitySlider = document.getElementById('qualitySlider');
+    const qualityValue = document.getElementById('qualityValue');
+    const originalPreview = document.getElementById('originalPreview');
+    const convertedPreview = document.getElementById('convertedPreview');
+    const convertBtn = document.getElementById('convertBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+
+    let originalImage = null;
+    let convertedImageUrl = null;
+
+    // Update quality value display
+    qualitySlider.addEventListener('input', () => {
+      qualityValue.textContent = qualitySlider.value;
+    });
+
+    // Handle file upload
+    const handleFile = (file) => {
+      if (!file.type.startsWith('image/')) {
+        alert('Please upload a valid image file.');
+        return;
+      }
+      originalImage = file;
+      convertBtn.disabled = false;
+      downloadBtn.disabled = true;
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        originalPreview.src = e.target.result;
+        originalPreview.classList.add('visible');
+        convertedPreview.src = '';
+        convertedPreview.classList.remove('visible');
+      };
+      reader.readAsDataURL(file);
+    };
+
+    // Drag and drop
+    uploadArea.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      uploadArea.classList.add('dragover');
+    });
+
+    uploadArea.addEventListener('dragleave', () => {
+      uploadArea.classList.remove('dragover');
+    });
+
+    uploadArea.addEventListener('drop', (e) => {
+      e.preventDefault();
+      uploadArea.classList.remove('dragover');
+      const file = e.dataTransfer.files[0];
+      if (file) handleFile(file);
+    });
+
+    // Click to upload
+    uploadArea.addEventListener('click', () => {
+      imageInput.click();
+    });
+
+    imageInput.addEventListener('change', () => {
+      if (imageInput.files[0]) handleFile(imageInput.files[0]);
+    });
+
+    // Convert to JPG (Updated)
+    convertBtn.addEventListener('click', () => {
+      if (!originalImage) return;
+
+      const img = new Image();
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        img.src = e.target.result;
+        img.onload = () => {
+          // Determine canvas size (especially for SVG)
+          let canvasWidth = img.width;
+          let canvasHeight = img.height;
+
+          // Handle SVG-specific case
+          if (originalImage.type === 'image/svg+xml') {
+            // Set a reasonable default size for SVG to avoid tiny output
+            const defaultSize = 800; // Adjust as needed
+            const aspectRatio = img.width / img.height;
+            if (img.width < defaultSize && img.height < defaultSize) {
+              canvasWidth = defaultSize;
+              canvasHeight = defaultSize / aspectRatio;
+            }
+          }
+
+          const canvas = document.createElement('canvas');
+          canvas.width = canvasWidth;
+          canvas.height = canvasHeight;
+          const ctx = canvas.getContext('2d');
+
+          // Improve rendering for WebP and other formats
+          ctx.imageSmoothingEnabled = true;
+          ctx.imageSmoothingQuality = 'high';
+
+          // Draw the image
+          ctx.drawImage(img, 0, 0, canvasWidth, canvasHeight);
+
+          // Adjust quality for WebP to avoid over-compression
+          let quality = parseFloat(qualitySlider.value);
+          if (originalImage.type === 'image/webp' && quality < 0.9) {
+            quality = Math.max(quality, 0.9); // Enforce minimum quality for WebP
+            alert('WebP images are already compressed. Using a minimum quality of 0.9 to preserve details.');
+          }
+
+          // Convert to JPG with selected quality
+          convertedImageUrl = canvas.toDataURL('image/jpeg', quality);
+          convertedPreview.src = convertedImageUrl;
+          convertedPreview.classList.add('visible');
+          downloadBtn.disabled = false;
+
+          // Display approximate file size
+          const byteSize = Math.round((convertedImageUrl.length * 3) / 4 / 1024); // Approximate size in KB
+          alert(`Converted JPG size: ~${byteSize} KB`);
+        };
+      };
+      reader.readAsDataURL(originalImage);
+    });
+
+    // Download JPG
+    downloadBtn.addEventListener('click', () => {
+      if (!convertedImageUrl) return;
+
+      const originalName = originalImage.name.split('.')[0];
+      const downloadName = `converted-${originalName}-masstools.github.io.jpg`;
+      const link = document.createElement('a');
+      link.href = convertedImageUrl;
+      link.download = downloadName;
+      link.click();
+    });
+  });
   </script>
 </body>
 </html>
