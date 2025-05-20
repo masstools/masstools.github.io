@@ -684,6 +684,7 @@
           <div class="action-buttons">
             <button id="convertBtn" disabled>Convert to SVG</button>
             <button id="downloadBtn" disabled>Download SVG</button>
+            <button id="clearBtn">Clear</button>
           </div>
 
           <a class="cta-button" href="/index.html#tools">Explore Our Tools</a>
@@ -776,6 +777,7 @@
   <script src="https://cdn.jsdelivr.net/npm/potrace@2.1.8/potrace.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // Navigation and Scroll-to-Top
       const menuToggle = document.getElementById('mobile-menu-toggle');
       const nav = document.getElementById('nav-menu');
       if (menuToggle && nav) {
@@ -836,11 +838,12 @@
         });
       }
 
+      // Search Functionality
       const searchInput = document.querySelector('.search-bar input');
       const searchButton = document.querySelector('.search-bar button');
       if (searchInput && searchButton) {
         const tools = [
-        { name: 'Image To JPG Converter', url: '/image-to-jpg-converter.html' },
+          { name: 'Image To JPG Converter', url: '/image-to-jpg-converter.html' },
           { name: 'Image To PNG Converter', url: '/image-to-png-converter.html' },
           { name: 'Image To SVG', url: '/image-to-svg-converter.html' },
           { name: 'Image To WEBP Converter', url: '/image-to-webp-converter.html' },
@@ -915,16 +918,16 @@
           { name: 'URL Extractor', url: '/url-extractor.html' },
           { name: 'Online Notepad', url: '/online-notepad.html' },
           { name: 'Keyword Research Tool', url: '/keyword-research-tool.html' },
-        { name: 'On-Page SEO Analyzer', url: '/on-page-seo-analyzer.html' },
-        { name: 'Technical SEO Auditor', url: '/technical-seo-auditor.html' },
-        { name: 'Backlink Analyzer', url: '/backlink-analyzer.html' },
-        { name: 'Content Optimization Tool', url: '/content-optimization-tool.html' },
-        { name: 'Rank Tracker', url: '/rank-tracker.html' },
-        { name: 'Competitor Analysis Tool', url: '/competitor-analysis-tool.html' },
-        { name: 'SEO Audit and Reporting Tool', url: '/seo-audit-reporting-tool.html' },
-        { name: 'Local SEO Tool', url: '/local-seo-tool.html' },
-        { name: 'AI-Powered SEO Assistant', url: '/ai-seo-assistant.html' },
-        { name: 'QR Code Generator', url: '/qr-code-generator.html' },
+          { name: 'On-Page SEO Analyzer', url: '/on-page-seo-analyzer.html' },
+          { name: 'Technical SEO Auditor', url: '/technical-seo-auditor.html' },
+          { name: 'Backlink Analyzer', url: '/backlink-analyzer.html' },
+          { name: 'Content Optimization Tool', url: '/content-optimization-tool.html' },
+          { name: 'Rank Tracker', url: '/rank-tracker.html' },
+          { name: 'Competitor Analysis Tool', url: '/competitor-analysis-tool.html' },
+          { name: 'SEO Audit and Reporting Tool', url: '/seo-audit-reporting-tool.html' },
+          { name: 'Local SEO Tool', url: '/local-seo-tool.html' },
+          { name: 'AI-Powered SEO Assistant', url: '/ai-seo-assistant.html' },
+          { name: 'QR Code Generator', url: '/qr-code-generator.html' },
           { name: 'Data Matrix Generator', url: '/data-matrix-generator.html' },
           { name: 'Barcode Generator', url: '/barcode-generator.html' },
           { name: 'PDF417 Generator', url: '/pdf417-generator.html' },
@@ -950,25 +953,34 @@
         });
       }
 
+      // Image to SVG Converter Logic
       const uploadArea = document.getElementById('uploadArea');
       const imageInput = document.getElementById('imageInput');
       const originalPreview = document.getElementById('originalPreview');
       const convertedPreview = document.getElementById('convertedPreview');
       const convertBtn = document.getElementById('convertBtn');
       const downloadBtn = document.getElementById('downloadBtn');
+      const clearBtn = document.getElementById('clearBtn');
       const thresholdRange = document.getElementById('thresholdRange');
       const thresholdValue = document.getElementById('thresholdValue');
 
       let originalImage = null;
       let convertedSvgData = null;
+      let imageWidth = 0;
+      let imageHeight = 0;
 
-      thresholdRange.addEventListener('input', () => {
-        thresholdValue.textContent = thresholdRange.value;
-      });
+      // Update threshold display
+      if (thresholdRange && thresholdValue) {
+        thresholdRange.addEventListener('input', () => {
+          thresholdValue.textContent = thresholdRange.value;
+        });
+      }
 
+      // Handle file upload
       const handleFile = (file) => {
         if (!file.type.startsWith('image/')) {
           alert('Please upload a valid image file.');
+          console.error('Invalid file type:', file.type);
           return;
         }
         originalImage = file;
@@ -981,74 +993,162 @@
           originalPreview.classList.add('visible');
           convertedPreview.src = '';
           convertedPreview.classList.remove('visible');
+
+          // Get image dimensions
+          const img = new Image();
+          img.src = e.target.result;
+          img.onload = () => {
+            imageWidth = img.width;
+            imageHeight = img.height;
+            console.log('Image uploaded:', file.name, `${imageWidth}x${imageHeight}`);
+          };
+          img.onerror = () => {
+            alert('Error loading image dimensions.');
+            console.error('Image dimension load error for file:', file.name);
+          };
+        };
+        reader.onerror = () => {
+          alert('Error reading the image file. Please try again.');
+          console.error('FileReader error for file:', file.name);
         };
         reader.readAsDataURL(file);
       };
 
-      uploadArea.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        uploadArea.classList.add('dragover');
-      });
+      // Drag and drop
+      if (uploadArea) {
+        uploadArea.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          uploadArea.classList.add('dragover');
+        });
 
-      uploadArea.addEventListener('dragleave', () => {
-        uploadArea.classList.remove('dragover');
-      });
+        uploadArea.addEventListener('dragleave', () => {
+          uploadArea.classList.remove('dragover');
+        });
 
-      uploadArea.addEventListener('drop', (e) => {
-        e.preventDefault();
-        uploadArea.classList.remove('dragover');
-        const file = e.dataTransfer.files[0];
-        if (file) handleFile(file);
-      });
+        uploadArea.addEventListener('drop', (e) => {
+          e.preventDefault();
+          uploadArea.classList.remove('dragover');
+          const file = e.dataTransfer.files[0];
+          if (file) handleFile(file);
+        });
 
-      uploadArea.addEventListener('click', () => {
-        imageInput.click();
-      });
+        uploadArea.addEventListener('click', () => {
+          imageInput.click();
+        });
+      }
 
-      imageInput.addEventListener('change', () => {
-        if (imageInput.files[0]) handleFile(imageInput.files[0]);
-      });
+      if (imageInput) {
+        imageInput.addEventListener('change', () => {
+          if (imageInput.files[0]) handleFile(imageInput.files[0]);
+        });
+      }
 
-      convertBtn.addEventListener('click', () => {
-        if (!originalImage) return;
+      // Convert to SVG
+      if (convertBtn) {
+        convertBtn.addEventListener('click', () => {
+          if (!originalImage) {
+            alert('No image selected. Please upload an image first.');
+            console.warn('Convert attempted but no image selected.');
+            return;
+          }
 
-        const img = new Image();
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          img.src = e.target.result;
-          img.onload = () => {
-            const canvas = document.createElement('canvas');
-            canvas.width = img.width;
-            canvas.height = img.height;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0);
+          const img = new Image();
+          img.crossOrigin = 'Anonymous'; // Handle potential cross-origin issues
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            img.src = e.target.result;
+            img.onload = () => {
+              const canvas = document.createElement('canvas');
+              canvas.width = imageWidth;
+              canvas.height = imageHeight;
+              const ctx = canvas.getContext('2d');
+              ctx.drawImage(img, 0, 0, imageWidth, imageHeight);
 
-            Potrace.loadImageFromUrl(img.src);
-            Potrace.process(() => {
-              Potrace.setParameter({
-                threshold: parseInt(thresholdRange.value, 10)
-              });
-              convertedSvgData = Potrace.getSVG(1);
-              const svgDataUri = 'data:image/svg+xml;base64,' + btoa(convertedSvgData);
-              convertedPreview.src = svgDataUri;
-              convertedPreview.classList.add('visible');
-              downloadBtn.disabled = false;
-            });
+              try {
+                // Use Potrace for vectorization
+                Potrace.loadImageFromUrl(img.src);
+                Potrace.setParameter({
+                  threshold: parseInt(thresholdRange.value, 10),
+                  turdsize: 2, // Suppress small specks
+                  optcurve: true, // Optimize curves
+                  alphamax: 1, // Corner threshold
+                  opttolerance: 0.2 // Curve optimization
+                });
+                Potrace.process(() => {
+                  // Get SVG with original dimensions
+                  convertedSvgData = Potrace.getSVG(1).replace(
+                    /<svg[^>]*>/,
+                    `<svg width="${imageWidth}" height="${imageHeight}" viewBox="0 0 ${imageWidth} ${imageHeight}" xmlns="http://www.w3.org/2000/svg">`
+                  );
+                  const svgDataUri = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(convertedSvgData)));
+                  convertedPreview.src = svgDataUri;
+                  convertedPreview.classList.add('visible');
+                  downloadBtn.disabled = false;
+                  console.log('Image converted to SVG:', `${imageWidth}x${imageHeight}`);
+                });
+              } catch (error) {
+                alert('Error converting image to SVG. Please try again.');
+                console.error('Potrace conversion error:', error);
+              }
+            };
+            img.onerror = () => {
+              alert('Error loading image. Please ensure the file is valid and try again.');
+              console.error('Image load error for file:', originalImage.name);
+            };
           };
-        };
-        reader.readAsDataURL(originalImage);
-      });
+          reader.onerror = () => {
+            alert('Error reading the image file. Please try again.');
+            console.error('FileReader error for file:', originalImage.name);
+          };
+          reader.readAsDataURL(originalImage);
+        });
+      }
 
-      downloadBtn.addEventListener('click', () => {
-        if (!convertedSvgData) return;
+      // Download SVG
+      if (downloadBtn) {
+        downloadBtn.addEventListener('click', () => {
+          if (!convertedSvgData) {
+            alert('No converted SVG available. Please convert an image first.');
+            console.warn('Download attempted but no SVG data available.');
+            return;
+          }
 
-        const originalName = originalImage.name.split('.')[0];
-        const downloadName = `converted-${originalName}-masstools.github.io.svg`;
-        const link = document.createElement('a');
-        link.href = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(convertedSvgData);
-        link.download = downloadName;
-        link.click();
-      });
+          try {
+            const originalName = originalImage.name.split('.')[0];
+            const downloadName = `converted-${originalName}-masstools.github.io.svg`;
+            const link = document.createElement('a');
+            link.href = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(convertedSvgData);
+            link.download = downloadName;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            console.log('Download initiated for:', downloadName);
+          } catch (error) {
+            alert('Error initiating download. Please try again.');
+            console.error('Download error:', error);
+          }
+        });
+      }
+
+      // Clear functionality
+      if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+          originalImage = null;
+          convertedSvgData = null;
+          imageWidth = 0;
+          imageHeight = 0;
+          imageInput.value = ''; // Reset file input
+          originalPreview.src = '';
+          originalPreview.classList.remove('visible');
+          convertedPreview.src = '';
+          convertedPreview.classList.remove('visible');
+          convertBtn.disabled = true;
+          downloadBtn.disabled = true;
+          thresholdRange.value = 128;
+          thresholdValue.textContent = '128';
+          console.log('Cleared upload area, previews, and threshold.');
+        });
+      }
     });
   </script>
 </body>
