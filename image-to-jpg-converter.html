@@ -680,6 +680,7 @@
           <div class="action-buttons">
             <button id="convertBtn" disabled>Convert to JPG</button>
             <button id="downloadBtn" disabled>Download JPG</button>
+            <button id="clearBtn">Clear</button>
           </div>
 
           <a class="cta-button" href="/index.html#tools">Explore Our Tools</a>
@@ -954,6 +955,7 @@
       const convertedPreview = document.getElementById('convertedPreview');
       const convertBtn = document.getElementById('convertBtn');
       const downloadBtn = document.getElementById('downloadBtn');
+      const clearBtn = document.getElementById('clearBtn');
 
       let originalImage = null;
       let convertedImageUrl = null;
@@ -1119,6 +1121,24 @@
             alert('Error initiating download. Please try again.');
             console.error('Download error:', error);
           }
+        });
+      }
+
+      // Clear functionality
+      if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+          originalImage = null;
+          convertedImageUrl = null;
+          imageInput.value = ''; // Reset file input
+          originalPreview.src = '';
+          originalPreview.classList.remove('visible');
+          convertedPreview.src = '';
+          convertedPreview.classList.remove('visible');
+          convertBtn.disabled = true;
+          downloadBtn.disabled = true;
+          qualitySlider.value = 0.9;
+          qualityValue.textContent = '0.9';
+          console.log('Cleared upload area and previews.');
         });
       }
     });
