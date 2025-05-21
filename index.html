@@ -1,27 +1,66 @@
-<!DOCTYPE html>
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mass Tools - Free Online Text Tools</title>
-  <meta name="description" content="Mass Tools offers free, user-friendly online text tools for counting, formatting, and generating content with ease.">
-  <meta name="keywords" content="free online text tools, word counter, case converter, text manipulation">
+  <meta name="description" content="Mass Tools offers free, user-friendly online text tools for counting, formatting, and generating content. Simplify your tasks with our accessible utilities.">
+  <meta name="keywords" content="free text tools, online text tools, word counter, case converter">
   <meta name="robots" content="index, follow">
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-68CX9G7BKF"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-68CX9G7BKF" onerror="console.error('Failed to load Google Tag Manager')"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-68CX9G7BKF');
   </script>
-  <link rel="icon" type="image/png" href="/favicon.png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="icon" type="image/png" href="./favicon.png" onerror="console.error('Failed to load favicon')">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" onerror="console.error('Failed to load Google Fonts')">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" onerror="console.error('Failed to load Font Awesome')">
+  <link rel="stylesheet" href="./styles.css" onerror="console.error('Failed to load styles.css')">
 </head>
 <body>
   <header>
-    <!-- Fallback header content -->
     <div class="container header-container">
       <a href="/" class="logo">
         <i class="fas fa-tools logo-icon"></i>
@@ -34,7 +73,7 @@
       <nav id="nav-menu">
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="/#text-tools">Tools</a></li>
+          <li><a href="/#text-tools">Text Tools</a></li>
           <li><a href="/about-us.html">About Us</a></li>
           <li><a href="/contact-us.html">Contact Us</a></li>
           <li><a href="/privacy-policy.html">Privacy Policy</a></li>
@@ -42,25 +81,25 @@
           <li><a href="/disclaimer.html">Disclaimer</a></li>
         </ul>
         <div class="search-bar">
-          <input type="text" placeholder="Search tools..." aria-label="Search">
+          <input type="text" placeholder="Search text tools..." aria-label="Search">
           <button type="submit" aria-label="Search">
             <i class="fas fa-search"></i>
           </button>
-          <div class="search-suggestions">
-            <ul></ul>
-          </div>
+          <div class="search-suggestions"></div>
         </div>
       </nav>
     </div>
   </header>
+
   <main>
     <section class="hero-section">
       <div class="container">
-        <h1>Free <span>Online Text Tools</span> for Everyone</h1>
-        <p>Discover a collection of user-friendly text tools designed to simplify your tasks, from counting to formatting.</p>
-        <a class="cta-button" href="/#text-tools"><i class="fas fa-tools"></i> Explore Tools</a>
+        <h1>Free <span>Text Tools</span> for Everyone</h1>
+        <p>Discover a collection of user-friendly text tools designed to simplify your tasks, from counting words to formatting content.</p>
+        <a class="cta-button" href="/#text-tools"><i class="fas fa-tools"></i> Explore Text Tools</a>
       </div>
     </section>
+
     <section class="text-tools-section" id="text-tools">
       <div class="container">
         <h2>Text Tools</h2>
@@ -93,255 +132,255 @@
           </div>
           <div class="tool-card">
             <h3>Sort Text</h3>
-            <p>Quickly sort lines of text alphabetically, numerically, or by length—ideal for data cleanup and content organization.</p>
+            <p>Quickly sort lines of text alphabetically, numerically, or by length.</p>
             <a href="/sort-text.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Find And Replace</h3>
-            <p>Search and replace text instantly across documents—perfect for editing, coding, and data correction.</p>
+            <p>Search and replace text instantly across documents.</p>
             <a href="/find-and-replace-text.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Reverse List</h3>
-            <p>Instantly reverse the order of items in a list—great for data formatting, coding, and text manipulation.</p>
+            <p>Instantly reverse the order of items in a list.</p>
             <a href="/reverse-list.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Difference Checker</h3>
-            <p>Compare text side-by-side to spot differences instantly—ideal for code reviews, document edits, and version control.</p>
+            <p>Compare text side-by-side to spot differences instantly.</p>
             <a href="/difference-checker.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Add Prefix/Suffix</h3>
-            <p>Easily prepend or append text to any string or list—perfect for formatting, coding, and data processing.</p>
+            <p>Easily prepend or append text to any string or list.</p>
             <a href="/add-prefix-suffix.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Add Line Breaks</h3>
-            <p>Insert line breaks exactly where you need them—great for formatting paragraphs, code, or CSV data.</p>
+            <p>Insert line breaks exactly where you need them.</p>
             <a href="/add-line-breaks.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Remove Line Breaks</h3>
-            <p>Delete line breaks to streamline your text—great for formatting paragraphs, code, or CSV data.</p>
+            <p>Delete line breaks to streamline your text.</p>
             <a href="/remove-line-breaks.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Concatenate Text</h3>
-            <p>Merge multiple lines or strings into one—perfect for coding, data manipulation, and bulk text formatting.</p>
+            <p>Merge multiple lines or strings into one.</p>
             <a href="/concatenate-text.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Split Text</h3>
-            <p>Break text into parts using custom delimiters—ideal for data parsing, formatting, and content extraction.</p>
+            <p>Break text into parts using custom delimiters.</p>
             <a href="/split-text.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Extract Column</h3>
-            <p>Pull specific columns from text or data files—perfect for working with CSV, TSV, and structured text.</p>
+            <p>Pull specific columns from text or data files.</p>
             <a href="/extract-column.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Swap Columns</h3>
-            <p>Easily switch the position of columns in structured text—ideal for rearranging CSV, TSV, or tabular data.</p>
+            <p>Easily switch the position of columns in structured text.</p>
             <a href="/swap-column.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Reverse Words</h3>
-            <p>Flip the order of words in a sentence or line—great for text manipulation, coding, and creative formatting.</p>
+            <p>Flip the order of words in a sentence or line.</p>
             <a href="/reverse-words.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Reverse Letters</h3>
-            <p>Reverse the letters in each word or line—perfect for puzzles, text effects, and fun transformations.</p>
+            <p>Reverse the letters in each word or line.</p>
             <a href="/reverse-letters.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Remove Extra Spaces</h3>
-            <p>Clean up text by removing extra spaces—ideal for formatting, data cleanup, and streamlined content.</p>
+            <p>Clean up text by removing extra spaces.</p>
             <a href="/remove-extra-spaces.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Remove Duplicate Lines</h3>
-            <p>Eliminate repeated lines from your text—perfect for data cleaning, sorting, and content deduplication.</p>
+            <p>Eliminate repeated lines from your text.</p>
             <a href="/remove-duplicate-lines.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Remove Empty Lines</h3>
-            <p>Delete blank lines to tighten up your text—great for code cleanup, formatting, and content organization.</p>
+            <p>Delete blank lines to tighten up your text.</p>
             <a href="/remove-empty-lines.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Remove Letter Accents</h3>
-            <p>Strip accents from characters for plain ASCII text—ideal for SEO, database cleanup, and text normalization.</p>
+            <p>Strip accents from characters for plain ASCII text.</p>
             <a href="/remove-letter-accents.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Remove Unwanted Characters</h3>
-            <p>Clean your text by removing special or non-standard characters—perfect for data sanitization, coding, and formatting.</p>
+            <p>Clean your text by removing special or non-standard characters.</p>
             <a href="/remove-unwanted-characters.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Remove Lines Containing/Not Containing</h3>
-            <p>Filter text by keeping or removing lines based on keywords—ideal for data filtering, log analysis, and content refinement.</p>
+            <p>Filter text by keeping or removing lines based on keywords.</p>
             <a href="/remove-lines-containing.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Remove Emojis</h3>
-            <p>Strip emojis from text for clean, professional content—perfect for data processing, moderation, and plain text formatting.</p>
+            <p>Strip emojis from text for clean, professional content.</p>
             <a href="/remove-emojis.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Strip HTML Tags</h3>
-            <p>Remove HTML tags to extract clean text—ideal for web scraping, content cleanup, and text analysis.</p>
+            <p>Remove HTML tags to extract clean text.</p>
             <a href="/strip-html-tags.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Add Line Numbers</h3>
-            <p>Add line numbers to your text—perfect for code snippets, document reviews, and organized formatting.</p>
+            <p>Add line numbers to your text.</p>
             <a href="/add-line-numbers.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Replace Smart/Straight Quotes</h3>
-            <p>Convert between curly and straight quotes—perfect for typographic cleanup, coding, and publishing consistency.</p>
+            <p>Convert between curly and straight quotes.</p>
             <a href="/replace-quotes.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Tabs to Spaces Converter</h3>
-            <p>Convert tabs to spaces for clean, consistent formatting—essential for coding, writing, and data alignment.</p>
+            <p>Convert tabs to spaces for clean formatting.</p>
             <a href="/tabs-to-spaces.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Spaces to Tabs Converter</h3>
-            <p>Convert spaces to tabs for compact, uniform indentation—perfect for developers and clean code formatting.</p>
+            <p>Convert spaces to tabs for compact indentation.</p>
             <a href="/spaces-to-tabs.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Pad Text</h3>
-            <p>Add leading or trailing characters to align and format text perfectly—great for tables, lists, and code.</p>
+            <p>Add leading or trailing characters to align text.</p>
             <a href="/pad-text.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Word Wrap</h3>
-            <p>Automatically wrap text to fit within a set width—ideal for clean formatting, readability, and printing.</p>
+            <p>Automatically wrap text to fit within a set width.</p>
             <a href="/word-wrap.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Justify Text</h3>
-            <p>Align text evenly on both sides for a clean, professional look—perfect for documents, articles, and web content.</p>
+            <p>Align text evenly on both sides for a professional look.</p>
             <a href="/justify-text.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Center Text</h3>
-            <p>Align your text to the center for balanced, polished presentation—ideal for titles, headers, and design layouts.</p>
+            <p>Align your text to the center for balanced presentation.</p>
             <a href="/center-text.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Upside Down Text</h3>
-            <p>Flip your text 180° for fun, creative effects—great for social media, pranks, and eye-catching designs.</p>
+            <p>Flip your text 180° for creative effects.</p>
             <a href="/upside-down-text.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Bold Text Generator</h3>
-            <p>Create bold, standout text for social media, posts, and messages—grab attention instantly with style.</p>
+            <p>Create bold, standout text for social media and posts.</p>
             <a href="/bold-text-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Italic Text Generator</h3>
-            <p>Generate stylish italic text for posts, bios, and messages—perfect for emphasis and flair across platforms.</p>
+            <p>Generate stylish italic text for posts and bios.</p>
             <a href="/italic-text-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Old English Text Generator</h3>
-            <p>Transform your text into classic Old English style—ideal for tattoos, logos, and medieval-themed designs.</p>
+            <p>Transform text into classic Old English style.</p>
             <a href="/old-english-text-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Cursive Text Generator</h3>
-            <p>Convert your text into elegant cursive script—perfect for invitations, bios, and stylish social posts.</p>
+            <p>Convert text into elegant cursive script.</p>
             <a href="/cursive-text-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Normalize Unicode Text</h3>
-            <p>Clean and standardize Unicode text for consistent processing—essential for developers, data cleaning, and multilingual content.</p>
+            <p>Clean and standardize Unicode text for consistent processing.</p>
             <a href="/normalize-unicode-text.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>HTML Encode Decode</h3>
-            <p>Easily convert characters to HTML entities and vice versa—ideal for web development, content security, and data integrity.</p>
+            <p>Convert characters to HTML entities and vice versa.</p>
             <a href="/html-encode-decode.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>URL Encode Decode</h3>
-            <p>Convert text to and from URL-safe formats—perfect for web development, API requests, and data transmission.</p>
+            <p>Convert text to and from URL-safe formats.</p>
             <a href="/url-encode-decode.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>HTML Escape Unescape</h3>
-            <p>Safely escape or restore HTML characters—ideal for preventing code injection and ensuring clean web output.</p>
+            <p>Safely escape or restore HTML characters.</p>
             <a href="/html-escape-unescape.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Unique Username Generator</h3>
-            <p>Create cool, one-of-a-kind usernames for social media, gaming, and online profiles—stand out from the crowd!</p>
+            <p>Create cool, one-of-a-kind usernames for social media and gaming.</p>
             <a href="/unique-username-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Strong Password Generator</h3>
-            <p>Generate secure, random passwords to protect your accounts—ideal for privacy, safety, and peace of mind.</p>
+            <p>Generate secure, random passwords to protect your accounts.</p>
             <a href="/strong-password-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Pronounceable Password Generator</h3>
-            <p>Create secure yet easy-to-remember passwords—perfect for everyday use without sacrificing safety.</p>
+            <p>Create secure yet easy-to-remember passwords.</p>
             <a href="/pronounceable-password-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Random String Generator</h3>
-            <p>Generate random strings for testing, tokens, and unique identifiers—fully customizable and lightning fast.</p>
+            <p>Generate random strings for testing and unique identifiers.</p>
             <a href="/random-string-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Random Word Generator</h3>
-            <p>Instantly generate random words for creativity, brainstorming, and writing prompts—fun and endlessly useful.</p>
+            <p>Generate random words for creativity and brainstorming.</p>
             <a href="/random-word-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Filler Text</h3>
-            <p>Generate placeholder text for mockups, designs, and layouts—perfect for UI/UX, publishing, and development.</p>
+            <p>Generate placeholder text for mockups and designs.</p>
             <a href="/filler-text-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Random Number Generator</h3>
-            <p>Generate random numbers for games, simulations, and decision-making—fast, flexible, and easy to use.</p>
+            <p>Generate random numbers for games and simulations.</p>
             <a href="/random-number-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Random Email Generator</h3>
-            <p>Create random, disposable email addresses for testing, sign-ups, and privacy protection—quick and hassle-free.</p>
+            <p>Create random, disposable email addresses for testing.</p>
             <a href="/random-email-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Email Extractor</h3>
-            <p>Extract email addresses from text, files, or web pages—perfect for lead generation, data mining, and cleanup tasks.</p>
+            <p>Extract email addresses from text or files.</p>
             <a href="/email-extractor.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>URL Extractor</h3>
-            <p>Quickly extract all URLs from text, code, or documents—ideal for data scraping, SEO, and link analysis.</p>
+            <p>Extract URLs from text, code, or documents.</p>
             <a href="/url-extractor.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
             <h3>Online Notepad</h3>
-            <p>Write, edit, and save notes instantly in your browser—simple, fast, and distraction-free.</p>
+            <p>Write, edit, and save notes instantly in your browser.</p>
             <a href="/online-notepad.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
         </div>
       </div>
     </section>
   </main>
+
   <footer>
-    <!-- Fallback footer content -->
     <div class="container">
       <div class="footer-container">
         <div class="footer-column">
@@ -349,11 +388,11 @@
             <i class="fas fa-tools footer-column-logo-icon"></i>
             <span>Mass Tools</span>
           </a>
-          <p>Empowering you with free, high-quality online tools.</p>
+          <p>Empowering you with free, high-quality text tools.</p>
         </div>
         <div class="footer-column">
           <ul>
-            <li><a href="/#text-tools">Tools</a></li>
+            <li><a href="/#text-tools">Text Tools</a></li>
             <li><a href="/about-us.html">About Us</a></li>
             <li><a href="/contact-us.html">Contact Us</a></li>
           </ul>
@@ -371,10 +410,11 @@
       </div>
     </div>
   </footer>
+
   <button class="scroll-to-top" aria-label="Scroll to top">
     <i class="fas fa-arrow-up"></i>
   </button>
-  <script src="/main.js"></script>
-  <script src="/search.js"></script>
+
+  <script src="./index.js" onerror="console.error('Failed to load index.js')"></script>
 </body>
 </html>
