@@ -309,13 +309,9 @@
       }
 
       const findAndReplace = (text, find, replace, options) => {
-        if (!text.trim()) {
-          alert('Please enter text to process.');
-          return '';
-        }
-        if (!find.trim()) {
-          alert('Please enter text to find.');
-          return '';
+        // Skip validation for real-time updates
+        if (!text.trim() || !find.trim()) {
+          return text; // Return input text if empty
         }
         if (replace === null || replace === undefined) {
           replace = '';
@@ -335,7 +331,7 @@
             } catch (error) {
               console.error('Invalid regex pattern:', error.message);
               alert(`Invalid regular expression: ${error.message}`);
-              return '';
+              return text;
             }
           } else {
             if (options.caseSensitive) {
@@ -349,7 +345,7 @@
         } catch (error) {
           console.error('Unexpected replace error:', error);
           alert('Error processing text. Please check your inputs.');
-          return '';
+          return text;
         }
         return result;
       };
@@ -437,11 +433,40 @@
           caseSensitive: caseSensitiveCheckbox.checked,
           useRegex: useRegexCheckbox.checked
         };
+        resultOutput.value = findAndReplace(text, find, replace, options);
+        copyBtn.disabled = !resultOutput.value;
+        downloadBtn.disabled = !resultOutput.value;
+        loadingIndicator.classList.remove('visible');
+      };
+
+      const validateAndReplace = () => {
+        const text = inputText.value;
+        const find = findTextInput.value;
+        const replace = replaceTextInput.value;
+        const options = {
+          caseSensitive: caseSensitiveCheckbox.checked,
+          useRegex: useRegexCheckbox.checked
+        };
+        if (!text.trim()) {
+          alert('Please enter text to process.');
+          return;
+        }
+        if (!find.trim()) {
+          alert('Please enter text to find.');
+          return;
+        }
         const result = findAndReplace(text, find, replace, options);
         resultOutput.value = result;
-        copyBtn.disabled = !result;
-        downloadBtn.disabled = !result;
-        loadingIndicator.classList.remove('visible'); // Ensure loading is hidden during text input
+        copyBtn.disabled = !resultOutput.value;
+        downloadBtn.disabled = !resultOutput.value;
+        loadingIndicator.classList.remove('visible');
+        if (window.gtag && resultOutput.value) {
+          gtag('event', 'find_replace_text', {
+            event_category: 'Tool Usage',
+            event_label: `Find and Replace - ${options.useRegex ? 'Regex' : 'Text'} ${options.caseSensitive ? 'CaseSensitive' : 'CaseInsensitive'}`,
+            value: inputText.value.length
+          });
+        }
       };
 
       uploadArea.addEventListener('dragover', (e) => {
@@ -470,20 +495,7 @@
         }
       });
 
-      replaceBtn.addEventListener('click', () => {
-        updateReplace();
-        if (window.gtag && resultOutput.value) {
-          const options = {
-            caseSensitive: caseSensitiveCheckbox.checked,
-            useRegex: useRegexCheckbox.checked
-          };
-          gtag('event', 'find_replace_text', {
-            event_category: 'Tool Usage',
-            event_label: `Find and Replace - ${options.useRegex ? 'Regex' : 'Text'} ${options.caseSensitive ? 'CaseSensitive' : 'CaseInsensitive'}`,
-            value: inputText.value.length
-          });
-        }
-      });
+      replaceBtn.addEventListener('click', validateAndReplace);
 
       copyBtn.addEventListener('click', async () => {
         if (!resultOutput.value) return;
@@ -522,7 +534,7 @@
 
       resetBtn.addEventListener('click', resetForm);
 
-      // Real-time updates only for text input, no loading indicator
+      // Real-time updates
       inputText.addEventListener('input', updateReplace);
       findTextInput.addEventListener('input', updateReplace);
       replaceTextInput.addEventListener('input', updateReplace);
