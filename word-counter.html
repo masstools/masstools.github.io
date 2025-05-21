@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Word Counter - Mass Tools</title>
-  <meta name="description" content="Count words, characters, sentences, and paragraphs with Mass Tools' free Word Counter. Paste text or upload TXT/DOCX files for instant results.">
-  <meta name="keywords" content="word counter, text analyzer, mass tools, free online tools, word count, character count">
+  <title>Case Converter - Mass Tools</title>
+  <meta name="description" content="Convert text to uppercase, lowercase, or title case with Mass Tools' free Case Converter. Paste text for instant results.">
+  <meta name="keywords" content="case converter, text formatter, mass tools, free online tools, uppercase, lowercase">
   <meta name="robots" content="index, follow">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-68CX9G7BKF" onerror="console.error('Failed to load Google Tag Manager')"></script>
   <script>
@@ -14,7 +14,6 @@
     gtag('js', new Date());
     gtag('config', 'G-68CX9G7BKF');
   </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js" onerror="console.error('Failed to load Mammoth')"></script>
   <link rel="icon" type="image/png" href="./favicon.png" onerror="console.error('Failed to load favicon')">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" onerror="console.error('Failed to load Google Fonts')">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" onerror="console.error('Failed to load Font Awesome')">
@@ -27,93 +26,46 @@
     <section class="tool-section">
       <div class="container">
         <div class="tool-content">
-          <h1>Word Counter</h1>
-          <p>Count words, characters, sentences, and paragraphs with Mass Tools' free Word Counter. Paste text or upload TXT/DOCX files for instant results.</p>
+          <h1>Case Converter</h1>
+          <p>Convert text to uppercase, lowercase, or title case with Mass Tools' free Case Converter. Paste text for instant results.</p>
           
           <div class="input-area">
-            <textarea id="textInput" placeholder="Paste or type your text here..." aria-label="Enter text for counting"></textarea>
-          </div>
-
-          <div class="upload-area" id="uploadArea">
-            <i class="fas fa-cloud-upload-alt"></i>
-            <p>Drag and drop TXT or DOCX file here or click to upload</p>
-            <input type="file" id="fileInput" accept=".txt,.docx" aria-label="Upload text file">
-          </div>
-
-          <div class="results-container">
-            <div class="result-box">
-              <p>Words</p>
-              <span id="wordCount">0</span>
-            </div>
-            <div class="result-box">
-              <p>Characters (with spaces)</p>
-              <span id="charCountWithSpaces">0</span>
-            </div>
-            <div class="result-box">
-              <p>Characters (no spaces)</p>
-              <span id="charCountNoSpaces">0</span>
-            </div>
-            <div class="result-box">
-              <p>Sentences</p>
-              <span id="sentenceCount">0</span>
-            </div>
-            <div class="result-box">
-              <p>Paragraphs</p>
-              <span id="paragraphCount">0</span>
-            </div>
+            <textarea id="textInput" placeholder="Paste or type your text here..." aria-label="Enter text for conversion"></textarea>
           </div>
 
           <div class="action-buttons">
+            <button id="toUpperCaseBtn" aria-label="Convert to uppercase">Uppercase</button>
+            <button id="toLowerCaseBtn" aria-label="Convert to lowercase">Lowercase</button>
+            <button id="toTitleCaseBtn" aria-label="Convert to title case">Title Case</button>
             <button id="resetBtn" aria-label="Reset form">Reset</button>
           </div>
-          <p class="loading" id="loadingIndicator">Processing file...</p>
 
           <a class="cta-button" href="./index.html#text-tools" aria-label="Explore other text tools">Explore Our Tools</a>
 
           <div class="tool-article">
-            <h2>About the Word Counter</h2>
-            <p>The Word Counter by <a href="./about-us.html">Mass Tools</a> is a free tool to count words, characters, sentences, and paragraphs in text. Paste text or upload TXT/DOCX files for instant results, processed in your browser for privacy.</p>
+            <h2>About the Case Converter</h2>
+            <p>The Case Converter by <a href="./about-us.html">Mass Tools</a> is a free tool to transform text case. Process text in your browser for privacy.</p>
             
-            <h3>Why Use the Word Counter?</h3>
-            <p>Counting text metrics is essential for writers, students, and professionals. Use it to:</p>
+            <h3>Why Use the Case Converter?</h3>
+            <p>Text case conversion is useful for:</p>
             <ul>
-              <li><strong>Meet Word Limits</strong>: Ensure essays or articles fit requirements.</li>
-              <li><strong>Optimize Content</strong>: Check length for SEO or readability.</li>
-              <li><strong>Analyze Documents</strong>: Understand structure of reports or manuscripts.</li>
-              <li><strong>Track Writing Progress</strong>: Monitor output for projects.</li>
+              <li><strong>Formatting</strong>: Standardize text for documents or websites.</li>
+              <li><strong>Editing</strong>: Adjust case for consistency in writing.</li>
+              <li><strong>Coding</strong>: Format variable names or strings.</li>
+              <li><strong>Content Creation</strong>: Prepare text for social media or blogs.</li>
             </ul>
 
-            <h3>How to Use the Word Counter</h3>
-            <p>Our Word Counter is simple and intuitive. Follow these steps:</p>
+            <h3>How to Use the Case Converter</h3>
+            <p>Follow these steps:</p>
             <ul>
               <li><strong>Paste Text</strong>: Type or paste text into the textarea.</li>
-              <li><strong>Upload File</strong>: Drag and drop or click to upload a TXT or DOCX file.</li>
-              <li><strong>View Results</strong>: See real-time counts for words, characters, sentences, and paragraphs.</li>
-              <li><strong>Reset</strong>: Click "Reset" to clear text and results.</li>
-            </ul>
-            <p>The tool supports drag-and-drop and works offline after loading. Files are processed locally, ensuring privacy.</p>
-
-            <h3>Use Cases for Word Counting</h3>
-            <p>The Word Counter is ideal for various scenarios, including:</p>
-            <ul>
-              <li><strong>Academic Writing</strong>: Meet essay or thesis word limits.</li>
-              <li><strong>Content Creation</strong>: Optimize blog posts or social media captions.</li>
-              <li><strong>Editing</strong>: Analyze manuscripts or reports for length and structure.</li>
-              <li><strong>Translation</strong>: Estimate text volume for translation projects.</li>
-            </ul>
-
-            <h3>Tips for Using the Word Counter</h3>
-            <p>To get the best results, consider these tips:</p>
-            <ul>
-              <li><strong>Smaller Files</strong>: Use files under 10MB for faster processing.</li>
-              <li><strong>Clean Text</strong>: Remove formatting from DOCX files for accurate counts.</li>
-              <li><strong>Real-Time Updates</strong>: Type or paste text to see instant results.</li>
-              <li><strong>Combine Tools</strong>: Use with our <a href="./case-converter.html">Case Converter</a> or <a href="./character-counter.html">Character Counter</a> for text workflows.</li>
-              <li><strong>Contact Us</strong>: Need bulk processing? Email us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a>.</li>
+              <li><strong>Choose Case</strong>: Click Uppercase, Lowercase, or Title Case.</li>
+              <li><strong>View Results</strong>: Text updates instantly.</li>
+              <li><strong>Reset</strong>: Click "Reset" to clear text.</li>
             </ul>
 
             <h3>Why Choose Mass Tools?</h3>
-            <p>At Mass Tools, we provide free, high-quality text tools to simplify your tasks. Explore our suite, including the <a href="./case-converter.html">Case Converter</a>, <a href="./text-to-ascii-converter.html">Text to ASCII</a>, <a href="./lorem-ipsum-generator.html">Lorem Ipsum Generator</a>, and more. We prioritize privacy, speed, and ease of use. Learn more on our <a href="./about-us.html">About Us</a> page.</p>
+            <p>Explore our suite, including the <a href="./word-counter.html">Word Counter</a>, <a href="./text-to-ascii-converter.html">Text to ASCII</a>, and <a href="./lorem-ipsum-generator.html">Lorem Ipsum Generator</a>. Learn more on our <a href="./about-us.html">About Us</a> page.</p>
           </div>
         </div>
       </div>
@@ -128,7 +80,6 @@
 
   <script src="./index.js" onerror="console.error('Failed to load index.js')"></script>
   <script>
-    // Load header and footer
     document.addEventListener('DOMContentLoaded', () => {
       // Load header
       fetch('./header.html')
@@ -158,133 +109,46 @@
           document.getElementById('footer').innerHTML = '<p>Error loading footer. Please try again later.</p>';
         });
 
-      // Word Counter functionality
+      // Case Converter functionality
       const textInput = document.getElementById('textInput');
-      const uploadArea = document.getElementById('uploadArea');
-      const fileInput = document.getElementById('fileInput');
-      const wordCount = document.getElementById('wordCount');
-      const charCountWithSpaces = document.getElementById('charCountWithSpaces');
-      const charCountNoSpaces = document.getElementById('charCountNoSpaces');
-      const sentenceCount = document.getElementById('sentenceCount');
-      const paragraphCount = document.getElementById('paragraphCount');
+      const toUpperCaseBtn = document.getElementById('toUpperCaseBtn');
+      const toLowerCaseBtn = document.getElementById('toLowerCaseBtn');
+      const toTitleCaseBtn = document.getElementById('toTitleCaseBtn');
       const resetBtn = document.getElementById('resetBtn');
-      const loadingIndicator = document.getElementById('loadingIndicator');
 
-      let debounceTimeout;
-
-      const countText = (text) => {
-        text = text.trim();
-        const words = text ? text.split(/\s+/).filter(word => word.length > 0).length : 0;
-        const charsWithSpaces = text.length;
-        const charsNoSpaces = text.replace(/\s/g, '').length;
-        const sentences = text ? text.split(/[.!?]+/).filter(sentence => sentence.trim().length > 0).length : 0;
-        const paragraphs = text ? text.split(/\n\s*\n/).filter(para => para.trim().length > 0).length : 0;
-
-        wordCount.textContent = words;
-        charCountWithSpaces.textContent = charsWithSpaces;
-        charCountNoSpaces.textContent = charsNoSpaces;
-        sentenceCount.textContent = sentences;
-        paragraphCount.textContent = paragraphs;
-
-        if (window.gtag && text) {
-          gtag('event', 'count_text', {
+      toUpperCaseBtn.addEventListener('click', () => {
+        textInput.value = textInput.value.toUpperCase();
+        if (window.gtag) {
+          gtag('event', 'convert_text', {
             event_category: 'Tool Usage',
-            event_label: 'Word Counter Usage',
-            value: words
+            event_label: 'Case Converter - Uppercase'
           });
         }
-      };
+      });
 
-      const resetForm = () => {
+      toLowerCaseBtn.addEventListener('click', () => {
+        textInput.value = textInput.value.toLowerCase();
+        if (window.gtag) {
+          gtag('event', 'convert_text', {
+            event_category: 'Tool Usage',
+            event_label: 'Case Converter - Lowercase'
+          });
+        }
+      });
+
+      toTitleCaseBtn.addEventListener('click', () => {
+        textInput.value = textInput.value.toLowerCase().replace(/(^|\s)\w/g, letter => letter.toUpperCase());
+        if (window.gtag) {
+          gtag('event', 'convert_text', {
+            event_category: 'Tool Usage',
+            event_label: 'Case Converter - Title Case'
+          });
+        }
+      });
+
+      resetBtn.addEventListener('click', () => {
         textInput.value = '';
-        fileInput.value = '';
-        countText('');
-        loadingIndicator.classList.remove('visible');
-      };
-
-      const debounce = (func, wait) => {
-        return function (...args) {
-          clearTimeout(debounceTimeout);
-          debounceTimeout = setTimeout(() => func.apply(this, args), wait);
-        };
-      };
-
-      textInput.addEventListener('input', debounce(() => {
-        countText(textInput.value);
-      }, 300));
-
-      uploadArea.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        uploadArea.classList.add('dragover');
       });
-
-      uploadArea.addEventListener('dragleave', () => {
-        uploadArea.classList.remove('dragover');
-      });
-
-      uploadArea.addEventListener('drop', (e) => {
-        e.preventDefault();
-        uploadArea.classList.remove('dragover');
-        const file = e.dataTransfer.files[0];
-        handleFile(file);
-      });
-
-      uploadArea.addEventListener('click', () => {
-        fileInput.click();
-      });
-
-      fileInput.addEventListener('change', () => {
-        if (fileInput.files[0]) handleFile(fileInput.files[0]);
-      });
-
-      const handleFile = (file) => {
-        if (!file) {
-          alert('No file selected. Please upload a TXT or DOCX file.');
-          return;
-        }
-        if (!file.name.match(/\.(txt|docx)$/i)) {
-          alert('Please upload a valid TXT or DOCX file.');
-          return;
-        }
-        if (file.size > 10 * 1024 * 1024) {
-          alert('File is too large (over 10MB). Please use a smaller file.');
-          return;
-        }
-
-        loadingIndicator.classList.add('visible');
-
-        const reader = new FileReader();
-        reader.onload = async (e) => {
-          try {
-            let text;
-            if (file.name.endsWith('.txt')) {
-              text = e.target.result;
-            } else {
-              const arrayBuffer = e.target.result;
-              const result = await mammoth.extractRawText({ arrayBuffer });
-              text = result.value;
-            }
-            textInput.value = text;
-            countText(text);
-            loadingIndicator.classList.remove('visible');
-          } catch (error) {
-            console.error('File processing error:', error);
-            alert('Error processing file. Please try a different file.');
-            loadingIndicator.classList.remove('visible');
-          }
-        };
-        reader.onerror = () => {
-          alert('Error reading file. Please try a different file.');
-          loadingIndicator.classList.remove('visible');
-        };
-        if (file.name.endsWith('.txt')) {
-          reader.readAsText(file);
-        } else {
-          reader.readAsArrayBuffer(file);
-        }
-      };
-
-      resetBtn.addEventListener('click', resetForm);
     });
   </script>
 </body>
