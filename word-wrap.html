@@ -129,7 +129,6 @@
     <i class="fas fa-arrow-up"></i>
   </button>
 
-  <script src="/index.js"></script>
   <script>
     // Fetch header and footer
     Promise.all([
@@ -140,10 +139,203 @@
         document.getElementById('footer').innerHTML = data;
       })
     ]).then(() => {
-      // index.js will handle all logic
-      console.log('Header and footer loaded');
+      // Load index.js for search suggestions, menu, etc.
+      const script = document.createElement('script');
+      script.src = '/index.js';
+      document.body.appendChild(script);
+      console.log('Header, footer, and index.js loaded');
     }).catch(err => {
       console.error('Error loading header/footer:', err);
+    });
+
+    // Word Wrap tool logic
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('Word Wrap tool initializing');
+      const inputText = document.getElementById('inputText');
+      const lineWidthInput = document.getElementById('lineWidth');
+      const numColumnsInput = document.getElementById('numColumns');
+      const columnSpacingInput = document.getElementById('columnSpacing');
+      const breakWordCheckbox = document.getElementById('breakWord');
+      const trimTextCheckbox = document.getElementById('trimText');
+      const convertBtn = document.getElementById('convertBtn');
+      const copyBtn = document.getElementById('copyBtn');
+      const clearBtn = document.getElementById('clearBtn');
+      const outputText = document.getElementById('outputText');
+
+      if (!inputText || !outputText || !convertBtn) {
+        console.error('Missing critical elements:', {
+          inputText: !!inputText,
+          outputText: !!outputText,
+          convertBtn: !!convertBtn
+        });
+        return;
+      }
+
+      function wordWrap(text, lineWidth, numColumns, columnSpacing, breakWord, trimText) {
+        console.log('wordWrap called:', { lineWidth, numColumns, columnSpacing, breakWord, trimText });
+        if (!text) return '';
+
+        // Trim text if enabled
+        if (trimText) {
+          text = text.trim();
+          console.log('Text trimmed:', text);
+        }
+
+        // Split into words
+        let words = text.split(/\s+/).filter(word => word.length > 0);
+        if (!words.length) return '';
+
+        // Break long words if enabled
+        if (breakWord) {
+          const newWords = [];
+          for (const word of words) {
+            if (word.length > lineWidth) {
+              let i = 0;
+              while (i < word.length) {
+                newWords.push(word.slice(i, i + lineWidth));
+                i += lineWidth;
+              }
+            } else {
+              newWords.push(word);
+            }
+          }
+          words = newWords;
+          console.log('Words after breaking:', words);
+        }
+
+        // Split words into columns
+        const wordsPerColumn = Math.ceil(words.length / numColumns);
+        const columns = [];
+        for (let i = 0; i < numColumns; i++) {
+          columns.push(words.slice(i * wordsPerColumn, (i + 1) * wordsPerColumn));
+        }
+        console.log('Columns created:', columns);
+
+        // Wrap each column
+        const wrappedColumns = columns.map(columnWords => {
+          let currentLine = '';
+          const lines = [];
+          let currentLength = 0;
+
+          for (const word of columnWords) {
+            const wordLength = word.length;
+            if (currentLength + wordLength + (currentLength > 0 ? 1 : 0) <= lineWidth) {
+              currentLine += (currentLength > 0 ? ' ' : '') + word;
+              currentLength += wordLength + (currentLength > 0 ? 1 : 0);
+            } else {
+              if (currentLine) {
+                lines.push(currentLine.padEnd(lineWidth, ' '));
+              }
+              currentLine = word;
+              currentLength = wordLength;
+            }
+          }
+          if (currentLine) {
+            lines.push(currentLine.padEnd(lineWidth, ' '));
+          }
+          return lines;
+        });
+        console.log('Wrapped columns:', wrappedColumns);
+
+        // Combine columns with spacing
+        const maxLines = Math.max(...wrappedColumns.map(col => col.length));
+        const outputLines = [];
+        for (let i = 0; i < maxLines; i++) {
+          const lineParts = wrappedColumns.map(col => col[i] || ''.padEnd(lineWidth, ' '));
+          outputLines.push(lineParts.join(''.padEnd(columnSpacing, ' ')));
+        }
+        console.log('Output lines:', outputLines);
+
+        return outputLines.join('\n').trimEnd();
+      }
+
+      convertBtn.addEventListener('click', () => {
+        console.log('Convert button clicked');
+        const text = inputText.value;
+        const lineWidth = parseInt(lineWidthInput.value) || 80;
+        const numColumns = parseInt(numColumnsInput.value) || 1;
+        const columnSpacing = parseInt(columnSpacingInput.value) || 2;
+        const breakWord = breakWordCheckbox.checked;
+        const trimText = trimTextCheckbox.checked;
+
+        if (!text) {
+          alert('Please enter text to wrap.');
+          console.warn('No input text provided');
+          return;
+        }
+        if (lineWidth < 1 || lineWidth > 200) {
+          alert('Line width must be between 1 and 200.');
+          console.warn('Invalid line width:', lineWidth);
+          return;
+        }
+        if (numColumns < 1 || numColumns > 5) {
+          alert('Number of columns must be between 1 and 5.');
+          console.warn('Invalid number of columns:', numColumns);
+          return;
+        }
+        if (columnSpacing < 0 || columnSpacing > 10) {
+          alert('Column spacing must be between 0 and 10.');
+          console.warn('Invalid column spacing:', columnSpacing);
+          return;
+        }
+
+        try {
+          const wrapped = wordWrap(text, lineWidth, numColumns, columnSpacing, breakWord, trimText);
+          outputText.value = wrapped;
+          copyBtn.disabled = !wrapped;
+          console.log('Text wrapped successfully:', wrapped);
+          if (window.gtag) {
+            gtag('event', 'convert', {
+              event_category: 'Tool Usage',
+              event_label: 'Word Wrap',
+              value: text.length
+            });
+          }
+        } catch (err) {
+          console.error('wordWrap error:', err);
+          alert('Error processing text. Check console for details.');
+          outputText.value = '';
+          copyBtn.disabled = true;
+        }
+      });
+
+      copyBtn.addEventListener('click', () => {
+        console.log('Copy button clicked');
+        if (!outputText.value) {
+          alert('Nothing to copy. Please convert text first.');
+          console.warn('No output text to copy');
+          return;
+        }
+        outputText.select();
+        try {
+          document.execCommand('copy');
+          alert('Text copied to clipboard!');
+          console.log('Output text copied');
+          if (window.gtag) {
+            gtag('event', 'copy_output', {
+              event_category: 'Tool Usage',
+              event_label: 'Word Wrap Copy',
+              value: 1
+            });
+          }
+        } catch (err) {
+          console.error('Copy failed:', err);
+          alert('Failed to copy text.');
+        }
+      });
+
+      clearBtn.addEventListener('click', () => {
+        console.log('Clear button clicked');
+        inputText.value = '';
+        lineWidthInput.value = 80;
+        numColumnsInput.value = 1;
+        columnSpacingInput.value = 2;
+        breakWordCheckbox.checked = false;
+        trimTextCheckbox.checked = false;
+        outputText.value = '';
+        copyBtn.disabled = true;
+        console.log('Input and output cleared');
+      });
     });
   </script>
 </body>
