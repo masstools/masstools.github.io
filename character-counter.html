@@ -176,6 +176,38 @@
       color: var(--primary-color);
     }
 
+    .search-suggestions {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      max-height: 200px;
+      overflow-y: auto;
+      display: none;
+      z-index: 1000;
+    }
+
+    .search-suggestions.show {
+      display: block;
+    }
+
+    .search-suggestions a {
+      display: block;
+      padding: 10px 15px;
+      text-decoration: none;
+      color: var(--text-color);
+      font-size: 14px;
+      transition: var(--transition);
+    }
+
+    .search-suggestions a:hover {
+      background: var(--primary-color);
+      color: var(--light-color);
+    }
+
     .tool-section {
       padding: 80px 0;
       background: var(--light-color);
@@ -638,13 +670,14 @@
           <li><a href="/contact-us.html">Contact Us</a></li>
           <li><a href="/privacy-policy.html">Privacy Policy</a></li>
           <li><a href="/terms-and-conditions.html">Terms</a></li>
-          <li><a href="/Disclaimer.html">Disclaimer</a></li>
+          <li><a href="/disclaimer.html">Disclaimer</a></li>
         </ul>
         <div class="search-bar">
           <input type="text" placeholder="Search tools..." aria-label="Search">
           <button type="submit" aria-label="Search">
             <i class="fas fa-search"></i>
           </button>
+          <div class="search-suggestions"></div>
         </div>
       </nav>
     </div>
@@ -767,7 +800,7 @@
           <ul>
             <li><a href="/privacy-policy.html">Privacy Policy</a></li>
             <li><a href="/terms-and-conditions.html">Terms</a></li>
-            <li><a href="/Disclaimer.html">Disclaimer</a></li>
+            <li><a href="/disclaimer.html">Disclaimer</a></li>
           </ul>
         </div>
       </div>
@@ -784,29 +817,29 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Mobile menu toggle
+      console.log('Initializing toggle menu');
       const menuToggle = document.getElementById('mobile-menu-toggle');
       const nav = document.getElementById('nav-menu');
       if (menuToggle && nav) {
+        console.log('Mobile menu elements found');
         menuToggle.addEventListener('change', () => {
-          nav.classList.toggle('show', menuToggle.checked);
+          const isChecked = menuToggle.checked;
+          nav.classList.toggle('show', isChecked);
+          console.log('Mobile menu toggled:', isChecked);
+          // Close menu on nav link click
+          nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+              menuToggle.checked = false;
+              nav.classList.remove('show');
+              console.log('Menu closed via link click');
+            });
+          });
         });
+      } else {
+        console.error('Mobile menu elements missing:', { menuToggle: !!menuToggle, nav: !!nav });
       }
 
       // Smooth scroll for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', (e) => {
-          e.preventDefault();
-          const target = document.querySelector(anchor.getAttribute('href'));
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-          }
-          if (nav && nav.classList.contains('show')) {
-            nav.classList.remove('show');
-            menuToggle.checked = false;
-          }
-        });
-      });
-
       document.querySelectorAll('a[href*="#"]').forEach(anchor => {
         anchor.addEventListener('click', (e) => {
           const href = anchor.getAttribute('href');
@@ -818,13 +851,13 @@
             if (target) {
               target.scrollIntoView({ behavior: 'smooth' });
               history.pushState(null, null, `/#${hash}`);
+              console.log('Smooth scrolled to:', hash);
             }
-          } else {
-            window.location.href = href;
           }
           if (nav && nav.classList.contains('show')) {
             nav.classList.remove('show');
             menuToggle.checked = false;
+            console.log('Menu closed via anchor click');
           }
         });
       });
@@ -833,17 +866,21 @@
       const scrollTopBtn = document.querySelector('.scroll-to-top');
       if (scrollTopBtn) {
         window.addEventListener('scroll', () => {
-          scrollTopBtn.classList.toggle('show', window.scrollY > 200);
+          const show = window.scrollY > 200;
+          scrollTopBtn.classList.toggle('show', show);
+          console.log('Scroll-to-top visibility:', show);
         });
         scrollTopBtn.addEventListener('click', () => {
           window.scrollTo({ top: 0, behavior: 'smooth' });
+          console.log('Scroll-to-top clicked');
         });
       }
 
-      // Search functionality
+      // Search functionality with suggestions
       const searchInput = document.querySelector('.search-bar input');
       const searchButton = document.querySelector('.search-bar button');
-      if (searchInput && searchButton) {
+      const suggestionsContainer = document.querySelector('.search-suggestions');
+      if (searchInput && searchButton && suggestionsContainer) {
         const tools = [
           { name: 'Image To JPG Converter', url: '/image-to-jpg-converter.html' },
           { name: 'Image To PNG Converter', url: '/image-to-png-converter.html' },
@@ -869,52 +906,6 @@
           { name: 'Case Converter', url: '/case-converter.html' },
           { name: 'Text to ASCII Converter', url: '/text-to-ascii-converter.html' },
           { name: 'Lorem Ipsum Generator', url: '/lorem-ipsum-generator.html' },
-          { name: 'Character Counter', url: '/character-counter.html' }
-        ];
-        searchButton.addEventListener('click', () => {
-          const query = searchInput.value.trim().toLowerCase();
-          const matchedTool = tools.find(tool => tool.name.toLowerCase().includes(query));
-          if (matchedTool) {
-            window.location.href = matchedTool.url;
-          } else {
-            alert('No tools found matching your search.');
-          }
-        });
-        searchInput.addEventListener('keypress', (e) => {
-          if (e.key === 'Enter') {
-            searchButton.click();
-          }
-        });
-      }
-    // Search functionality
-      const searchInput = document.querySelector('.search-bar input');
-      const searchButton = document.querySelector('.search-bar button');
-      if (searchInput && searchButton) {
-        const tools = [
-          { name: 'Image To JPG Converter', url: '/image-to-jpg-converter.html' },
-          { name: 'Image To PNG Converter', url: '/image-to-png-converter.html' },
-          { name: 'Image To SVG', url: '/image-to-svg-converter.html' },
-          { name: 'Image To WEBP Converter', url: '/image-to-webp-converter.html' },
-          { name: 'Image To TIFF Converter', url: '/image-to-tiff-converter.html' },
-          { name: 'Image To HEIC Converter', url: '/image-to-heic-converter.html' },
-          { name: 'Image To PDF Converter', url: '/image-to-pdf-converter.html' },
-          { name: 'Image To BMP Converter', url: '/image-to-bmp-converter.html' },
-          { name: 'Image To ICO Converter', url: '/image-to-ico-converter.html' },
-          { name: 'Image To AVIF Converter', url: '/image-to-avif-converter.html' },
-          { name: 'Image To EPS Converter', url: '/image-to-eps-converter.html' },
-          { name: 'Image To PSD Converter', url: '/image-to-psd-converter.html' },
-          { name: 'Image To Base64 Converter', url: '/image-to-base64-converter.html' },
-          { name: 'Image To DXF Converter', url: '/image-to-dxf-converter.html' },
-          { name: 'Image To EXR Converter', url: '/image-to-exr-converter.html' },
-          { name: 'PDF To Image Converter', url: '/pdf-to-image-converter.html' },
-          { name: 'Image Resizer Tool', url: '/image-resizer-tool.html' },
-          { name: 'Image Compressor Tool', url: '/image-resizer-tool.html' },
-          { name: 'PSD To Image Converter', url: '/pdf-to-image-converter.html' },
-          { name: 'EPS To Image Converter', url: '/eps-to-image-converter.html' },
-          { name: 'Word Counter', url: '/word-counter.html' },
-          { name: 'Case Converter', url: '/case-converter.html' },
-          { name: 'Text To ASCII', url: '/text-to-ascii-converter.html' },
-          { name: 'Lorem Ipsum Generator', url: '/lorem-ipsum-genrator.html' },
           { name: 'Character Counter', url: '/character-counter.html' },
           { name: 'Sort Text', url: '/sort-text.html' },
           { name: 'Find And Replace', url: '/find-and-replace-text.html' },
@@ -939,8 +930,8 @@
           { name: 'Strip HTML Tags', url: '/strip-html-tags.html' },
           { name: 'Add Line Numbers', url: '/add-line-numbers.html' },
           { name: 'Replace Smart/Straight Quotes', url: '/replace-quotes.html' },
-          { name: 'Tabs to Spaces Converterter', url: '/tabs-to-spaces.html' },
-          { name: 'Spaces to Tabs Converterter', url: '/spaces-to-tabs.html' },
+          { name: 'Tabs to Spaces Converter', url: '/tabs-to-spaces.html' },
+          { name: 'Spaces to Tabs Converter', url: '/spaces-to-tabs.html' },
           { name: 'Pad Text', url: '/pad-text.html' },
           { name: 'Word Wrap', url: '/word-wrap.html' },
           { name: 'Justify Text', url: '/justify-text.html' },
@@ -966,16 +957,16 @@
           { name: 'URL Extractor', url: '/url-extractor.html' },
           { name: 'Online Notepad', url: '/online-notepad.html' },
           { name: 'Keyword Research Tool', url: '/keyword-research-tool.html' },
-        { name: 'On-Page SEO Analyzer', url: '/on-page-seo-analyzer.html' },
-        { name: 'Technical SEO Auditor', url: '/technical-seo-auditor.html' },
-        { name: 'Backlink Analyzer', url: '/backlink-analyzer.html' },
-        { name: 'Content Optimization Tool', url: '/content-optimization-tool.html' },
-        { name: 'Rank Tracker', url: '/rank-tracker.html' },
-        { name: 'Competitor Analysis Tool', url: '/competitor-analysis-tool.html' },
-        { name: 'SEO Audit and Reporting Tool', url: '/seo-audit-reporting-tool.html' },
-        { name: 'Local SEO Tool', url: '/local-seo-tool.html' },
-        { name: 'AI-Powered SEO Assistant', url: '/ai-seo-assistant.html' },
-        { name: 'QR Code Generator', url: '/qr-code-generator.html' },
+          { name: 'On-Page SEO Analyzer', url: '/on-page-seo-analyzer.html' },
+          { name: 'Technical SEO Auditor', url: '/technical-seo-auditor.html' },
+          { name: 'Backlink Analyzer', url: '/backlink-analyzer.html' },
+          { name: 'Content Optimization Tool', url: '/content-optimization-tool.html' },
+          { name: 'Rank Tracker', url: '/rank-tracker.html' },
+          { name: 'Competitor Analysis Tool', url: '/competitor-analysis-tool.html' },
+          { name: 'SEO Audit and Reporting Tool', url: '/seo-audit-reporting-tool.html' },
+          { name: 'Local SEO Tool', url: '/local-seo-tool.html' },
+          { name: 'AI-Powered SEO Assistant', url: '/ai-seo-assistant.html' },
+          { name: 'QR Code Generator', url: '/qr-code-generator.html' },
           { name: 'Data Matrix Generator', url: '/data-matrix-generator.html' },
           { name: 'Barcode Generator', url: '/barcode-generator.html' },
           { name: 'PDF417 Generator', url: '/pdf417-generator.html' },
@@ -983,24 +974,60 @@
           { name: 'MaxiCode Generator', url: '/maxicode-generator.html' },
           { name: 'Code 39 Generator', url: '/code39-generator.html' },
           { name: 'Code 128 Generator', url: '/code128-generator.html' },
-          { name: 'EAN-13 Generator', url: '/ean13-generator.html' },
-
+          { name: 'EAN-13 Generator', url: '/ean13-generator.html' }
         ];
+
+        const updateSuggestions = (query) => {
+          suggestionsContainer.innerHTML = '';
+          if (!query.trim()) {
+            suggestionsContainer.classList.remove('show');
+            return;
+          }
+          const matches = tools.filter(tool => tool.name.toLowerCase().includes(query.toLowerCase())).slice(0, 5);
+          if (matches.length) {
+            matches.forEach(tool => {
+              const a = document.createElement('a');
+              a.href = tool.url;
+              a.textContent = tool.name;
+              suggestionsContainer.appendChild(a);
+            });
+            suggestionsContainer.classList.add('show');
+          } else {
+            suggestionsContainer.classList.remove('show');
+          }
+        };
+
+        searchInput.addEventListener('input', () => {
+          updateSuggestions(searchInput.value);
+        });
+
         searchButton.addEventListener('click', () => {
           const query = searchInput.value.trim().toLowerCase();
           const matchedTool = tools.find(tool => tool.name.toLowerCase().includes(query));
           if (matchedTool) {
             window.location.href = matchedTool.url;
+            console.log('Search navigated to:', matchedTool.url);
           } else {
             alert('No tools found matching your search.');
+            console.log('Search: No tools found for query:', query);
           }
         });
+
         searchInput.addEventListener('keypress', (e) => {
           if (e.key === 'Enter') {
             searchButton.click();
           }
         });
+
+        document.addEventListener('click', (e) => {
+          if (!searchInput.contains(e.target) && !suggestionsContainer.contains(e.target)) {
+            suggestionsContainer.classList.remove('show');
+          }
+        });
+      } else {
+        console.error('Search elements missing:', { searchInput: !!searchInput, searchButton: !!searchButton, suggestionsContainer: !!suggestionsContainer });
       }
+
       // Tool functionality
       const inputText = document.getElementById('inputText');
       const uploadArea = document.getElementById('uploadArea');
@@ -1014,6 +1041,24 @@
       const downloadBtn = document.getElementById('downloadBtn');
       const resetBtn = document.getElementById('resetBtn');
       const loadingIndicator = document.getElementById('loadingIndicator');
+
+      if (!inputText || !uploadArea || !fileInput || !charWithSpaces || !charWithoutSpaces || !wordCount || !sentenceCount || !countBtn || !copyBtn || !downloadBtn || !resetBtn || !loadingIndicator) {
+        console.error('Missing critical elements:', {
+          inputText: !!inputText,
+          uploadArea: !!uploadArea,
+          fileInput: !!fileInput,
+          charWithSpaces: !!charWithSpaces,
+          charWithoutSpaces: !!charWithoutSpaces,
+          wordCount: !!wordCount,
+          sentenceCount: !!sentenceCount,
+          countBtn: !!countBtn,
+          copyBtn: !!copyBtn,
+          downloadBtn: !!downloadBtn,
+          resetBtn: !!resetBtn,
+          loadingIndicator: !!loadingIndicator
+        });
+        return;
+      }
 
       const countText = (text) => {
         if (!text.trim()) {
@@ -1039,6 +1084,7 @@
         sentenceCount.textContent = counts.sentences;
         copyBtn.disabled = counts.charsWithSpaces === 0;
         downloadBtn.disabled = counts.charsWithSpaces === 0;
+        console.log('Results updated:', counts);
       };
 
       const resetForm = () => {
@@ -1046,6 +1092,7 @@
         fileInput.value = '';
         updateResults({ charsWithSpaces: 0, charsWithoutSpaces: 0, words: 0, sentences: 0 });
         loadingIndicator.classList.remove('visible');
+        console.log('Form reset');
       };
 
       const handleFile = (file) => {
@@ -1063,6 +1110,7 @@
         }
 
         loadingIndicator.classList.add('visible');
+        console.log('Processing file:', file.name);
 
         const reader = new FileReader();
         reader.onload = async (e) => {
@@ -1070,10 +1118,12 @@
             let text;
             if (file.name.endsWith('.txt')) {
               text = e.target.result;
-            } else {
+            } else if (typeof mammoth !== 'undefined') {
               const arrayBuffer = e.target.result;
               const result = await mammoth.extractRawText({ arrayBuffer });
               text = result.value;
+            } else {
+              throw new Error('Mammoth.js not loaded');
             }
             inputText.value = text;
             const counts = countText(text);
@@ -1088,14 +1138,15 @@
               }
             }
             loadingIndicator.classList.remove('visible');
+            console.log('File processed:', { textLength: text.length });
           } catch (error) {
             console.error('File processing error:', error);
             alert('Error processing file. Please try a different file.');
             loadingIndicator.classList.remove('visible');
           }
         };
-        técnica
         reader.onerror = () => {
+          console.error('File read error');
           alert('Error reading file. Please try a different file.');
           loadingIndicator.classList.remove('visible');
         };
@@ -1106,28 +1157,44 @@
         }
       };
 
+      // Debounce for input event
+      const debounce = (func, wait) => {
+        let timeout;
+        return (...args) => {
+          clearTimeout(timeout);
+          timeout = setTimeout(() => func.apply(this, args), wait);
+        };
+      };
+
       uploadArea.addEventListener('dragover', (e) => {
         e.preventDefault();
         uploadArea.classList.add('dragover');
+        console.log('Dragover');
       });
 
       uploadArea.addEventListener('dragleave', () => {
         uploadArea.classList.remove('dragover');
+        console.log('Dragleave');
       });
 
       uploadArea.addEventListener('drop', (e) => {
         e.preventDefault();
         uploadArea.classList.remove('dragover');
         const file = e.dataTransfer.files[0];
+        console.log('File dropped:', file?.name);
         handleFile(file);
       });
 
       uploadArea.addEventListener('click', () => {
         fileInput.click();
+        console.log('Upload area clicked');
       });
 
       fileInput.addEventListener('change', () => {
-        if (fileInput.files[0]) handleFile(fileInput.files[0]);
+        if (fileInput.files[0]) {
+          console.log('File selected:', fileInput.files[0].name);
+          handleFile(fileInput.files[0]);
+        }
       });
 
       countBtn.addEventListener('click', () => {
@@ -1142,6 +1209,7 @@
               value: counts.charsWithSpaces
             });
           }
+          console.log('Count button clicked:', counts);
         }
       });
 
@@ -1154,6 +1222,7 @@
         try {
           document.execCommand('copy');
           alert('Results copied to clipboard!');
+          console.log('Results copied');
           if (window.gtag) {
             gtag('event', 'copy_results', {
               event_category: 'Tool Usage',
@@ -1173,10 +1242,10 @@
         const blob = new Blob([results], { type: 'text/plain' });
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
-        link.download = 'character-count-masstools.github.io.txt';
+        link.download = 'character-count-masstools.txt';
         link.click();
         URL.revokeObjectURL(link.href);
-
+        console.log('Results downloaded');
         if (window.gtag) {
           gtag('event', 'download_results', {
             event_category: 'Tool Usage',
@@ -1188,10 +1257,13 @@
 
       resetBtn.addEventListener('click', resetForm);
 
-      inputText.addEventListener('input', () => {
+      inputText.addEventListener('input', debounce(() => {
         const counts = countText(inputText.value);
-        if (counts) updateResults(counts);
-      });
+        if (counts) {
+          updateResults(counts);
+          console.log('Input updated:', counts);
+        }
+      }, 300));
     });
   </script>
 </body>
