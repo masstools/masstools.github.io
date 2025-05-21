@@ -7,20 +7,49 @@
   <meta name="description" content="Wrap your text based on specified character length per line and number of columns with Mass Tools' free Word Wrap Converter. Best with monospaced fonts like Courier or Monaco.">
   <meta name="keywords" content="word wrap, text wrapping, multi-column text, online tool, text formatting, coding tool">
   <meta name="robots" content="index, follow">
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-68CX9G7BKF"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-68CX9G7BKF" onerror="console.error('Failed to load Google Tag Manager')"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-68CX9G7BKF');
   </script>
-  <link rel="icon" type="image/png" href="/favicon.png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="icon" type="image/png" href="./favicon.png" onerror="console.error('Failed to load favicon')">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" onerror="console.error('Failed to load Google Fonts')">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" onerror="console.error('Failed to load Font Awesome')">
+  <link rel="stylesheet" href="./styles.css" onerror="console.error('Failed to load styles.css')">
 </head>
 <body>
-  <header id="header"></header>
+  <header>
+    <div class="container header-container">
+      <a href="/" class="logo">
+        <i class="fas fa-tools logo-icon"></i>
+        <span>Mass Tools</span>
+      </a>
+      <input id="mobile-menu-toggle" type="checkbox">
+      <label class="mobile-menu-btn" for="mobile-menu-toggle">
+        <i class="fas fa-bars"></i>
+      </label>
+      <nav id="nav-menu">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#text-tools">Text Tools</a></li>
+          <li><a href="/about-us.html">About Us</a></li>
+          <li><a href="/contact-us.html">Contact Us</a></li>
+          <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="/terms-and-conditions.html">Terms</a></li>
+          <li><a href="/disclaimer.html">Disclaimer</a></li>
+        </ul>
+        <div class="search-bar">
+          <input type="text" placeholder="Search text tools..." aria-label="Search">
+          <button type="submit" aria-label="Search">
+            <i class="fas fa-search"></i>
+          </button>
+          <div class="search-suggestions"></div>
+        </div>
+      </nav>
+    </div>
+  </header>
 
   <main>
     <section class="tool-section">
@@ -67,7 +96,7 @@
             <button id="clearBtn"><i class="fas fa-trash"></i> Clear</button>
           </div>
 
-          <a class="cta-button" href="/index.html#tools">Explore Our Tools</a>
+          <a class="cta-button" href="/#text-tools">Explore Our Tools</a>
 
           <div class="tool-article">
             <h2>About the Word Wrap Converter</h2>
@@ -130,60 +159,49 @@
   </button>
 
   <script>
-    // Load index.js after header DOM is ready
-    function loadIndexJs() {
-      const script = document.createElement('script');
-      script.src = '/index.js?v=' + new Date().getTime();
-      script.async = true;
-      script.onload = () => console.log('index.js loaded successfully');
-      script.onerror = () => console.error('index.js failed to load');
-      document.body.appendChild(script);
-    }
-
-    // Fetch header and footer
-    Promise.all([
-      fetch('/header.html', { cache: 'no-store' })
-        .then(response => {
-          if (!response.ok) throw new Error(`Header fetch failed: ${response.status}`);
-          return response.text();
-        })
-        .then(data => {
-          document.getElementById('header').innerHTML = data;
-          console.log('Header loaded');
-        }),
-      fetch('/footer.html', { cache: 'no-store' })
-        .then(response => {
-          if (!response.ok) throw new Error(`Footer fetch failed: ${response.status}`);
-          return response.text();
-        })
-        .then(data => {
-          document.getElementById('footer').innerHTML = data;
-          console.log('Footer loaded');
-        })
-    ]).then(() => {
-      // Watch for header DOM changes
-      const header = document.getElementById('header');
-      const observer = new MutationObserver((mutations, obs) => {
-        if (header.querySelector('#nav-menu')) {
-          console.log('Header DOM ready with nav-menu');
-          loadIndexJs();
-          obs.disconnect();
-        }
+    // Fetch footer only
+    fetch('./footer.html', { cache: 'no-store' })
+      .then(response => {
+        if (!response.ok) throw new Error(`Footer fetch failed: ${response.status}`);
+        return response.text();
+      })
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+        console.log('Footer loaded');
+      })
+      .catch(err => {
+        console.error('Error loading footer:', err);
+        document.getElementById('footer').innerHTML = `
+          <div class="container">
+            <div class="footer-container">
+              <div class="footer-column">
+                <a href="/" class="footer-column-logo">
+                  <i class="fas fa-tools footer-column-logo-icon"></i>
+                  <span>Mass Tools</span>
+                </a>
+                <p>Empowering you with free, high-quality text tools.</p>
+              </div>
+              <div class="footer-column">
+                <ul>
+                  <li><a href="/#text-tools">Text Tools</a></li>
+                  <li><a href="/about-us.html">About Us</a></li>
+                  <li><a href="/contact-us.html">Contact Us</a></li>
+                </ul>
+              </div>
+              <div class="footer-column">
+                <ul>
+                  <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+                  <li><a href="/terms-and-conditions.html">Terms</a></li>
+                  <li><a href="/disclaimer.html">Disclaimer</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="copyright">
+              <p>© 2025 Mass Tools. All rights reserved.</p>
+            </div>
+          </div>
+        `;
       });
-      observer.observe(header, { childList: true, subtree: true });
-
-      // Fallback: load index.js after 500ms if observer fails
-      setTimeout(() => {
-        if (!document.querySelector('script[src*="/index.js"]')) {
-          console.warn('Fallback: loading index.js after timeout');
-          loadIndexJs();
-        }
-      }, 500);
-    }).catch(err => {
-      console.error('Error loading header/footer:', err);
-      // Load index.js anyway as fallback
-      loadIndexJs();
-    });
 
     // Word Wrap tool logic
     document.addEventListener('DOMContentLoaded', () => {
@@ -212,17 +230,14 @@
         console.log('wordWrap called:', { lineWidth, numColumns, columnSpacing, breakWord, trimText });
         if (!text) return '';
 
-        // Trim text if enabled
         if (trimText) {
           text = text.trim();
           console.log('Text trimmed:', text);
         }
 
-        // Split into words
         let words = text.split(/\s+/).filter(word => word.length > 0);
         if (!words.length) return '';
 
-        // Break long words if enabled
         if (breakWord) {
           const newWords = [];
           for (const word of words) {
@@ -240,7 +255,6 @@
           console.log('Words after breaking:', words);
         }
 
-        // Split words into columns
         const wordsPerColumn = Math.ceil(words.length / numColumns);
         const columns = [];
         for (let i = 0; i < numColumns; i++) {
@@ -248,7 +262,6 @@
         }
         console.log('Columns created:', columns);
 
-        // Wrap each column
         const wrappedColumns = columns.map(columnWords => {
           let currentLine = '';
           const lines = [];
@@ -274,7 +287,6 @@
         });
         console.log('Wrapped columns:', wrappedColumns);
 
-        // Combine columns with spacing
         const maxLines = Math.max(...wrappedColumns.map(col => col.length));
         const outputLines = [];
         for (let i = 0; i < maxLines; i++) {
@@ -375,5 +387,6 @@
       });
     });
   </script>
+  <script src="./index.js" onerror="console.error('Failed to load index.js')"></script>
 </body>
 </html>
