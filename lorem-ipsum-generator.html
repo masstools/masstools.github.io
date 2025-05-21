@@ -21,7 +21,36 @@
   <link rel="stylesheet" href="./styles.css" onerror="console.error('Failed to load styles.css')">
 </head>
 <body>
-  <header id="header"></header>
+  <header>
+    <div class="container header-container">
+      <a href="/" class="logo">
+        <i class="fas fa-tools logo-icon"></i>
+        <span>Mass Tools</span>
+      </a>
+      <input id="mobile-menu-toggle" type="checkbox">
+      <label class="mobile-menu-btn" for="mobile-menu-toggle">
+        <i class="fas fa-bars"></i>
+      </label>
+      <nav id="nav-menu">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#text-tools">Text Tools</a></li>
+          <li><a href="/about-us.html">About Us</a></li>
+          <li><a href="/contact-us.html">Contact Us</a></li>
+          <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="/terms-and-conditions.html">Terms</a></li>
+          <li><a href="/disclaimer.html">Disclaimer</a></li>
+        </ul>
+        <div class="search-bar">
+          <input type="text" placeholder="Search text tools..." aria-label="Search">
+          <button type="submit" aria-label="Search">
+            <i class="fas fa-search"></i>
+          </button>
+          <div class="search-suggestions"></div>
+        </div>
+      </nav>
+    </div>
+  </header>
 
   <main>
     <section class="tool-section">
@@ -130,61 +159,30 @@
   </button>
 
   <script>
-    // Fetch header
-    fetch('./header.html', { cache: 'no-store' })
-      .then(response => {
-        if (!response.ok) throw new Error(`Header fetch failed: ${response.status}`);
-        return response.text();
-      })
-      .then(data => {
-        document.getElementById('header').innerHTML = data;
-        console.log('Header loaded');
-        // Re-initialize mobile menu after header load
-        if (typeof initMobileMenu === 'function') {
-          initMobileMenu();
-          console.log('Mobile menu re-initialized after header load');
-        } else {
-          console.error('initMobileMenu not defined in index.js');
-        }
-      })
-      .catch(err => {
-        console.error('Error loading header:', err);
-        document.getElementById('header').innerHTML = `
-          <div class="container header-container">
-            <a href="/" class="logo">
-              <i class="fas fa-tools logo-icon"></i>
-              <span>Mass Tools</span>
-            </a>
-            <input id="mobile-menu-toggle" type="checkbox">
-            <label class="mobile-menu-btn" for="mobile-menu-toggle">
-              <i class="fas fa-bars"></i>
-            </label>
-            <nav id="nav-menu">
-              <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/#text-tools">Text Tools</a></li>
-                <li><a href="/about-us.html">About Us</a></li>
-                <li><a href="/contact-us.html">Contact Us</a></li>
-                <li><a href="/privacy-policy.html">Privacy Policy</a></li>
-                <li><a href="/terms-and-conditions.html">Terms</a></li>
-                <li><a href="/disclaimer.html">Disclaimer</a></li>
-              </ul>
-              <div class="search-bar">
-                <input type="text" placeholder="Search text tools..." aria-label="Search">
-                <button type="submit" aria-label="Search">
-                  <i class="fas fa-search"></i>
-                </button>
-                <div class="search-suggestions"></div>
-              </div>
-            </nav>
-          </div>
-        `;
-        // Re-initialize mobile menu for fallback
-        if (typeof initMobileMenu === 'function') {
-          initMobileMenu();
-          console.log('Mobile menu initialized for fallback header');
-        }
-      });
+    // Toggle menu (inline, like text-to-ascii-converter.html)
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('Initializing toggle menu');
+      const menuToggle = document.getElementById('mobile-menu-toggle');
+      const nav = document.getElementById('nav-menu');
+      if (menuToggle && nav) {
+        console.log('Mobile menu elements found');
+        menuToggle.addEventListener('change', () => {
+          const isChecked = menuToggle.checked;
+          nav.classList.toggle('show', isChecked);
+          console.log('Mobile menu toggled:', isChecked);
+          // Close menu on nav link click
+          nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+              menuToggle.checked = false;
+              nav.classList.remove('show');
+              console.log('Menu closed via link click');
+            });
+          });
+        });
+      } else {
+        console.error('Mobile menu elements missing:', { menuToggle: !!menuToggle, nav: !!nav });
+      }
+    });
 
     // Fetch footer
     fetch('./footer.html', { cache: 'no-store' })
