@@ -130,32 +130,36 @@
   </button>
 
   <script>
-    // Fetch header and footer, then load index.js
+    // Fetch header and footer with timeout and error handling
     Promise.all([
-      fetch('/header.html')
+      fetch('/header.html', { cache: 'no-store' })
         .then(response => {
-          if (!response.ok) throw new Error('Header fetch failed');
+          if (!response.ok) throw new Error(`Header fetch failed: ${response.status}`);
           return response.text();
         })
         .then(data => {
           document.getElementById('header').innerHTML = data;
+          console.log('Header loaded');
         }),
-      fetch('/footer.html')
+      fetch('/footer.html', { cache: 'no-store' })
         .then(response => {
-          if (!response.ok) throw new Error('Footer fetch failed');
+          if (!response.ok) throw new Error(`Footer fetch failed: ${response.status}`);
           return response.text();
         })
         .then(data => {
           document.getElementById('footer').innerHTML = data;
+          console.log('Footer loaded');
         })
     ]).then(() => {
-      console.log('Header and footer loaded');
-      // Load index.js after header/footer
-      const script = document.createElement('script');
-      script.src = '/index.js';
-      script.async = true;
-      document.body.appendChild(script);
-      console.log('index.js loading initiated');
+      // Wait for DOM update and load index.js
+      setTimeout(() => {
+        const script = document.createElement('script');
+        script.src = '/index.js?v=' + new Date().getTime(); // Cache bust
+        script.async = true;
+        script.onload = () => console.log('index.js loaded successfully');
+        script.onerror = () => console.error('index.js failed to load');
+        document.body.appendChild(script);
+      }, 100); // Small delay for DOM
     }).catch(err => {
       console.error('Error loading header/footer:', err);
     });
