@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sort Text - Mass Tools</title>
-  <meta name="description" content="Sort text lines or words alphabetically or numerically with Mass Tools' free Sort Text tool. Paste text or upload TXT/DOCX files for instant sorting.">
-  <meta name="keywords" content="sort text, text sorter, mass tools, free online tools, text processing">
+  <meta name="description" content="Sort text lines or words in alphabetical, natural, or character length order with Mass Tools' free Sort Text tool. Paste text or upload TXT/DOCX files for instant sorting.">
+  <meta name="keywords" content="sort text, text sorter, alphabetical sort, natural sort, character length sort, shuffle text, mass tools, free online tools">
   <meta name="robots" content="index, follow">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -439,6 +439,15 @@
       text-decoration: underline;
     }
 
+    .tool-content .tool-article pre {
+      background: var(--light-color);
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      white-space: pre-wrap;
+      margin: 12px 0;
+    }
+
     footer {
       background: var(--dark-color);
       color: var(--light-color);
@@ -722,7 +731,7 @@
       <div class="container">
         <div class="tool-content">
           <h1>Sort Text</h1>
-          <p>Sort text lines or words alphabetically or numerically with Mass Tools' free Sort Text tool. Paste text or upload TXT/DOCX files for instant sorting.</p>
+          <p>Sort text lines or words in alphabetical, natural, or character length order with Mass Tools' free Sort Text tool. Paste text or upload TXT/DOCX files for instant sorting.</p>
           
           <div class="input-area">
             <textarea id="inputText" placeholder="Paste your text here (e.g., one item per line or comma-separated)..." aria-label="Input text for sorting"></textarea>
@@ -739,15 +748,17 @@
             <label>
               Sort Order
               <select id="sortOrder" aria-label="Select sort order">
-                <option value="asc">Ascending</option>
-                <option value="desc">Descending</option>
+                <option value="asc">A-Z (Ascending)</option>
+                <option value="desc">Z-A (Descending)</option>
               </select>
             </label>
             <label>
               Sort Method
               <select id="sortMethod" aria-label="Select sort method">
                 <option value="alphabetical">Alphabetical</option>
-                <option value="numerical">Numerical</option>
+                <option value="natural">Natural</option>
+                <option value="length">Character Length</option>
+                <option value="shuffle">Shuffle</option>
               </select>
             </label>
             <label>
@@ -782,54 +793,88 @@
           </div>
           <p class="loading" id="loadingIndicator">Processing file...</p>
 
-          <a class="cta-button" href="/index.html#tools">Explore Our Tools</a>
+          <a class="cta-button" href="/index.html#text-tools">Explore Our Tools</a>
 
           <div class="tool-article">
-            <h2>About the Sort Text Tool</h2>
-            <p>The Sort Text Tool by <a href="/about-us.html">Mass Tools</a> is a free tool to sort text lines or words alphabetically or numerically. Paste text or upload TXT/DOCX files, processed securely in your browser.</p>
-            
-            <h3>Why Use the Sort Text Tool?</h3>
-            <p>This tool is ideal for organizing text data. Use it to:</p>
+            <h2>About</h2>
+            <p>Use this tool to sort an unordered list in alphabetical or natural order. You can sort in ascending or descending order. You can also sort based on character length/width.</p>
+
+            <h3>Sorting Method</h3>
+            <p>There are three different ways of sorting text lines using this tool.</p>
             <ul>
-              <li><strong>Data Cleanup</strong>: Sort lists for reports or databases.</li>
-              <li><strong>Programming</strong>: Organize code variables or JSON keys.</li>
-              <li><strong>Writing</strong>: Alphabetize bibliographies or glossaries.</li>
-              <li><strong>SEO</strong>: Sort keywords for analysis.</li>
+              <li><strong>Alphabetical order</strong> - Alphabetical sorting is the traditional way a computer sorts text. Each character is compared in order and the string whose first letter comes earlier in the alphabet (A-Z) comes first. This also applies to numbers (0-9).</li>
+              <li><strong>Natural order</strong> - Natural sort is considered a more human-friendly implementation of machine alphabetical sorting. Non-single-digit numbers like "10", "11", "12", and above are considered as a single entity and ordered by the value of the number. This is what you should use if you're working with numbered lists.</li>
+              <li><strong>By Character Length</strong> - You can sort a list based on the length/width of the text. String with shorter character length comes first in the list and the longest comes last.</li>
+              <li><strong>Shuffle</strong> - Randomizes the arrangement of the list in no particular order.</li>
             </ul>
 
-            <h3>How to Use the Sort Text Tool</h3>
-            <p>Our Sort Text Tool is user-friendly. Follow these steps:</p>
-            <ul>
-              <li><strong>Paste Text</strong>: Enter text in the textarea (e.g., one item per line or comma-separated).</li>
-              <li><strong>Set Options</strong>: Choose sort type (lines/words), order (ascending/descending), method (alphabetical/numerical), delimiter (for words), case sensitivity, and duplicate removal.</li>
-              <li><strong>Upload File (Optional)</strong>: Drag and drop or click to upload a TXT or DOCX file.</li>
-              <li><strong>Sort</strong>: Click "Sort Text" to see the result.</li>
-              <li><strong>Copy or Download</strong>: Copy the sorted text to clipboard or download as a TXT file.</li>
-              <li><strong>Reset</strong>: Click "Reset" to clear inputs and results.</li>
-            </ul>
-            <p>The tool supports drag-and-drop and works offline after loading. Files are processed locally.</p>
+            <h3>Basic Examples</h3>
+            <p><strong>Alphabetical sort</strong> - In the given example below, "A10" comes before "A2" because "1" is compared before "2".</p>
+            <pre>
+A1
+A10
+A2
+            </pre>
+            <p><strong>Output (A-Z):</strong></p>
+            <pre>
+A1
+A10
+A2
+            </pre>
+            <p><strong>Natural sort</strong> - Numbers are treated as single entities.</p>
+            <pre>
+A1
+A10
+A2
+            </pre>
+            <p><strong>Output (A-Z):</strong></p>
+            <pre>
+A1
+A2
+A10
+            </pre>
+            <p><strong>Character Length</strong> - Shorter strings come first.</p>
+            <pre>
+A
+AA
+AAA
+            </pre>
+            <p><strong>Output (A-Z):</strong></p>
+            <pre>
+A
+AA
+AAA
+            </pre>
+            <p><strong>Z-A (Descending)</strong> - Example after sorting by character length.</p>
+            <pre>
+AAA
+AA
+A
+            </pre>
+            <p><strong>Shuffle</strong> - Random order, changes each time.</p>
+            <pre>
+A1
+A10
+A2
+            </pre>
+            <p><strong>Possible Output:</strong></p>
+            <pre>
+A2
+A1
+A10
+            </pre>
 
-            <h3>Use Cases for Sort Text Tool</h3>
-            <p>The Sort Text Tool is perfect for various scenarios, including:</p>
-            <ul>
-              <li><strong>Data Analysis</strong>: Sort survey responses or datasets.</li>
-              <li><strong>Educational Projects</strong>: Organize vocabulary lists or references.</li>
-              <li><strong>Content Management</strong>: Sort tags or categories in CMS.</li>
-              <li><strong>Personal Organization</strong>: Arrange to-do lists or notes.</li>
-            </ul>
+            <h3>How to Sort a List in Descending Order</h3>
+            <p>Texts are sorted in ascending order by default. If you want to sort a list in descending order (9-0 and Z-A), you can use the Z-A option directly in the Sort Order dropdown.</p>
 
-            <h3>Tips for Using the Sort Text Tool</h3>
-            <p>To get the best results, consider these tips:</p>
-            <ul>
-              <li><strong>Small Files</strong>: Use files under 10MB for faster processing.</li>
-              <li><strong>Delimiter</strong>: For word sorting, specify the correct delimiter (e.g., "," or " ").</li>
-              <li><strong>Numerical Sorting</strong>: Ensure numbers are formatted consistently (e.g., "1.0" vs. "1").</li>
-              <li><strong>Combine Tools</strong>: Use with our <a href="/case-converter.html">Case Converter</a>, <a href="/word-counter.html">Word Counter</a>, <a href="/text-to-ascii-converter.html">Text to ASCII Converter</a>, <a href="/lorem-ipsum-generator.html">Lorem Ipsum Generator</a>, or <a href="/character-counter.html">Character Counter</a> for text workflows.</li>
-              <li><strong>Contact Us</strong>: Need bulk sorting? Email us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a>.</li>
-            </ul>
+            <h3>How to Sort a List Randomly</h3>
+            <p>You can sort text in no particular order by using Shuffle. It randomizes the arrangement of the list.</p>
 
             <h3>Why Choose Mass Tools?</h3>
-            <p>At Mass Tools, we provide free, high-quality tools to simplify your tasks. Our Sort Text Tool joins our suite, including the <a href="/image-to-png-converter.html">Image to PNG Converter</a>, <a href="/image-to-jpg-converter.html">Image to JPG Converter</a>, <a href="/image-to-webp-converter.html">Image to WebP Converter</a>, <a href="/image-to-svg-converter.html">Image to SVG Converter</a>, <a href="/image-to-tiff-converter.html">Image to TIFF Converter</a>, <a href="/image-to-heic-converter.html">Image to HEIC Converter</a>, <a href="/image-to-pdf-converter.html">Image to PDF Converter</a>, <a href="/image-to-bmp-converter.html">Image to BMP Converter</a>, <a href="/image-to-ico-converter.html">Image to ICO Converter</a>, <a href="/image-to-avif-converter.html">Image to AVIF Converter</a>, <a href="/image-to-eps-converter.html">Image to EPS Converter</a>, <a href="/image-to-psd-converter.html">Image to PSD Converter</a>, <a href="/image-to-base64-converter.html">Image to Base64 Converter</a>, <a href="/image-to-dxf-converter.html">Image to DXF Converter</a>, <a href="/image-to-exr-converter.html">Image to EXR Converter</a>, <a href="/pdf-to-image-converter.html">PDF to Image Converter</a>, <a href="/image-resizer-tool.html">Image Resizer Tool</a>, <a href="/image-compressor-tool.html">Image Compressor Tool</a>, <a href="/psd-to-image-converter.html">PSD to Image Converter</a>, <a href="/eps-to-image-converter.html">EPS to Image Converter</a>, <a href="/word-counter.html">Word Counter</a>, <a href="/case-converter.html">Case Converter</a>, <a href="/text-to-ascii-converter.html">Text to ASCII Converter</a>, <a href="/lorem-ipsum-generator.html">Lorem Ipsum Generator</a>, and <a href="/character-counter.html">Character Counter</a>. We prioritize privacy, speed, and ease of use. Learn more on our <a href="/about-us.html">About Us</a> page.</p>
+            <p>At Mass Tools, we provide free, high-quality tools to simplify your tasks. Our Sort Text Tool joins our suite, including the <a href="/case-converter.html">Case Converter</a>, <a href="/word-counter.html">Word Counter</a>, <a href="/text-to-ascii-converter.html">Text to ASCII Converter</a>, <a href="/lorem-ipsum-generator.html">Lorem Ipsum Generator</a>, and <a href="/character-counter.html">Character Counter</a>. We prioritize privacy, speed, and ease of use. Learn more on our <a href="/about-us.html">About Us</a> page.</p>
+
+            <h3>Contact Us</h3>
+            <p>Need help or have suggestions? Email us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a>.</p>
           </div>
         </div>
       </div>
@@ -848,7 +893,7 @@
         </div>
         <div class="footer-column">
           <ul>
-            <li><a href="/#tools">Tools</a></li>
+            <li><a href="/#text-tools">Text Tools</a></li>
             <li><a href="/about-us.html">About Us</a></li>
             <li><a href="/contact-us.html">Contact Us</a></li>
           </ul>
@@ -908,6 +953,8 @@
               target.scrollIntoView({ behavior: 'smooth' });
               history.pushState(null, null, `/#${hash}`);
               console.log('Smooth scrolled to:', hash);
+            } else {
+              console.warn('Target section not found:', hash);
             }
           }
           if (nav && nav.classList.contains('show')) {
@@ -1123,18 +1170,25 @@
       }
 
       const sortText = (text, options) => {
+        console.log('sortText called with:', { text, options });
         if (!text.trim()) {
+          console.log('Empty text, returning empty string');
           alert('Please enter text to sort.');
           return '';
         }
         if (text.length > 100000) {
+          console.log('Text too long:', text.length);
           alert('Text exceeds 100,000 characters. Please use shorter text.');
           return '';
         }
 
         let delimiter = options.delimiter || ',';
-        if (!delimiter.trim()) delimiter = ','; // Fallback for empty delimiter
+        if (!delimiter.trim()) {
+          console.log('Empty delimiter, using default:', delimiter);
+          delimiter = ',';
+        }
         if (/[\\^$*+?.()|[\]{}]/.test(delimiter)) {
+          console.log('Invalid delimiter:', delimiter);
           alert('Invalid delimiter: Special regex characters are not allowed.');
           return '';
         }
@@ -1145,29 +1199,61 @@
         } else {
           items = text.split(delimiter).map(item => item.trim()).filter(item => item);
         }
+        console.log('Items before sort:', items);
 
         if (options.removeDuplicates) {
           items = [...new Set(items)];
+          console.log('Duplicates removed:', items);
         }
 
-        const compareFn = (a, b) => {
-          let aVal = options.caseSensitive ? a : a.toLowerCase();
-          let bVal = options.caseSensitive ? b : b.toLowerCase();
-
-          if (options.sortMethod === 'numerical') {
-            const aNum = parseFloat(aVal);
-            const bNum = parseFloat(bVal);
-            if (!isNaN(aNum) && !isNaN(bNum)) {
-              return options.sortOrder === 'asc' ? aNum - bNum : bNum - aNum;
-            }
+        const naturalCompare = (a, b) => {
+          const ax = [], bx = [];
+          a.replace(/(\d+\.?\d*|\D+)/g, m => { ax.push(m); });
+          b.replace(/(\d+\.?\d*|\D+)/g, m => { bx.push(m); });
+          while (ax.length && bx.length) {
+            const an = ax.shift();
+            const bn = bx.shift();
+            const nn = (parseFloat(an) || an) < (parseFloat(bn) || bn) ? -1 : 1;
+            if (nn) return options.sortOrder === 'asc' ? nn : -nn;
           }
-
-          return options.sortOrder === 'asc' ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+          return options.sortOrder === 'asc' ? ax.length - bx.length : bx.length - ax.length;
         };
 
-        items.sort(compareFn);
+        const shuffleArray = (array) => {
+          for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+          }
+          return array;
+        };
 
-        return options.sortType === 'lines' ? items.join('\n') : items.join(delimiter);
+        if (options.sortMethod === 'shuffle') {
+          items = shuffleArray([...items]);
+          console.log('Shuffled items:', items);
+        } else {
+          const compareFn = (a, b) => {
+            let aVal = options.caseSensitive ? a : a.toLowerCase();
+            let bVal = options.caseSensitive ? b : b.toLowerCase();
+
+            if (options.sortMethod === 'alphabetical') {
+              console.log('Alphabetical compare:', { aVal, bVal, order: options.sortOrder });
+              return options.sortOrder === 'asc' ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+            } else if (options.sortMethod === 'natural') {
+              console.log('Natural compare:', { a, b });
+              return naturalCompare(aVal, bVal);
+            } else if (options.sortMethod === 'length') {
+              console.log('Length compare:', { aLength: a.length, bLength: b.length });
+              return options.sortOrder === 'asc' ? a.length - b.length || aVal.localeCompare(bVal) : b.length - a.length || bVal.localeCompare(aVal);
+            }
+          };
+
+          items.sort(compareFn);
+        }
+        console.log('Items after sort:', items);
+
+        const result = options.sortType === 'lines' ? items.join('\n') : items.join(delimiter);
+        console.log('Sort result:', result);
+        return result;
       };
 
       const resetForm = () => {
@@ -1188,14 +1274,17 @@
 
       const handleFile = (file) => {
         if (!file) {
+          console.log('No file selected');
           alert('Please select a TXT or DOCX file.');
           return;
         }
         if (!file.name.match(/\.(txt|docx)$/i)) {
+          console.log('Invalid file type:', file.name);
           alert('Please upload a valid TXT or DOCX file.');
           return;
         }
         if (file.size > 10 * 1024 * 1024) {
+          console.log('File too large:', file.size);
           alert('File is too large (over 10MB). Please use a smaller file.');
           return;
         }
@@ -1216,6 +1305,7 @@
             } else {
               throw new Error('Mammoth.js not loaded');
             }
+            console.log('File text extracted:', text.slice(0, 100) + '...');
             inputText.value = text;
             const options = {
               sortType: sortTypeSelect.value,
@@ -1254,32 +1344,6 @@
           reader.readAsArrayBuffer(file);
         }
       };
-
-      // Debounce for settings changes
-      const debounce = (func, wait) => {
-        let timeout;
-        return (...args) => {
-          clearTimeout(timeout);
-          timeout = setTimeout(() => func.apply(this, args), wait);
-        };
-      };
-
-      const updateSort = debounce(() => {
-        const text = inputText.value;
-        if (!text.trim()) return;
-        const options = {
-          sortType: sortTypeSelect.value,
-          sortOrder: sortOrderSelect.value,
-          sortMethod: sortMethodSelect.value,
-          delimiter: delimiterInput.value,
-          caseSensitive: caseSensitiveCheckbox.checked,
-          removeDuplicates: removeDuplicatesCheckbox.checked
-        };
-        resultOutput.value = sortText(text, options);
-        copyBtn.disabled = !resultOutput.value;
-        downloadBtn.disabled = !resultOutput.value;
-        console.log('Sort updated:', options);
-      }, 300);
 
       uploadArea.addEventListener('dragover', (e) => {
         e.preventDefault();
@@ -1322,11 +1386,12 @@
           caseSensitive: caseSensitiveCheckbox.checked,
           removeDuplicates: removeDuplicatesCheckbox.checked
         };
-        resultOutput.value = sortText(text, options);
-        copyBtn.disabled = !resultOutput.value;
-        downloadBtn.disabled = !resultOutput.value;
-        console.log('Sort button clicked:', options);
-        if (window.gtag && resultOutput.value) {
+        console.log('Sort button clicked with:', { text: text.slice(0, 100) + '...', options });
+        const result = sortText(text, options);
+        resultOutput.value = result;
+        copyBtn.disabled = !result;
+        downloadBtn.disabled = !result;
+        if (window.gtag && result) {
           gtag('event', 'sort_text', {
             event_category: 'Tool Usage',
             event_label: `Sort Text - ${options.sortType} ${options.sortMethod} ${options.sortOrder}`,
@@ -1379,7 +1444,27 @@
 
       resetBtn.addEventListener('click', resetForm);
 
-      // Add listeners for settings changes
+      const updateSort = () => {
+        const text = inputText.value;
+        if (!text.trim()) {
+          console.log('No text to update sort');
+          return;
+        }
+        const options = {
+          sortType: sortTypeSelect.value,
+          sortOrder: sortOrderSelect.value,
+          sortMethod: sortMethodSelect.value,
+          delimiter: delimiterInput.value,
+          caseSensitive: caseSensitiveCheckbox.checked,
+          removeDuplicates: removeDuplicatesCheckbox.checked
+        };
+        console.log('updateSort called with:', { text: text.slice(0, 100) + '...', options });
+        const result = sortText(text, options);
+        resultOutput.value = result;
+        copyBtn.disabled = !result;
+        downloadBtn.disabled = !result;
+      };
+
       inputText.addEventListener('input', updateSort);
       sortTypeSelect.addEventListener('change', updateSort);
       sortOrderSelect.addEventListener('change', updateSort);
