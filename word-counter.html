@@ -20,7 +20,36 @@
   <link rel="stylesheet" href="./styles.css" onerror="console.error('Failed to load styles.css')">
 </head>
 <body>
-  <header id="header"></header>
+  <header>
+    <div class="container header-container">
+      <a href="/" class="logo">
+        <i class="fas fa-tools logo-icon"></i>
+        <span>Mass Tools</span>
+      </a>
+      <input id="mobile-menu-toggle" type="checkbox">
+      <label class="mobile-menu-btn" for="mobile-menu-toggle">
+        <i class="fas fa-bars"></i>
+      </label>
+      <nav id="nav-menu">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#text-tools">Text Tools</a></li>
+          <li><a href="/about-us.html">About Us</a></li>
+          <li><a href="/contact-us.html">Contact Us</a></li>
+          <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="/terms-and-conditions.html">Terms</a></li>
+          <li><a href="/disclaimer.html">Disclaimer</a></li>
+        </ul>
+        <div class="search-bar">
+          <input type="text" placeholder="Search text tools..." aria-label="Search">
+          <button type="submit" aria-label="Search">
+            <i class="fas fa-search"></i>
+          </button>
+          <div class="search-suggestions"></div>
+        </div>
+      </nav>
+    </div>
+  </header>
 
   <main>
     <section class="tool-section">
@@ -30,7 +59,7 @@
           <p>Convert text to uppercase, lowercase, or title case with Mass Tools' free Case Converter. Paste text for instant results.</p>
           
           <div class="input-area">
-            <textarea id="textInput" placeholder="Paste or type your text here..." aria-label="Enter text for conversion"></textarea>
+            <textarea id="textInput" placeholder="Paste or type your text here..." aria-label="Enter text for conversion" style="width: 100%; min-height: 150px; font-size: 14px; padding: 12px; box-sizing: border-box;"></textarea>
           </div>
 
           <div class="action-buttons">
@@ -40,11 +69,11 @@
             <button id="resetBtn" aria-label="Reset form">Reset</button>
           </div>
 
-          <a class="cta-button" href="./index.html#text-tools" aria-label="Explore other text tools">Explore Our Tools</a>
+          <a class="cta-button" href="/#text-tools" aria-label="Explore other text tools">Explore Our Tools</a>
 
           <div class="tool-article">
             <h2>About the Case Converter</h2>
-            <p>The Case Converter by <a href="./about-us.html">Mass Tools</a> is a free tool to transform text case. Process text in your browser for privacy.</p>
+            <p>The Case Converter by <a href="/about-us.html">Mass Tools</a> is a free tool to transform text case. Process text in your browser for privacy.</p>
             
             <h3>Why Use the Case Converter?</h3>
             <p>Text case conversion is useful for:</p>
@@ -65,7 +94,7 @@
             </ul>
 
             <h3>Why Choose Mass Tools?</h3>
-            <p>Explore our suite, including the <a href="./word-counter.html">Word Counter</a>, <a href="./text-to-ascii-converter.html">Text to ASCII</a>, and <a href="./lorem-ipsum-generator.html">Lorem Ipsum Generator</a>. Learn more on our <a href="./about-us.html">About Us</a> page.</p>
+            <p>Explore our suite, including the <a href="/word-counter.html">Word Counter</a>, <a href="/text-to-ascii-converter.html">Text to ASCII</a>, and <a href="/lorem-ipsum-generator.html">Lorem Ipsum Generator</a>. Learn more on our <a href="/about-us.html">About Us</a> page.</p>
           </div>
         </div>
       </div>
@@ -78,46 +107,74 @@
     <i class="fas fa-arrow-up"></i>
   </button>
 
-  <script src="./index.js" onerror="console.error('Failed to load index.js')"></script>
   <script>
+    // Fetch footer only
+    fetch('./footer.html', { cache: 'no-store' })
+      .then(response => {
+        if (!response.ok) throw new Error(`Footer fetch failed: ${response.status}`);
+        return response.text();
+      })
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+        console.log('Footer loaded');
+      })
+      .catch(err => {
+        console.error('Error loading footer:', err);
+        document.getElementById('footer').innerHTML = `
+          <div class="container">
+            <div class="footer-container">
+              <div class="footer-column">
+                <a href="/" class="footer-column-logo">
+                  <i class="fas fa-tools footer-column-logo-icon"></i>
+                  <span>Mass Tools</span>
+                </a>
+                <p>Empowering you with free, high-quality text tools.</p>
+              </div>
+              <div class="footer-column">
+                <ul>
+                  <li><a href="/#text-tools">Text Tools</a></li>
+                  <li><a href="/about-us.html">About Us</a></li>
+                  <li><a href="/contact-us.html">Contact Us</a></li>
+                </ul>
+              </div>
+              <div class="footer-column">
+                <ul>
+                  <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+                  <li><a href="/terms-and-conditions.html">Terms</a></li>
+                  <li><a href="/disclaimer.html">Disclaimer</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="copyright">
+              <p>© 2025 Mass Tools. All rights reserved.</p>
+            </div>
+          </div>
+        `;
+      });
+
+    // Case Converter functionality
     document.addEventListener('DOMContentLoaded', () => {
-      // Load header
-      fetch('./header.html')
-        .then(response => {
-          if (!response.ok) throw new Error('Failed to load header.html');
-          return response.text();
-        })
-        .then(data => {
-          document.getElementById('header').innerHTML = data;
-        })
-        .catch(error => {
-          console.error(error);
-          document.getElementById('header').innerHTML = '<p>Error loading header. Please try again later.</p>';
-        });
-
-      // Load footer
-      fetch('./footer.html')
-        .then(response => {
-          if (!response.ok) throw new Error('Failed to load footer.html');
-          return response.text();
-        })
-        .then(data => {
-          document.getElementById('footer').innerHTML = data;
-        })
-        .catch(error => {
-          console.error(error);
-          document.getElementById('footer').innerHTML = '<p>Error loading footer. Please try again later.</p>';
-        });
-
-      // Case Converter functionality
+      console.log('Case Converter tool initializing');
       const textInput = document.getElementById('textInput');
       const toUpperCaseBtn = document.getElementById('toUpperCaseBtn');
       const toLowerCaseBtn = document.getElementById('toLowerCaseBtn');
       const toTitleCaseBtn = document.getElementById('toTitleCaseBtn');
       const resetBtn = document.getElementById('resetBtn');
 
+      if (!textInput || !toUpperCaseBtn || !toLowerCaseBtn || !toTitleCaseBtn || !resetBtn) {
+        console.error('Missing critical elements:', {
+          textInput: !!textInput,
+          toUpperCaseBtn: !!toUpperCaseBtn,
+          toLowerCaseBtn: !!toLowerCaseBtn,
+          toTitleCaseBtn: !!toTitleCaseBtn,
+          resetBtn: !!resetBtn
+        });
+        return;
+      }
+
       toUpperCaseBtn.addEventListener('click', () => {
         textInput.value = textInput.value.toUpperCase();
+        console.log('Converted to Uppercase');
         if (window.gtag) {
           gtag('event', 'convert_text', {
             event_category: 'Tool Usage',
@@ -128,6 +185,7 @@
 
       toLowerCaseBtn.addEventListener('click', () => {
         textInput.value = textInput.value.toLowerCase();
+        console.log('Converted to Lowercase');
         if (window.gtag) {
           gtag('event', 'convert_text', {
             event_category: 'Tool Usage',
@@ -138,6 +196,7 @@
 
       toTitleCaseBtn.addEventListener('click', () => {
         textInput.value = textInput.value.toLowerCase().replace(/(^|\s)\w/g, letter => letter.toUpperCase());
+        console.log('Converted to Title Case');
         if (window.gtag) {
           gtag('event', 'convert_text', {
             event_category: 'Tool Usage',
@@ -148,8 +207,10 @@
 
       resetBtn.addEventListener('click', () => {
         textInput.value = '';
+        console.log('Input reset');
       });
     });
   </script>
+  <script src="./index.js" onerror="console.error('Failed to load index.js')"></script>
 </body>
 </html>
