@@ -130,7 +130,7 @@
   </button>
 
   <script>
-    // Fetch header and footer
+    // Fetch header
     fetch('./header.html', { cache: 'no-store' })
       .then(response => {
         if (!response.ok) throw new Error(`Header fetch failed: ${response.status}`);
@@ -139,6 +139,13 @@
       .then(data => {
         document.getElementById('header').innerHTML = data;
         console.log('Header loaded');
+        // Re-initialize mobile menu after header load
+        if (typeof initMobileMenu === 'function') {
+          initMobileMenu();
+          console.log('Mobile menu re-initialized after header load');
+        } else {
+          console.error('initMobileMenu not defined in index.js');
+        }
       })
       .catch(err => {
         console.error('Error loading header:', err);
@@ -172,8 +179,14 @@
             </nav>
           </div>
         `;
+        // Re-initialize mobile menu for fallback
+        if (typeof initMobileMenu === 'function') {
+          initMobileMenu();
+          console.log('Mobile menu initialized for fallback header');
+        }
       });
 
+    // Fetch footer
     fetch('./footer.html', { cache: 'no-store' })
       .then(response => {
         if (!response.ok) throw new Error(`Footer fetch failed: ${response.status}`);
