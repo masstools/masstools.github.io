@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mass Tools - Free Online Web Tools</title>
-  <meta name="description" content="Mass Tools offers free, user-friendly online tools for image conversion, text manipulation, fitness calculators, and more. Simplify your tasks with our accessible utilities.">
-  <meta name="keywords" content="free online tools, web tools, image converter, text tools, fitness calculators">
+  <title>Mass Tools - Free Online Text Tools</title>
+  <meta name="description" content="Mass Tools offers free, user-friendly online text tools for counting, formatting, and generating content with ease.">
+  <meta name="keywords" content="free online text tools, word counter, case converter, text manipulation">
   <meta name="robots" content="index, follow">
-  <!-- Google tag (gtag.js) -->
-  <script async src="h ttps://www.googletagmanager.com/gtag/js?id=G-68CX9G7BKF"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-68CX9G7BKF"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -18,696 +17,18 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <style>
-    :root {
-      --primary-color: #FF4500;
-      --secondary-color: #FFA500;
-      --dark-color: #1A1A1A;
-      --light-color: #F8F9FA;
-      --text-color: #2C2C2C;
-      --text-light: #6C757D;
-      --border-radius: 12px;
-      --transition: all 0.3s ease;
-      --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
-
-    body {
-      background: var(--light-color);
-      color: var(--text-color);
-      font-size: 16px;
-      line-height: 1.7;
-      scrollbar-width: none;
-    }
-
-    body::-webkit-scrollbar {
-      display: none;
-    }
-
-    .progress-bar, [class*="progress"], [id*="progress"] {
-      display: none !important;
-    }
-
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    header {
-      background: var(--light-color);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .header-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 16px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      font-size: 24px;
-      font-weight: 800;
-      margin-left: 8px;
-    }
-
-    .logo-icon {
-      font-size: 24px;
-      color: var(--primary-color);
-    }
-
-    .logo span {
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 16px;
-    }
-
-    nav ul li a {
-      text-decoration: none;
-      color: var(--text-color);
-      font-weight: 500;
-      font-size: 14px;
-      padding: 8px 12px;
-      border-radius: var(--border-radius);
-      transition: var(--transition);
-    }
-
-    nav ul li a:hover {
-      background: var(--primary-color);
-      color: var(--light-color);
-      text-decoration: none;
-    }
-
-    .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 24px;
-      color: var(--text-color);
-      cursor: pointer;
-      margin-right: 8px;
-    }
-
-    #mobile-menu-toggle {
-      display: none;
-    }
-
-    .search-bar {
-      display: flex;
-      align-items: center;
-      background: #fff;
-      border: 1px solid #e0e0e0;
-      border-radius: 50px;
-      padding: 6px 12px;
-      transition: var(--transition);
-      max-width: 200px;
-    }
-
-    .search-bar:hover, .search-bar:focus-within {
-      border-color: var(--primary-color);
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .search-bar input {
-      border: none;
-      outline: none;
-      font-size: 13px;
-      padding: 6px;
-      width: 100%;
-    }
-
-    .search-bar button {
-      background: none;
-      border: none;
-      color: var(--text-light);
-      font-size: 14px;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .search-bar button:hover {
-      color: var(--primary-color);
-    }
-
-    .hero-section {
-      padding: 80px 0;
-      text-align: center;
-      background: var(--light-color);
-    }
-
-    .hero-section h1 {
-      font-size: 48px;
-      color: var(--dark-color);
-      margin-bottom: 16px;
-    }
-
-    .hero-section h1 span {
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero-section p {
-      font-size: 18px;
-      color: var(--text-light);
-      max-width: 600px;
-      margin: 0 auto 24px;
-    }
-
-    .cta-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 16px;
-      background: var(--gradient);
-      color: var(--light-color);
-      padding: 12px 32px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 16px;
-      transition: var(--transition);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .cta-button:hover {
-      background: var(--primary-color);
-      color: var(--light-color);
-      transform: translateY(-4px);
-      text-decoration: none;
-    }
-
-    .image-converters-section, .text-tools-section, .code-generators-section {
-      padding: 80px 0;
-      background: #fff;
-    }
-
-    .image-converters-section h2, .text-tools-section h2, .code-generators-section h2 {
-      font-size: 36px;
-      color: var(--dark-color);
-      text-align: center;
-      margin-bottom: 16px;
-    }
-
-    .image-converters-section p, .text-tools-section p, .code-generators-section p {
-      font-size: 16px;
-      color: var(--text-light);
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto 40px;
-    }
-
-    .tools-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-    }
-
-    .tool-card {
-      background: var(--light-color);
-      border-radius: var(--border-radius);
-      padding: 24px;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      transition: var(--transition);
-      display: flex;
-      flex-direction: column;
-      min-height: 220px;
-    }
-
-    .tool-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    }
-
-    .tool-card h3 {
-      font-size: 20px;
-      color: var(--dark-color);
-      margin-bottom: 12px;
-      margin-top: 16px;
-    }
-
-    .tool-card p {
-      font-size: 14px;
-      color: var(--text-light);
-      margin-bottom: 16px;
-      flex-grow: 1;
-    }
-
-    .tool-card a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background: var(--gradient);
-      color: var(--light-color);
-      padding: 8px 24px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 14px;
-      transition: var(--transition);
-      margin-top: auto;
-    }
-
-    .tool-card a:hover {
-      background: var(--primary-color);
-      transform: translateY(-4px);
-      text-decoration: none;
-    }
-
-    footer {
-      background: var(--dark-color);
-      color: var(--light-color);
-      padding: 40px 0 20px;
-    }
-
-    .footer-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 24px;
-      margin-bottom: 24px;
-    }
-
-    .footer-column-logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      font-size: 24px;
-      font-weight: 800;
-    }
-
-    .footer-column-logo-icon {
-      font-size: 24px;
-      color: var(--primary-color);
-    }
-
-    .footer-column-logo span {
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .footer-column ul {
-      list-style: none;
-    }
-
-    .footer-column ul li {
-      margin-bottom: 10px;
-    }
-
-    .footer-column ul li a {
-      color: #CED4DA;
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .footer-column ul li a:hover {
-      color: var(--primary-color);
-      text-decoration: none;
-    }
-
-    .copyright {
-      text-align: center;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      font-size: 13px;
-    }
-
-    .scroll-to-top {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: var(--gradient);
-      color: var(--light-color);
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-      z-index: 1000;
-      cursor: pointer;
-    }
-
-    .scroll-to-top i {
-      -webkit-text-stroke: 0;
-      color: var(--light-color);
-    }
-
-    .scroll-to-top:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-    }
-
-    .scroll-to-top.show {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
-    @media (min-width: 992px) {
-      .tools-container {
-        grid-template-columns: repeat(4, 1fr) !important;
-      }
-    }
-
-    @media (max-width: 992px) {
-      .search-bar {
-        max-width: 180px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .container {
-        padding: 0 16px !important;
-      }
-      .header-container {
-        padding: 12px 16px;
-      }
-      .mobile-menu-btn {
-        display: block;
-      }
-      nav {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: rgba(255, 255, 255, 0.98);
-        padding: 20px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        flex-direction: column;
-        align-items: flex-start;
-        border-radius: 0 0 12px 12px;
-        border: 1px solid #e0e0e0;
-        width: 100%;
-        box-sizing: border-box;
-      }
-      nav.show {
-        display: flex !important;
-      }
-      nav ul {
-        flex-direction: column;
-        gap: 18px;
-        width: 100%;
-      }
-      nav ul li a {
-        font-size: 18px;
-        padding: 12px 20px;
-        width: 100%;
-        text-align: left;
-        border-radius: 8px;
-      }
-      .search-bar {
-        margin-top: 20px;
-        width: 100%;
-        max-width: none;
-        padding: 10px 20px;
-        border-radius: 50px;
-      }
-      .search-bar input {
-        font-size: 15px;
-        padding: 8px;
-      }
-      .search-bar button {
-        font-size: 16px;
-      }
-      .hero-section {
-        padding: 60px 0;
-      }
-      .hero-section h1 {
-        font-size: 36px;
-      }
-      .hero-section p {
-        font-size: 16px;
-      }
-      .image-converters-section, .text-tools-section. .code-generators-section {
-        padding: 60px 0;
-      }
-      .image-converters-section h2, .text-tools-section h2, .code-generators-section h2 {
-        font-size: 30px;
-      }
-    }
-
-    @media (max-width: 576px) {
-      .container {
-        padding: 0 16px !important;
-      }
-      .header-container {
-        padding: 10px 16px !important;
-        margin: 0;
-      }
-      .logo {
-        font-size: 20px;
-        margin-left: 0;
-      }
-      .logo-icon {
-        font-size: 20px;
-      }
-      .mobile-menu-btn {
-        margin-right: 0;
-      }
-      .search-bar {
-        padding: 8px 16px;
-        margin: 16px 0;
-        max-width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .search-bar input {
-        font-size: 14px;
-      }
-      .hero-section h1 {
-        font-size: 30px;
-      }
-      .hero-section p {
-        font-size: 14px;
-      }
-      .cta-button {
-        padding: 10px 24px;
-        font-size: 14px;
-      }
-      .image-converters-section h2, .text-tools-section h2, .code-generators-section h2 {
-        font-size: 26px;
-      }
-      .image-converters-section p, .text-tools-section p, .code-generators-section p {
-        font-size: 14px;
-      }
-      .tool-card {
-        padding: 16px;
-        min-height: 200px;
-      }
-      .tool-card h3 {
-        font-size: 18px;
-        margin-top: 12px;
-      }
-      .tool-card p {
-        font-size: 14px;
-      }
-      .tool-card a {
-        padding: 8px 24px;
-        font-size: 14px;
-      }
-      .scroll-to-top {
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
-        bottom: 16px;
-        right: 16px;
-      }
-      .footer-column-logo {
-        font-size: 20px;
-      }
-      .footer-column-logo-icon {
-        font-size: 20px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 <body>
-  <header>
-    <div class="container header-container">
-      <a href="/" class="logo">
-        <i class="fas fa-tools logo-icon"></i>
-        <span>Mass Tools</span>
-      </a>
-      <input id="mobile-menu-toggle" type="checkbox">
-      <label class="mobile-menu-btn" for="mobile-menu-toggle">
-        <i class="fas fa-bars"></i>
-      </label>
-      <nav id="nav-menu">
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/#tools">Tools</a></li>
-          <li><a href="/about-us.html">About Us</a></li>
-          <li><a href="/contact-us.html">Contact Us</a></li>
-          <li><a href="/privacy-policy.html">Privacy Policy</a></li>
-          <li><a href="/terms-and-conditions.html">Terms</a></li>
-          <li><a href="/Disclaimer.html">Disclaimer</a></li>
-        </ul>
-        <div class="search-bar">
-          <input type="text" placeholder="Search tools..." aria-label="Search">
-          <button type="submit" aria-label="Search">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </nav>
-    </div>
-  </header>
-
+  <header></header>
   <main>
     <section class="hero-section">
       <div class="container">
-        <h1>Free <span>Online Tools</span> for Everyone</h1>
-        <p>Discover a collection of user-friendly web tools designed to simplify your tasks, from image conversion to text manipulation.</p>
-        <a class="cta-button" href="/#tools"><i class="fas fa-tools"></i> Explore Tools</a>
+        <h1>Free <span>Online Text Tools</span> for Everyone</h1>
+        <p>Discover a collection of user-friendly text tools designed to simplify your tasks, from counting to formatting.</p>
+        <a class="cta-button" href="/#text-tools"><i class="fas fa-tools"></i> Explore Tools</a>
       </div>
     </section>
-
-    <section class="image-converters-section" id="tools">
-      <div class="container">
-        <h2>Image Converters</h2>
-        <p>Effortlessly convert, resize, and optimize your images with our free image converter tools, designed for speed and simplicity.</p>
-        <div class="tools-container">
-          <div class="tool-card">
-            <h3>Image To JPG Converter</h3>
-            <p>Optimize images with smaller, high-quality JPGs.</p>
-            <a href="/image-to-jpg-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-            <h3>Image to PNG Converter</h3>
-            <p>Preserve quality with transparent, lossless PNGs.</p>
-            <a href="image-to-png-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-              <div class="tool-card">
-            <h3>Image TO SVG Converter</h3>
-            <p>Convert images to crisp, scalable SVGs for perfect quality at any size.</p>
-            <a href="/image-to-svg-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-            <h3>Image to WEBP Converter</h3>
-            <p>Optimize images with smaller, high-quality WebP files.</p>
-            <a href="/image-to-webp-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-            <h3>Image to TIFF Converter</h3>
-            <p>Convert images to high-quality, lossless TIFF files for professional use.</p>
-            <a href="/image-to-tiff-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-            <h3>Image to HEIC Converter</h3>
-            <p>Preserve quality with modern, high-efficiency HEIC images.</p>
-            <a href="/image-to-heic-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-           <div class="tool-card">
-            <h3>Image to PDF Converter</h3>
-            <p>Preserve quality with secure, shareable PDF documents.</p>
-            <a href="/image-to-pdf-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-            <h3>Image to BMP Converter</h3>
-            <p>Convert images to uncompressed BMP format for raw quality and compatibility.</p>
-            <a href="/image-to-bmp-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-             <div class="tool-card">
-            <h3>Image to ICO Converter</h3>
-            <p>Convert images into ICO format for use as website or app icons.</p>
-            <a href="/image-to-ico-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-             <div class="tool-card">
-            <h3>Image to AVIF Converter</h3>
-            <p>Convert images to ultra-efficient AVIF format for next-gen web performance.</p>
-            <a href="/image-to-avif-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-           <div class="tool-card">
-            <h3>Image to EPS Converter</h3>
-            <p>Convert images to EPS vector format for print and graphic design workflows.</p>
-            <a href="/image-to-eps-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-            <div class="tool-card">
-            <h3>Image to PSD Converter</h3>
-            <p>Convert images to layered PSD files for easy editing in Adobe Photoshop.</p>
-            <a href="/image-to-psd-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-           <div class="tool-card">
-            <h3>Image to Base64 Converter</h3>
-            <p>Convert images to Base64 strings for embedding directly in HTML or CSS.</p>
-            <a href="/image-to-base64-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-            <h3>Image to DXF Converter</h3>
-            <p>Convert images (especially drawings or line art) to DXF format for CAD use.</p>
-            <a href="/image-to-dxf-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-            <h3>Image to EXR Converter</h3>
-            <p>Convert images to high-dynamic-range EXR format for VFX and 3D rendering.</p>
-            <a href="/image-to-exr-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-            <h3>PDF to Image Converter</h3>
-            <p>Convert PDFs to high-quality images for easy sharing, archiving, and content repurposing.</p>
-            <a href="/pdf-to-image-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-           <div class="tool-card">
-            <h3>Image Resizer</h3>
-            <p>Resize images to perfect dimensions for web, print, and social media—without losing quality.</p>
-            <a href="/image-resizer-tool.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-            <h3>Image Compressor Tool</h3>
-            <p>Compress images to reduce file size while preserving quality—ideal for web, email, and faster loading times.</p>
-            <a href="/image-compressor-tool.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-          <div class="tool-card">
-            <h3>PSD To Image Converter</h3>
-            <p>Convert layered PSD files to standard image formats for easy viewing, sharing, and publishing.</p>
-            <a href="/psd-to-image-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-             <div class="tool-card">
-            <h3>EPS To Image Converter</h3>
-            <p>Convert vector EPS files to high-quality images for web, print, and presentations with ease.</p>
-            <a href="/eps-to-image-converter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="text-tools-section" id="text-tools">
       <div class="container">
         <h2>Text Tools</h2>
@@ -738,7 +59,7 @@
             <p>Count the number of characters in your text, with or without spaces.</p>
             <a href="/character-counter.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
-            <div class="tool-card">
+          <div class="tool-card">
             <h3>Sort Text</h3>
             <p>Quickly sort lines of text alphabetically, numerically, or by length—ideal for data cleanup and content organization.</p>
             <a href="/sort-text.html"><i class="fas fa-arrow-right"></i> Try Now</a>
@@ -748,12 +69,12 @@
             <p>Search and replace text instantly across documents—perfect for editing, coding, and data correction.</p>
             <a href="/find-and-replace-text.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
-           <div class="tool-card">
+          <div class="tool-card">
             <h3>Reverse List</h3>
             <p>Instantly reverse the order of items in a list—great for data formatting, coding, and text manipulation.</p>
             <a href="/reverse-list.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
-           <div class="tool-card">
+          <div class="tool-card">
             <h3>Difference Checker</h3>
             <p>Compare text side-by-side to spot differences instantly—ideal for code reviews, document edits, and version control.</p>
             <a href="/difference-checker.html"><i class="fas fa-arrow-right"></i> Try Now</a>
@@ -769,497 +90,229 @@
             <a href="/add-line-breaks.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>Remove Line Breaks</h3>
+            <h3>Remove Line Breaks</h3>
             <p>Insert line breaks exactly where you need them—great for formatting paragraphs, code, or CSV data.</p>
             <a href="/remove-line-breaks.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
-           <div class="tool-card">
-          <h3>Concatenate Text</h3>
+          <div class="tool-card">
+            <h3>Concatenate Text</h3>
             <p>Merge multiple lines or strings into one—perfect for coding, data manipulation, and bulk text formatting.</p>
             <a href="/concatenate-text.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>Split Text</h3>
+            <h3>Split Text</h3>
             <p>Break text into parts using custom delimiters—ideal for data parsing, formatting, and content extraction.</p>
             <a href="/split-text.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>Extract Column</h3>
+            <h3>Extract Column</h3>
             <p>Pull specific columns from text or data files—perfect for working with CSV, TSV, and structured text.</p>
             <a href="/extract-column.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
-           <div class="tool-card">
-          <h3>Swap Columns</h3>
+          <div class="tool-card">
+            <h3>Swap Columns</h3>
             <p>Easily switch the position of columns in structured text—ideal for rearranging CSV, TSV, or tabular data.</p>
             <a href="/swap-column.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>Reverse Words</h3>
+            <h3>Reverse Words</h3>
             <p>Flip the order of words in a sentence or line—great for text manipulation, coding, and creative formatting.</p>
             <a href="/reverse-words.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
-           <div class="tool-card">
-          <h3>Reverse Letters</h3>
+          <div class="tool-card">
+            <h3>Reverse Letters</h3>
             <p>Reverse the letters in each word or line—perfect for puzzles, text effects, and fun transformations.</p>
             <a href="/reverse-letters.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>Remove Extra Spaces</h3>
+            <h3>Remove Extra Spaces</h3>
             <p>Clean up text by removing extra spaces—ideal for formatting, data cleanup, and streamlined content.</p>
             <a href="/remove-extra-spaces.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
-             <div class="tool-card">
-          <h3>Remove Duplicate Lines</h3>
+          <div class="tool-card">
+            <h3>Remove Duplicate Lines</h3>
             <p>Eliminate repeated lines from your text—perfect for data cleaning, sorting, and content deduplication.</p>
             <a href="/remove-duplicate-lines.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
-            <div class="tool-card">
-          <h3>Remove Empty Lines</h3>
+          <div class="tool-card">
+            <h3>Remove Empty Lines</h3>
             <p>Delete blank lines to tighten up your text—great for code cleanup, formatting, and content organization.</p>
             <a href="/remove-empty-lines.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
-           <div class="tool-card">
-          <h3>Remove Letter Accents</h3>
+          <div class="tool-card">
+            <h3>Remove Letter Accents</h3>
             <p>Strip accents from characters for plain ASCII text—ideal for SEO, database cleanup, and text normalization.</p>
             <a href="/remove-letter-accents.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>Remove Unwanted Characters</h3>
+            <h3>Remove Unwanted Characters</h3>
             <p>Clean your text by removing special or non-standard characters—perfect for data sanitization, coding, and formatting.</p>
             <a href="/remove-unwanted-characters.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
-                    <div class="tool-card">
-          <h3>Remove Lines Containing/Not Containing</h3>
-            <p> Filter text by keeping or removing lines based on keywords—ideal for data filtering, log analysis, and content refinement.</p>
+          <div class="tool-card">
+            <h3>Remove Lines Containing/Not Containing</h3>
+            <p>Filter text by keeping or removing lines based on keywords—ideal for data filtering, log analysis, and content refinement.</p>
             <a href="/remove-lines-containing.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>Remove Emojis</h3>
+            <h3>Remove Emojis</h3>
             <p>Strip emojis from text for clean, professional content—perfect for data processing, moderation, and plain text formatting.</p>
             <a href="/remove-emojis.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>Strip HTML Tags</h3>
+            <h3>Strip HTML Tags</h3>
             <p>Remove HTML tags to extract clean text—ideal for web scraping, content cleanup, and text analysis.</p>
             <a href="/strip-html-tags.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
-           <div class="tool-card">
-          <h3>Add Line Numbers</h3>
+          <div class="tool-card">
+            <h3>Add Line Numbers</h3>
             <p>Add line numbers to your text—perfect for code snippets, document reviews, and organized formatting.</p>
             <a href="/add-line-numbers.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>Replace Smart/Straight Quotes</h3>
+            <h3>Replace Smart/Straight Quotes</h3>
             <p>Convert between curly and straight quotes—perfect for typographic cleanup, coding, and publishing consistency.</p>
             <a href="/replace-quotes.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
-           <div class="tool-card">
-          <h3>Tabs to Spaces Converter</h3>
+          <div class="tool-card">
+            <h3>Tabs to Spaces Converter</h3>
             <p>Convert tabs to spaces for clean, consistent formatting—essential for coding, writing, and data alignment.</p>
             <a href="/tabs-to-spaces.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>Spaces to Tabs Converter</h3>
+            <h3>Spaces to Tabs Converter</h3>
             <p>Convert spaces to tabs for compact, uniform indentation—perfect for developers and clean code formatting.</p>
             <a href="/spaces-to-tabs.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>Pad Text</h3>
+            <h3>Pad Text</h3>
             <p>Add leading or trailing characters to align and format text perfectly—great for tables, lists, and code.</p>
             <a href="/pad-text.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>Word Wrap</h3>
+            <h3>Word Wrap</h3>
             <p>Automatically wrap text to fit within a set width—ideal for clean formatting, readability, and printing.</p>
             <a href="/word-wrap.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>Justify Text</h3>
+            <h3>Justify Text</h3>
             <p>Align text evenly on both sides for a clean, professional look—perfect for documents, articles, and web content.</p>
             <a href="/justify-text.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>Center Text</h3>
+            <h3>Center Text</h3>
             <p>Align your text to the center for balanced, polished presentation—ideal for titles, headers, and design layouts.</p>
             <a href="/center-text.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>Upside Down Text</h3>
+            <h3>Upside Down Text</h3>
             <p>Flip your text 180° for fun, creative effects—great for social media, pranks, and eye-catching designs.</p>
             <a href="/upside-down-text.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
-           <div class="tool-card">
-          <h3>Bold Text Generator</h3>
+          <div class="tool-card">
+            <h3>Bold Text Generator</h3>
             <p>Create bold, standout text for social media, posts, and messages—grab attention instantly with style.</p>
             <a href="/bold-text-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>Italic Text Generator</h3>
+            <h3>Italic Text Generator</h3>
             <p>Generate stylish italic text for posts, bios, and messages—perfect for emphasis and flair across platforms.</p>
             <a href="/italic-text-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>Old English Text Generator</h3>
+            <h3>Old English Text Generator</h3>
             <p>Transform your text into classic Old English style—ideal for tattoos, logos, and medieval-themed designs.</p>
             <a href="/old-english-text-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>Cursive Text Generator</h3>
+            <h3>Cursive Text Generator</h3>
             <p>Convert your text into elegant cursive script—perfect for invitations, bios, and stylish social posts.</p>
             <a href="/cursive-text-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>Normalize Unicode Text</h3>
+            <h3>Normalize Unicode Text</h3>
             <p>Clean and standardize Unicode text for consistent processing—essential for developers, data cleaning, and multilingual content.</p>
             <a href="/normalize-unicode-text.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>HTML Encode Decode</h3>
+            <h3>HTML Encode Decode</h3>
             <p>Easily convert characters to HTML entities and vice versa—ideal for web development, content security, and data integrity.</p>
             <a href="/html-encode-decode.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>URL Encode Decode</h3>
+            <h3>URL Encode Decode</h3>
             <p>Convert text to and from URL-safe formats—perfect for web development, API requests, and data transmission.</p>
             <a href="/url-encode-decode.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
-            <div class="tool-card">
-          <h3>HTML Escape Unescape</h3>
+          <div class="tool-card">
+            <h3>HTML Escape Unescape</h3>
             <p>Safely escape or restore HTML characters—ideal for preventing code injection and ensuring clean web output.</p>
             <a href="/html-escape-unescape.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
-              <div class="tool-card">
-          <h3>Unique Username Generator</h3>
+          <div class="tool-card">
+            <h3>Unique Username Generator</h3>
             <p>Create cool, one-of-a-kind usernames for social media, gaming, and online profiles—stand out from the crowd!</p>
             <a href="/unique-username-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>Strong Password Generator</h3>
+            <h3>Strong Password Generator</h3>
             <p>Generate secure, random passwords to protect your accounts—ideal for privacy, safety, and peace of mind.</p>
             <a href="/strong-password-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>Pronounceable Password Generator</h3>
+            <h3>Pronounceable Password Generator</h3>
             <p>Create secure yet easy-to-remember passwords—perfect for everyday use without sacrificing safety.</p>
             <a href="/pronounceable-password-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>Random String Generator</h3>
+            <h3>Random String Generator</h3>
             <p>Generate random strings for testing, tokens, and unique identifiers—fully customizable and lightning fast.</p>
             <a href="/random-string-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>Random Word Generator</h3>
+            <h3>Random Word Generator</h3>
             <p>Instantly generate random words for creativity, brainstorming, and writing prompts—fun and endlessly useful.</p>
             <a href="/random-word-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>Filler Text</h3>
+            <h3>Filler Text</h3>
             <p>Generate placeholder text for mockups, designs, and layouts—perfect for UI/UX, publishing, and development.</p>
             <a href="/filler-text-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>Random Number Generator</h3>
+            <h3>Random Number Generator</h3>
             <p>Generate random numbers for games, simulations, and decision-making—fast, flexible, and easy to use.</p>
             <a href="/random-number-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>Random Email Generator</h3>
+            <h3>Random Email Generator</h3>
             <p>Create random, disposable email addresses for testing, sign-ups, and privacy protection—quick and hassle-free.</p>
             <a href="/random-email-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>Email Extractor</h3>
+            <h3>Email Extractor</h3>
             <p>Extract email addresses from text, files, or web pages—perfect for lead generation, data mining, and cleanup tasks.</p>
             <a href="/email-extractor.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>URL Extractor</h3>
+            <h3>URL Extractor</h3>
             <p>Quickly extract all URLs from text, code, or documents—ideal for data scraping, SEO, and link analysis.</p>
             <a href="/url-extractor.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
-          <h3>Online Notepad</h3>
+            <h3>Online Notepad</h3>
             <p>Write, edit, and save notes instantly in your browser—simple, fast, and distraction-free.</p>
             <a href="/online-notepad.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
         </div>
       </div>
     </section>
-<section class="code-generators-section" id="code-generators">
-  <div class="container">
-    <h2>Code Generators</h2>
-    <p>Create scannable barcodes and QR codes for retail, logistics, and digital applications.</p>
-    <div class="tools-container">
-      <div class="tool-card">
-        <h3>QR Code Generator</h3>
-        <p>Generate versatile QR codes for URLs, contacts, and more.</p>
-        <a href="/qr-code-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-      </div>
-      <div class="tool-card">
-        <h3>Data Matrix Generator</h3>
-        <p>Create compact 2D codes for small item labeling.</p>
-        <a href="/data-matrix-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-      </div>
-      <div class="tool-card">
-        <h3>Barcode Generator</h3>
-        <p>Standard 1D barcodes for retail and inventory.</p>
-        <a href="/barcode-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-      </div>
-      <div class="tool-card">
-        <h3>PDF417 Generator</h3>
-        <p>High-capacity stacked barcodes for documents.</p>
-        <a href="/pdf417-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-      </div>
-      <div class="tool-card">
-        <h3>Aztec Code Generator</h3>
-        <p>Robust 2D codes without quiet zones.</p>
-        <a href="/aztec-code-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-      </div>
-      <div class="tool-card">
-        <h3>MaxiCode Generator</h3>
-        <p>UPS-compatible circular codes for shipping.</p>
-        <a href="/maxicode-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-      </div>
-      <div class="tool-card">
-        <h3>Code 39 Generator</h3>
-        <p>Alphanumeric barcodes for industrial use.</p>
-        <a href="/code39-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-      </div>
-      <div class="tool-card">
-        <h3>Code 128 Generator</h3>
-        <p>High-density barcodes for logistics.</p>
-        <a href="/code128-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-      </div>
-      <div class="tool-card">
-        <h3>EAN-13 Generator</h3>
-        <p>Retail barcodes for global product labeling.</p>
-        <a href="/ean13-generator.html"><i class="fas fa-arrow-right"></i> Try Now</a>
-      </div>
-    </div>
-  </div>
-</section>
   </main>
-
-  <footer>
-    <div class="container">
-      <div class="footer-container">
-        <div class="footer-column">
-          <a href="/" class="footer-column-logo">
-            <i class="fas fa-tools footer-column-logo-icon"></i>
-            <span>Mass Tools</span>
-          </a>
-          <p>Empowering you with free, high-quality online tools.</p>
-        </div>
-        <div class="footer-column">
-          <ul>
-            <li><a href="/#tools">Tools</a></li>
-            <li><a href="/about-us.html">About Us</a></li>
-            <li><a href="/contact-us.html">Contact Us</a></li>
-          </ul>
-        </div>
-        <div class="footer-column">
-          <ul>
-            <li><a href="/privacy-policy.html">Privacy Policy</a></li>
-            <li><a href="/terms-and-conditions.html">Terms</a></li>
-            <li><a href="/Disclaimer.html">Disclaimer</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="copyright">
-        <p>© 2025 Mass Tools. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
-
+  <footer></footer>
   <button class="scroll-to-top" aria-label="Scroll to top">
     <i class="fas fa-arrow-up"></i>
   </button>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const menuToggle = document.getElementById('mobile-menu-toggle');
-      const nav = document.getElementById('nav-menu');
-      if (menuToggle && nav) {
-        menuToggle.addEventListener('change', () => {
-          nav.classList.toggle('show', menuToggle.checked);
-        });
-      }
-
-      // Smooth scroll for anchor links
-      const scrollToSection = (hash) => {
-        const target = document.querySelector(hash);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-          return true;
-        }
-        return false;
-      };
-
-      // Handle anchor link clicks
-      document.querySelectorAll('a[href*="#"]').forEach(anchor => {
-        anchor.addEventListener('click', (e) => {
-          e.preventDefault();
-          const href = anchor.getAttribute('href');
-          const [path, hash] = href.split('#');
-          const isHome = path === '/' || path === '' || path === '/index.html';
-
-          if (isHome && hash) {
-            // Scroll on the homepage
-            scrollToSection(`#${hash}`);
-            // Update URL without reloading
-            history.pushState(null, null, `/#${hash}`);
-          } else {
-            // Navigate to another page with hash
-            window.location.href = href;
-          }
-
-          // Close mobile menu if open
-          if (nav && nav.classList.contains('show')) {
-            nav.classList.remove('show');
-            menuToggle.checked = false;
-          }
-        });
-      });
-
-      // Handle hash on page load
-      if (window.location.hash) {
-        setTimeout(() => {
-          scrollToSection(window.location.hash);
-        }, 100); // Small delay to ensure page is loaded
-      }
-
-      // Scroll-to-top button
-      const scrollTopBtn = document.querySelector('.scroll-to-top');
-      if (scrollTopBtn) {
-        window.addEventListener('scroll', () => {
-          if (window.scrollY > 200) {
-            scrollTopBtn.classList.add('show');
-          } else {
-            scrollTopBtn.classList.remove('show');
-          }
-        });
-        scrollTopBtn.addEventListener('click', () => {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-      }
-
-      // Search functionality
-      const searchInput = document.querySelector('.search-bar input');
-      const searchButton = document.querySelector('.search-bar button');
-      if (searchInput && searchButton) {
-        const tools = [
-          { name: 'Image To JPG Converter', url: '/image-to-jpg-converter.html' },
-          { name: 'Image To PNG Converter', url: '/image-to-png-converter.html' },
-          { name: 'Image To SVG', url: '/image-to-svg-converter.html' },
-          { name: 'Image To WEBP Converter', url: '/image-to-webp-converter.html' },
-          { name: 'Image To TIFF Converter', url: '/image-to-tiff-converter.html' },
-          { name: 'Image To HEIC Converter', url: '/image-to-heic-converter.html' },
-          { name: 'Image To PDF Converter', url: '/image-to-pdf-converter.html' },
-          { name: 'Image To BMP Converter', url: '/image-to-bmp-converter.html' },
-          { name: 'Image To ICO Converter', url: '/image-to-ico-converter.html' },
-          { name: 'Image To AVIF Converter', url: '/image-to-avif-converter.html' },
-          { name: 'Image To EPS Converter', url: '/image-to-eps-converter.html' },
-          { name: 'Image To PSD Converter', url: '/image-to-psd-converter.html' },
-          { name: 'Image To Base64 Converter', url: '/image-to-base64-converter.html' },
-          { name: 'Image To DXF Converter', url: '/image-to-dxf-converter.html' },
-          { name: 'Image To EXR Converter', url: '/image-to-exr-converter.html' },
-          { name: 'PDF To Image Converter', url: '/pdf-to-image-converter.html' },
-          { name: 'Image Resizer Tool', url: '/image-resizer-tool.html' },
-          { name: 'Image Compressor Tool', url: '/image-resizer-tool.html' },
-          { name: 'PSD To Image Converter', url: '/pdf-to-image-converter.html' },
-          { name: 'EPS To Image Converter', url: '/eps-to-image-converter.html' },
-          { name: 'Word Counter', url: '/word-counter.html' },
-          { name: 'Case Converter', url: '/case-converter.html' },
-          { name: 'Text To ASCII', url: '/text-to-ascii-converter.html' },
-          { name: 'Lorem Ipsum Generator', url: '/lorem-ipsum-genrator.html' },
-          { name: 'Character Counter', url: '/character-counter.html' },
-          { name: 'Sort Text', url: '/sort-text.html' },
-          { name: 'Find And Replace', url: '/find-and-replace-text.html' },
-          { name: 'Reverse List', url: '/reverse-list.html' },
-          { name: 'Difference Checker', url: '/difference-checker.html' },
-          { name: 'Add Prefix/Suffix', url: '/add-prefix-suffix.html' },
-          { name: 'Add Line Breaks', url: '/add-line-breaks.html' },
-          { name: 'Remove Line Breaks', url: '/remove-line-breaks.html' },
-          { name: 'Concatenate Text', url: '/concatenate-text.html' },
-          { name: 'Split Text', url: '/split-text.html' },
-          { name: 'Extract Column', url: '/extract-column.html' },
-          { name: 'Swap Column', url: '/swap-column.html' },
-          { name: 'Reverse Words', url: '/reverse-words.html' },
-          { name: 'Reverse Letters', url: '/reverse-letters.html' },
-          { name: 'Remove Extra Spaces', url: '/remove-extra-spaces.html' },
-          { name: 'Remove Duplicate Lines', url: '/remove-duplicate-lines.html' },
-          { name: 'Remove Empty Lines', url: '/remove-empty-lines.html' },
-          { name: 'Remove Letter Accents', url: '/remove-letter-accents.html' },
-          { name: 'Remove Unwanted Characters', url: '/remove-unwanted-characters.html' },
-          { name: 'Remove Lines Containing/Not Containing', url: '/remove-lines-containing.html' },
-          { name: 'Remove Emojis', url: '/remove-emojis.html' },
-          { name: 'Strip HTML Tags', url: '/strip-html-tags.html' },
-          { name: 'Add Line Numbers', url: '/add-line-numbers.html' },
-          { name: 'Replace Smart/Straight Quotes', url: '/replace-quotes.html' },
-          { name: 'Tabs to Spaces Converterter', url: '/tabs-to-spaces.html' },
-          { name: 'Spaces to Tabs Converterter', url: '/spaces-to-tabs.html' },
-          { name: 'Pad Text', url: '/pad-text.html' },
-          { name: 'Word Wrap', url: '/word-wrap.html' },
-          { name: 'Justify Text', url: '/justify-text.html' },
-          { name: 'Center Text', url: '/center-text.html' },
-          { name: 'Upside Down Text', url: '/upside-down-text.html' },
-          { name: 'Bold Text Generator', url: '/bold-text-generator.html' },
-          { name: 'Italic Text Generator', url: '/italic-text-generator.html' },
-          { name: 'Old English Text Generator', url: '/old-english-text-generator.html' },
-          { name: 'Cursive Text Generator', url: '/cursive-text-generator.html' },
-          { name: 'Normalize Unicode Text', url: '/normalize-unicode-text.html' },
-          { name: 'HTML Encode Decode', url: '/html-encode-decode.html' },
-          { name: 'URL Encode Decode', url: '/url-encode-decode.html' },
-          { name: 'HTML Escape Unescape', url: '/html-escape-unescape.html' },
-          { name: 'Unique Username Generator', url: '/unique-username-generator.html' },
-          { name: 'Strong Password Generator', url: '/strong-password-generator.html' },
-          { name: 'Pronounceable Password Generator', url: '/pronounceable-password-generator.html' },
-          { name: 'Random String Generator', url: '/random-string-generator.html' },
-          { name: 'Random Word Generator', url: '/random-word-generator.html' },
-          { name: 'Filler Text', url: '/filler-text-generator.html' },
-          { name: 'Random Number Generator', url: '/random-number-generator.html' },
-          { name: 'Random Email Generator', url: '/random-email-generator.html' },
-          { name: 'Email Extractor', url: '/email-extractor.html' },
-          { name: 'URL Extractor', url: '/url-extractor.html' },
-          { name: 'Online Notepad', url: '/online-notepad.html' },
-          { name: 'Keyword Research Tool', url: '/keyword-research-tool.html' },
-        { name: 'On-Page SEO Analyzer', url: '/on-page-seo-analyzer.html' },
-        { name: 'Technical SEO Auditor', url: '/technical-seo-auditor.html' },
-        { name: 'Backlink Analyzer', url: '/backlink-analyzer.html' },
-        { name: 'Content Optimization Tool', url: '/content-optimization-tool.html' },
-        { name: 'Rank Tracker', url: '/rank-tracker.html' },
-        { name: 'Competitor Analysis Tool', url: '/competitor-analysis-tool.html' },
-        { name: 'SEO Audit and Reporting Tool', url: '/seo-audit-reporting-tool.html' },
-        { name: 'Local SEO Tool', url: '/local-seo-tool.html' },
-        { name: 'AI-Powered SEO Assistant', url: '/ai-seo-assistant.html' },
-        { name: 'QR Code Generator', url: '/qr-code-generator.html' },
-          { name: 'Data Matrix Generator', url: '/data-matrix-generator.html' },
-          { name: 'Barcode Generator', url: '/barcode-generator.html' },
-          { name: 'PDF417 Generator', url: '/pdf417-generator.html' },
-          { name: 'Aztec Code Generator', url: '/aztec-code-generator.html' },
-          { name: 'MaxiCode Generator', url: '/maxicode-generator.html' },
-          { name: 'Code 39 Generator', url: '/code39-generator.html' },
-          { name: 'Code 128 Generator', url: '/code128-generator.html' },
-          { name: 'EAN-13 Generator', url: '/ean13-generator.html' },
-
-        ];
-        searchButton.addEventListener('click', () => {
-          const query = searchInput.value.trim().toLowerCase();
-          const matchedTool = tools.find(tool => tool.name.toLowerCase().includes(query));
-          if (matchedTool) {
-            window.location.href = matchedTool.url;
-          } else {
-            alert('No tools found matching your search.');
-          }
-        });
-        searchInput.addEventListener('keypress', (e) => {
-          if (e.key === 'Enter') {
-            searchButton.click();
-          }
-        });
-      }
-    });
-  </script>
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/search.js"></script>
 </body>
 </html>
