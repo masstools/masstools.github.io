@@ -17,10 +17,42 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <header></header>
+  <header>
+    <!-- Fallback header content -->
+    <div class="container header-container">
+      <a href="/" class="logo">
+        <i class="fas fa-tools logo-icon"></i>
+        <span>Mass Tools</span>
+      </a>
+      <input id="mobile-menu-toggle" type="checkbox">
+      <label class="mobile-menu-btn" for="mobile-menu-toggle">
+        <i class="fas fa-bars"></i>
+      </label>
+      <nav id="nav-menu">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#text-tools">Tools</a></li>
+          <li><a href="/about-us.html">About Us</a></li>
+          <li><a href="/contact-us.html">Contact Us</a></li>
+          <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="/terms-and-conditions.html">Terms</a></li>
+          <li><a href="/disclaimer.html">Disclaimer</a></li>
+        </ul>
+        <div class="search-bar">
+          <input type="text" placeholder="Search tools..." aria-label="Search">
+          <button type="submit" aria-label="Search">
+            <i class="fas fa-search"></i>
+          </button>
+          <div class="search-suggestions">
+            <ul></ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
   <main>
     <section class="hero-section">
       <div class="container">
@@ -91,7 +123,7 @@
           </div>
           <div class="tool-card">
             <h3>Remove Line Breaks</h3>
-            <p>Insert line breaks exactly where you need them—great for formatting paragraphs, code, or CSV data.</p>
+            <p>Delete line breaks to streamline your text—great for formatting paragraphs, code, or CSV data.</p>
             <a href="/remove-line-breaks.html"><i class="fas fa-arrow-right"></i> Try Now</a>
           </div>
           <div class="tool-card">
@@ -308,11 +340,41 @@
       </div>
     </section>
   </main>
-  <footer></footer>
+  <footer>
+    <!-- Fallback footer content -->
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-column">
+          <a href="/" class="footer-column-logo">
+            <i class="fas fa-tools footer-column-logo-icon"></i>
+            <span>Mass Tools</span>
+          </a>
+          <p>Empowering you with free, high-quality online tools.</p>
+        </div>
+        <div class="footer-column">
+          <ul>
+            <li><a href="/#text-tools">Tools</a></li>
+            <li><a href="/about-us.html">About Us</a></li>
+            <li><a href="/contact-us.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <ul>
+            <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="/terms-and-conditions.html">Terms</a></li>
+            <li><a href="/disclaimer.html">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2025 Mass Tools. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
   <button class="scroll-to-top" aria-label="Scroll to top">
     <i class="fas fa-arrow-up"></i>
   </button>
-  <script src="/assets/js/main.js"></script>
-  <script src="/assets/js/search.js"></script>
+  <script src="/main.js"></script>
+  <script src="/search.js"></script>
 </body>
 </html>
