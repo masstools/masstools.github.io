@@ -78,7 +78,6 @@
     <i class="fas fa-arrow-up"></i>
   </button>
 
-  <script src="./index.js" onerror="console.error('Failed to load index.js')"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Load header and footer
@@ -90,6 +89,13 @@
           })
           .then(data => {
             document.getElementById('header').innerHTML = data;
+            // Initialize search after header is loaded
+            const searchInput = document.querySelector('.search-bar input');
+            if (searchInput) {
+              console.log('Search input found, search initialized');
+            } else {
+              console.error('Search input not found');
+            }
           }),
         fetch('./footer.html')
           .then(response => {
@@ -101,10 +107,17 @@
           })
       ])
       .catch(error => {
-        console.error(error);
+        console.error('Error loading components:', error);
         document.getElementById('header').innerHTML = '<p>Error loading header. Please try again later.</p>';
         document.getElementById('footer').innerHTML = '<p>Error loading footer. Please try again later.</p>';
       });
+
+      // Load index.js dynamically after header
+      const script = document.createElement('script');
+      script.src = './index.js';
+      script.onerror = () => console.error('Failed to load index.js');
+      script.onload = () => console.log('index.js loaded successfully');
+      document.body.appendChild(script);
 
       // Case Converter functionality
       const textInput = document.getElementById('textInput');
