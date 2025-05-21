@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Word Wrap Converter - Mass Tools</title>
-  <meta name="description" content="Wrap your text at a specified column width instantly with Mass Tools' free Word Wrap Converter. Perfect for coding, formatting, or aligning text.">
-  <meta name="keywords" content="word wrap, text wrapping, online tool, text formatting, coding tool">
+  <meta name="description" content="Wrap your text based on specified character length per line and number of columns with Mass Tools' free Word Wrap Converter. Best with monospaced fonts like Courier or Monaco.">
+  <meta name="keywords" content="word wrap, text wrapping, multi-column text, online tool, text formatting, coding tool">
   <meta name="robots" content="index, follow">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-68CX9G7BKF"></script>
   <script>
@@ -17,686 +17,17 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <style>
-    :root {
-      --primary-color: #FF4500;
-      --secondary-color: #FFA500;
-      --dark-color: #1A1A1A;
-      --light-color: #F8F9FA;
-      --text-color: #2C2C2C;
-      --text-light: #6C757D;
-      --border-radius: 12px;
-      --transition: all 0.3s ease;
-      --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
-
-    body {
-      background: var(--light-color);
-      color: var(--text-color);
-      font-size: 16px;
-      line-height: 1.7;
-      scrollbar-width: none;
-    }
-
-    body::-webkit-scrollbar {
-      display: none;
-    }
-
-    .progress-bar, [class*="progress"], [id*="progress"] {
-      display: none !important;
-    }
-
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    header {
-      background: var(--light-color);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .header-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 16px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      font-size: 24px;
-      font-weight: 800;
-      margin-left: 8px;
-    }
-
-    .logo-icon {
-      font-size: 24px;
-      color: var(--primary-color);
-    }
-
-    .logo span {
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 16px;
-    }
-
-    nav ul li a {
-      text-decoration: none;
-      color: var(--text-color);
-      font-weight: 500;
-      font-size: 14px;
-      padding: 8px 12px;
-      border-radius: var(--border-radius);
-      transition: var(--transition);
-    }
-
-    nav ul li a:hover {
-      background: var(--primary-color);
-      color: var(--light-color);
-      text-decoration: none;
-    }
-
-    .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 24px;
-      color: var(--text-color);
-      cursor: pointer;
-      margin-right: 8px;
-    }
-
-    #mobile-menu-toggle {
-      display: none;
-    }
-
-    .search-bar {
-      display: flex;
-      align-items: center;
-      background: #fff;
-      border: 1px solid #e0e0e0;
-      border-radius: 50px;
-      padding: 6px 12px;
-      transition: var(--transition);
-      max-width: 200px;
-      position: relative;
-    }
-
-    .search-bar:hover, .search-bar:focus-within {
-      border-color: var(--primary-color);
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .search-bar input {
-      border: none;
-      outline: none;
-      font-size: 13px;
-      padding: 6px;
-      width: 100%;
-    }
-
-    .search-bar button {
-      background: none;
-      border: none;
-      color: var(--text-light);
-      font-size: 14px;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .search-bar button:hover {
-      color: var(--primary-color);
-    }
-
-    .search-suggestions {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background: #fff;
-      border: 1px solid #e0e0e0;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      max-height: 200px;
-      overflow-y: auto;
-      display: none;
-      z-index: 1000;
-    }
-
-    .search-suggestions .suggestion-item {
-      padding: 10px 12px;
-      font-size: 14px;
-      color: var(--text-color);
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .search-suggestions .suggestion-item a {
-      text-decoration: none;
-      color: inherit;
-      display: block;
-    }
-
-    .search-suggestions .suggestion-item:hover {
-      background: var(--primary-color);
-      color: var(--light-color);
-    }
-
-    .tool-section {
-      padding: 80px 0;
-      background: var(--light-color);
-    }
-
-    .tool-content {
-      max-width: 800px;
-      margin: 0 auto;
-      background: #fff;
-      padding: 32px;
-      border-radius: var(--border-radius);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    }
-
-    .tool-content h1 {
-      font-size: 36px;
-      color: var(--dark-color);
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    .tool-content p {
-      font-size: 15px;
-      color: var(--text-color);
-      margin-bottom: 12px;
-    }
-
-    .tool-content .input-area {
-      margin-bottom: 20px;
-    }
-
-    .tool-content .input-area textarea {
-      width: 100%;
-      min-height: 150px;
-      padding: 12px;
-      border: 1px solid #e0e0e0;
-      border-radius: 8px;
-      font-size: 14px;
-      resize: vertical;
-      background: var(--light-color);
-    }
-
-    .tool-content .settings {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-
-    .tool-content .settings label {
-      display: flex;
-      flex-direction: column;
-      font-size: 14px;
-      color: var(--text-color);
-      min-width: 150px;
-    }
-
-    .tool-content .settings input[type="number"] {
-      margin-top: 8px;
-      padding: 8px;
-      border: 1px solid #e0e0e0;
-      border-radius: 8px;
-      font-size: 14px;
-    }
-
-    .tool-content .result-area {
-      margin-bottom: 20px;
-    }
-
-    .tool-content .result-area textarea {
-      width: 100%;
-      min-height: 150px;
-      padding: 12px;
-      border: 1px solid #e0e0e0;
-      border-radius: 8px;
-      font-size: 14px;
-      resize: vertical;
-      background: var(--light-color);
-    }
-
-    .tool-content .action-buttons {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 24px;
-    }
-
-    .tool-content .action-buttons button,
-    .tool-content .cta-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--gradient);
-      color: #FFFFFF !important;
-      padding: 10px 24px;
-      border: none;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 14px;
-      transition: var(--transition);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      cursor: pointer;
-    }
-
-    .tool-content .action-buttons button:hover,
-    .tool-content .cta-button:hover {
-      background: var(--primary-color);
-      color: #FFFFFF !important;
-      transform: translateY(-4px);
-      text-decoration: none;
-    }
-
-    .tool-content .action-buttons button:disabled {
-      background: var(--text-light);
-      color: var(--light-color) !important;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .tool-content .tool-article {
-      margin-top: 40px;
-    }
-
-    .tool-content .tool-article h2 {
-      font-size: 24px;
-      color: var(--dark-color);
-      margin: 24px 0 12px;
-    }
-
-    .tool-content .tool-article h3 {
-      font-size: 20px;
-      color: var(--dark-color);
-      margin: 20px 0 10px;
-    }
-
-    .tool-content .tool-article p {
-      font-size: 15px;
-      color: var(--text-color);
-      margin-bottom: 12px;
-    }
-
-    .tool-content .tool-article ul {
-      list-style: none;
-      margin: 12px 0;
-      padding-left: 20px;
-    }
-
-    .tool-content .tool-article ul li {
-      font-size: 15px;
-      color: var(--text-color);
-      margin-bottom: 8px;
-      position: relative;
-    }
-
-    .tool-content .tool-article ul li::before {
-      content: '✔';
-      color: var(--primary-color);
-      position: absolute;
-      left: -20px;
-    }
-
-    .tool-content .tool-article a {
-      color: var(--primary-color);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .tool-content .tool-article a:hover {
-      text-decoration: underline;
-    }
-
-    footer {
-      background: var(--dark-color);
-      color: var(--light-color);
-      padding: 40px 0 20px;
-    }
-
-    .footer-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 24px;
-      margin-bottom: 24px;
-    }
-
-    .footer-column-logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      font-size: 24px;
-      font-weight: 800;
-    }
-
-    .footer-column-logo-icon {
-      font-size: 24px;
-      color: var(--primary-color);
-    }
-
-    .footer-column-logo span {
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .footer-column ul {
-      list-style: none;
-    }
-
-    .footer-column ul li {
-      margin-bottom: 10px;
-    }
-
-    .footer-column ul li a {
-      color: #CED4DA;
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .footer-column ul li a:hover {
-      color: var(--primary-color);
-      text-decoration: none;
-    }
-
-    .copyright {
-      text-align: center;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      font-size: 13px;
-    }
-
-    .scroll-to-top {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: var(--gradient);
-      color: var(--light-color);
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-      z-index: 1000;
-      cursor: pointer;
-    }
-
-    .scroll-to-top i {
-      -webkit-text-stroke: 0;
-      color: var(--light-color);
-    }
-
-    .scroll-to-top:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-    }
-
-    .scroll-to-top.show {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 992px) {
-      .search-bar {
-        max-width: 180px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .container {
-        padding: 0 16px !important;
-      }
-
-      .header-container {
-        padding: 12px 16px;
-      }
-
-      .mobile-menu-btn {
-        display: block;
-      }
-
-      nav {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: rgba(255, 255, 255, 0.98);
-        padding: 20px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        flex-direction: column;
-        align-items: flex-start;
-        border-radius: 0 0 12px 12px;
-        border: 1px solid #e0e0e0;
-        width: 100%;
-      }
-
-      nav.show {
-        display: flex !important;
-      }
-
-      nav ul {
-        flex-direction: column;
-        gap: 18px;
-        width: 100%;
-      }
-
-      nav ul li a {
-        font-size: 18px;
-        padding: 12px 20px;
-        width: 100%;
-        text-align: left;
-        border-radius: 8px;
-      }
-
-      .search-bar {
-        margin-top: 20px;
-        width: 100%;
-        max-width: none;
-        padding: 10px 20px;
-        border-radius: 50px;
-      }
-
-      .search-bar input {
-        font-size: 15px;
-        padding: 8px;
-      }
-
-      .search-bar button {
-        font-size: 16px;
-      }
-
-      .search-suggestions {
-        width: 100%;
-      }
-
-      .tool-section {
-        padding: 60px 0;
-      }
-
-      .tool-content {
-        padding: 24px;
-      }
-
-      .tool-content h1 {
-        font-size: 30px;
-      }
-
-      .tool-content p,
-      .tool-content .tool-article p,
-      .tool-content .tool-article ul li {
-        font-size: 14px;
-      }
-
-      .tool-content .tool-article h2 {
-        font-size: 20px;
-      }
-
-      .tool-content .tool-article h3 {
-        font-size: 18px;
-      }
-
-      .tool-content .settings {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .tool-content .settings label {
-        width: 100%;
-      }
-
-      .tool-content .action-buttons {
-        flex-direction: column;
-        gap: 12px;
-      }
-    }
-
-    @media (max-width: 576px) {
-      .header-container {
-        padding: 10px 16px !important;
-        margin: 0;
-      }
-
-      .logo {
-        font-size: 20px;
-        margin-left: 0;
-      }
-
-      .logo-icon {
-        font-size: 20px;
-      }
-
-      .mobile-menu-btn {
-        margin-right: 0;
-      }
-
-      .search-bar {
-        padding: 8px 16px;
-        margin: 16px 0;
-        max-width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .search-bar input {
-        font-size: 14px;
-      }
-
-      .tool-content h1 {
-        font-size: 26px;
-      }
-
-      .tool-content .input-area textarea,
-      .tool-content .result-area textarea {
-        min-height: 120px;
-        font-size: 13px;
-      }
-
-      .tool-content .settings input[type="number"] {
-        font-size: 13px;
-      }
-
-      .tool-content .action-buttons button,
-      .tool-content .cta-button {
-        width: 100%;
-        justify-content: center;
-        padding: 8px 20px;
-        font-size: 13px;
-      }
-
-      .scroll-to-top {
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
-        bottom: 16px;
-        right: 16px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <header>
-    <div class="container header-container">
-      <a href="/" class="logo">
-        <i class="fas fa-tools logo-icon"></i>
-        <span>Mass Tools</span>
-      </a>
-      <input id="mobile-menu-toggle" type="checkbox">
-      <label class="mobile-menu-btn" for="mobile-menu-toggle">
-        <i class="fas fa-bars"></i>
-      </label>
-      <nav id="nav-menu">
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/#tools">Tools</a></li>
-          <li><a href="/about-us.html">About Us</a></li>
-          <li><a href="/contact-us.html">Contact Us</a></li>
-          <li><a href="/privacy-policy.html">Privacy Policy</a></li>
-          <li><a href="/terms-and-conditions.html">Terms</a></li>
-          <li><a href="/Disclaimer.html">Disclaimer</a></li>
-        </ul>
-        <div class="search-bar">
-          <input type="text" placeholder="Search tools..." aria-label="Search">
-          <button type="submit" aria-label="Search">
-            <i class="fas fa-search"></i>
-          </button>
-          <div class="search-suggestions"></div>
-        </div>
-      </nav>
-    </div>
-  </header>
+  <header id="header"></header>
 
   <main>
     <section class="tool-section">
       <div class="container">
         <div class="tool-content">
           <h1>Word Wrap Converter</h1>
-          <p>Wrap your text at a specified column width instantly with Mass Tools' free Word Wrap Converter. Perfect for coding, formatting, or aligning text in documents.</p>
+          <p>Use this tool to word-wrap a text-based on specified character length per line and amount of columns. Please note that the alignment is only visible when using fonts that have equal widths, like Courier and Monaco. For best results, use monospaced fonts.</p>
 
           <div class="input-area">
             <textarea id="inputText" placeholder="Paste your text here..." aria-label="Input text for wrapping"></textarea>
@@ -704,13 +35,30 @@
 
           <div class="settings">
             <label>
-              Column Width
-              <input type="number" id="columnWidth" value="80" min="1" max="200" aria-label="Column width for wrapping">
+              Line Width
+              <input type="number" id="lineWidth" value="80" min="1" max="200" aria-label="Line width for wrapping">
+            </label>
+            <label>
+              Number of Columns
+              <input type="number" id="numColumns" value="1" min="1" max="5" aria-label="Number of columns">
+            </label>
+            <label>
+              Space Between Columns
+              <input type="number" id="columnSpacing" value="2" min="0" max="10" aria-label="Spaces between columns">
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="breakWord" aria-label="Break long words">
+              Break Long Words
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="trimText" aria-label="Trim whitespace">
+              Trim Whitespace
             </label>
           </div>
 
           <div class="result-area">
-            <textarea id="outputText" readonly aria-label="Wrapped text output"></textarea>
+            <textarea id="outputText" readonly class="monospace" aria-label="Wrapped text output"></textarea>
+            <p class="monospace-note">Output is displayed in a monospaced font (Courier/Monaco) for proper column alignment.</p>
           </div>
 
           <div class="action-buttons">
@@ -723,430 +71,79 @@
 
           <div class="tool-article">
             <h2>About the Word Wrap Converter</h2>
-            <p>The Word Wrap Converter by <a href="/about-us.html">Mass Tools</a> is a free tool to wrap text at a specified column width, adding line breaks at word boundaries. Customize the column width and process text securely in your browser.</p>
+            <p>Use this tool to word-wrap a text-based on specified character length per line and amount of columns. Please note that the alignment is only visible when using fonts that have equal widths, like Courier and Monaco. For best results, use monospaced fonts. Customize line width, number of columns, spacing, and options like breaking long words or trimming whitespace. All processing is done securely in your browser.</p>
 
             <h3>Why Use the Word Wrap Converter?</h3>
-            <p>This tool is ideal for formatting text for coding, documentation, or data alignment. Use it to:</p>
+            <p>This tool is ideal for formatting text for coding, documentation, or multi-column layouts. Use it to:</p>
             <ul>
-              <li><strong>Code Formatting</strong>: Wrap code or comments for better readability.</li>
-              <li><strong>Text Alignment</strong>: Format text for reports or plain text files.</li>
-              <li><strong>Documentation</strong>: Ensure consistent line lengths in markdown or text documents.</li>
-              <li><strong>Data Processing</strong>: Prepare text for fixed-width formats.</li>
+              <li><strong>Code Formatting</strong>: Wrap code or comments with consistent line lengths.</li>
+              <li><strong>Multi-Column Layouts</strong>: Split text into columns for aligned output.</li>
+              <li><strong>Text Alignment</strong>: Format text for reports or fixed-width files.</li>
+              <li><strong>Data Processing</strong>: Prepare text for CSVs or tables with custom spacing.</li>
             </ul>
 
             <h3>How to Use the Word Wrap Converter</h3>
-            <p>Our Word Wrap Converter is simple to use. Follow these steps:</p>
+            <p>Follow these simple steps:</p>
             <ul>
               <li><strong>Paste Text</strong>: Enter text in the input textarea.</li>
-              <li><strong>Set Column Width</strong>: Specify the column width (1-200) for wrapping.</li>
-              <li><strong>Convert</strong>: Click "Convert" to see the wrapped text in the output textarea.</li>
-              <li><strong>Copy Output</strong>: Click "Copy Output" to copy the wrapped text to your clipboard.</li>
-              <li><strong>Clear</strong>: Click "Clear" to reset the input, output, and column width.</li>
+              <li><strong>Set Line Width</strong>: Specify characters per line (1–200).</li>
+              <li><strong>Choose Columns</strong>: Set number of columns (1–5).</li>
+              <li><strong>Adjust Spacing</strong>: Set spaces between columns (0–10).</li>
+              <li><strong>Enable Options</strong>: Check "Break Long Words" to split long words, or "Trim Whitespace" to remove leading/trailing spaces.</li>
+              <li><strong>Convert</strong>: Click "Convert" to see wrapped text in the output textarea.</li>
+              <li><strong>Copy Output</strong>: Click "Copy Output" to copy the result.</li>
+              <li><strong>Clear</strong>: Click "Clear" to reset all fields.</li>
             </ul>
-            <p>The tool processes text locally in your browser for privacy and works offline after loading.</p>
+            <p>The tool processes text locally for privacy and works offline after loading.</p>
 
             <h3>Use Cases for Word Wrap Converter</h3>
-            <p>This tool is perfect for various scenarios, including:</p>
+            <p>This tool is perfect for:</p>
             <ul>
-              <li><strong>Programming</strong>: Wrap long comments or strings in code for readability.</li>
-              <li><strong>Writing</strong>: Format plain text for emails, blogs, or documentation.</li>
-              <li><strong>Data Formatting</strong>: Prepare text for fixed-width columns in CSVs or tables.</li>
-              <li><strong>Text Editing</strong>: Standardize line lengths in markdown or text editors.</li>
+              <li><strong>Programming</strong>: Wrap comments or strings for readability.</li>
+              <li><strong>Writing</strong>: Format text for emails, blogs, or documentation.</li>
+              <li><strong>Data Formatting</strong>: Create multi-column text for CSVs or tables.</li>
+              <li><strong>Text Editing</strong>: Standardize line lengths in markdown or editors.</li>
             </ul>
 
             <h3>Tips for Using the Word Wrap Converter</h3>
-            <p>To get the best results, consider these tips:</p>
+            <p>For best results:</p>
             <ul>
-              <li><strong>Choose Standard Widths</strong>: Use 80 or 120 for common coding or documentation standards.</li>
-              <li><strong>Test Small Inputs</strong>: Start with a small text sample to verify wrapping.</li>
-              <li><strong>Combine Tools</strong>: Use with our <a href="/case-converter.html">Case Converter</a>, <a href="/word-counter.html">Word Counter</a>, <a href="/text-to-ascii-converter.html">Text to ASCII Converter</a>, <a href="/lorem-ipsum-generator.html">Lorem Ipsum Generator</a>, <a href="/character-counter.html">Character Counter</a>, <a href="/sort-text.html">Sort Text</a>, <a href="/find-replace-text.html">Find and Replace Text</a>, <a href="/reverse-list.html">Reverse List</a>, <a href="/difference-checker.html">Difference Checker</a>, <a href="/add-prefix-suffix.html">Add Prefix/Suffix</a>, <a href="/tabs-to-spaces.html">Tabs to Spaces</a>, <a href="/spaces-to-tabs.html">Spaces to Tabs</a>, or <a href="/pad-text.html">Pad Text</a> for advanced text processing.</li>
-              <li><strong>Contact Us</strong>: Need bulk processing? Email us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a>.</li>
+              <li><strong>Use Monospaced Fonts</strong>: Output aligns best with Courier or Monaco.</li>
+              <li><strong>Test Small Inputs</strong>: Try a small text sample to verify wrapping.</li>
+              <li><strong>Adjust Columns</strong>: Use 2–3 columns for readable multi-column output.</li>
+              <li><strong>Combine Tools</strong>: Pair with our <a href="/case-converter.html">Case Converter</a>, <a href="/word-counter.html">Word Counter</a>, or other tools for advanced processing.</li>
+              <li><strong>Contact Us</strong>: Need bulk processing? Email <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a>.</li>
             </ul>
 
             <h3>Why Choose Mass Tools?</h3>
-            <p>At Mass Tools, we provide free, high-quality tools to simplify your tasks. Our Word Wrap Converter joins our suite, including the <a href="/image-to-png-converter.html">Image to PNG Converter</a>, <a href="/image-to-jpg-converter.html">Image to JPG Converter</a>, <a href="/image-to-webp-converter.html">Image to WebP Converter</a>, <a href="/image-to-svg-converter.html">Image to SVG Converter</a>, <a href="/image-to-tiff-converter.html">Image to TIFF Converter</a>, <a href="/image-to-heic-converter.html">Image to HEIC Converter</a>, <a href="/image-to-pdf-converter.html">Image to PDF Converter</a>, <a href="/image-to-bmp-converter.html">Image to BMP Converter</a>, <a href="/image-to-ico-converter.html">Image to ICO Converter</a>, <a href="/image-to-avif-converter.html">Image to AVIF Converter</a>, <a href="/image-to-eps-converter.html">Image to EPS Converter</a>, <a href="/image-to-psd-converter.html">Image to PSD Converter</a>, <a href="/image-to-base64-converter.html">Image to Base64 Converter</a>, <a href="/image-to-dxf-converter.html">Image to DXF Converter</a>, <a href="/image-to-exr-converter.html">Image to EXR Converter</a>, <a href="/pdf-to-image-converter.html">PDF to Image Converter</a>, <a href="/image-resizer-tool.html">Image Resizer Tool</a>, <a href="/image-compressor-tool.html">Image Compressor Tool</a>, <a href="/psd-to-image-converter.html">PSD to Image Converter</a>, <a href="/eps-to-image-converter.html">EPS to Image Converter</a>, <a href="/word-counter.html">Word Counter</a>, <a href="/case-converter.html">Case Converter</a>, <a href="/text-to-ascii-converter.html">Text to ASCII Converter</a>, <a href="/lorem-ipsum-generator.html">Lorem Ipsum Generator</a>, <a href="/character-counter.html">Character Counter</a>, <a href="/sort-text.html">Sort Text</a>, <a href="/find-replace-text.html">Find and Replace Text</a>, <a href="/reverse-list.html">Reverse List</a>, <a href="/difference-checker.html">Difference Checker</a>, <a href="/add-prefix-suffix.html">Add Prefix/Suffix</a>, <a href="/tabs-to-spaces.html">Tabs to Spaces</a>, <a href="/spaces-to-tabs.html">Spaces to Tabs</a>, and <a href="/pad-text.html">Pad Text</a>. We prioritize privacy, speed, and ease of use. Learn more on our <a href="/about-us.html">About Us</a> page.</p>
+            <p>At Mass Tools, we offer free, high-quality tools to simplify your tasks. Explore our suite, including <a href="/image-to-png-converter.html">Image to PNG Converter</a>, <a href="/word-counter.html">Word Counter</a>, and more. Learn more on our <a href="/about-us.html">About Us</a> page.</p>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="container">
-      <div class="footer-container">
-        <div class="footer-column">
-          <a href="/" class="footer-column-logo">
-            <i class="fas fa-tools footer-column-logo-icon"></i>
-            <span>Mass Tools</span>
-          </a>
-          <p>Empowering you with free, high-quality online tools.</p>
-        </div>
-        <div class="footer-column">
-          <ul>
-            <li><a href="/#tools">Tools</a></li>
-            <li><a href="/about-us.html">About Us</a></li>
-            <li><a href="/contact-us.html">Contact Us</a></li>
-          </ul>
-        </div>
-        <div class="footer-column">
-          <ul>
-            <li><a href="/privacy-policy.html">Privacy Policy</a></li>
-            <li><a href="/terms-and-conditions.html">Terms</a></li>
-            <li><a href="/Disclaimer.html">Disclaimer</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="copyright">
-        <p>© 2025 Mass Tools. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+  <footer id="footer"></footer>
 
   <button class="scroll-to-top" aria-label="Scroll to top">
     <i class="fas fa-arrow-up"></i>
   </button>
 
+  <script src="/index.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      console.log('Word Wrap tool loaded');
-
-      // Mobile menu toggle
-      const menuToggle = document.getElementById('mobile-menu-toggle');
-      const nav = document.getElementById('nav-menu');
-      if (menuToggle && nav) {
-        menuToggle.addEventListener('change', () => {
-          nav.classList.toggle('show', menuToggle.checked);
-          console.log('Mobile menu toggled:', menuToggle.checked);
-        });
-      }
-
-      // Scroll-to-top button
-      const scrollTopBtn = document.querySelector('.scroll-to-top');
-      if (scrollTopBtn) {
-        window.addEventListener('scroll', () => {
-          scrollTopBtn.classList.toggle('show', window.scrollY > 200);
-          console.log('Scroll-to-top visibility:', window.scrollY > 200);
-        });
-        scrollTopBtn.addEventListener('click', () => {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-          console.log('Scrolled to top');
-        });
-      }
-
-      // Smooth scroll for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', (e) => {
-          e.preventDefault();
-          const target = document.querySelector(anchor.getAttribute('href'));
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-          }
-          if (nav && nav.classList.contains('show')) {
-            nav.classList.remove('show');
-            menuToggle.checked = false;
-          }
-        });
-      });
-
-      document.querySelectorAll('a[href*="#"]').forEach(anchor => {
-        anchor.addEventListener('click', (e) => {
-          const href = anchor.getAttribute('href');
-          const [path, hash] = href.split('#');
-          const isHome = path === '/' || path === '' || path === '/index.html';
-          if (isHome && hash && (window.location.pathname === '/' || window.location.pathname === '/index.html')) {
-            e.preventDefault();
-            const target = document.querySelector(`#${hash}`);
-            if (target) {
-              target.scrollIntoView({ behavior: 'smooth' });
-              history.pushState(null, null, `/#${hash}`);
-            }
-          } else {
-            window.location.href = href;
-          }
-          if (nav && nav.classList.contains('show')) {
-            nav.classList.remove('show');
-            menuToggle.checked = false;
-          }
-        });
-      });
-
-      // Search functionality
-      const searchInput = document.querySelector('.search-bar input');
-      const searchButton = document.querySelector('.search-bar button');
-      const suggestionsContainer = document.querySelector('.search-suggestions');
-      if (searchInput && searchButton && suggestionsContainer) {
-        const tools = [
-          { name: 'Image To JPG Converter', url: '/image-to-jpg-converter.html' },
-          { name: 'Image To PNG Converter', url: '/image-to-png-converter.html' },
-          { name: 'Image To SVG', url: '/image-to-svg-converter.html' },
-          { name: 'Image To WEBP Converter', url: '/image-to-webp-converter.html' },
-          { name: 'Image To TIFF Converter', url: '/image-to-tiff-converter.html' },
-          { name: 'Image To HEIC Converter', url: '/image-to-heic-converter.html' },
-          { name: 'Image To PDF Converter', url: '/image-to-pdf-converter.html' },
-          { name: 'Image To BMP Converter', url: '/image-to-bmp-converter.html' },
-          { name: 'Image To ICO Converter', url: '/image-to-ico-converter.html' },
-          { name: 'Image To AVIF Converter', url: '/image-to-avif-converter.html' },
-          { name: 'Image To EPS Converter', url: '/image-to-eps-converter.html' },
-          { name: 'Image To PSD Converter', url: '/image-to-psd-converter.html' },
-          { name: 'Image To Base64 Converter', url: '/image-to-base64-converter.html' },
-          { name: 'Image To DXF Converter', url: '/image-to-dxf-converter.html' },
-          { name: 'Image To EXR Converter', url: '/image-to-exr-converter.html' },
-          { name: 'PDF To Image Converter', url: '/pdf-to-image-converter.html' },
-          { name: 'Image Resizer Tool', url: '/image-resizer-tool.html' },
-          { name: 'Image Compressor Tool', url: '/image-compressor-tool.html' },
-          { name: 'PSD To Image Converter', url: '/psd-to-image-converter.html' },
-          { name: 'EPS To Image Converter', url: '/eps-to-image-converter.html' },
-          { name: 'Word Counter', url: '/word-counter.html' },
-          { name: 'Case Converter', url: '/case-converter.html' },
-          { name: 'Text To ASCII', url: '/text-to-ascii-converter.html' },
-          { name: 'Lorem Ipsum Generator', url: '/lorem-ipsum-generator.html' },
-          { name: 'Character Counter', url: '/character-counter.html' },
-          { name: 'Sort Text', url: '/sort-text.html' },
-          { name: 'Find And Replace', url: '/find-replace-text.html' },
-          { name: 'Reverse List', url: '/reverse-list.html' },
-          { name: 'Difference Checker', url: '/difference-checker.html' },
-          { name: 'Add Prefix/Suffix', url: '/add-prefix-suffix.html' },
-          { name: 'Add Line Breaks', url: '/add-line-breaks.html' },
-          { name: 'Remove Line Breaks', url: '/remove-line-breaks.html' },
-          { name: 'Concatenate Text', url: '/concatenate-text.html' },
-          { name: 'Split Text', url: '/split-text.html' },
-          { name: 'Extract Column', url: '/extract-column.html' },
-          { name: 'Swap Column', url: '/swap-column.html' },
-          { name: 'Reverse Words', url: '/reverse-words.html' },
-          { name: 'Reverse Letters', url: '/reverse-letters.html' },
-          { name: 'Remove Extra Spaces', url: '/remove-extra-spaces.html' },
-          { name: 'Remove Duplicate Lines', url: '/remove-duplicate-lines.html' },
-          { name: 'Remove Empty Lines', url: '/remove-empty-lines.html' },
-          { name: 'Remove Letter Accents', url: '/remove-letter-accents.html' },
-          { name: 'Remove Unwanted Characters', url: '/remove-unwanted-characters.html' },
-          { name: 'Remove Lines Containing/Not Containing', url: '/remove-lines-containing.html' },
-          { name: 'Remove Emojis', url: '/remove-emojis.html' },
-          { name: 'Strip HTML Tags', url: '/strip-html-tags.html' },
-          { name: 'Add Line Numbers', url: '/add-line-numbers.html' },
-          { name: 'Replace Smart/Straight Quotes', url: '/replace-quotes.html' },
-          { name: 'Tabs to Spaces Converter', url: '/tabs-to-spaces.html' },
-          { name: 'Spaces to Tabs Converter', url: '/spaces-to-tabs.html' },
-          { name: 'Pad Text', url: '/pad-text.html' },
-          { name: 'Word Wrap', url: '/word-wrap.html' },
-          { name: 'Justify Text', url: '/justify-text.html' },
-          { name: 'Center Text', url: '/center-text.html' },
-          { name: 'Upside Down Text', url: '/upside-down-text.html' },
-          { name: 'Bold Text Generator', url: '/bold-text-generator.html' },
-          { name: 'Italic Text Generator', url: '/italic-text-generator.html' },
-          { name: 'Old English Text Generator', url: '/old-english-text-generator.html' },
-          { name: 'Cursive Text Generator', url: '/cursive-text-generator.html' },
-          { name: 'Normalize Unicode Text', url: '/normalize-unicode-text.html' },
-          { name: 'HTML Encode Decode', url: '/html-encode-decode.html' },
-          { name: 'URL Encode Decode', url: '/url-encode-decode.html' },
-          { name: 'HTML Escape Unescape', url: '/html-escape-unescape.html' },
-          { name: 'Unique Username Generator', url: '/unique-username-generator.html' },
-          { name: 'Strong Password Generator', url: '/strong-password-generator.html' },
-          { name: 'Pronounceable Password Generator', url: '/pronounceable-password-generator.html' },
-          { name: 'Random String Generator', url: '/random-string-generator.html' },
-          { name: 'Random Word Generator', url: '/random-word-generator.html' },
-          { name: 'Filler Text', url: '/filler-text-generator.html' },
-          { name: 'Random Number Generator', url: '/random-number-generator.html' },
-          { name: 'Random Email Generator', url: '/random-email-generator.html' },
-          { name: 'Email Extractor', url: '/email-extractor.html' },
-          { name: 'URL Extractor', url: '/url-extractor.html' },
-          { name: 'Online Notepad', url: '/online-notepad.html' },
-          { name: 'Keyword Research Tool', url: '/keyword-research-tool.html' },
-          { name: 'On-Page SEO Analyzer', url: '/on-page-seo-analyzer.html' },
-          { name: 'Technical SEO Auditor', url: '/technical-seo-auditor.html' },
-          { name: 'Backlink Analyzer', url: '/backlink-analyzer.html' },
-          { name: 'Content Optimization Tool', url: '/content-optimization-tool.html' },
-          { name: 'Rank Tracker', url: '/rank-tracker.html' },
-          { name: 'Competitor Analysis Tool', url: '/competitor-analysis-tool.html' },
-          { name: 'SEO Audit and Reporting Tool', url: '/seo-audit-reporting-tool.html' },
-          { name: 'Local SEO Tool', url: '/local-seo-tool.html' },
-          { name: 'AI-Powered SEO Assistant', url: '/ai-seo-assistant.html' },
-          { name: 'QR Code Generator', url: '/qr-code-generator.html' },
-          { name: 'Data Matrix Generator', url: '/data-matrix-generator.html' },
-          { name: 'Barcode Generator', url: '/barcode-generator.html' },
-          { name: 'PDF417 Generator', url: '/pdf417-generator.html' },
-          { name: 'Aztec Code Generator', url: '/aztec-code-generator.html' },
-          { name: 'MaxiCode Generator', url: '/maxicode-generator.html' },
-          { name: 'Code 39 Generator', url: '/code39-generator.html' },
-          { name: 'Code 128 Generator', url: '/code128-generator.html' },
-          { name: 'EAN-13 Generator', url: '/ean13-generator.html' },
-        ];
-
-        const filterTools = (query) => {
-          return tools.filter(tool =>
-            tool.name.toLowerCase().includes(query.toLowerCase())
-          );
-        };
-
-        const displaySuggestions = (suggestions) => {
-          suggestionsContainer.innerHTML = '';
-          if (suggestions.length > 0) {
-            suggestions.forEach(suggestion => {
-              const suggestionItem = document.createElement('div');
-              suggestionItem.classList.add('suggestion-item');
-              suggestionItem.innerHTML = `<a href="${suggestion.url}">${suggestion.name}</a>`;
-              suggestionItem.addEventListener('click', () => {
-                window.location.href = suggestion.url;
-                console.log('Suggestion clicked:', suggestion.name);
-              });
-              suggestionsContainer.appendChild(suggestionItem);
-            });
-            suggestionsContainer.style.display = 'block';
-            console.log('Suggestions displayed:', suggestions.length);
-          } else {
-            suggestionsContainer.style.display = 'none';
-            console.log('No suggestions to display');
-          }
-        };
-
-        searchInput.addEventListener('input', () => {
-          const query = searchInput.value.trim();
-          if (query) {
-            const suggestions = filterTools(query);
-            displaySuggestions(suggestions);
-          } else {
-            suggestionsContainer.style.display = 'none';
-            console.log('Search input cleared, suggestions hidden');
-          }
-        });
-
-        searchButton.addEventListener('click', () => {
-          const query = searchInput.value.trim().toLowerCase();
-          const matchedTool = tools.find(tool => tool.name.toLowerCase().includes(query));
-          if (matchedTool) {
-            window.location.href = matchedTool.url;
-            console.log('Search button clicked, navigating to:', matchedTool.url);
-          } else {
-            alert('No tools found matching your search.');
-            console.warn('No matching tool found for query:', query);
-          }
-        });
-
-        searchInput.addEventListener('keypress', (e) => {
-          if (e.key === 'Enter') {
-            searchButton.click();
-            console.log('Enter key pressed, triggering search');
-          }
-        });
-
-        document.addEventListener('click', (e) => {
-          if (!searchInput.contains(e.target) && !suggestionsContainer.contains(e.target)) {
-            suggestionsContainer.style.display = 'none';
-            console.log('Clicked outside, suggestions hidden');
-          }
-        });
-      } else {
-        console.error('Search elements not found:', {
-          searchInput: !!searchInput,
-          searchButton: !!searchButton,
-          suggestionsContainer: !!suggestionsContainer
-        });
-      }
-
-      // Tool functionality
-      const inputText = document.getElementById('inputText');
-      const columnWidth = document.getElementById('columnWidth');
-      const convertBtn = document.getElementById('convertBtn');
-      const copyBtn = document.getElementById('copyBtn');
-      const clearBtn = document.getElementById('clearBtn');
-      const outputText = document.getElementById('outputText');
-
-      // Word wrap function
-      function wordWrap(text, width) {
-        const words = text.split(/\s+/);
-        let currentLine = '';
-        const lines = [];
-        let currentLength = 0;
-
-        for (const word of words) {
-          const wordLength = word.length;
-
-          if (currentLength + wordLength + (currentLength > 0 ? 1 : 0) <= width) {
-            // Add word to current line
-            currentLine += (currentLength > 0 ? ' ' : '') + word;
-            currentLength += wordLength + (currentLength > 0 ? 1 : 0);
-          } else {
-            // Start a new line
-            if (currentLine) {
-              lines.push(currentLine);
-            }
-            currentLine = word;
-            currentLength = wordLength;
-          }
-        }
-
-        // Push the last line
-        if (currentLine) {
-          lines.push(currentLine);
-        }
-
-        return lines.join('\n');
-      }
-
-      // Convert text with word wrapping
-      convertBtn.addEventListener('click', () => {
-        console.log('Convert button clicked');
-        const text = inputText.value;
-        const width = parseInt(columnWidth.value) || 80;
-
-        if (!text) {
-          alert('Please enter text to wrap.');
-          console.warn('No input text provided');
-          return;
-        }
-        if (width < 1 || width > 200) {
-          alert('Column width must be between 1 and 200.');
-          console.warn('Invalid column width:', width);
-          return;
-        }
-
-        const wrapped = wordWrap(text, width);
-        outputText.value = wrapped;
-        copyBtn.disabled = !wrapped;
-        console.log('Text wrapped, column width:', width);
-        if (window.gtag) {
-          gtag('event', 'convert', {
-            event_category: 'Tool Usage',
-            event_label: 'Word Wrap',
-            value: text.length
-          });
-        }
-      });
-
-      // Copy output text
-      copyBtn.addEventListener('click', () => {
-        console.log('Copy button clicked');
-        if (!outputText.value) {
-          alert('Nothing to copy. Please convert text first.');
-          console.warn('No output text to copy');
-          return;
-        }
-        outputText.select();
-        try {
-          document.execCommand('copy');
-          alert('Text copied to clipboard!');
-          console.log('Output text copied');
-          if (window.gtag) {
-            gtag('event', 'copy_output', {
-              event_category: 'Tool Usage',
-              event_label: 'Word Wrap Copy',
-              value: 1
-            });
-          }
-        } catch (err) {
-          console.error('Copy failed:', err);
-          alert('Failed to copy text.');
-        }
-      });
-
-      // Clear input and output
-      clearBtn.addEventListener('click', () => {
-        console.log('Clear button clicked');
-        inputText.value = '';
-        columnWidth.value = 80;
-        outputText.value = '';
-        copyBtn.disabled = true;
-        console.log('Input and output cleared');
-      });
+    // Fetch header and footer
+    Promise.all([
+      fetch('/header.html').then(response => response.text()).then(data => {
+        document.getElementById('header').innerHTML = data;
+      }),
+      fetch('/footer.html').then(response => response.text()).then(data => {
+        document.getElementById('footer').innerHTML = data;
+      })
+    ]).then(() => {
+      // index.js will handle all logic
+      console.log('Header and footer loaded');
+    }).catch(err => {
+      console.error('Error loading header/footer:', err);
     });
   </script>
 </body>
