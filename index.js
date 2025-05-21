@@ -1,8 +1,71 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Mobile menu
+  const menuToggle = document.getElementById('mobile-menu-toggle');
+  const nav = document.getElementById('nav-menu');
+  if (menuToggle && nav) {
+    menuToggle.addEventListener('change', () => {
+      nav.classList.toggle('show', menuToggle.checked);
+    });
+  }
+
+  // Smooth scroll for anchor links
+  const scrollToSection = (hash) => {
+    const target = document.querySelector(hash);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+      return true;
+    }
+    return false;
+  };
+
+  // Handle anchor link clicks
+  document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      e.preventDefault();
+      const href = anchor.getAttribute('href');
+      const [path, hash] = href.split('#');
+      const isHome = path === '/' || path === '' || path === '/index.html';
+
+      if (isHome && hash) {
+        scrollToSection(`#${hash}`);
+        history.pushState(null, null, `/#${hash}`);
+      } else {
+        window.location.href = href;
+      }
+
+      if (nav && nav.classList.contains('show')) {
+        nav.classList.remove('show');
+        menuToggle.checked = false;
+      }
+    });
+  });
+
+  // Handle hash on page load
+  if (window.location.hash) {
+    setTimeout(() => {
+      scrollToSection(window.location.hash);
+    }, 100);
+  }
+
+  // Scroll-to-top button
+  const scrollTopBtn = document.querySelector('.scroll-to-top');
+  if (scrollTopBtn) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 200) {
+        scrollTopBtn.classList.add('show');
+      } else {
+        scrollTopBtn.classList.remove('show');
+      }
+    });
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // Search with suggestions
   const searchInput = document.querySelector('.search-bar input');
   const searchButton = document.querySelector('.search-bar button');
-  const suggestionsContainer = document.querySelector('.search-suggestions ul');
-
+  const suggestionsContainer = document.querySelector('.search-suggestions');
   const tools = [
     { name: 'Word Counter', url: '/word-counter.html' },
     { name: 'Case Converter', url: '/case-converter.html' },
@@ -19,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { name: 'Concatenate Text', url: '/concatenate-text.html' },
     { name: 'Split Text', url: '/split-text.html' },
     { name: 'Extract Column', url: '/extract-column.html' },
-    { name: 'Swap Column', url: '/swap-column.html' },
+    { name: 'Swap Columns', url: '/swap-column.html' },
     { name: 'Reverse Words', url: '/reverse-words.html' },
     { name: 'Reverse Letters', url: '/reverse-letters.html' },
     { name: 'Remove Extra Spaces', url: '/remove-extra-spaces.html' },
@@ -61,13 +124,45 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   if (searchInput && searchButton && suggestionsContainer) {
+    const showSuggestions = (query) => {
+      suggestionsContainer.innerHTML = '';
+      if (query.length < 2) {
+        suggestionsContainer.classList.remove('show');
+        return;
+      }
+      const filteredTools = tools.filter(tool => tool.name.toLowerCase().includes(query.toLowerCase()));
+      if (filteredTools.length === 0) {
+        suggestionsContainer.classList.remove('show');
+        return;
+      }
+      filteredTools.forEach(tool => {
+        const suggestion = document.createElement('a');
+        suggestion.href = tool.url;
+        suggestion.textContent = tool.name;
+        suggestion.addEventListener('click', (e) => {
+          e.preventDefault();
+          window.location.href = tool.url;
+          suggestionsContainer.classList.remove('show');
+          searchInput.value = '';
+        });
+        suggestionsContainer.appendChild(suggestion);
+      });
+      suggestionsContainer.classList.add('show');
+    };
+
+    searchInput.addEventListener('input', () => {
+      showSuggestions(searchInput.value.trim());
+    });
+
     searchButton.addEventListener('click', () => {
       const query = searchInput.value.trim().toLowerCase();
       const matchedTool = tools.find(tool => tool.name.toLowerCase().includes(query));
       if (matchedTool) {
         window.location.href = matchedTool.url;
+        searchInput.value = '';
+        suggestionsContainer.classList.remove('show');
       } else {
-        alert('No tools found matching your search.');
+        alert('No text tools found matching your search.');
       }
     });
 
@@ -77,29 +172,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    searchInput.addEventListener('input', () => {
-      const query = searchInput.value.trim().toLowerCase();
-      suggestionsContainer.innerHTML = '';
-      if (query.length > 0) {
-        const filteredTools = tools.filter(tool => tool.name.toLowerCase().includes(query));
-        filteredTools.forEach(tool => {
-          const li = document.createElement('li');
-          li.textContent = tool.name;
-          li.addEventListener('click', () => {
-            window.location.href = tool.url;
-          });
-          suggestionsContainer.appendChild(li);
-        });
-        suggestionsContainer.parentElement.classList.toggle('show', filteredTools.length > 0);
-      } else {
-        suggestionsContainer.parentElement.classList.remove('show');
-      }
-    });
-
     // Hide suggestions when clicking outside
     document.addEventListener('click', (e) => {
       if (!searchInput.contains(e.target) && !suggestionsContainer.contains(e.target)) {
-        suggestionsContainer.parentElement.classList.remove('show');
+        suggestionsContainer.classList.remove('show');
       }
     });
   }
