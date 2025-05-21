@@ -130,7 +130,17 @@
   </button>
 
   <script>
-    // Fetch header and footer with timeout and error handling
+    // Load index.js after header DOM is ready
+    function loadIndexJs() {
+      const script = document.createElement('script');
+      script.src = '/index.js?v=' + new Date().getTime();
+      script.async = true;
+      script.onload = () => console.log('index.js loaded successfully');
+      script.onerror = () => console.error('index.js failed to load');
+      document.body.appendChild(script);
+    }
+
+    // Fetch header and footer
     Promise.all([
       fetch('/header.html', { cache: 'no-store' })
         .then(response => {
@@ -151,17 +161,28 @@
           console.log('Footer loaded');
         })
     ]).then(() => {
-      // Wait for DOM update and load index.js
+      // Watch for header DOM changes
+      const header = document.getElementById('header');
+      const observer = new MutationObserver((mutations, obs) => {
+        if (header.querySelector('#nav-menu')) {
+          console.log('Header DOM ready with nav-menu');
+          loadIndexJs();
+          obs.disconnect();
+        }
+      });
+      observer.observe(header, { childList: true, subtree: true });
+
+      // Fallback: load index.js after 500ms if observer fails
       setTimeout(() => {
-        const script = document.createElement('script');
-        script.src = '/index.js?v=' + new Date().getTime(); // Cache bust
-        script.async = true;
-        script.onload = () => console.log('index.js loaded successfully');
-        script.onerror = () => console.error('index.js failed to load');
-        document.body.appendChild(script);
-      }, 100); // Small delay for DOM
+        if (!document.querySelector('script[src*="/index.js"]')) {
+          console.warn('Fallback: loading index.js after timeout');
+          loadIndexJs();
+        }
+      }, 500);
     }).catch(err => {
       console.error('Error loading header/footer:', err);
+      // Load index.js anyway as fallback
+      loadIndexJs();
     });
 
     // Word Wrap tool logic
