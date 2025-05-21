@@ -176,6 +176,38 @@
       color: var(--primary-color);
     }
 
+    .search-suggestions {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      max-height: 200px;
+      overflow-y: auto;
+      display: none;
+      z-index: 1000;
+    }
+
+    .search-suggestions.show {
+      display: block;
+    }
+
+    .search-suggestions a {
+      display: block;
+      padding: 10px 15px;
+      text-decoration: none;
+      color: var(--text-color);
+      font-size: 14px;
+      transition: var(--transition);
+    }
+
+    .search-suggestions a:hover {
+      background: var(--primary-color);
+      color: var(--light-color);
+    }
+
     .tool-section {
       padding: 80px 0;
       background: var(--light-color);
@@ -405,6 +437,15 @@
       text-decoration: underline;
     }
 
+    .tool-content .tool-article pre {
+      background: var(--light-color);
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      white-space: pre-wrap;
+      margin: 12px 0;
+    }
+
     footer {
       background: var(--dark-color);
       color: var(--light-color);
@@ -631,7 +672,7 @@
       }
       .tool-content .action-buttons {
         flex-direction: column;
-        gap: 40px;
+        gap: 12px;
         margin-bottom: 24px;
       }
       .scroll-to-top {
@@ -664,18 +705,19 @@
       <nav id="nav-menu">
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="/#tools">Tools</a></li>
+          <li><a href="/#text-tools">Text Tools</a></li>
           <li><a href="/about-us.html">About Us</a></li>
           <li><a href="/contact-us.html">Contact Us</a></li>
           <li><a href="/privacy-policy.html">Privacy Policy</a></li>
           <li><a href="/terms-and-conditions.html">Terms</a></li>
-          <li><a href="/Disclaimer.html">Disclaimer</a></li>
+          <li><a href="/disclaimer.html">Disclaimer</a></li>
         </ul>
         <div class="search-bar">
           <input type="text" placeholder="Search tools..." aria-label="Search">
           <button type="submit" aria-label="Search">
             <i class="fas fa-search"></i>
           </button>
+          <div class="search-suggestions"></div>
         </div>
       </nav>
     </div>
@@ -695,11 +737,11 @@
           <div class="settings">
             <label>
               Find
-              <input type="text" id="findText" placeholder="Text to find" aria-label="Text to find">
+              <input type="text" id="findText" placeholder="e.g., old" aria-label="Text to find">
             </label>
             <label>
               Replace
-              <input type="text" id="replaceText" placeholder="Text to replace with" aria-label="Text to replace with">
+              <input type="text" id="replaceText" placeholder="e.g., new" aria-label="Text to replace with">
             </label>
             <label>
               Case Sensitive
@@ -729,7 +771,7 @@
           </div>
           <p class="loading" id="loadingIndicator">Processing file...</p>
 
-          <a class="cta-button" href="/index.html#tools">Explore Our Tools</a>
+          <a class="cta-button" href="/index.html#text-tools">Explore Our Tools</a>
 
           <div class="tool-article">
             <h2>About the Find and Replace Text Tool</h2>
@@ -744,6 +786,32 @@
               <li><strong>SEO</strong>: Swap keywords in bulk for optimization.</li>
             </ul>
 
+            <h3>Basic Examples</h3>
+            <p><strong>Simple Replace</strong> - Replace "cat" with "dog".</p>
+            <pre>
+The cat is here.
+            </pre>
+            <p><strong>Output:</strong></p>
+            <pre>
+The dog is here.
+            </pre>
+            <p><strong>Regex Replace</strong> - Replace numbers with "X".</p>
+            <pre>
+Item 123 and 456.
+            </pre>
+            <p><strong>Output (with regex \d+):</strong></p>
+            <pre>
+Item X and X.
+            </pre>
+            <p><strong>Case Sensitive</strong> - Replace "Cat" with "Dog" (case sensitive).</p>
+            <pre>
+Cat and cat.
+            </pre>
+            <p><strong>Output:</strong></p>
+            <pre>
+Dog and cat.
+            </pre>
+
             <h3>How to Use the Find and Replace Text Tool</h3>
             <p>Our Find and Replace Text Tool is simple to use. Follow these steps:</p>
             <ul>
@@ -751,7 +819,7 @@
               <li><strong>Specify Find/Replace</strong>: Enter the text to find and its replacement.</li>
               <li><strong>Set Options</strong>: Choose case sensitivity or enable regular expressions for advanced patterns.</li>
               <li><strong>Upload File (Optional)</strong>: Drag and drop or click to upload a TXT or DOCX file.</li>
-              <li><strong>Process</strong>: Click "Find and Replace" to see the result.</li>
+              <li><strong>Process</strong>: Click "Find and Replace" or type to see live results.</li>
               <li><strong>Copy or Download</strong>: Copy the processed text to clipboard or download as a TXT file.</li>
               <li><strong>Reset</strong>: Click "Reset" to clear inputs and results.</li>
             </ul>
@@ -777,7 +845,10 @@
             </ul>
 
             <h3>Why Choose Mass Tools?</h3>
-            <p>At Mass Tools, we provide free, high-quality tools to simplify your tasks. Our Find and Replace Text Tool joins our suite, including the <a href="/image-to-png-converter.html">Image to PNG Converter</a>, <a href="/image-to-jpg-converter.html">Image to JPG Converter</a>, <a href="/image-to-webp-converter.html">Image to WebP Converter</a>, <a href="/image-to-svg-converter.html">Image to SVG Converter</a>, <a href="/image-to-tiff-converter.html">Image to TIFF Converter</a>, <a href="/image-to-heic-converter.html">Image to HEIC Converter</a>, <a href="/image-to-pdf-converter.html">Image to PDF Converter</a>, <a href="/image-to-bmp-converter.html">Image to BMP Converter</a>, <a href="/image-to-ico-converter.html">Image to ICO Converter</a>, <a href="/image-to-avif-converter.html">Image to AVIF Converter</a>, <a href="/image-to-eps-converter.html">Image to EPS Converter</a>, <a href="/image-to-psd-converter.html">Image to PSD Converter</a>, <a href="/image-to-base64-converter.html">Image to Base64 Converter</a>, <a href="/image-to-dxf-converter.html">Image to DXF Converter</a>, <a href="/image-to-exr-converter.html">Image to EXR Converter</a>, <a href="/pdf-to-image-converter.html">PDF to Image Converter</a>, <a href="/image-resizer-tool.html">Image Resizer Tool</a>, <a href="/image-compressor-tool.html">Image Compressor Tool</a>, <a href="/psd-to-image-converter.html">PSD to Image Converter</a>, <a href="/eps-to-image-converter.html">EPS to Image Converter</a>, <a href="/word-counter.html">Word Counter</a>, <a href="/case-converter.html">Case Converter</a>, <a href="/text-to-ascii-converter.html">Text to ASCII Converter</a>, <a href="/lorem-ipsum-generator.html">Lorem Ipsum Generator</a>, <a href="/character-counter.html">Character Counter</a>, and <a href="/sort-text.html">Sort Text</a>. We prioritize privacy, speed, and ease of use. Learn more on our <a href="/about-us.html">About Us</a> page.</p>
+            <p>At Mass Tools, we provide free, high-quality tools to simplify your tasks. Our Find and Replace Text Tool joins our suite, including the <a href="/case-converter.html">Case Converter</a>, <a href="/word-counter.html">Word Counter</a>, <a href="/text-to-ascii-converter.html">Text to ASCII Converter</a>, <a href="/lorem-ipsum-generator.html">Lorem Ipsum Generator</a>, <a href="/character-counter.html">Character Counter</a>, and <a href="/sort-text.html">Sort Text</a>. We prioritize privacy, speed, and ease of use. Learn more on our <a href="/about-us.html">About Us</a> page.</p>
+
+            <h3>Contact Us</h3>
+            <p>Need help or have suggestions? Email us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a>.</p>
           </div>
         </div>
       </div>
@@ -796,7 +867,7 @@
         </div>
         <div class="footer-column">
           <ul>
-            <li><a href="/#tools">Tools</a></li>
+            <li><a href="/#text-tools">Text Tools</a></li>
             <li><a href="/about-us.html">About Us</a></li>
             <li><a href="/contact-us.html">Contact Us</a></li>
           </ul>
@@ -805,7 +876,7 @@
           <ul>
             <li><a href="/privacy-policy.html">Privacy Policy</a></li>
             <li><a href="/terms-and-conditions.html">Terms</a></li>
-            <li><a href="/Disclaimer.html">Disclaimer</a></li>
+            <li><a href="/disclaimer.html">Disclaimer</a></li>
           </ul>
         </div>
       </div>
@@ -822,29 +893,28 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Mobile menu toggle
+      console.log('Initializing toggle menu');
       const menuToggle = document.getElementById('mobile-menu-toggle');
       const nav = document.getElementById('nav-menu');
       if (menuToggle && nav) {
+        console.log('Mobile menu elements found');
         menuToggle.addEventListener('change', () => {
-          nav.classList.toggle('show', menuToggle.checked);
+          const isChecked = menuToggle.checked;
+          nav.classList.toggle('show', isChecked);
+          console.log('Mobile menu toggled:', isChecked);
+          nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+              menuToggle.checked = false;
+              nav.classList.remove('show');
+              console.log('Menu closed via link click');
+            });
+          });
         });
+      } else {
+        console.error('Mobile menu elements missing:', { menuToggle: !!menuToggle, nav: !!nav });
       }
 
       // Smooth scroll for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', (e) => {
-          e.preventDefault();
-          const target = document.querySelector(anchor.getAttribute('href'));
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-          }
-          if (nav && nav.classList.contains('show')) {
-            nav.classList.remove('show');
-            menuToggle.checked = false;
-          }
-        });
-      });
-
       document.querySelectorAll('a[href*="#"]').forEach(anchor => {
         anchor.addEventListener('click', (e) => {
           const href = anchor.getAttribute('href');
@@ -856,13 +926,15 @@
             if (target) {
               target.scrollIntoView({ behavior: 'smooth' });
               history.pushState(null, null, `/#${hash}`);
+              console.log('Smooth scrolled to:', hash);
+            } else {
+              console.warn('Target section not found:', hash);
             }
-          } else {
-            window.location.href = href;
           }
           if (nav && nav.classList.contains('show')) {
             nav.classList.remove('show');
             menuToggle.checked = false;
+            console.log('Menu closed via anchor click');
           }
         });
       });
@@ -871,19 +943,23 @@
       const scrollTopBtn = document.querySelector('.scroll-to-top');
       if (scrollTopBtn) {
         window.addEventListener('scroll', () => {
-          scrollTopBtn.classList.toggle('show', window.scrollY > 200);
+          const show = window.scrollY > 200;
+          scrollTopBtn.classList.toggle('show', show);
+          console.log('Scroll-to-top visibility:', show);
         });
         scrollTopBtn.addEventListener('click', () => {
           window.scrollTo({ top: 0, behavior: 'smooth' });
+          console.log('Scroll-to-top clicked');
         });
       }
 
-      // Search functionality
+      // Search functionality with suggestions
       const searchInput = document.querySelector('.search-bar input');
       const searchButton = document.querySelector('.search-bar button');
-      if (searchInput && searchButton) {
+      const suggestionsContainer = document.querySelector('.search-suggestions');
+      if (searchInput && searchButton && suggestionsContainer) {
         const tools = [
-{ name: 'Image To JPG Converter', url: '/image-to-jpg-converter.html' },
+          { name: 'Image To JPG Converter', url: '/image-to-jpg-converter.html' },
           { name: 'Image To PNG Converter', url: '/image-to-png-converter.html' },
           { name: 'Image To SVG', url: '/image-to-svg-converter.html' },
           { name: 'Image To WEBP Converter', url: '/image-to-webp-converter.html' },
@@ -900,13 +976,13 @@
           { name: 'Image To EXR Converter', url: '/image-to-exr-converter.html' },
           { name: 'PDF To Image Converter', url: '/pdf-to-image-converter.html' },
           { name: 'Image Resizer Tool', url: '/image-resizer-tool.html' },
-          { name: 'Image Compressor Tool', url: '/image-resizer-tool.html' },
-          { name: 'PSD To Image Converter', url: '/pdf-to-image-converter.html' },
+          { name: 'Image Compressor Tool', url: '/image-compressor-tool.html' },
+          { name: 'PSD To Image Converter', url: '/psd-to-image-converter.html' },
           { name: 'EPS To Image Converter', url: '/eps-to-image-converter.html' },
           { name: 'Word Counter', url: '/word-counter.html' },
           { name: 'Case Converter', url: '/case-converter.html' },
-          { name: 'Text To ASCII', url: '/text-to-ascii-converter.html' },
-          { name: 'Lorem Ipsum Generator', url: '/lorem-ipsum-genrator.html' },
+          { name: 'Text to ASCII Converter', url: '/text-to-ascii-converter.html' },
+          { name: 'Lorem Ipsum Generator', url: '/lorem-ipsum-generator.html' },
           { name: 'Character Counter', url: '/character-counter.html' },
           { name: 'Sort Text', url: '/sort-text.html' },
           { name: 'Find And Replace', url: '/find-and-replace-text.html' },
@@ -931,8 +1007,8 @@
           { name: 'Strip HTML Tags', url: '/strip-html-tags.html' },
           { name: 'Add Line Numbers', url: '/add-line-numbers.html' },
           { name: 'Replace Smart/Straight Quotes', url: '/replace-quotes.html' },
-          { name: 'Tabs to Spaces Converterter', url: '/tabs-to-spaces.html' },
-          { name: 'Spaces to Tabs Converterter', url: '/spaces-to-tabs.html' },
+          { name: 'Tabs to Spaces Converter', url: '/tabs-to-spaces.html' },
+          { name: 'Spaces to Tabs Converter', url: '/spaces-to-tabs.html' },
           { name: 'Pad Text', url: '/pad-text.html' },
           { name: 'Word Wrap', url: '/word-wrap.html' },
           { name: 'Justify Text', url: '/justify-text.html' },
@@ -958,16 +1034,16 @@
           { name: 'URL Extractor', url: '/url-extractor.html' },
           { name: 'Online Notepad', url: '/online-notepad.html' },
           { name: 'Keyword Research Tool', url: '/keyword-research-tool.html' },
-        { name: 'On-Page SEO Analyzer', url: '/on-page-seo-analyzer.html' },
-        { name: 'Technical SEO Auditor', url: '/technical-seo-auditor.html' },
-        { name: 'Backlink Analyzer', url: '/backlink-analyzer.html' },
-        { name: 'Content Optimization Tool', url: '/content-optimization-tool.html' },
-        { name: 'Rank Tracker', url: '/rank-tracker.html' },
-        { name: 'Competitor Analysis Tool', url: '/competitor-analysis-tool.html' },
-        { name: 'SEO Audit and Reporting Tool', url: '/seo-audit-reporting-tool.html' },
-        { name: 'Local SEO Tool', url: '/local-seo-tool.html' },
-        { name: 'AI-Powered SEO Assistant', url: '/ai-seo-assistant.html' },
-        { name: 'QR Code Generator', url: '/qr-code-generator.html' },
+          { name: 'On-Page SEO Analyzer', url: '/on-page-seo-analyzer.html' },
+          { name: 'Technical SEO Auditor', url: '/technical-seo-auditor.html' },
+          { name: 'Backlink Analyzer', url: '/backlink-analyzer.html' },
+          { name: 'Content Optimization Tool', url: '/content-optimization-tool.html' },
+          { name: 'Rank Tracker', url: '/rank-tracker.html' },
+          { name: 'Competitor Analysis Tool', url: '/competitor-analysis-tool.html' },
+          { name: 'SEO Audit and Reporting Tool', url: '/seo-audit-reporting-tool.html' },
+          { name: 'Local SEO Tool', url: '/local-seo-tool.html' },
+          { name: 'AI-Powered SEO Assistant', url: '/ai-seo-assistant.html' },
+          { name: 'QR Code Generator', url: '/qr-code-generator.html' },
           { name: 'Data Matrix Generator', url: '/data-matrix-generator.html' },
           { name: 'Barcode Generator', url: '/barcode-generator.html' },
           { name: 'PDF417 Generator', url: '/pdf417-generator.html' },
@@ -975,22 +1051,60 @@
           { name: 'MaxiCode Generator', url: '/maxicode-generator.html' },
           { name: 'Code 39 Generator', url: '/code39-generator.html' },
           { name: 'Code 128 Generator', url: '/code128-generator.html' },
-          { name: 'EAN-13 Generator', url: '/ean13-generator.html' },
+          { name: 'EAN-13 Generator', url: '/ean13-generator.html' }
         ];
+
+        const updateSuggestions = (query) => {
+          suggestionsContainer.innerHTML = '';
+          if (!query.trim()) {
+            suggestionsContainer.classList.remove('show');
+            return;
+          }
+          const matches = tools.filter(tool => tool.name.toLowerCase().includes(query.toLowerCase())).slice(0, 5);
+          if (matches.length) {
+            matches.forEach(tool => {
+              const a = document.createElement('a');
+              a.href = tool.url;
+              a.textContent = tool.name;
+              suggestionsContainer.appendChild(a);
+            });
+            suggestionsContainer.classList.add('show');
+          } else {
+            suggestionsContainer.classList.remove('show');
+          }
+        };
+
+        searchInput.addEventListener('input', () => {
+          updateSuggestions(searchInput.value);
+          console.log('Search input:', searchInput.value);
+        });
+
         searchButton.addEventListener('click', () => {
           const query = searchInput.value.trim().toLowerCase();
           const matchedTool = tools.find(tool => tool.name.toLowerCase().includes(query));
           if (matchedTool) {
             window.location.href = matchedTool.url;
+            console.log('Search navigated to:', matchedTool.url);
           } else {
             alert('No tools found matching your search.');
+            console.log('Search: No tools found for query:', query);
           }
         });
+
         searchInput.addEventListener('keypress', (e) => {
           if (e.key === 'Enter') {
             searchButton.click();
           }
         });
+
+        document.addEventListener('click', (e) => {
+          if (!searchInput.contains(e.target) && !suggestionsContainer.contains(e.target)) {
+            suggestionsContainer.classList.remove('show');
+            console.log('Search suggestions hidden');
+          }
+        });
+      } else {
+        console.error('Search elements missing:', { searchInput: !!searchInput, searchButton: !!searchButton, suggestionsContainer: !!suggestionsContainer });
       }
 
       // Tool functionality
@@ -1008,16 +1122,43 @@
       const resetBtn = document.getElementById('resetBtn');
       const loadingIndicator = document.getElementById('loadingIndicator');
 
+      if (!inputText || !findTextInput || !replaceTextInput || !caseSensitiveCheckbox || !useRegexCheckbox || !uploadArea || !fileInput || !resultOutput || !replaceBtn || !copyBtn || !downloadBtn || !resetBtn || !loadingIndicator) {
+        console.error('Missing critical elements:', {
+          inputText: !!inputText,
+          findTextInput: !!findTextInput,
+          replaceTextInput: !!replaceTextInput,
+          caseSensitiveCheckbox: !!caseSensitiveCheckbox,
+          useRegexCheckbox: !!useRegexCheckbox,
+          uploadArea: !!uploadArea,
+          fileInput: !!fileInput,
+          resultOutput: !!resultOutput,
+          replaceBtn: !!replaceBtn,
+          copyBtn: !!copyBtn,
+          downloadBtn: !!downloadBtn,
+          resetBtn: !!resetBtn,
+          loadingIndicator: !!loadingIndicator
+        });
+        return;
+      }
+
       const findAndReplace = (text, find, replace, options) => {
+        console.log('findAndReplace called with:', { text: text.slice(0, 100), find, replace, options });
         if (!text.trim()) {
+          console.log('Empty text');
           alert('Please enter text to process.');
           return '';
         }
         if (!find.trim()) {
+          console.log('Empty find field');
           alert('Please enter text to find.');
           return '';
         }
+        if (replace === null || replace === undefined) {
+          console.log('Replace field is null/undefined, treating as empty string');
+          replace = '';
+        }
         if (text.length > 100000) {
+          console.log('Text too long:', text.length);
           alert('Text exceeds 100,000 characters. Please use shorter text.');
           return '';
         }
@@ -1026,22 +1167,33 @@
         try {
           if (options.useRegex) {
             const flags = options.caseSensitive ? 'g' : 'gi';
-            const regex = new RegExp(find, flags);
-            result = text.replace(regex, replace);
+            try {
+              const regex = new RegExp(find, flags);
+              result = text.replace(regex, replace);
+              console.log('Regex replace applied:', { pattern: find, flags });
+            } catch (error) {
+              console.error('Invalid regex pattern:', error.message);
+              alert(`Invalid regular expression: ${error.message}`);
+              return '';
+            }
           } else {
             if (options.caseSensitive) {
               result = text.replaceAll(find, replace);
+              console.log('Case-sensitive replaceAll');
             } else {
-              const regex = new RegExp(find.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+              const escapedFind = find.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+              const regex = new RegExp(escapedFind, 'gi');
               result = text.replace(regex, replace);
+              console.log('Case-insensitive replace with escaped find:', escapedFind);
             }
           }
         } catch (error) {
-          console.error('Regex error:', error);
-          alert('Invalid regular expression. Please check your pattern.');
+          console.error('Unexpected replace error:', error);
+          alert('Error processing text. Please check your inputs.');
           return '';
         }
 
+        console.log('Replace result:', result.slice(0, 100));
         return result;
       };
 
@@ -1056,23 +1208,28 @@
         copyBtn.disabled = true;
         downloadBtn.disabled = true;
         loadingIndicator.classList.remove('visible');
+        console.log('Form reset');
       };
 
       const handleFile = (file) => {
         if (!file) {
+          console.log('No file selected');
           alert('Please select a TXT or DOCX file.');
           return;
         }
         if (!file.name.match(/\.(txt|docx)$/i)) {
+          console.log('Invalid file type:', file.name);
           alert('Please upload a valid TXT or DOCX file.');
           return;
         }
         if (file.size > 10 * 1024 * 1024) {
+          console.log('File too large:', file.size);
           alert('File is too large (over 10MB). Please use a smaller file.');
           return;
         }
 
         loadingIndicator.classList.add('visible');
+        console.log('Processing file:', file.name);
 
         const reader = new FileReader();
         reader.onload = async (e) => {
@@ -1080,11 +1237,14 @@
             let text;
             if (file.name.endsWith('.txt')) {
               text = e.target.result;
-            } else {
+            } else if (typeof mammoth !== 'undefined') {
               const arrayBuffer = e.target.result;
               const result = await mammoth.extractRawText({ arrayBuffer });
               text = result.value;
+            } else {
+              throw new Error('Mammoth.js not loaded');
             }
+            console.log('File text extracted:', text.slice(0, 100) + '...');
             inputText.value = text;
             const options = {
               caseSensitive: caseSensitiveCheckbox.checked,
@@ -1101,6 +1261,7 @@
                 value: text.length
               });
             }
+            console.log('File processed:', { textLength: text.length });
           } catch (error) {
             console.error('File processing error:', error);
             alert('Error processing file. Please try a different file.');
@@ -1108,6 +1269,7 @@
           }
         };
         reader.onerror = () => {
+          console.error('File read error');
           alert('Error reading file. Please try a different file.');
           loadingIndicator.classList.remove('visible');
         };
@@ -1118,31 +1280,7 @@
         }
       };
 
-      uploadArea.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        uploadArea.classList.add('dragover');
-      });
-
-      uploadArea.addEventListener('dragleave', () => {
-        uploadArea.classList.remove('dragover');
-      });
-
-      uploadArea.addEventListener('drop', (e) => {
-        e.preventDefault();
-        uploadArea.classList.remove('dragover');
-        const file = e.dataTransfer.files[0];
-        handleFile(file);
-      });
-
-      uploadArea.addEventListener('click', () => {
-        fileInput.click();
-      });
-
-      fileInput.addEventListener('change', () => {
-        if (fileInput.files[0]) handleFile(fileInput.files[0]);
-      });
-
-      replaceBtn.addEventListener('click', () => {
+      const updateReplace = () => {
         const text = inputText.value;
         const find = findTextInput.value;
         const replace = replaceTextInput.value;
@@ -1150,25 +1288,66 @@
           caseSensitive: caseSensitiveCheckbox.checked,
           useRegex: useRegexCheckbox.checked
         };
-        resultOutput.value = findAndReplace(text, find, replace, options);
-        copyBtn.disabled = !resultOutput.value;
-        downloadBtn.disabled = !resultOutput.value;
+        console.log('updateReplace called with:', { text: text.slice(0, 100), find, options });
+        const result = findAndReplace(text, find, replace, options);
+        resultOutput.value = result;
+        copyBtn.disabled = !result;
+        downloadBtn.disabled = !result;
+      };
 
-        if (window.gtag && resultOutput.value) {
-          gtag('event', 'find_replace_text', {
-            event_category: 'Tool Usage',
-            event_label: `Find and Replace - ${options.useRegex ? 'Regex' : 'Text'} ${options.caseSensitive ? 'CaseSensitive' : 'CaseInsensitive'}`,
-            value: text.length
-          });
+      uploadArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadArea.classList.add('dragover');
+        console.log('Dragover');
+      });
+
+      uploadArea.addEventListener('dragleave', () => {
+        uploadArea.classList.remove('dragover');
+        console.log('Dragleave');
+      });
+
+      uploadArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        uploadArea.classList.remove('dragover');
+        const file = e.dataTransfer.files[0];
+        console.log('File dropped:', file?.name);
+        handleFile(file);
+      });
+
+      uploadArea.addEventListener('click', () => {
+        fileInput.click();
+        console.log('Upload area clicked');
+      });
+
+      fileInput.addEventListener('change', () => {
+        if (fileInput.files[0]) {
+          console.log('File selected:', fileInput.files[0].name);
+          handleFile(fileInput.files[0]);
         }
       });
 
-      copyBtn.addEventListener('click', () => {
+      replaceBtn.addEventListener('click', () => {
+        updateReplace();
+        if (window.gtag && resultOutput.value) {
+          const options = {
+            caseSensitive: caseSensitiveCheckbox.checked,
+            useRegex: useRegexCheckbox.checked
+          };
+          gtag('event', 'find_replace_text', {
+            event_category: 'Tool Usage',
+            event_label: `Find and Replace - ${options.useRegex ? 'Regex' : 'Text'} ${options.caseSensitive ? 'CaseSensitive' : 'CaseInsensitive'}`,
+            value: inputText.value.length
+          });
+          console.log('GA event sent: find_replace_text');
+        }
+      });
+
+      copyBtn.addEventListener('click', async () => {
         if (!resultOutput.value) return;
-        resultOutput.select();
         try {
-          document.execCommand('copy');
+          await navigator.clipboard.writeText(resultOutput.value);
           alert('Output copied to clipboard!');
+          console.log('Output copied');
           if (window.gtag) {
             gtag('event', 'copy_output', {
               event_category: 'Tool Usage',
@@ -1187,10 +1366,10 @@
         const blob = new Blob([resultOutput.value], { type: 'text/plain' });
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
-        link.download = 'find-replace-text-masstools.github.io.txt';
+        link.download = 'find-replace-text-masstools.txt';
         link.click();
         URL.revokeObjectURL(link.href);
-
+        console.log('Output downloaded');
         if (window.gtag) {
           gtag('event', 'download_output', {
             event_category: 'Tool Usage',
@@ -1201,6 +1380,12 @@
       });
 
       resetBtn.addEventListener('click', resetForm);
+
+      inputText.addEventListener('input', updateReplace);
+      findTextInput.addEventListener('input', updateReplace);
+      replaceTextInput.addEventListener('input', updateReplace);
+      caseSensitiveCheckbox.addEventListener('change', updateReplace);
+      useRegexCheckbox.addEventListener('change', updateReplace);
     });
   </script>
 </body>
