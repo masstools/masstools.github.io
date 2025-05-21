@@ -21,7 +21,36 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
 </head>
 <body>
-  <header id="header"></header>
+  <header>
+    <div class="container header-container">
+      <a href="/" class="logo">
+        <i class="fas fa-tools logo-icon"></i>
+        <span>Mass Tools</span>
+      </a>
+      <input id="mobile-menu-toggle" type="checkbox">
+      <label class="mobile-menu-btn" for="mobile-menu-toggle">
+        <i class="fas fa-bars"></i>
+      </label>
+      <nav id="nav-menu">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#text-tools">Text Tools</a></li>
+          <li><a href="/about-us.html">About Us</a></li>
+          <li><a href="/contact-us.html">Contact Us</a></li>
+          <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="/terms-and-conditions.html">Terms</a></li>
+          <li><a href="/disclaimer.html">Disclaimer</a></li>
+        </ul>
+        <div class="search-bar">
+          <input type="text" placeholder="Search text tools..." aria-label="Search">
+          <button type="submit" aria-label="Search">
+            <i class="fas fa-search"></i>
+          </button>
+          <div class="search-suggestions"></div>
+        </div>
+      </nav>
+    </div>
+  </header>
 
   <main>
     <section class="tool-section">
@@ -126,4 +155,381 @@
             <p>To get the best results, consider these tips:</p>
             <ul>
               <li><strong>Small Files</strong>: Use files under 10MB for faster processing.</li>
-              <li><strong>Regex Patterns</strong>: Enable regex for
+              <li><strong>Regex Patterns</strong>: Enable regex for complex searches (e.g., `\d+` for numbers).</li>
+              <li><strong>Test First</strong>: Try on a small text sample to verify replacements.</li>
+              <li><strong>Combine Tools</strong>: Use with our <a href="/case-converter.html">Case Converter</a>, <a href="/word-counter.html">Word Counter</a>, <a href="/text-to-ascii-converter.html">Text to ASCII Converter</a>, <a href="/lorem-ipsum-generator.html">Lorem Ipsum Generator</a>, <a href="/character-counter.html">Character Counter</a>, or <a href="/sort-text.html">Sort Text</a> for text workflows.</li>
+              <li><strong>Contact Us</strong>: Need bulk processing? Email us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a>.</li>
+            </ul>
+
+            <h3>Why Choose Mass Tools?</h3>
+            <p>At Mass Tools, we provide free, high-quality tools to simplify your tasks. Our Find and Replace Text Tool joins our suite, including the <a href="/case-converter.html">Case Converter</a>, <a href="/word-counter.html">Word Counter</a>, <a href="/text-to-ascii-converter.html">Text to ASCII Converter</a>, <a href="/lorem-ipsum-generator.html">Lorem Ipsum Generator</a>, <a href="/character-counter.html">Character Counter</a>, and <a href="/sort-text.html">Sort Text</a>. We prioritize privacy, speed, and ease of use. Learn more on our <a href="/about-us.html">About Us</a> page.</p>
+
+            <h3>Contact Us</h3>
+            <p>Need help or have suggestions? Email us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer"></footer>
+
+  <button class="scroll-to-top" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    // Fetch footer
+    fetch('./footer.html', { cache: 'no-store' })
+      .then(response => {
+        if (!response.ok) throw new Error(`Footer fetch failed: ${response.status}`);
+        return response.text();
+      })
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+        console.log('Footer loaded');
+      })
+      .catch(err => {
+        console.error('Error loading footer:', err);
+        document.getElementById('footer').innerHTML = `
+          <div class="container">
+            <div class="footer-container">
+              <div class="footer-column">
+                <a href="/" class="footer-column-logo">
+                  <i class="fas fa-tools footer-column-logo-icon"></i>
+                  <span>Mass Tools</span>
+                </a>
+                <p>Empowering you with free, high-quality text tools.</p>
+              </div>
+              <div class="footer-column">
+                <ul>
+                  <li><a href="/#text-tools">Text Tools</a></li>
+                  <li><a href="/about-us.html">About Us</a></li>
+                  <li><a href="/contact-us.html">Contact Us</a></li>
+                </ul>
+              </div>
+              <div class="footer-column">
+                <ul>
+                  <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+                  <li><a href="/terms-and-conditions.html">Terms</a></li>
+                  <li><a href="/disclaimer.html">Disclaimer</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="copyright">
+              <p>© 2025 Mass Tools. All rights reserved.</p>
+            </div>
+          </div>
+        `;
+      });
+
+    // Search functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.querySelector('.search-bar input');
+      const searchSuggestions = document.querySelector('.search-suggestions');
+      if (!searchInput || !searchSuggestions) {
+        console.error('Search elements not found');
+        return;
+      }
+
+      const tools = [
+        { name: 'Case Converter', url: '/case-converter.html' },
+        { name: 'Word Counter', url: '/word-counter.html' },
+        { name: 'Text to ASCII Converter', url: '/text-to-ascii-converter.html' },
+        { name: 'Lorem Ipsum Generator', url: '/lorem-ipsum-generator.html' },
+        { name: 'Character Counter', url: '/character-counter.html' },
+        { name: 'Sort Text', url: '/sort-text.html' },
+        { name: 'Find and Replace Text', url: '/find-and-replace-text.html' }
+      ];
+
+      searchInput.addEventListener('input', () => {
+        const query = searchInput.value.trim().toLowerCase();
+        searchSuggestions.innerHTML = '';
+        if (query.length < 2) {
+          searchSuggestions.style.display = 'none';
+          return;
+        }
+
+        const filteredTools = tools.filter(tool =>
+          tool.name.toLowerCase().includes(query)
+        );
+
+        if (filteredTools.length === 0) {
+          searchSuggestions.innerHTML = '<p>No tools found</p>';
+        } else {
+          filteredTools.forEach(tool => {
+            const suggestion = document.createElement('a');
+            suggestion.href = tool.url;
+            suggestion.textContent = tool.name;
+            suggestion.addEventListener('click', () => {
+              if (window.gtag) {
+                gtag('event', 'search', {
+                  event_category: 'Search',
+                  event_label: `Search: ${tool.name}`,
+                  value: 1
+                });
+              }
+            });
+            searchSuggestions.appendChild(suggestion);
+          });
+        }
+        searchSuggestions.style.display = 'block';
+      });
+
+      searchInput.addEventListener('blur', () => {
+        setTimeout(() => {
+          searchSuggestions.style.display = 'none';
+        }, 200);
+      });
+
+      searchInput.addEventListener('focus', () => {
+        if (searchInput.value.trim().length >= 2) {
+          searchSuggestions.style.display = 'block';
+        }
+      });
+
+      // Find and Replace functionality
+      const inputText = document.getElementById('inputText');
+      const findTextInput = document.getElementById('findText');
+      const replaceTextInput = document.getElementById('replaceText');
+      const caseSensitiveCheckbox = document.getElementById('caseSensitive');
+      const useRegexCheckbox = document.getElementById('useRegex');
+      const uploadArea = document.getElementById('uploadArea');
+      const fileInput = document.getElementById('fileInput');
+      const resultOutput = document.getElementById('resultOutput');
+      const replaceBtn = document.getElementById('replaceBtn');
+      const copyBtn = document.getElementById('copyBtn');
+      const downloadBtn = document.getElementById('downloadBtn');
+      const resetBtn = document.getElementById('resetBtn');
+      const loadingIndicator = document.getElementById('loadingIndicator');
+
+      if (!inputText || !findTextInput || !replaceTextInput || !caseSensitiveCheckbox || !useRegexCheckbox || !uploadArea || !fileInput || !resultOutput || !replaceBtn || !copyBtn || !downloadBtn || !resetBtn || !loadingIndicator) {
+        console.error('Missing critical elements');
+        return;
+      }
+
+      const findAndReplace = (text, find, replace, options) => {
+        if (!text.trim()) {
+          alert('Please enter text to process.');
+          return '';
+        }
+        if (!find.trim()) {
+          alert('Please enter text to find.');
+          return '';
+        }
+        if (replace === null || replace === undefined) {
+          replace = '';
+        }
+        if (text.length > 100000) {
+          alert('Text exceeds 100,000 characters. Please use shorter text.');
+          return '';
+        }
+
+        let result;
+        try {
+          if (options.useRegex) {
+            const flags = options.caseSensitive ? 'g' : 'gi';
+            try {
+              const regex = new RegExp(find, flags);
+              result = text.replace(regex, replace);
+            } catch (error) {
+              console.error('Invalid regex pattern:', error.message);
+              alert(`Invalid regular expression: ${error.message}`);
+              return '';
+            }
+          } else {
+            if (options.caseSensitive) {
+              result = text.replaceAll(find, replace);
+            } else {
+              const escapedFind = find.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+              const regex = new RegExp(escapedFind, 'gi');
+              result = text.replace(regex, replace);
+            }
+          }
+        } catch (error) {
+          console.error('Unexpected replace error:', error);
+          alert('Error processing text. Please check your inputs.');
+          return '';
+        }
+        return result;
+      };
+
+      const resetForm = () => {
+        inputText.value = '';
+        findTextInput.value = '';
+        replaceTextInput.value = '';
+        caseSensitiveCheckbox.checked = false;
+        useRegexCheckbox.checked = false;
+        fileInput.value = '';
+        resultOutput.value = '';
+        copyBtn.disabled = true;
+        downloadBtn.disabled = true;
+        loadingIndicator.classList.remove('visible');
+      };
+
+      const handleFile = (file) => {
+        if (!file) {
+          alert('Please select a TXT or DOCX file.');
+          return;
+        }
+        if (!file.name.match(/\.(txt|docx)$/i)) {
+          alert('Please upload a valid TXT or DOCX file.');
+          return;
+        }
+        if (file.size > 10 * 1024 * 1024) {
+          alert('File is too large (over 10MB). Please use a smaller file.');
+          return;
+        }
+
+        loadingIndicator.classList.add('visible');
+        const reader = new FileReader();
+        reader.onload = async (e) => {
+          try {
+            let text;
+            if (file.name.endsWith('.txt')) {
+              text = e.target.result;
+            } else if (typeof mammoth !== 'undefined') {
+              const arrayBuffer = e.target.result;
+              const result = await mammoth.extractRawText({ arrayBuffer });
+              text = result.value;
+            } else {
+              throw new Error('Mammoth.js not loaded');
+            }
+            inputText.value = text;
+            const options = {
+              caseSensitive: caseSensitiveCheckbox.checked,
+              useRegex: useRegexCheckbox.checked
+            };
+            resultOutput.value = findAndReplace(text, findTextInput.value, replaceTextInput.value, options);
+            copyBtn.disabled = !resultOutput.value;
+            downloadBtn.disabled = !resultOutput.value;
+            loadingIndicator.classList.remove('visible');
+            if (window.gtag) {
+              gtag('event', 'replace_file', {
+                event_category: 'Tool Usage',
+                event_label: 'Find and Replace Text File',
+                value: text.length
+              });
+            }
+          } catch (error) {
+            console.error('File processing error:', error);
+            alert('Error processing file. Please try a different file.');
+            loadingIndicator.classList.remove('visible');
+          }
+        };
+        reader.onerror = () => {
+          console.error('File read error');
+          alert('Error reading file. Please try a different file.');
+          loadingIndicator.classList.remove('visible');
+        };
+        if (file.name.endsWith('.txt')) {
+          reader.readAsText(file);
+        } else {
+          reader.readAsArrayBuffer(file);
+        }
+      };
+
+      const updateReplace = () => {
+        const text = inputText.value;
+        const find = findTextInput.value;
+        const replace = replaceTextInput.value;
+        const options = {
+          caseSensitive: caseSensitiveCheckbox.checked,
+          useRegex: useRegexCheckbox.checked
+        };
+        const result = findAndReplace(text, find, replace, options);
+        resultOutput.value = result;
+        copyBtn.disabled = !result;
+        downloadBtn.disabled = !result;
+        loadingIndicator.classList.remove('visible'); // Ensure loading is hidden during text input
+      };
+
+      uploadArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadArea.classList.add('dragover');
+      });
+
+      uploadArea.addEventListener('dragleave', () => {
+        uploadArea.classList.remove('dragover');
+      });
+
+      uploadArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        uploadArea.classList.remove('dragover');
+        const file = e.dataTransfer.files[0];
+        handleFile(file);
+      });
+
+      uploadArea.addEventListener('click', () => {
+        fileInput.click();
+      });
+
+      fileInput.addEventListener('change', () => {
+        if (fileInput.files[0]) {
+          handleFile(fileInput.files[0]);
+        }
+      });
+
+      replaceBtn.addEventListener('click', () => {
+        updateReplace();
+        if (window.gtag && resultOutput.value) {
+          const options = {
+            caseSensitive: caseSensitiveCheckbox.checked,
+            useRegex: useRegexCheckbox.checked
+          };
+          gtag('event', 'find_replace_text', {
+            event_category: 'Tool Usage',
+            event_label: `Find and Replace - ${options.useRegex ? 'Regex' : 'Text'} ${options.caseSensitive ? 'CaseSensitive' : 'CaseInsensitive'}`,
+            value: inputText.value.length
+          });
+        }
+      });
+
+      copyBtn.addEventListener('click', async () => {
+        if (!resultOutput.value) return;
+        try {
+          await navigator.clipboard.writeText(resultOutput.value);
+          alert('Output copied to clipboard!');
+          if (window.gtag) {
+            gtag('event', 'copy_output', {
+              event_category: 'Tool Usage',
+              event_label: 'Find and Replace Text Copy',
+              value: 1
+            });
+          }
+        } catch (error) {
+          console.error('Copy error:', error);
+          alert('Failed to copy output. Please try manually.');
+        }
+      });
+
+      downloadBtn.addEventListener('click', () => {
+        if (!resultOutput.value) return;
+        const blob = new Blob([resultOutput.value], { type: 'text/plain' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'find-replace-text-masstools.txt';
+        link.click();
+        URL.revokeObjectURL(link.href);
+        if (window.gtag) {
+          gtag('event', 'download_output', {
+            event_category: 'Tool Usage',
+            event_label: 'Find and Replace Text Download',
+            value: 1
+          });
+        }
+      });
+
+      resetBtn.addEventListener('click', resetForm);
+
+      // Real-time updates only for text input, no loading indicator
+      inputText.addEventListener('input', updateReplace);
+      findTextInput.addEventListener('input', updateReplace);
+      replaceTextInput.addEventListener('input', updateReplace);
+      caseSensitiveCheckbox.addEventListener('change', updateReplace);
+      useRegexCheckbox.addEventListener('change', updateReplace);
+    });
+  </script>
+  <script src="./index.js" onerror="console.error('Failed to load index.js')"></script>
+</body>
+</html>
