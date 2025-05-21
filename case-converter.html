@@ -81,33 +81,30 @@
   <script src="./index.js" onerror="console.error('Failed to load index.js')"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Load header
-      fetch('./header.html')
-        .then(response => {
-          if (!response.ok) throw new Error('Failed to load header.html');
-          return response.text();
-        })
-        .then(data => {
-          document.getElementById('header').innerHTML = data;
-        })
-        .catch(error => {
-          console.error(error);
-          document.getElementById('header').innerHTML = '<p>Error loading header. Please try again later.</p>';
-        });
-
-      // Load footer
-      fetch('./footer.html')
-        .then(response => {
-          if (!response.ok) throw new Error('Failed to load footer.html');
-          return response.text();
-        })
-        .then(data => {
-          document.getElementById('footer').innerHTML = data;
-        })
-        .catch(error => {
-          console.error(error);
-          document.getElementById('footer').innerHTML = '<p>Error loading footer. Please try again later.</p>';
-        });
+      // Load header and footer
+      Promise.all([
+        fetch('./header.html')
+          .then(response => {
+            if (!response.ok) throw new Error('Failed to load header.html');
+            return response.text();
+          })
+          .then(data => {
+            document.getElementById('header').innerHTML = data;
+          }),
+        fetch('./footer.html')
+          .then(response => {
+            if (!response.ok) throw new Error('Failed to load footer.html');
+            return response.text();
+          })
+          .then(data => {
+            document.getElementById('footer').innerHTML = data;
+          })
+      ])
+      .catch(error => {
+        console.error(error);
+        document.getElementById('header').innerHTML = '<p>Error loading header. Please try again later.</p>';
+        document.getElementById('footer').innerHTML = '<p>Error loading footer. Please try again later.</p>';
+      });
 
       // Case Converter functionality
       const textInput = document.getElementById('textInput');
