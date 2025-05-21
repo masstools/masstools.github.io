@@ -30,7 +30,7 @@
           <p>Use this tool to word-wrap a text-based on specified character length per line and amount of columns. Please note that the alignment is only visible when using fonts that have equal widths, like Courier and Monaco. For best results, use monospaced fonts.</p>
 
           <div class="input-area">
-            <textarea id="inputText" placeholder="Paste your text here..." aria-label="Input text for wrapping"></textarea>
+            <textarea id="inputText" rows="10" placeholder="Paste your text here..." aria-label="Input text for wrapping"></textarea>
           </div>
 
           <div class="settings">
@@ -57,7 +57,7 @@
           </div>
 
           <div class="result-area">
-            <textarea id="outputText" readonly class="monospace" aria-label="Wrapped text output"></textarea>
+            <textarea id="outputText" rows="10" readonly class="monospace" aria-label="Wrapped text output"></textarea>
             <p class="monospace-note">Output is displayed in a monospaced font (Courier/Monaco) for proper column alignment.</p>
           </div>
 
@@ -138,19 +138,19 @@
       fetch('/footer.html').then(response => response.text()).then(data => {
         document.getElementById('footer').innerHTML = data;
       })
-    ]).then(() => {
-      // Load index.js for search suggestions, menu, etc.
-      const script = document.createElement('script');
-      script.src = '/index.js';
-      document.body.appendChild(script);
-      console.log('Header, footer, and index.js loaded');
-    }).catch(err => {
+    ]).catch(err => {
       console.error('Error loading header/footer:', err);
     });
 
     // Word Wrap tool logic
     document.addEventListener('DOMContentLoaded', () => {
       console.log('Word Wrap tool initializing');
+      // Load index.js for search suggestions, menu, etc.
+      const script = document.createElement('script');
+      script.src = '/index.js';
+      document.body.appendChild(script);
+      console.log('index.js loaded for search and menu');
+
       const inputText = document.getElementById('inputText');
       const lineWidthInput = document.getElementById('lineWidth');
       const numColumnsInput = document.getElementById('numColumns');
