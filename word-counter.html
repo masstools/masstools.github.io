@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Case Converter - Mass Tools</title>
-  <meta name="description" content="Convert text to uppercase, lowercase, or title case with Mass Tools' free Case Converter. Paste text for instant results.">
-  <meta name="keywords" content="case converter, text formatter, mass tools, free online tools, uppercase, lowercase">
+  <title>Word Counter - Mass Tools</title>
+  <meta name="description" content="Count words, characters, sentences, and paragraphs instantly with Mass Tools' free Word Counter. Paste text for quick results.">
+  <meta name="keywords" content="word counter, text analyzer, mass tools, free online tools, character count, sentence count">
   <meta name="robots" content="index, follow">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-68CX9G7BKF" onerror="console.error('Failed to load Google Tag Manager')"></script>
   <script>
@@ -55,46 +55,53 @@
     <section class="tool-section">
       <div class="container">
         <div class="tool-content">
-          <h1>Case Converter</h1>
-          <p>Convert text to uppercase, lowercase, or title case with Mass Tools' free Case Converter. Paste text for instant results.</p>
+          <h1>Word Counter</h1>
+          <p>Count words, characters, sentences, and paragraphs instantly with Mass Tools' free Word Counter. Paste text for quick results.</p>
           
           <div class="input-area">
-            <textarea id="textInput" placeholder="Paste or type your text here..." aria-label="Enter text for conversion" style="width: 100%; min-height: 150px; font-size: 14px; padding: 12px; box-sizing: border-box;"></textarea>
+            <textarea id="inputText" placeholder="Paste or type your text here..." aria-label="Enter text for counting" style="width: 100%; min-height: 150px; font-size: 14px; padding: 12px; box-sizing: border-box;"></textarea>
+          </div>
+
+          <div class="result-area">
+            <div class="counter-results">
+              <p><strong>Words:</strong> <span id="wordCount">0</span></p>
+              <p><strong>Characters (with spaces):</strong> <span id="charCountWithSpaces">0</span></p>
+              <p><strong>Characters (no spaces):</strong> <span id="charCountNoSpaces">0</span></p>
+              <p><strong>Sentences:</strong> <span id="sentenceCount">0</span></p>
+              <p><strong>Paragraphs:</strong> <span id="paragraphCount">0</span></p>
+            </div>
           </div>
 
           <div class="action-buttons">
-            <button id="toUpperCaseBtn" aria-label="Convert to uppercase">Uppercase</button>
-            <button id="toLowerCaseBtn" aria-label="Convert to lowercase">Lowercase</button>
-            <button id="toTitleCaseBtn" aria-label="Convert to title case">Title Case</button>
-            <button id="resetBtn" aria-label="Reset form">Reset</button>
+            <button id="countBtn" aria-label="Count text"><i class="fas fa-calculator"></i> Count</button>
+            <button id="clearBtn" aria-label="Clear text"><i class="fas fa-trash"></i> Clear</button>
           </div>
 
           <a class="cta-button" href="/#text-tools" aria-label="Explore other text tools">Explore Our Tools</a>
 
           <div class="tool-article">
-            <h2>About the Case Converter</h2>
-            <p>The Case Converter by <a href="/about-us.html">Mass Tools</a> is a free tool to transform text case. Process text in your browser for privacy.</p>
+            <h2>About the Word Counter</h2>
+            <p>The Word Counter by <a href="/about-us.html">Mass Tools</a> is a free tool to analyze text. Count words, characters, sentences, and paragraphs instantly. All processing is done in your browser for privacy.</p>
             
-            <h3>Why Use the Case Converter?</h3>
-            <p>Text case conversion is useful for:</p>
+            <h3>Why Use the Word Counter?</h3>
+            <p>Text analysis is useful for:</p>
             <ul>
-              <li><strong>Formatting</strong>: Standardize text for documents or websites.</li>
-              <li><strong>Editing</strong>: Adjust case for consistency in writing.</li>
-              <li><strong>Coding</strong>: Format variable names or strings.</li>
-              <li><strong>Content Creation</strong>: Prepare text for social media or blogs.</li>
+              <li><strong>Writing</strong>: Ensure essays or articles meet word count requirements.</li>
+              <li><strong>SEO</strong>: Optimize content length for search engines.</li>
+              <li><strong>Editing</strong>: Check text structure for readability.</li>
+              <li><strong>Social Media</strong>: Fit posts within character limits.</li>
             </ul>
 
-            <h3>How to Use the Case Converter</h3>
+            <h3>How to Use the Word Counter</h3>
             <p>Follow these steps:</p>
             <ul>
               <li><strong>Paste Text</strong>: Type or paste text into the textarea.</li>
-              <li><strong>Choose Case</strong>: Click Uppercase, Lowercase, or Title Case.</li>
-              <li><strong>View Results</strong>: Text updates instantly.</li>
-              <li><strong>Reset</strong>: Click "Reset" to clear text.</li>
+              <li><strong>Count</strong>: Click "Count" to see results.</li>
+              <li><strong>Clear</strong>: Click "Clear" to reset the textarea and results.</li>
             </ul>
 
             <h3>Why Choose Mass Tools?</h3>
-            <p>Explore our suite, including the <a href="/word-counter.html">Word Counter</a>, <a href="/text-to-ascii-converter.html">Text to ASCII</a>, and <a href="/lorem-ipsum-generator.html">Lorem Ipsum Generator</a>. Learn more on our <a href="/about-us.html">About Us</a> page.</p>
+            <p>Explore our suite, including the <a href="/case-converter.html">Case Converter</a>, <a href="/text-to-ascii-converter.html">Text to ASCII</a>, and <a href="/lorem-ipsum-generator.html">Lorem Ipsum Generator</a>. Learn more on our <a href="/about-us.html">About Us</a> page.</p>
           </div>
         </div>
       </div>
@@ -152,63 +159,85 @@
         `;
       });
 
-    // Case Converter functionality
+    // Word Counter functionality
     document.addEventListener('DOMContentLoaded', () => {
-      console.log('Case Converter tool initializing');
-      const textInput = document.getElementById('textInput');
-      const toUpperCaseBtn = document.getElementById('toUpperCaseBtn');
-      const toLowerCaseBtn = document.getElementById('toLowerCaseBtn');
-      const toTitleCaseBtn = document.getElementById('toTitleCaseBtn');
-      const resetBtn = document.getElementById('resetBtn');
+      console.log('Word Counter tool initializing');
+      const inputText = document.getElementById('inputText');
+      const wordCount = document.getElementById('wordCount');
+      const charCountWithSpaces = document.getElementById('charCountWithSpaces');
+      const charCountNoSpaces = document.getElementById('charCountNoSpaces');
+      const sentenceCount = document.getElementById('sentenceCount');
+      const paragraphCount = document.getElementById('paragraphCount');
+      const countBtn = document.getElementById('countBtn');
+      const clearBtn = document.getElementById('clearBtn');
 
-      if (!textInput || !toUpperCaseBtn || !toLowerCaseBtn || !toTitleCaseBtn || !resetBtn) {
+      if (!inputText || !wordCount || !charCountWithSpaces || !charCountNoSpaces || !sentenceCount || !paragraphCount || !countBtn || !clearBtn) {
         console.error('Missing critical elements:', {
-          textInput: !!textInput,
-          toUpperCaseBtn: !!toUpperCaseBtn,
-          toLowerCaseBtn: !!toLowerCaseBtn,
-          toTitleCaseBtn: !!toTitleCaseBtn,
-          resetBtn: !!resetBtn
+          inputText: !!inputText,
+          wordCount: !!wordCount,
+          charCountWithSpaces: !!charCountWithSpaces,
+          charCountNoSpaces: !!charCountNoSpaces,
+          sentenceCount: !!sentenceCount,
+          paragraphCount: !!paragraphCount,
+          countBtn: !!countBtn,
+          clearBtn: !!clearBtn
         });
         return;
       }
 
-      toUpperCaseBtn.addEventListener('click', () => {
-        textInput.value = textInput.value.toUpperCase();
-        console.log('Converted to Uppercase');
+      function updateCounts() {
+        const text = inputText.value.trim();
+        console.log('Updating counts for text:', text);
+
+        // Word count
+        const words = text ? text.split(/\s+/).filter(word => word.length > 0) : [];
+        wordCount.textContent = words.length;
+
+        // Character count
+        charCountWithSpaces.textContent = text.length;
+        charCountNoSpaces.textContent = text.replace(/\s/g, '').length;
+
+        // Sentence count
+        const sentences = text ? text.split(/[.!?]+/).filter(sentence => sentence.trim().length > 0) : [];
+        sentenceCount.textContent = sentences.length;
+
+        // Paragraph count
+        const paragraphs = text ? text.split(/\n+/).filter(para => para.trim().length > 0) : [];
+        paragraphCount.textContent = paragraphs.length;
+
+        console.log('Counts updated:', {
+          words: words.length,
+          charsWithSpaces: text.length,
+          charsNoSpaces: text.replace(/\s/g, '').length,
+          sentences: sentences.length,
+          paragraphs: paragraphs.length
+        });
+      }
+
+      countBtn.addEventListener('click', () => {
+        updateCounts();
+        console.log('Count button clicked');
         if (window.gtag) {
-          gtag('event', 'convert_text', {
+          gtag('event', 'count_text', {
             event_category: 'Tool Usage',
-            event_label: 'Case Converter - Uppercase'
+            event_label: 'Word Counter',
+            value: inputText.value.length
           });
         }
       });
 
-      toLowerCaseBtn.addEventListener('click', () => {
-        textInput.value = textInput.value.toLowerCase();
-        console.log('Converted to Lowercase');
-        if (window.gtag) {
-          gtag('event', 'convert_text', {
-            event_category: 'Tool Usage',
-            event_label: 'Case Converter - Lowercase'
-          });
-        }
+      clearBtn.addEventListener('click', () => {
+        inputText.value = '';
+        wordCount.textContent = '0';
+        charCountWithSpaces.textContent = '0';
+        charCountNoSpaces.textContent = '0';
+        sentenceCount.textContent = '0';
+        paragraphCount.textContent = '0';
+        console.log('Input and counts cleared');
       });
 
-      toTitleCaseBtn.addEventListener('click', () => {
-        textInput.value = textInput.value.toLowerCase().replace(/(^|\s)\w/g, letter => letter.toUpperCase());
-        console.log('Converted to Title Case');
-        if (window.gtag) {
-          gtag('event', 'convert_text', {
-            event_category: 'Tool Usage',
-            event_label: 'Case Converter - Title Case'
-          });
-        }
-      });
-
-      resetBtn.addEventListener('click', () => {
-        textInput.value = '';
-        console.log('Input reset');
-      });
+      // Optional: Update counts on input for real-time feedback
+      inputText.addEventListener('input', updateCounts);
     });
   </script>
   <script src="./index.js" onerror="console.error('Failed to load index.js')"></script>
