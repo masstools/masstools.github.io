@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Random String Generator - Mass Tools</title>
-  <meta name="description" content="Generate random strings with Mass Tools' free tool. Customize length, character types, and generate multiple strings at once for various use cases.">
-  <meta name="keywords" content="random string generator, random characters, mass tools, free online tools">
+  <meta name="description" content="Generate random strings with Mass Tools' free tool. Customize length, include letters, numbers, or special characters, and generate multiple strings at once.">
+  <meta name="keywords" content="random string, string generator, mass tools, free online tools">
   <meta name="robots" content="index, follow">
   <link rel="icon" type="image/png" href="./favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -56,11 +56,11 @@
       <div class="container">
         <div class="tool-content">
           <h1>Random String Generator</h1>
-          <p>Generate random strings using Mass Tools' free tool. Customize length, character types, and generate multiple strings at once for various use cases like testing or token generation.</p>
+          <p>Generate random strings using Mass Tools' free tool. Customize length, include letters, numbers, or special characters, and generate multiple strings at once.</p>
 
           <div class="input-area">
             <label for="length">String Length:</label>
-            <input type="number" id="length" min="1" max="100" value="16" aria-label="String length">
+            <input type="number" id="length" min="4" max="100" value="16" aria-label="String length">
           </div>
 
           <div class="input-area">
@@ -69,12 +69,12 @@
           </div>
 
           <div class="input-area">
-            <label>Character Types:</label>
+            <label>Character Sets:</label>
             <div class="checkbox-group">
-              <label><input type="checkbox" id="includeUppercase" checked> Uppercase Letters (A-Z)</label>
-              <label><input type="checkbox" id="includeLowercase" checked> Lowercase Letters (a-z)</label>
-              <label><input type="checkbox" id="includeNumbers" checked> Numbers (0-9)</label>
-              <label><input type="checkbox" id="includeSpecial" checked> Special Characters (!@#$%)</label>
+              <label><input type="checkbox" id="includeLowercase" checked> Include Lowercase Letters (a-z)</label>
+              <label><input type="checkbox" id="includeUppercase" checked> Include Uppercase Letters (A-Z)</label>
+              <label><input type="checkbox" id="includeNumbers"> Include Numbers (0-9)</label>
+              <label><input type="checkbox" id="includeSpecial"> Include Special Characters (!@#$%)</label>
             </div>
           </div>
 
@@ -93,32 +93,32 @@
 
           <div class="tool-article">
             <h2>About the Random String Generator Tool</h2>
-            <p>The Random String Generator tool by <a href="./about-us.html">Mass Tools</a> creates random strings for testing, token generation, or other purposes. Customize length (1–100 characters), character types, and generate up to 100 strings at once.</p>
+            <p>The Random String Generator tool by <a href="./about-us.html">Mass Tools</a> creates random strings for various purposes, such as testing, coding, or creating unique identifiers. Customize length (4–100 characters), select character sets, and generate up to 100 strings at once.</p>
 
             <h3>Why Use This Tool?</h3>
             <ul>
-              <li><strong>Versatility</strong>: Generate random strings for testing, API tokens, or unique identifiers.</li>
-              <li><strong>Customization</strong>: Choose length and character types (uppercase, lowercase, numbers, special characters).</li>
+              <li><strong>Flexibility</strong>: Choose from lowercase, uppercase, numbers, and special characters to suit your needs.</li>
+              <li><strong>Randomness</strong>: Generates highly random strings for secure or testing purposes.</li>
               <li><strong>Bulk Generation</strong>: Create multiple strings in one click, up to 100.</li>
               <li><strong>Ease of Use</strong>: Simple interface with copy and download options.</li>
             </ul>
 
             <h3>How to Use</h3>
             <ul>
-              <li>Specify the string length (1–100 characters).</li>
+              <li>Specify the string length (4–100 characters).</li>
               <li>Choose the number of strings to generate (1–100).</li>
-              <li>Select character types (uppercase, lowercase, numbers, special characters).</li>
-              <li>Click "Generate Strings" to view results (e.g., "X7kP9mL2nJ!qW3zT").</li>
+              <li>Select desired character sets (lowercase, uppercase, numbers, special characters).</li>
+              <li>Click "Generate Strings" to view results (e.g., "X7pL9qW2nK5mJ8rT").</li>
               <li>Copy or download the generated strings.</li>
               <li>Reset to restore default settings.</li>
             </ul>
 
             <h3>Tips</h3>
             <ul>
-              <li>Use longer strings (16+ characters) for secure tokens or identifiers.</li>
-              <li>Adjust character types based on your use case (e.g., alphanumeric only for simpler strings).</li>
-              <li>Generate multiple strings for testing or batch processing.</li>
-              <li>Combine with <a href="./strong-password-generator.html">Strong Password Generator</a> for password-specific use cases.</li>
+              <li>Use longer strings (16+ characters) for higher randomness.</li>
+              <li>Include multiple character sets for more complex strings.</li>
+              <li>Generate multiple strings to select the best fit for your purpose.</li>
+              <li>Combine with <a href="./strong-password-generator.html">Strong Password Generator</a> for secure password creation.</li>
               <li>Contact us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a> for support.</li>
             </ul>
 
@@ -156,7 +156,7 @@
               <li><a href="./html-escape-unescape.html">HTML Escape Unescape</a> - Escape or unescape HTML entities.</li>
               <li><a href="./unique-username-generator.html">Unique Username Generator</a> - Generate unique usernames.</li>
               <li><a href="./strong-password-generator.html">Strong Password Generator</a> - Generate strong, random passwords.</li>
-              <li><a href="./pronounceable-password-generator.html">Pronounceable Password Generator</a> - Generate pronounceable, memorable passwords.</li>
+              <li><a href="./pronounceable-password-generator.html">Pronounceable Password Generator</a> - Generate pronounceable passwords.</li>
             </ul>
           </div>
         </div>
@@ -348,8 +348,8 @@
       // Random String Generator functionality
       const lengthInput = document.getElementById('length');
       const countInput = document.getElementById('count');
-      const includeUppercase = document.getElementById('includeUppercase');
       const includeLowercase = document.getElementById('includeLowercase');
+      const includeUppercase = document.getElementById('includeUppercase');
       const includeNumbers = document.getElementById('includeNumbers');
       const includeSpecial = document.getElementById('includeSpecial');
       const outputText = document.getElementById('outputText');
@@ -358,43 +358,41 @@
       const downloadBtn = document.getElementById('downloadBtn');
       const resetBtn = document.getElementById('resetBtn');
 
-      if (!lengthInput || !countInput || !includeUppercase || !includeLowercase || !includeNumbers || !includeSpecial || !outputText || !generateBtn || !copyBtnacios || !downloadBtn || !resetBtn) {
+      if (!lengthInput || !countInput || !includeLowercase || !includeUppercase || !includeNumbers || !includeSpecial || !outputText || !generateBtn || !copyBtn || !downloadBtn || !resetBtn) {
         console.error('Missing elements for Random String Generator tool');
         alert('Tool initialization failed. Please check console for errors.');
         return;
       }
 
-      const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
-      const numberChars = '0123456789';
-      const specialChars = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+      const lowercase = 'abcdefghijklmnopqrstuvwxyz';
+      const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      const numbers = '0123456789';
+      const special = '!@#$%^&*()_+-=[]{}|;:,.<>?';
 
-      const generateRandomString = (length, useUppercase, useLowercase, useNumbers, useSpecial) => {
+      const generateRandomString = (length, useLowercase, useUppercase, useNumbers, useSpecial) => {
         let chars = '';
-        if (useUppercase) chars += uppercaseChars;
-        if (useLowercase) chars += lowercaseChars;
-        if (useNumbers) chars += numberChars;
-        if (useSpecial) chars += specialChars;
+        if (useLowercase) chars += lowercase;
+        if (useUppercase) chars += uppercase;
+        if (useNumbers) chars += numbers;
+        if (useSpecial) chars += special;
 
         if (!chars) {
-          alert('Please select at least one character type.');
+          alert('Please select at least one character set.');
           return '';
         }
 
-        let string = '';
+        let result = '';
         for (let i = 0; i < length; i++) {
-          const randomIndex = Math.floor(Math.random() * chars.length);
-          string += chars[randomIndex];
+          result += chars[Math.floor(Math.random() * chars.length)];
         }
-
-        return string;
+        return result;
       };
 
-      const generateStrings = (length, count, useUppercase, useLowercase, useNumbers, useSpecial) => {
+      const generateStrings = (length, count, useLowercase, useUppercase, useNumbers, useSpecial) => {
         const strings = [];
         for (let i = 0; i < count; i++) {
-          const string = generateRandomString(length, useUppercase, useLowercase, useNumbers, useSpecial);
-          if (string) strings.push(string);
+          const str = generateRandomString(length, useLowercase, useUppercase, useNumbers, useSpecial);
+          if (str) strings.push(str);
         }
         return strings.join('\n');
       };
@@ -409,10 +407,10 @@
       const resetForm = () => {
         lengthInput.value = '16';
         countInput.value = '1';
-        includeUppercase.checked = true;
         includeLowercase.checked = true;
-        includeNumbers.checked = true;
-        includeSpecial.checked = true;
+        includeUppercase.checked = true;
+        includeNumbers.checked = false;
+        includeSpecial.checked = false;
         outputText.value = '';
         copyBtn.disabled = true;
         downloadBtn.disabled = true;
@@ -422,10 +420,10 @@
         let length = parseInt(lengthInput.value, 10);
         let count = parseInt(countInput.value, 10);
 
-        if (isNaN(length) || length < 1) {
-          length = 1;
-          lengthInput.value = '1';
-          alert('String length must be at least 1 character.');
+        if (isNaN(length) || length < 4) {
+          length = 4;
+          lengthInput.value = '4';
+          alert('String length must be at least 4 characters.');
         }
         if (length > 100) {
           length = 100;
@@ -445,8 +443,8 @@
         const generatedText = generateStrings(
           length,
           count,
-          includeUppercase.checked,
           includeLowercase.checked,
+          includeUppercase.checked,
           includeNumbers.checked,
           includeSpecial.checked
         );
@@ -492,8 +490,8 @@
 
       lengthInput.addEventListener('input', performGeneration);
       countInput.addEventListener('input', performGeneration);
-      includeUppercase.addEventListener('change', performGeneration);
       includeLowercase.addEventListener('change', performGeneration);
+      includeUppercase.addEventListener('change', performGeneration);
       includeNumbers.addEventListener('change', performGeneration);
       includeSpecial.addEventListener('change', performGeneration);
     });
