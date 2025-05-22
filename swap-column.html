@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swap Columns - Mass Tools</title>
+  <meta name="description" content="Swap two columns in delimited text with Mass Tools' free tool. Supports TXT, CSV, and XLSX uploads.">
+  <meta name="keywords" content="swap columns, text column swapper, mass tools, free online tools">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/png" href="./favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-68CX9G7BKF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-68CX9G7BKF');
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <link rel="stylesheet" href="./styles.css">
+  <style>
+    .output-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 20px;
+      min-height: 100px;
+      border: 1px solid #e0e0e0;
+      padding: 10px;
+      background: #fff;
+    }
+    .output-area {
+      position: relative;
+    }
+    .output-area textarea {
+      width: 100%;
+      min-height: 100px;
+      resize: vertical;
+    }
+    .output-area label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+    .copy-column-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      color: #007bff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <a href="./index.html" class="logo">
+        <i class="fas fa-tools logo-icon"></i>
+        <span>Mass Tools</span>
+      </a>
+      <input id="mobile-menu-toggle" type="checkbox">
+      <label class="mobile-menu-btn" for="mobile-menu-toggle">
+        <i class="fas fa-bars"></i>
+      </label>
+      <nav id="nav-menu">
+        <ul>
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./index.html#text-tools">Text Tools</a></li>
+          <li><a href="./about-us.html">About Us</a></li>
+          <li><a href="./contact-us.html">Contact Us</a></li>
+          <li><a href="./privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="./terms-and-conditions.html">Terms</a></li>
+          <li><a href="./disclaimer.html">Disclaimer</a></li>
+        </ul>
+        <div class="search-bar">
+          <input type="text" placeholder="Search text tools..." aria-label="Search text tools">
+          <button type="submit" aria-label="Search">
+            <i class="fas fa-search"></i>
+          </button>
+          <div class="search-suggestions"></div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="tool-section">
+      <div class="container">
+        <div class="tool-content">
+          <h1>Swap Columns</h1>
+          <p>Swap two columns in delimited text with Mass Tools' free tool. Ideal for reorganizing data like names or IDs. Supports TXT, CSV, and XLSX uploads.</p>
+          
+          <div class="input-area">
+            <label for="inputText">Input Text:</label>
+            <textarea id="inputText" placeholder="Paste your text here (e.g., Brown, Paul\nDavis, Mark)..." aria-label="Input text for column swapping"></textarea>
+            <div class="upload-area">
+              <i class="fas fa-cloud-upload-alt"></i>
+              <p>Drag and drop TXT, CSV, or XLSX file</p>
+              <input type="file" id="fileInput" accept=".txt,.csv,.xlsx" aria-label="Upload text file">
+            </div>
+          </div>
+
+          <div class="input-area">
+            <label for="delimiter">Delimiter:</label>
+            <input type="text" id="delimiter" placeholder="Enter delimiter (e.g., comma, space, ', ')..." aria-label="Delimiter for splitting">
+            <label for="columnIndex1">First Column to Swap (1-based):</label>
+            <input type="number" id="columnIndex1" min="1" value="1" aria-label="First column number to swap">
+            <label for="columnIndex2">Second Column to Swap (1-based):</label>
+            <input type="number" id="columnIndex2" min="1" value="2" aria-label="Second column number to swap">
+            <label><input type="checkbox" id="trimResults" aria-label="Trim results" checked> Trim Results</label>
+            <label><input type="checkbox" id="skipEmpty" aria-label="Skip empty lines" checked> Skip Empty Lines</label>
+            <label><input type="checkbox" id="useRegex" aria-label="Use regex"> Use Regex</label>
+          </div>
+
+          <div class="input-area">
+            <label>Result:</label>
+            <div class="output-container" id="outputContainer">
+              <!-- Dynamically populated with output textarea -->
+            </div>
+          </div>
+
+          <div class="action-buttons">
+            <button id="swapBtn">Swap Columns</button>
+            <button id="copyBtn" disabled>Copy Result</button>
+            <button id="downloadBtn" disabled>Download Result</button>
+            <button id="resetBtn">Reset</button>
+          </div>
+          <p class="loading" id="loadingIndicator">Processing file...</p>
+
+          <a class="cta-button" href="./index.html#text-tools">Explore Our Tools</a>
+
+          <div class="tool-article">
+            <h2>About the Swap Columns Tool</h2>
+            <p>Use this tool to swap two columns in text where columns are separated by a delimiter (e.g., comma, space). Ideal for reorganizing data like swapping first and last names. Columns must be separated by the same delimiter and follow the same format for accurate swapping.</p>
+            
+            <h3>Why Use This Tool?</h3>
+            <ul>
+              <li><strong>Data Reorganization</strong>: Swap two columns (e.g., first and last names) in delimited text.</li>
+              <li><strong>Data Processing</strong>: Simplify restructuring of datasets.</li>
+              <li><strong>Automation</strong>: Streamline column swapping for large datasets.</li>
+            </ul>
+
+            <h3>How to Use</h3>
+            <ul>
+              <li>Paste text or upload a TXT, CSV, or XLSX file.</li>
+              <li>Enter a delimiter (e.g., ",", ", ", " ") or regex pattern.</li>
+              <li>Specify the two column numbers to swap (1-based, e.g., 1 for first column, 2 for second).</li>
+              <li>Enable options: Trim Results, Skip Empty Lines, Use Regex.</li>
+              <li>Click "Swap Columns" to view the result in the output box.</li>
+              <li>Copy or download the swapped text.</li>
+              <li>Reset to clear inputs and results.</li>
+            </ul>
+
+            <h3>Related Tools</h3>
+            <ul>
+              <li><a href="./split-text.html">Split Text</a> - Split text into multiple columns or lines.</li>
+              <li><a href="./extract-column.html">Extract Column</a> - Extract a specific column from delimited text.</li>
+              <li><a href="./concatenate-text.html">Concatenate Text</a> - Combine/merge two documents by concatenating texts line by line.</li>
+            </ul>
+
+            <h3>Tips</h3>
+            <ul>
+              <li>Use files under 10MB for best performance.</li>
+              <li>Ensure consistent delimiter usage across all lines for accurate swapping.</li>
+              <li>For regex, use valid patterns (e.g., "\s+" for multiple spaces).</li>
+              <li>Contact us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a> for support.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-column">
+          <a href="./index.html" class="footer-column-logo">
+            <i class="fas fa-tools footer-column-logo-icon"></i>
+            <span>Mass Tools</span>
+          </a>
+          <p>Empowering you with free, high-quality text tools.</p>
+        </div>
+        <div class="footer-column">
+          <ul>
+            <li><a href="./index.html#text-tools">Text Tools</a></li>
+            <li><a href="./about-us.html">About Us</a></li>
+            <li><a href="./contact-us.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <ul>
+            <li><a href="./privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="./terms-and-conditions.html">Terms</a></li>
+            <li><a href="./disclaimer.html">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2025 Mass Tools. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-to-top" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    var gk_isXlsx = false;
+    var gk_xlsxFileLookup = {};
+    var gk_fileData = {};
+    function filledCell(cell) {
+      return cell !== '' && cell != null;
+    }
+    function loadFileData(filename) {
+      if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+        try {
+          var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+          var firstSheetName = workbook.SheetNames[0];
+          var worksheet = workbook.Sheets[firstSheetName];
+          var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+          var filteredData = jsonData.filter(row => row.some(filledCell));
+          var headerRowIndex = filteredData.findIndex((row, index) =>
+            row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+          );
+          if (headerRowIndex === -1 || headerRowIndex > 25) {
+            headerRowIndex = 0;
+          }
+          var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex));
+          csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+          return csv;
+        } catch (e) {
+          console.error('XLSX processing error:', e);
+          return "";
+        }
+      }
+      return gk_fileData[filename] || "";
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Mobile menu and navigation
+      const menuToggle = document.getElementById('mobile-menu-toggle');
+      const nav = document.getElementById('nav-menu');
+      if (menuToggle && nav) {
+        menuToggle.addEventListener('change', () => {
+          nav.classList.toggle('show', menuToggle.checked);
+          nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+              menuToggle.checked = false;
+              nav.classList.remove('show');
+            });
+          });
+        });
+      }
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+          const href = anchor.getAttribute('href');
+          const [path, hash] = href.split('#');
+          const isHome = path === './index.html' || path === '' || path === '.';
+          if (isHome && hash && (window.location.pathname === '/index.html' || window.location.pathname === '/')) {
+            e.preventDefault();
+            const target = document.querySelector(`#${hash}`);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth' });
+              history.pushState(null, null, `#${hash}`);
+            }
+          }
+          if (nav && nav.classList.contains('show')) {
+            nav.classList.remove('show');
+            menuToggle.checked = false;
+          }
+        });
+      });
+
+      // Scroll-to-top button
+      const scrollTopBtn = document.querySelector('.scroll-to-top');
+      if (scrollTopBtn) {
+        window.addEventListener('scroll', () => {
+          scrollTopBtn.classList.toggle('show', window.scrollY > 200);
+        });
+        scrollTopBtn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+
+      // Search functionality
+      const searchInput = document.querySelector('.search-bar input');
+      const searchButton = document.querySelector('.search-bar button');
+      const suggestionsContainer = document.querySelector('.search-suggestions');
+      const tools = [
+        { name: 'Word Counter', url: './word-counter.html' },
+        { name: 'Case Converter', url: './case-converter.html' },
+        { name: 'Text to ASCII', url: './text-to-ascii-converter.html' },
+        { name: 'Lorem Ipsum Generator', url: './lorem-ipsum-generator.html' },
+        { name: 'Character Counter', url: './character-counter.html' },
+        { name: 'Sort Text', url: './sort-text.html' },
+        { name: 'Find and Replace Text', url: './find-replace-text.html' },
+        { name: 'Reverse List', url: './reverse-list.html' },
+        { name: 'Difference Checker', url: './difference-checker.html' },
+        { name: 'Add Prefix/Suffix', url: './add-prefix-suffix.html' },
+        { name: 'Add Line Breaks', url: './add-line-breaks.html' },
+        { name: 'Remove Line Breaks', url: './remove-line-breaks.html' },
+        { name: 'Concatenate Text', url: './concatenate-text.html' },
+        { name: 'Split Text', url: './split-text.html' },
+        { name: 'Extract Column', url: './extract-column.html' },
+        { name: 'Swap Columns', url: './swap-columns.html' },
+      ];
+
+      if (searchInput && searchButton && suggestionsContainer) {
+        const updateSuggestions = (query) => {
+          suggestionsContainer.innerHTML = '';
+          if (query.length < 2) {
+            suggestionsContainer.classList.remove('show');
+            return;
+          }
+          const matches = tools.filter(tool => tool.name.toLowerCase().includes(query.toLowerCase())).slice(0, 5);
+          if (matches.length) {
+            matches.forEach(tool => {
+              const a = document.createElement('a');
+              a.href = tool.url;
+              a.textContent = tool.name;
+              suggestionsContainer.appendChild(a);
+            });
+            suggestionsContainer.classList.add('show');
+          } else {
+            suggestionsContainer.classList.remove('show');
+          }
+        };
+
+        searchInput.addEventListener('input', () => updateSuggestions(searchInput.value));
+        searchButton.addEventListener('click', () => {
+          const query = searchInput.value.trim().toLowerCase();
+          const matchedTool = tools.find(tool => tool.name.toLowerCase().includes(query));
+          if (matchedTool) {
+            window.location.href = matchedTool.url;
+            searchInput.value = '';
+            suggestionsContainer.classList.remove('show');
+          } else {
+            alert('No tools found matching your search.');
+          }
+        });
+        searchInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') searchButton.click();
+        });
+        document.addEventListener('click', (e) => {
+          if (!searchInput.contains(e.target) && !suggestionsContainer.contains(e.target)) {
+            suggestionsContainer.classList.remove('show');
+          }
+        });
+      }
+
+      // Swap Columns functionality
+      const inputText = document.getElementById('inputText');
+      const fileInput = document.getElementById('fileInput');
+      const uploadArea = document.querySelector('.upload-area');
+      const delimiter = document.getElementById('delimiter');
+      const columnIndex1 = document.getElementById('columnIndex1');
+      const columnIndex2 = document.getElementById('columnIndex2');
+      const trimResults = document.getElementById('trimResults');
+      const skipEmpty = document.getElementById('skipEmpty');
+      const useRegex = document.getElementById('useRegex');
+      const outputContainer = document.getElementById('outputContainer');
+      const swapBtn = document.getElementById('swapBtn');
+      const copyBtn = document.getElementById('copyBtn');
+      const downloadBtn = document.getElementById('downloadBtn');
+      const resetBtn = document.getElementById('resetBtn');
+      const loadingIndicator = document.getElementById('loadingIndicator');
+
+      if (!inputText || !fileInput || !uploadArea || !delimiter || !columnIndex1 || !columnIndex2 || !trimResults || !skipEmpty || !useRegex || !outputContainer || !swapBtn || !copyBtn || !downloadBtn || !resetBtn || !loadingIndicator) {
+        console.error('Missing elements for Swap Columns tool');
+        alert('Tool initialization failed. Please check console for errors.');
+        return;
+      }
+
+      const swapColumns = (text, delim, colIndex1, colIndex2, doTrim, skipEmptyLines, isRegex) => {
+        if (!text.trim() || !delim || colIndex1 < 1 || colIndex2 < 1 || colIndex1 === colIndex2) return "";
+        try {
+          let lines = text.split('\n');
+          let results;
+          if (isRegex) {
+            const regex = new RegExp(delim, 'g');
+            results = lines.map(line => line.split(regex));
+          } else {
+            const escapedDelim = delim.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            results = lines.map(line => line.split(escapedDelim));
+          }
+
+          // Validate column counts
+          const columnCounts = results.map(row => row.length);
+          const maxColumns = Math.max(...columnCounts);
+          if (new Set(columnCounts).size > 1) {
+            console.warn('Inconsistent column counts detected:', columnCounts);
+          }
+          if (colIndex1 > maxColumns || colIndex2 > maxColumns) {
+            console.warn(`One or both columns (${colIndex1}, ${colIndex2}) do not exist in some rows`);
+            return "";
+          }
+
+          // Swap columns (1-based to 0-based index)
+          results = results.map(row => {
+            const newRow = [...row];
+            const temp = newRow[colIndex1 - 1] || '';
+            newRow[colIndex1 - 1] = newRow[colIndex2 - 1] || '';
+            newRow[colIndex2 - 1] = temp;
+            return newRow;
+          });
+
+          if (doTrim) {
+            results = results.map(row => row.map(item => item.trim()));
+          }
+          if (skipEmptyLines) {
+            results = results.filter(row => row.some(item => item.trim()));
+          }
+
+          // Rejoin rows with delimiter
+          return results.map(row => row.join(delim)).join('\n');
+        } catch (e) {
+          console.error('Regex error:', e);
+          alert('Invalid regex pattern. Please check your delimiter.');
+          return "";
+        }
+      };
+
+      const updateResults = (result) => {
+        console.log('Updating output container with result:', result);
+        outputContainer.innerHTML = '';
+        if (!result.trim()) {
+          copyBtn.disabled = true;
+          downloadBtn.disabled = true;
+          outputContainer.innerHTML = '<p>No results to display.</p>';
+          console.log('No results, cleared output container');
+          return;
+        }
+
+        const outputArea = document.createElement('div');
+        outputArea.className = 'output-area';
+        outputArea.innerHTML = `
+          <label>Swapped Text</label>
+          <textarea readonly aria-label="Swapped columns result">${result}</textarea>
+          <i class="fas fa-copy copy-column-btn" title="Copy this result"></i>
+        `;
+        outputContainer.appendChild(outputArea);
+        console.log('Appended swapped text to outputContainer');
+
+        copyBtn.disabled = false;
+        downloadBtn.disabled = false;
+
+        document.querySelector('.copy-column-btn').addEventListener('click', () => {
+          const textarea = outputArea.querySelector('textarea');
+          navigator.clipboard.writeText(textarea.value).then(() => {
+            alert('Result copied to clipboard!');
+            gtag('event', 'copy_result', {
+              event_category: 'Tool Usage',
+              event_label: 'Swap Columns Copy',
+              value: 1
+            });
+          }).catch(error => {
+            console.error('Copy error:', error);
+            alert('Failed to copy result. Please try manually.');
+          });
+        });
+
+        console.log('Output container updated successfully');
+      };
+
+      const resetForm = () => {
+        inputText.value = '';
+        fileInput.value = '';
+        delimiter.value = '';
+        columnIndex1.value = '1';
+        columnIndex2.value = '2';
+        trimResults.checked = true;
+        skipEmpty.checked = true;
+        useRegex.checked = false;
+        outputContainer.innerHTML = '';
+        copyBtn.disabled = true;
+        downloadBtn.disabled = true;
+        loadingIndicator.classList.remove('visible');
+        console.log('Form reset');
+      };
+
+      const performSwap = () => {
+        const text = inputText.value;
+        const colIndex1 = parseInt(columnIndex1.value, 10);
+        const colIndex2 = parseInt(columnIndex2.value, 10);
+        if (text.trim() && delimiter.value.trim() && colIndex1 >= 1 && colIndex2 >= 1 && colIndex1 !== colIndex2) {
+          const result = swapColumns(
+            text,
+            delimiter.value,
+            colIndex1,
+            colIndex2,
+            trimResults.checked,
+            skipEmpty.checked,
+            useRegex.checked
+          );
+          updateResults(result);
+          gtag('event', 'swap_columns', {
+            event_category: 'Tool Usage',
+            event_label: 'Swap Columns',
+            value: text.length
+          });
+        } else {
+          updateResults("");
+        }
+      };
+
+      const handleFile = (file) => {
+        if (!file) {
+          alert('Please select a TXT, CSV, or XLSX file.');
+          return;
+        }
+        if (!file.name.match(/\.(txt|csv|xlsx)$/i)) {
+          alert('Please upload a valid TXT, CSV, or XLSX file.');
+          return;
+        }
+        if (file.size > 10 * 1024 * 1024) {
+          alert('File is too large (over 10MB). Please use a smaller file.');
+          return;
+        }
+
+        loadingIndicator.classList.add('visible');
+        const reader = new FileReader();
+        reader.onload = async (e) => {
+          try {
+            let text;
+            if (file.name.endsWith('.txt') || file.name.endsWith('.csv')) {
+              text = e.target.result;
+            } else if (file.name.endsWith('.xlsx') && typeof XLSX !== 'undefined') {
+              gk_isXlsx = true;
+              gk_xlsxFileLookup[file.name] = file.name;
+              gk_fileData[file.name] = e.target.result.split(',')[1];
+              text = loadFileData(file.name);
+            } else {
+              throw new Error('Unsupported file format or library not loaded');
+            }
+            inputText.value = text;
+            performSwap();
+            gtag('event', 'swap_file', {
+              event_category: 'Tool Usage',
+              event_label: 'Swap Columns File',
+              value: text.length
+            });
+            loadingIndicator.classList.remove('visible');
+          } catch (error) {
+            console.error('File processing error:', error);
+            alert('Error processing file. Please try a different file.');
+            loadingIndicator.classList.remove('visible');
+          }
+        };
+        reader.onerror = () => {
+          console.error('File read error');
+          alert('Error reading file. Please try a different file.');
+          loadingIndicator.classList.remove('visible');
+        };
+        if (file.name.endsWith('.xlsx')) {
+          reader.readAsDataURL(file);
+        } else {
+          reader.readAsText(file);
+        }
+      };
+
+      uploadArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadArea.classList.add('dragover');
+      });
+      uploadArea.addEventListener('dragleave', () => {
+        uploadArea.classList.remove('dragover');
+      });
+      uploadArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        uploadArea.classList.remove('dragover');
+        handleFile(e.dataTransfer.files[0]);
+      });
+      uploadArea.addEventListener('click', () => fileInput.click());
+      fileInput.addEventListener('change', () => handleFile(fileInput.files[0]));
+
+      swapBtn.addEventListener('click', performSwap);
+
+      copyBtn.addEventListener('click', () => {
+        const textarea = outputContainer.querySelector('textarea');
+        if (textarea) {
+          navigator.clipboard.writeText(textarea.value).then(() => {
+            alert('Result copied to clipboard!');
+            gtag('event', 'copy_result', {
+              event_category: 'Tool Usage',
+              event_label: 'Swap Columns Copy All',
+              value: 1
+            });
+          }).catch(error => {
+            console.error('Copy error:', error);
+            alert('Failed to copy result. Please try manually.');
+          });
+        }
+      });
+
+      downloadBtn.addEventListener('click', () => {
+        const textarea = outputContainer.querySelector('textarea');
+        if (textarea) {
+          const blob = new Blob([textarea.value], { type: 'text/plain' });
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(blob);
+          link.download = `swapped-columns-masstools.txt`;
+          link.click();
+          URL.revokeObjectURL(link.href);
+          gtag('event', 'download_result', {
+            event_category: 'Tool Usage',
+            event_label: 'Swap Columns Download',
+            value: 1
+          });
+        }
+      });
+
+      resetBtn.addEventListener('click', resetForm);
+
+      inputText.addEventListener('input', performSwap);
+      delimiter.addEventListener('input', performSwap);
+      columnIndex1.addEventListener('input', performSwap);
+      columnIndex2.addEventListener('input', performSwap);
+      trimResults.addEventListener('change', performSwap);
+      skipEmpty.addEventListener('change', performSwap);
+      useRegex.addEventListener('change', performSwap);
+    });
+  </script>
+</body>
+</html>
