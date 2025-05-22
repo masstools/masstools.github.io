@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Split Text - Mass Tools</title>
-  <meta name="description" content="Split text into columns or lines based on a delimiter with Mass Tools' free tool. Supports TXT, CSV, and XLSX uploads.">
-  <meta name="keywords" content="split text, text splitter, mass tools, free online tools">
+  <meta name="description" content="Split text into columns or lines using a delimiter with Mass Tools' free tool. Ideal for unmerging single-column text. Supports TXT, CSV, and XLSX uploads.">
+  <meta name="keywords" content="split text, text splitter, unmerge text, mass tools, free online tools">
   <meta name="robots" content="index, follow">
   <link rel="icon" type="image/png" href="./favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -46,6 +46,12 @@
       cursor: pointer;
       color: #007bff;
     }
+    .example-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -85,11 +91,11 @@
       <div class="container">
         <div class="tool-content">
           <h1>Split Text</h1>
-          <p>Split text into columns or lines based on a delimiter with Mass Tools' free tool. Supports TXT, CSV, and XLSX uploads.</p>
+          <p>Split text into columns or lines using a delimiter with Mass Tools' free tool. Ideal for unmerging single-column text. Supports TXT, CSV, and XLSX uploads.</p>
           
           <div class="input-area">
             <label for="inputText">Input Text:</label>
-            <textarea id="inputText" placeholder="Paste your text here (e.g., Sarah Mitchell,Anthony Edwards)..." aria-label="Input text for splitting"></textarea>
+            <textarea id="inputText" placeholder="Paste your text here (e.g., Brown, Paul\nDavis, Mark)..." aria-label="Input text for splitting"></textarea>
             <div class="upload-area">
               <i class="fas fa-cloud-upload-alt"></i>
               <p>Drag and drop TXT, CSV, or XLSX file</p>
@@ -99,11 +105,11 @@
 
           <div class="input-area">
             <label for="delimiter">Delimiter:</label>
-            <input type="text" id="delimiter" placeholder="Enter delimiter (e.g., comma, space, regex)..." aria-label="Delimiter for splitting">
+            <input type="text" id="delimiter" placeholder="Enter delimiter (e.g., comma, space, ', ')..." aria-label="Delimiter for splitting">
             <label for="splitType">Split Type:</label>
             <select id="splitType" aria-label="Split type">
-              <option value="columns">Columns</option>
-              <option value="lines">Lines</option>
+              <option value="columns">Split into Columns</option>
+              <option value="lines">Split by New Line</option>
             </select>
             <label><input type="checkbox" id="trimResults" aria-label="Trim results" checked> Trim Results</label>
             <label><input type="checkbox" id="skipEmpty" aria-label="Skip empty results" checked> Skip Empty Results</label>
@@ -123,29 +129,46 @@
           <p class="loading" id="loadingIndicator">Processing file...</p>
 
           <div class="example">
-            <h3>Basic Example</h3>
-            <p>Split full names into first names and surnames, using a space as a delimiter.</p>
+            <h3>Example 1: Split into Columns</h3>
+            <p>Split first name and last name into two columns using a comma followed by space ", " as a delimiter.</p>
             <div class="example-grid">
               <div>
                 <strong>Input</strong>
-                <pre>Sarah Mitchell
-Anthony Edwards
-William Johnson
-Steven Davis</pre>
+                <pre>Brown, Paul
+Davis, Mark
+Smith, James</pre>
               </div>
               <div>
                 <strong>Column 1</strong>
-                <pre>Sarah
-Anthony
-William
-Steven</pre>
+                <pre>Brown
+Davis
+Smith</pre>
               </div>
               <div>
                 <strong>Column 2</strong>
-                <pre>Mitchell
-Edwards
-Johnson
-Davis</pre>
+                <pre>Paul
+Mark
+James</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="example">
+            <h3>Example 2: Split by New Line</h3>
+            <p>Split by new line using a comma "," as delimiter.</p>
+            <div class="example-grid">
+              <div>
+                <strong>Input</strong>
+                <pre>Alaska,California,Florida,Hawaii,Indiana,Kentucky</pre>
+              </div>
+              <div>
+                <strong>Result</strong>
+                <pre>Alaska
+California
+Florida
+Hawaii
+Indiana
+Kentucky</pre>
               </div>
             </div>
           </div>
@@ -154,21 +177,21 @@ Davis</pre>
 
           <div class="tool-article">
             <h2>About the Split Text Tool</h2>
-            <p>The Split Text tool by <a href="./about-us.html">Mass Tools</a> splits text into columns or lines based on a delimiter (e.g., comma, space, or regex). Paste text or upload files for instant splitting.</p>
+            <p>Use this tool to split a text into two columns or more. You can also split text by new line. Please note that you must specify the delimiter whether that be a comma, space, or any valid character. Columns must be separated by the same delimiter and follow the same format or it will not properly extract and split the provided data. Undoing the concatenate function in Excel can be time-consuming. This tool can be handy when you're trying to unmerge a single-column text.</p>
             
             <h3>Why Use This Tool?</h3>
             <ul>
-              <li><strong>Data Separation</strong>: Split names, IDs, or datasets into columns.</li>
-              <li><strong>Content Editing</strong>: Break text for analysis or formatting.</li>
-              <li><strong>Data Processing</strong>: Extract components from delimited text.</li>
+              <li><strong>Split into Columns</strong>: Extracts each column and places them into individual cells, the opposite of the concatenate text tool.</li>
+              <li><strong>Split by New Line</strong>: Replaces the delimiter with a line feed (\n) to break text line by line.</li>
+              <li><strong>Data Processing</strong>: Unmerge single-column text from Excel or other sources.</li>
               <li><strong>Automation</strong>: Streamline text parsing tasks.</li>
             </ul>
 
             <h3>How to Use</h3>
             <ul>
               <li>Paste text or upload a TXT, CSV, or XLSX file.</li>
-              <li>Enter a delimiter (e.g., ",", " ") or regex pattern.</li>
-              <li>Choose split type: Columns (separate textareas) or Lines (single textarea).</li>
+              <li>Enter a delimiter (e.g., ",", ", ", " ") or regex pattern.</li>
+              <li>Choose split type: Split into Columns or Split by New Line.</li>
               <li>Enable options: Trim Results, Skip Empty Results, Use Regex.</li>
               <li>Click "Split Text" to view results.</li>
               <li>Copy individual columns or all results, or download as files.</li>
@@ -177,7 +200,7 @@ Davis</pre>
 
             <h3>Related Tools</h3>
             <ul>
-              <li><a href="./concatenate-text.html">Concatenate Text</a> - Combine two columns of text with a separator.</li>
+              <li><a href="./concatenate-text.html">Concatenate Text</a> - Combine/merge two documents by concatenating texts line by line.</li>
               <li><a href="./extract-column.html">Extract Column</a> - Get a specific column from a delimited text.</li>
               <li><a href="./swap-columns.html">Swap Columns</a> - Swap two columns from a delimited text.</li>
             </ul>
@@ -185,8 +208,8 @@ Davis</pre>
             <h3>Tips</h3>
             <ul>
               <li>Use files under 10MB for best performance.</li>
-              <li>For regex, ensure valid patterns (e.g., "\s+" for spaces).</li>
-              <li>Combine with <a href="./concatenate-text.html">Concatenate Text</a> for reversible operations.</li>
+              <li>Ensure consistent delimiter usage across all lines for accurate splitting.</li>
+              <li>For regex, use valid patterns (e.g., "\s+" for multiple spaces).</li>
               <li>Contact us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a> for support.</li>
             </ul>
           </div>
@@ -402,32 +425,50 @@ Davis</pre>
         if (!text.trim() || !delim) return [];
         try {
           let results;
-          if (isRegex) {
-            const regex = new RegExp(delim, 'g');
-            results = type === 'lines' ? text.split(regex) : text.split('\n').map(line => line.split(regex));
-          } else {
-            const escapedDelim = delim.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            const regex = new RegExp(escapedDelim, 'g');
-            results = type === 'lines' ? text.split(regex) : text.split('\n').map(line => line.split(regex));
-          }
-
-          if (doTrim) {
-            if (type === 'lines') {
-              results = results.map(item => item.trim());
+          if (type === 'lines') {
+            // Split by new line: Replace delimiter with \n
+            if (isRegex) {
+              const regex = new RegExp(delim, 'g');
+              results = text.split(regex);
             } else {
+              const escapedDelim = delim.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+              results = text.split(escapedDelim);
+            }
+            if (doTrim) {
+              results = results.map(item => item.trim());
+            }
+            if (skipEmptyResults) {
+              results = results.filter(item => item.trim());
+            }
+            return [results];
+          } else {
+            // Split into columns: Process each line
+            const lines = text.split('\n');
+            if (isRegex) {
+              const regex = new RegExp(delim, 'g');
+              results = lines.map(line => line.split(regex));
+            } else {
+              const escapedDelim = delim.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+              results = lines.map(line => line.split(escapedDelim));
+            }
+            
+            // Validate consistent delimiter usage
+            const columnCounts = results.map(row => row.length);
+            const maxColumns = Math.max(...columnCounts);
+            if (new Set(columnCounts).size > 1) {
+              console.warn('Inconsistent column counts detected:', columnCounts);
+            }
+
+            if (doTrim) {
               results = results.map(row => row.map(item => item.trim()));
             }
-          }
-
-          if (skipEmptyResults) {
-            if (type === 'lines') {
-              results = results.filter(item => item.trim());
-            } else {
+            if (skipEmptyResults) {
               results = results.map(row => row.filter(item => item.trim())).filter(row => row.length);
             }
-          }
 
-          return type === 'lines' ? [results] : results[0].map((_, colIndex) => results.map(row => row[colIndex] || ''));
+            // Transpose to get columns
+            return results[0].map((_, colIndex) => results.map(row => row[colIndex] || ''));
+          }
         } catch (e) {
           console.error('Regex error:', e);
           alert('Invalid regex pattern. Please check your delimiter.');
@@ -449,7 +490,7 @@ Davis</pre>
           outputArea.innerHTML = `
             <label>Result</label>
             <textarea readonly aria-label="Split result">${results[0].join('\n')}</textarea>
-            <i class="fas fa-copy copy-column-btn" title="Copy this column"></i>
+            <i class="fas fa-copy copy-column-btn" title="Copy this result"></i>
           `;
           outputContainer.appendChild(outputArea);
         } else {
