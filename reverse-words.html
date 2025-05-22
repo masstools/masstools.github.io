@@ -51,6 +51,22 @@
       cursor: pointer;
       color: #007bff;
     }
+    .example-section {
+      margin: 20px 0;
+      padding: 15px;
+      background: #f9f9f9;
+      border-radius: 5px;
+    }
+    .example-section h3 {
+      margin-top: 0;
+    }
+    .example-section pre {
+      background: #fff;
+      padding: 10px;
+      border: 1px solid #e0e0e0;
+      border-radius: 3px;
+      overflow-x: auto;
+    }
   </style>
 </head>
 <body>
@@ -90,8 +106,16 @@
       <div class="container">
         <div class="tool-content">
           <h1>Reverse Words</h1>
-          <p>Reverse the order of words in each line with Mass Tools' free tool. Ideal for reorganizing text like sentences or lists. Supports TXT, CSV, and XLSX uploads.</p>
+          <p>Reverse the order of words in each line with Mass Tools' free tool. Ideal for reorganizing sentences, lists, or data fields. Supports TXT, CSV, and XLSX uploads.</p>
           
+          <div class="example-section">
+            <h3>Example</h3>
+            <p><strong>Before:</strong></p>
+            <pre>Have a delightful evening.</pre>
+            <p><strong>After:</strong></p>
+            <pre>evening delightful a Have</pre>
+          </div>
+
           <div class="input-area">
             <label for="inputText">Input Text:</label>
             <textarea id="inputText" placeholder="Paste your text here (e.g., Hello World\nGood Morning)..." aria-label="Input text for word reversal"></textarea>
@@ -150,6 +174,8 @@
 
             <h3>Related Tools</h3>
             <ul>
+              <li><a href="./reverse-letters.html">Reverse Letters</a> - Reverse the order of letters in a text.</li>
+              <li><a href="./upside-down-text.html">Upside Down Text</a> - Flip text, letters, and words! Turn texts upside down and make them harder to read.</li>
               <li><a href="./split-text.html">Split Text</a> - Split text into multiple columns or lines.</li>
               <li><a href="./extract-column.html">Extract Column</a> - Extract a specific column from delimited text.</li>
               <li><a href="./swap-columns.html">Swap Columns</a> - Swap two columns from a delimited text.</li>
@@ -305,6 +331,8 @@
         { name: 'Extract Column', url: './extract-column.html' },
         { name: 'Swap Columns', url: './swap-columns.html' },
         { name: 'Reverse Words', url: './reverse-words.html' },
+        { name: 'Reverse Letters', url: './reverse-letters.html' },
+        { name: 'Upside Down Text', url: './upside-down-text.html' },
       ];
 
       if (searchInput && searchButton && suggestionsContainer) {
