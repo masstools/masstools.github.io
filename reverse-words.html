@@ -118,7 +118,7 @@
 
           <div class="input-area">
             <label for="inputText">Input Text:</label>
-            <textarea id="inputText" placeholder="Paste your text here (e.g., Hello World\nGood Morning)..." aria-label="Input text for word reversal"></textarea>
+            <textarea id="inputText" placeholder="Paste your text here (e.g., apple,banana\ncat,dog)..." aria-label="Input text for word reversal"></textarea>
             <div class="upload-area">
               <i class="fas fa-cloud-upload-alt"></i>
               <p>Drag and drop TXT, CSV, or XLSX file</p>
@@ -157,7 +157,7 @@
             
             <h3>Why Use This Tool?</h3>
             <ul>
-              <li><strong>Text Reorganization</strong>: Reverse word order in sentences or lists (e.g., "Hello World" to "World Hello").</li>
+              <li><strong>Text Reorganization</strong>: Reverse word order in sentences or lists (e.g., "apple,banana" to "banana,apple").</li>
               <li><strong>Data Processing</strong>: Simplify restructuring of text data.</li>
               <li><strong>Automation</strong>: Streamline word reversal for large datasets.</li>
             </ul>
@@ -400,30 +400,58 @@
       }
 
       const reverseWords = (text, delim, doTrim, skipEmptyLines, isRegex) => {
-        if (!text.trim() || !delim) return "";
+        if (!text.trim() || !delim) {
+          console.warn('Empty text or delimiter, returning empty result');
+          return "";
+        }
         try {
           let lines = text.split('\n');
-          let results;
-          if (isRegex) {
-            const regex = new RegExp(delim, 'g');
-            results = lines.map(line => line.split(regex));
-          } else {
-            const escapedDelim = delim.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            results = lines.map(line => line.split(escapedDelim));
+          let results = [];
+          let splitFailed = false;
+
+          for (let line of lines) {
+            let words;
+            if (isRegex) {
+              // Use regex for splitting, no /g needed
+              const regex = new RegExp(delim);
+              words = line.split(regex);
+            } else {
+              // Use literal delimiter string
+              words = line.split(delim);
+            }
+
+            // Check if split produced multiple words
+            if (words.length <= 1 && line.trim()) {
+              splitFailed = true;
+            }
+
+            // Reverse words
+            words = words.reverse();
+
+            // Trim if requested
+            if (doTrim) {
+              words = words.map(item => item.trim());
+            }
+
+            results.push(words);
           }
 
-          // Reverse words in each line
-          results = results.map(row => row.reverse());
-
-          if (doTrim) {
-            results = results.map(row => row.map(item => item.trim()));
+          // Warn if delimiter didn't split any line
+          if (splitFailed) {
+            console.warn('Delimiter did not split any line correctly. Input may not contain the specified delimiter:', delim);
+            alert('The specified delimiter does not match the input text. Please check your delimiter.');
+            return "";
           }
+
+          // Skip empty lines if requested
           if (skipEmptyLines) {
             results = results.filter(row => row.some(item => item.trim()));
           }
 
           // Rejoin rows with delimiter
-          return results.map(row => row.join(delim)).join('\n');
+          const output = results.map(row => row.join(delim)).join('\n');
+          console.log('Reverse words result:', output);
+          return output;
         } catch (e) {
           console.error('Regex error:', e);
           alert('Invalid regex pattern. Please check your delimiter.');
