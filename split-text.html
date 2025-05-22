@@ -26,6 +26,10 @@
       flex-direction: column;
       gap: 20px;
       margin-bottom: 20px;
+      min-height: 100px;
+      border: 1px solid #e0e0e0;
+      padding: 10px;
+      background: #fff;
     }
     .output-area {
       position: relative;
@@ -33,6 +37,7 @@
     .output-area textarea {
       width: 100%;
       min-height: 100px;
+      resize: vertical;
     }
     .output-area label {
       display: block;
@@ -45,12 +50,6 @@
       right: 10px;
       cursor: pointer;
       color: #007bff;
-    }
-    .example-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      margin-top: 10px;
     }
   </style>
 </head>
@@ -116,8 +115,11 @@
             <label><input type="checkbox" id="useRegex" aria-label="Use regex"> Use Regex</label>
           </div>
 
-          <div class="output-container" id="outputContainer">
-            <!-- Dynamically populated with output textareas -->
+          <div class="input-area">
+            <label>Results:</label>
+            <div class="output-container" id="outputContainer">
+              <!-- Dynamically populated with output textareas -->
+            </div>
           </div>
 
           <div class="action-buttons">
@@ -127,51 +129,6 @@
             <button id="resetBtn">Reset</button>
           </div>
           <p class="loading" id="loadingIndicator">Processing file...</p>
-
-          <div class="example">
-            <h3>Example 1: Split into Columns</h3>
-            <p>Split first name and last name into two columns using a comma followed by space ", " as a delimiter.</p>
-            <div class="example-grid">
-              <div>
-                <strong>Input</strong>
-                <pre>Brown, Paul
-Davis, Mark
-Smith, James</pre>
-              </div>
-              <div>
-                <strong>Column 1</strong>
-                <pre>Brown
-Davis
-Smith</pre>
-              </div>
-              <div>
-                <strong>Column 2</strong>
-                <pre>Paul
-Mark
-James</pre>
-              </div>
-            </div>
-          </div>
-
-          <div class="example">
-            <h3>Example 2: Split by New Line</h3>
-            <p>Split by new line using a comma "," as delimiter.</p>
-            <div class="example-grid">
-              <div>
-                <strong>Input</strong>
-                <pre>Alaska,California,Florida,Hawaii,Indiana,Kentucky</pre>
-              </div>
-              <div>
-                <strong>Result</strong>
-                <pre>Alaska
-California
-Florida
-Hawaii
-Indiana
-Kentucky</pre>
-              </div>
-            </div>
-          </div>
 
           <a class="cta-button" href="./index.html#text-tools">Explore Our Tools</a>
 
@@ -193,7 +150,7 @@ Kentucky</pre>
               <li>Enter a delimiter (e.g., ",", ", ", " ") or regex pattern.</li>
               <li>Choose split type: Split into Columns or Split by New Line.</li>
               <li>Enable options: Trim Results, Skip Empty Results, Use Regex.</li>
-              <li>Click "Split Text" to view results.</li>
+              <li>Click "Split Text" to view results in the output box.</li>
               <li>Copy individual columns or all results, or download as files.</li>
               <li>Reset to clear inputs and results.</li>
             </ul>
@@ -426,7 +383,6 @@ Kentucky</pre>
         try {
           let results;
           if (type === 'lines') {
-            // Split by new line: Replace delimiter with \n
             if (isRegex) {
               const regex = new RegExp(delim, 'g');
               results = text.split(regex);
@@ -442,7 +398,6 @@ Kentucky</pre>
             }
             return [results];
           } else {
-            // Split into columns: Process each line
             const lines = text.split('\n');
             if (isRegex) {
               const regex = new RegExp(delim, 'g');
@@ -452,7 +407,6 @@ Kentucky</pre>
               results = lines.map(line => line.split(escapedDelim));
             }
             
-            // Validate consistent delimiter usage
             const columnCounts = results.map(row => row.length);
             const maxColumns = Math.max(...columnCounts);
             if (new Set(columnCounts).size > 1) {
@@ -466,7 +420,6 @@ Kentucky</pre>
               results = results.map(row => row.filter(item => item.trim())).filter(row => row.length);
             }
 
-            // Transpose to get columns
             return results[0].map((_, colIndex) => results.map(row => row[colIndex] || ''));
           }
         } catch (e) {
@@ -477,10 +430,13 @@ Kentucky</pre>
       };
 
       const updateResults = (results, type) => {
+        console.log('Updating output container with results:', results);
         outputContainer.innerHTML = '';
         if (!results.length) {
           copyAllBtn.disabled = true;
           downloadAllBtn.disabled = true;
+          outputContainer.innerHTML = '<p>No results to display.</p>';
+          console.log('No results, cleared output container');
           return;
         }
 
@@ -493,6 +449,7 @@ Kentucky</pre>
             <i class="fas fa-copy copy-column-btn" title="Copy this result"></i>
           `;
           outputContainer.appendChild(outputArea);
+          console.log('Appended lines result to outputContainer');
         } else {
           results.forEach((column, index) => {
             const outputArea = document.createElement('div');
@@ -503,6 +460,7 @@ Kentucky</pre>
               <i class="fas fa-copy copy-column-btn" title="Copy this column"></i>
             `;
             outputContainer.appendChild(outputArea);
+            console.log(`Appended column ${index + 1} to outputContainer`);
           });
         }
 
@@ -526,7 +484,7 @@ Kentucky</pre>
           });
         });
 
-        console.log('Output updated:', results);
+        console.log('Output container updated successfully');
       };
 
       const resetForm = () => {
@@ -541,6 +499,7 @@ Kentucky</pre>
         copyAllBtn.disabled = true;
         downloadAllBtn.disabled = true;
         loadingIndicator.classList.remove('visible');
+        console.log('Form reset');
       };
 
       const performSplit = () => {
