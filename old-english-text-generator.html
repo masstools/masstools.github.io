@@ -62,8 +62,8 @@
           <div class="input-area">
             <label for="oldEnglishStyle">Old English Style:</label>
             <select id="oldEnglishStyle" aria-label="Select Old English style">
+              <option value="sans-serif" selected>Sans-Serif (Gothic)</option>
               <option value="serif">Serif (Fraktur)</option>
-              <option value="sans-serif">Sans-Serif (Gothic)</option>
             </select>
           </div>
 
@@ -107,9 +107,9 @@
 
             <h3>How to Use</h3>
             <ul>
-              <li>Select an Old English style (Serif or Sans-Serif).</li>
+              <li>Select an Old English style (Sans-Serif or Serif).</li>
               <li>Paste text (e.g., "Old English text") or upload a TXT, CSV, or XLSX file.</li>
-              <li>Click "Generate Old English Text" to view results (e.g., Serif: "𝔒𝔩𝔡 𝔈𝔫𝔤𝔩𝔦𝔰𝔥 𝔱𝔢𝔵𝔱").</li>
+              <li>Click "Generate Old English Text" to view results (e.g., Sans-Serif: "𝕺𝕷𝕯 𝕰𝕹𝕲𝕷𝕴𝕾𝕳 𝖙𝖊𝖝𝖙").</li>
               <li>Use "Undo" or "Redo" to revert or restore changes.</li>
               <li>Copy or download the processed text.</li>
               <li>Reset to clear inputs and results.</li>
@@ -118,7 +118,7 @@
             <h3>Tips</h3>
             <ul>
               <li>Use files under 10MB for best performance.</li>
-              <li>Serif (Fraktur) is more ornate; Sans-Serif (Gothic) is cleaner and modern.</li>
+              <li>Sans-Serif (Gothic) is cleaner and modern; Serif (Fraktur) is more ornate.</li>
               <li>Combine with <a href="./bold-text.html">Bold Text Generator</a> or <a href="./italic-text.html">Italic Text Generator</a> for enhanced styling.</li>
               <li>Not all characters have Old English equivalents; unsupported characters remain unchanged.</li>
               <li>Contact us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a> for support.</li>
@@ -431,7 +431,7 @@
       };
 
       const resetForm = () => {
-        oldEnglishStyle.value = 'serif';
+        oldEnglishStyle.value = 'sans-serif';
         inputText.value = '';
         outputText.value = '';
         fileInput.value = '';
