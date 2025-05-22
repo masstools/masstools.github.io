@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Concatenate Text - Mass Tools</title>
-  <meta name="description" content="Combine multiple text inputs with Mass Tools' free Concatenate Text tool. Join texts with a delimiter and support for TXT, CSV, and XLSX uploads.">
-  <meta name="keywords" content="concatenate text, text merger, mass tools, free online tools">
+  <meta name="description" content="Concatenate two columns of text (e.g., first names and surnames) with a custom separator using Mass Tools' free tool. Supports TXT, CSV, and XLSX uploads.">
+  <meta name="keywords" content="concatenate text, merge columns, mass tools, free online tools">
   <meta name="robots" content="index, follow">
   <link rel="icon" type="image/png" href="./favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -20,28 +20,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <link rel="stylesheet" href="./styles.css">
-  <style>
-    .input-container {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      margin-bottom: 20px;
-    }
-    .input-area {
-      position: relative;
-    }
-    .input-area textarea {
-      width: 100%;
-      min-height: 100px;
-    }
-    .remove-input {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      cursor: pointer;
-      color: #ff4444;
-    }
-  </style>
 </head>
 <body>
   <header>
@@ -80,38 +58,36 @@
       <div class="container">
         <div class="tool-content">
           <h1>Concatenate Text</h1>
-          <p>Combine multiple text inputs with Mass Tools' free tool. Join texts with a custom delimiter and support for TXT, CSV, and XLSX uploads.</p>
+          <p>Concatenate two columns of text (e.g., first names and surnames) with a custom separator using Mass Tools' free tool. Supports TXT, CSV, and XLSX uploads.</p>
           
-          <div class="input-container" id="inputContainer">
-            <div class="input-area">
-              <textarea placeholder="Paste text 1 here..." aria-label="Text input 1"></textarea>
-              <i class="fas fa-times remove-input" style="display: none;"></i>
-              <div class="upload-area">
-                <i class="fas fa-cloud-upload-alt"></i>
-                <p>Drag and drop TXT, CSV, or XLSX file</p>
-                <input type="file" accept=".txt,.csv,.xlsx" aria-label="Upload text file 1">
-              </div>
-            </div>
-            <div class="input-area">
-              <textarea placeholder="Paste text 2 here..." aria-label="Text input 2"></textarea>
-              <i class="fas fa-times remove-input"></i>
-              <div class="upload-area">
-                <i class="fas fa-cloud-upload-alt"></i>
-                <p>Drag and drop TXT, CSV, or XLSX file</p>
-                <input type="file" accept=".txt,.csv,.xlsx" aria-label="Upload text file 2">
-              </div>
-            </div>
-          </div>
-          <button id="addInputBtn">Add Another Input</button>
-
           <div class="input-area">
-            <label for="delimiter">Delimiter:</label>
-            <input type="text" id="delimiter" placeholder="Enter delimiter (e.g., space, comma) or leave empty..." aria-label="Delimiter for concatenation">
-            <label><input type="checkbox" id="trimText" aria-label="Trim text" checked> Trim Text</label>
-            <label><input type="checkbox" id="skipEmpty" aria-label="Skip empty inputs" checked> Skip Empty Inputs</label>
+            <label for="column1">Column 1:</label>
+            <textarea id="column1" placeholder="Enter first column (e.g., first names, one per line)..." aria-label="First column input"></textarea>
+            <div class="upload-area" data-column="1">
+              <i class="fas fa-cloud-upload-alt"></i>
+              <p>Drag and drop TXT, CSV, or XLSX file for Column 1</p>
+              <input type="file" accept=".txt,.csv,.xlsx" aria-label="Upload file for first column">
+            </div>
           </div>
 
           <div class="input-area">
+            <label for="column2">Column 2:</label>
+            <textarea id="column2" placeholder="Enter second column (e.g., surnames, one per line)..." aria-label="Second column input"></textarea>
+            <div class="upload-area" data-column="2">
+              <i class="fas fa-cloud-upload-alt"></i>
+              <p>Drag and drop TXT, CSV, or XLSX file for Column 2</p>
+              <input type="file" accept=".txt,.csv,.xlsx" aria-label="Upload file for second column">
+            </div>
+          </div>
+
+          <div class="input-area">
+            <label for="separator">Separator:</label>
+            <input type="text" id="separator" value=" " placeholder="Enter separator (e.g., space, comma)..." aria-label="Separator for concatenation">
+            <label><input type="checkbox" id="excludeEmpty" aria-label="Exclude empty lines" checked> Exclude Empty Lines</label>
+          </div>
+
+          <div class="input-area">
+            <label for="outputText">Result:</label>
             <textarea id="outputText" placeholder="Concatenated text will appear here..." readonly aria-label="Concatenated output text"></textarea>
           </div>
 
@@ -123,36 +99,70 @@
           </div>
           <p class="loading" id="loadingIndicator">Processing file...</p>
 
+          <div class="example">
+            <h3>Basic Example</h3>
+            <p>Concatenate first names and surnames, with space as a separator.</p>
+            <div class="example-grid">
+              <div>
+                <strong>Column 1</strong>
+                <pre>Sarah
+Anthony
+William
+Steven</pre>
+              </div>
+              <div>
+                <strong>Column 2</strong>
+                <pre>Mitchell
+Edwards
+Johnson
+Davis</pre>
+              </div>
+              <div>
+                <strong>Result</strong>
+                <pre>Sarah Mitchell
+Anthony Edwards
+William Johnson
+Steven Davis</pre>
+              </div>
+            </div>
+          </div>
+
           <a class="cta-button" href="./index.html#text-tools">Explore Our Tools</a>
 
           <div class="tool-article">
             <h2>About the Concatenate Text Tool</h2>
-            <p>The Concatenate Text tool by <a href="./about-us.html">Mass Tools</a> combines multiple text inputs into one, with a custom delimiter. Paste text or upload files for instant merging.</p>
+            <p>The Concatenate Text tool by <a href="./about-us.html">Mass Tools</a> combines two columns of text (e.g., first names and surnames) line-by-line with a custom separator. Paste text or upload files for instant merging.</p>
             
             <h3>Why Use This Tool?</h3>
             <ul>
-              <li><strong>Data Merging</strong>: Combine lists or datasets.</li>
-              <li><strong>Content Creation</strong>: Join text for reports or scripts.</li>
-              <li><strong>Code Editing</strong>: Merge code snippets or logs.</li>
-              <li><strong>Bulk Processing</strong>: Unify multiple text sources.</li>
+              <li><strong>Data Merging</strong>: Combine names, IDs, or other paired data.</li>
+              <li><strong>Content Creation</strong>: Create formatted lists or reports.</li>
+              <li><strong>Data Processing</strong>: Join datasets for analysis.</li>
+              <li><strong>Automation</strong>: Streamline text combination tasks.</li>
             </ul>
 
             <h3>How to Use</h3>
             <ul>
-              <li>Paste text into input fields or upload TXT, CSV, or XLSX files.</li>
-              <li>Add more input fields as needed (click "Add Another Input").</li>
-              <li>Enter a delimiter (e.g., ",") or leave empty to join directly.</li>
-              <li>Choose options: trim text or skip empty inputs.</li>
+              <li>Paste text into Column 1 and Column 2 (one item per line) or upload TXT, CSV, or XLSX files.</li>
+              <li>Enter a separator (e.g., space, comma) or leave as default (space).</li>
+              <li>Enable "Exclude Empty Lines" to skip empty line pairs.</li>
               <li>Click "Concatenate Text" to view results.</li>
               <li>Copy or download the concatenated text.</li>
               <li>Reset to clear inputs and results.</li>
             </ul>
 
+            <h3>Related Tools</h3>
+            <ul>
+              <li><a href="./split-text.html">Split Text</a> - Split a text into individual columns, or by a new line.</li>
+              <li><a href="./extract-column.html">Extract Column</a> - Get a specific column from a delimited text.</li>
+              <li><a href="./swap-columns.html">Swap Columns</a> - Swap two columns from a delimited text.</li>
+            </ul>
+
             <h3>Tips</h3>
             <ul>
-              <li>Use files under 10MB for best performance.</li>
+              <li>Ensure both columns have the same number of lines for best results.</li>
+              <li>Use files under 10MB for optimal performance.</li>
               <li>For CSV/XLSX, ensure single-column data for accurate processing.</li>
-              <li>Combine with <a href="./remove-line-breaks.html">Remove Line Breaks</a> for streamlined text.</li>
               <li>Contact us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a> for support.</li>
             </ul>
           </div>
@@ -294,6 +304,9 @@
         { name: 'Add Line Breaks', url: './add-line-breaks.html' },
         { name: 'Remove Line Breaks', url: './remove-line-breaks.html' },
         { name: 'Concatenate Text', url: './concatenate-text.html' },
+        { name: 'Split Text', url: './split-text.html' },
+        { name: 'Extract Column', url: './extract-column.html' },
+        { name: 'Swap Columns', url: './swap-columns.html' },
       ];
 
       if (searchInput && searchButton && suggestionsContainer) {
@@ -340,11 +353,10 @@
       }
 
       // Concatenate Text functionality
-      const inputContainer = document.getElementById('inputContainer');
-      const addInputBtn = document.getElementById('addInputBtn');
-      const delimiter = document.getElementById('delimiter');
-      const trimText = document.getElementById('trimText');
-      const skipEmpty = document.getElementById('skipEmpty');
+      const column1 = document.getElementById('column1');
+      const column2 = document.getElementById('column2');
+      const separator = document.getElementById('separator');
+      const excludeEmpty = document.getElementById('excludeEmpty');
       const outputText = document.getElementById('outputText');
       const concatenateBtn = document.getElementById('concatenateBtn');
       const copyBtn = document.getElementById('copyBtn');
@@ -352,19 +364,31 @@
       const resetBtn = document.getElementById('resetBtn');
       const loadingIndicator = document.getElementById('loadingIndicator');
 
-      if (!inputContainer || !addInputBtn || !delimiter || !trimText || !skipEmpty || !outputText || !concatenateBtn || !copyBtn || !downloadBtn || !resetBtn || !loadingIndicator) {
+      if (!column1 || !column2 || !separator || !excludeEmpty || !outputText || !concatenateBtn || !copyBtn || !downloadBtn || !resetBtn || !loadingIndicator) {
         console.error('Missing elements for Concatenate Text tool');
         alert('Tool initialization failed. Please check console for errors.');
         return;
       }
 
-      const concatenateText = (texts, delim, doTrim, skipEmptyInputs) => {
-        if (!texts.some(text => text.trim())) return '';
-        let filteredTexts = skipEmptyInputs ? texts.filter(text => text.trim()) : texts;
-        if (doTrim) {
-          filteredTexts = filteredTexts.map(text => text.trim());
+      const concatenateColumns = (col1, col2, sep, excludeEmptyLines) => {
+        if (!col1.trim() && !col2.trim()) return '';
+        const lines1 = col1.split('\n');
+        const lines2 = col2.split('\n');
+        const maxLength = Math.max(lines1.length, lines2.length);
+        const results = [];
+        
+        for (let i = 0; i < maxLength; i++) {
+          const line1 = (i < lines1.length ? lines1[i] : '').trim();
+          const line2 = (i < lines2.length ? lines2[i] : '').trim();
+          
+          if (excludeEmptyLines && !line1 && !line2) {
+            continue;
+          }
+          
+          results.push(`${line1}${sep}${line2}`);
         }
-        return filteredTexts.join(delim);
+        
+        return results.join('\n');
       };
 
       const updateResults = (modifiedText) => {
@@ -375,33 +399,35 @@
       };
 
       const resetForm = () => {
-        inputContainer.innerHTML = `
-          <div class="input-area">
-            <textarea placeholder="Paste text 1 here..." aria-label="Text input 1"></textarea>
-            <i class="fas fa-times remove-input" style="display: none;"></i>
-            <div class="upload-area">
-              <i class="fas fa-cloud-upload-alt"></i>
-              <p>Drag and drop TXT, CSV, or XLSX file</p>
-              <input type="file" accept=".txt,.csv,.xlsx" aria-label="Upload text file 1">
-            </div>
-          </div>
-          <div class="input-area">
-            <textarea placeholder="Paste text 2 here..." aria-label="Text input 2"></textarea>
-            <i class="fas fa-times remove-input"></i>
-            <div class="upload-area">
-              <i class="fas fa-cloud-upload-alt"></i>
-              <p>Drag and drop TXT, CSV, or XLSX file</p>
-              <input type="file" accept=".txt,.csv,.xlsx" aria-label="Upload text file 2">
-            </div>
-          </div>
-        `;
-        delimiter.value = '';
-        trimText.checked = true;
-        skipEmpty.checked = true;
+        column1.value = '';
+        column2.value = '';
+        separator.value = ' ';
+        excludeEmpty.checked = true;
         outputText.value = '';
         updateResults('');
         loadingIndicator.classList.remove('visible');
-        setupInputListeners();
+        document.querySelectorAll('.upload-area input[type="file"]').forEach(input => input.value = '');
+      };
+
+      const performConcatenate = () => {
+        const text1 = column1.value;
+        const text2 = column2.value;
+        if (text1.trim() || text2.trim()) {
+          const modifiedText = concatenateColumns(
+            text1,
+            text2,
+            separator.value,
+            excludeEmpty.checked
+          );
+          updateResults(modifiedText);
+          gtag('event', 'concatenate_text', {
+            event_category: 'Tool Usage',
+            event_label: 'Concatenate Text',
+            value: (text1 + text2).length
+          });
+        } else {
+          updateResults('');
+        }
       };
 
       const handleFile = (file, textarea) => {
@@ -459,77 +485,25 @@
         }
       };
 
-      const setupInputListeners = () => {
-        const inputs = inputContainer.querySelectorAll('.input-area');
-        inputs.forEach((inputArea, index) => {
-          const textarea = inputArea.querySelector('textarea');
-          const fileInput = inputArea.querySelector('input[type="file"]');
-          const uploadArea = inputArea.querySelector('.upload-area');
-          const removeBtn = inputArea.querySelector('.remove-input');
+      document.querySelectorAll('.upload-area').forEach(uploadArea => {
+        const fileInput = uploadArea.querySelector('input[type="file"]');
+        const columnNum = uploadArea.dataset.column;
+        const textarea = document.getElementById(`column${columnNum}`);
 
-          textarea.addEventListener('input', performConcatenate);
-          
-          uploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadArea.classList.add('dragover');
-          });
-          uploadArea.addEventListener('dragleave', () => {
-            uploadArea.classList.remove('dragover');
-          });
-          uploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadArea.classList.remove('dragover');
-            handleFile(e.dataTransfer.files[0], textarea);
-          });
-          uploadArea.addEventListener('click', () => fileInput.click());
-          fileInput.addEventListener('change', () => handleFile(fileInput.files[0], textarea));
-
-          removeBtn.addEventListener('click', () => {
-            if (inputs.length > 1) {
-              inputArea.remove();
-              performConcatenate();
-            }
-          });
+        uploadArea.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          uploadArea.classList.add('dragover');
         });
-
-        // Hide remove button for the first input
-        inputs[0].querySelector('.remove-input').style.display = 'none';
-      };
-
-      const performConcatenate = () => {
-        const texts = Array.from(inputContainer.querySelectorAll('textarea')).map(textarea => textarea.value);
-        if (texts.some(text => text.trim())) {
-          const modifiedText = concatenateText(
-            texts,
-            delimiter.value,
-            trimText.checked,
-            skipEmpty.checked
-          );
-          updateResults(modifiedText);
-          gtag('event', 'concatenate_text', {
-            event_category: 'Tool Usage',
-            event_label: 'Concatenate Text',
-            value: texts.join('').length
-          });
-        } else {
-          updateResults('');
-        }
-      };
-
-      addInputBtn.addEventListener('click', () => {
-        const newInput = document.createElement('div');
-        newInput.className = 'input-area';
-        newInput.innerHTML = `
-          <textarea placeholder="Paste text ${inputContainer.children.length + 1} here..." aria-label="Text input ${inputContainer.children.length + 1}"></textarea>
-          <i class="fas fa-times remove-input"></i>
-          <div class="upload-area">
-            <i class="fas fa-cloud-upload-alt"></i>
-            <p>Drag and drop TXT, CSV, or XLSX file</p>
-            <input type="file" accept=".txt,.csv,.xlsx" aria-label="Upload text file ${inputContainer.children.length + 1}">
-          </div>
-        `;
-        inputContainer.appendChild(newInput);
-        setupInputListeners();
+        uploadArea.addEventListener('dragleave', () => {
+          uploadArea.classList.remove('dragover');
+        });
+        uploadArea.addEventListener('drop', (e) => {
+          e.preventDefault();
+          uploadArea.classList.remove('dragover');
+          handleFile(e.dataTransfer.files[0], textarea);
+        });
+        uploadArea.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', () => handleFile(fileInput.files[0], textarea));
       });
 
       concatenateBtn.addEventListener('click', performConcatenate);
@@ -564,11 +538,10 @@
 
       resetBtn.addEventListener('click', resetForm);
 
-      delimiter.addEventListener('input', performConcatenate);
-      trimText.addEventListener('change', performConcatenate);
-      skipEmpty.addEventListener('change', performConcatenate);
-
-      setupInputListeners();
+      column1.addEventListener('input', performConcatenate);
+      column2.addEventListener('input', performConcatenate);
+      separator.addEventListener('input', performConcatenate);
+      excludeEmpty.addEventListener('change', performConcatenate);
     });
   </script>
 </body>
