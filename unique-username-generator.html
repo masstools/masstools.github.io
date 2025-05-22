@@ -4,9 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Unique Username Generator - Mass Tools</title>
-  <meta name="description" content="Generate unique usernames instantly with Mass Tools' free Unique Username Generator. Customize length, character types, and themes for gaming, tech, or fantasy usernames.">
-  <meta name="keywords" content="username generator, unique username, random username, online tool, gaming username">
+  <meta name="description" content="Generate unique usernames based on names or keywords with Mass Tools' free tool. Customize with numbers, prefixes, suffixes, or random words, and generate multiple usernames at once.">
+  <meta name="keywords" content="username generator, unique username, mass tools, free online tools">
   <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/png" href="./favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-68CX9G7BKF"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -14,616 +17,12 @@
     gtag('js', new Date());
     gtag('config', 'G-68CX9G7BKF');
   </script>
-  <link rel="icon" type="image/png" href="/favicon.png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <style>
-    :root {
-      --primary-color: #FF4500;
-      --secondary-color: #FFA500;
-      --dark-color: #1A1A1A;
-      --light-color: #F8F9FA;
-      --text-color: #2C2C2C;
-      --text-light: #6C757D;
-      --border-radius: 12px;
-      --transition: all 0.3s ease;
-      --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
-
-    body {
-      background: var(--light-color);
-      color: var(--text-color);
-      font-size: 16px;
-      line-height: 1.7;
-      scrollbar-width: none;
-    }
-
-    body::-webkit-scrollbar {
-      display: none;
-    }
-
-    .progress-bar, [class*="progress"], [id*="progress"] {
-      display: none !important;
-    }
-
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    header {
-      background: var(--light-color);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .header-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 16px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      font-size: 24px;
-      font-weight: 800;
-      margin-left: 8px;
-    }
-
-    .logo-icon {
-      font-size: 24px;
-      color: var(--primary-color);
-    }
-
-    .logo span {
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 16px;
-    }
-
-    nav ul li a {
-      text-decoration: none;
-      color: var(--text-color);
-      font-weight: 500;
-      font-size: 14px;
-      padding: 8px 12px;
-      border-radius: var(--border-radius);
-      transition: var(--transition);
-    }
-
-    nav ul li a:hover {
-      background: var(--primary-color);
-      color: var(--light-color);
-      text-decoration: none;
-    }
-
-    .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 24px;
-      color: var(--text-color);
-      cursor: pointer;
-      margin-right: 8px;
-    }
-
-    #mobile-menu-toggle {
-      display: none;
-    }
-
-    .search-bar {
-      display: flex;
-      align-items: center;
-      background: #fff;
-      border: 1px solid #e0e0e0;
-      border-radius: 50px;
-      padding: 6px 12px;
-      transition: var(--transition);
-      max-width: 200px;
-    }
-
-    .search-bar:hover, .search-bar:focus-within {
-      border-color: var(--primary-color);
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .search-bar input {
-      border: none;
-      outline: none;
-      font-size: 13px;
-      padding: 6px;
-      width: 100%;
-    }
-
-    .search-bar button {
-      background: none;
-      border: none;
-      color: var(--text-light);
-      font-size: 14px;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .search-bar button:hover {
-      color: var(--primary-color);
-    }
-
-    .tool-section {
-      padding: 80px 0;
-      background: var(--light-color);
-    }
-
-    .tool-content {
-      max-width: 800px;
-      margin: 0 auto;
-      background: #fff;
-      padding: 32px;
-      border-radius: var(--border-radius);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    }
-
-    .tool-content h1 {
-      font-size: 36px;
-      color: var(--dark-color);
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    .tool-content p {
-      font-size: 15px;
-      color: var(--text-color);
-      margin-bottom: 12px;
-    }
-
-    .tool-content .settings-area {
-      margin-bottom: 20px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      align-items: flex-start;
-    }
-
-    .tool-content .settings-area label {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-color);
-      margin-right: 8px;
-    }
-
-    .tool-content .settings-area input[type="number"],
-    .tool-content .settings-area select {
-      padding: 8px;
-      border: 1px solid #e0e0e0;
-      border-radius: 8px;
-      font-size: 14px;
-      background: var(--light-color);
-      width: 100px;
-    }
-
-    .tool-content .settings-area .checkbox-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .tool-content .settings-area input[type="checkbox"] {
-      margin-right: 4px;
-    }
-
-    .tool-content .result-area {
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    .tool-content .result-area .output {
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--primary-color);
-      background: var(--light-color);
-      padding: 12px;
-      border: 1px solid #e0e0e0;
-      border-radius: 8px;
-      min-height: 50px;
-      display: inline-block;
-      max-width: 100%;
-      word-break: break-all;
-    }
-
-    .tool-content .action-buttons {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 24px;
-    }
-
-    .tool-content .action-buttons button,
-    .tool-content .cta-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--gradient);
-      color: #FFFFFF !important;
-      padding: 10px 24px;
-      border: none;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 14px;
-      transition: var(--transition);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      cursor: pointer;
-    }
-
-    .tool-content .action-buttons button:hover,
-    .tool-content .cta-button:hover {
-      background: var(--primary-color);
-      color: #FFFFFF !important;
-      transform: translateY(-4px);
-      text-decoration: none;
-    }
-
-    .tool-content .action-buttons button:disabled {
-      background: var(--text-light);
-      color: var(--light-color) !important;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .tool-content .tool-article {
-      margin-top: 40px;
-    }
-
-    .tool-content .tool-article h2 {
-      font-size: 24px;
-      color: var(--dark-color);
-      margin: 24px 0 12px;
-    }
-
-    .tool-content .tool-article h3 {
-      font-size: 20px;
-      color: var(--dark-color);
-      margin: 20px 0 10px;
-    }
-
-    .tool-content .tool-article p {
-      font-size: 15px;
-      color: var(--text-color);
-      margin-bottom: 12px;
-    }
-
-    .tool-content .tool-article ul {
-      list-style: none;
-      margin: 12px 0;
-      padding-left: 20px;
-    }
-
-    .tool-content .tool-article ul li {
-      font-size: 15px;
-      color: var(--text-color);
-      margin-bottom: 8px;
-      position: relative;
-    }
-
-    .tool-content .tool-article ul li::before {
-      content: '✔';
-      color: var(--primary-color);
-      position: absolute;
-      left: -20px;
-    }
-
-    .tool-content .tool-article a {
-      color: var(--primary-color);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .tool-content .tool-article a:hover {
-      text-decoration: underline;
-    }
-
-    footer {
-      background: var(--dark-color);
-      color: var(--light-color);
-      padding: 40px 0 20px;
-    }
-
-    .footer-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 24px;
-      margin-bottom: 24px;
-    }
-
-    .footer-column-logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      font-size: 24px;
-      font-weight: 800;
-    }
-
-    .footer-column-logo-icon {
-      font-size: 24px;
-      color: var(--primary-color);
-    }
-
-    .footer-column-logo span {
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .footer-column ul {
-      list-style: none;
-    }
-
-    .footer-column ul li {
-      margin-bottom: 10px;
-    }
-
-    .footer-column ul li a {
-      color: #CED4DA;
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .footer-column ul li a:hover {
-      color: var(--primary-color);
-      text-decoration: none;
-    }
-
-    .copyright {
-      text-align: center;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      font-size: 13px;
-    }
-
-    .scroll-to-top {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: var(--gradient);
-      color: var(--light-color);
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-      z-index: 1000;
-      cursor: pointer;
-    }
-
-    .scroll-to-top i {
-      -webkit-text-stroke: 0;
-      color: var(--light-color);
-    }
-
-    .scroll-to-top:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-    }
-
-    .scroll-to-top.show {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 992px) {
-      .search-bar {
-        max-width: 180px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .container {
-        padding: 0 16px !important;
-      }
-
-      .header-container {
-        padding: 12px 16px;
-      }
-
-      .mobile-menu-btn {
-        display: block;
-      }
-
-      nav {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: rgba(255, 255, 255, 0.98);
-        padding: 20px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        flex-direction: column;
-        align-items: flex-start;
-        border-radius: 0 0 12px 12px;
-        border: 1px solid #e0e0e0;
-        width: 100%;
-      }
-
-      nav.show {
-        display: flex !important;
-      }
-
-      nav ul {
-        flex-direction: column;
-        gap: 18px;
-        width: 100%;
-      }
-
-      nav ul li a {
-        font-size: 18px;
-        padding: 12px 20px;
-        width: 100%;
-        text-align: left;
-        border-radius: 8px;
-      }
-
-      .search-bar {
-        margin-top: 20px;
-        width: 100%;
-        max-width: none;
-        padding: 10px 20px;
-        border-radius: 50px;
-      }
-
-      .search-bar input {
-        font-size: 15px;
-        padding: 8px;
-      }
-
-      .search-bar button {
-        font-size: 16px;
-      }
-
-      .tool-section {
-        padding: 60px 0;
-      }
-
-      .tool-content {
-        padding: 24px;
-      }
-
-      .tool-content h1 {
-        font-size: 30px;
-      }
-
-      .tool-content p,
-      .tool-content .tool-article p,
-      .tool-content .tool-article ul li {
-        font-size: 14px;
-      }
-
-      .tool-content .tool-article h2 {
-        font-size: 20px;
-      }
-
-      .tool-content .tool-article h3 {
-        font-size: 18px;
-      }
-
-      .tool-content .action-buttons {
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .tool-content .settings-area {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .tool-content .settings-area input[type="number"],
-      .tool-content .settings-area select {
-        width: 100%;
-      }
-    }
-
-    @media (max-width: 576px) {
-      .header-container {
-        padding: 10px 16px !important;
-        margin: 0;
-      }
-
-      .logo {
-        font-size: 20px;
-        margin-left: 0;
-      }
-
-      .logo-icon {
-        font-size: 20px;
-      }
-
-      .mobile-menu-btn {
-        margin-right: 0;
-      }
-
-      .search-bar {
-        padding: 8px 16px;
-        margin: 16px 0;
-        max-width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .search-bar input {
-        font-size: 14px;
-      }
-
-      .tool-content h1 {
-        font-size: 26px;
-      }
-
-      .tool-content .result-area .output {
-        font-size: 16px;
-        padding: 10px;
-      }
-
-      .tool-content .settings-area label {
-        font-size: 13px;
-      }
-
-      .tool-content .action-buttons button,
-      .tool-content .cta-button {
-        width: 100%;
-        justify-content: center;
-        padding: 8px 20px;
-        font-size: 13px;
-      }
-
-      .scroll-to-top {
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
-        bottom: 16px;
-        right: 16px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
   <header>
     <div class="container header-container">
-      <a href="/" class="logo">
+      <a href="./index.html" class="logo">
         <i class="fas fa-tools logo-icon"></i>
         <span>Mass Tools</span>
       </a>
@@ -633,19 +32,20 @@
       </label>
       <nav id="nav-menu">
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/#tools">Tools</a></li>
-          <li><a href="/about-us.html">About Us</a></li>
-          <li><a href="/contact-us.html">Contact Us</a></li>
-          <li><a href="/privacy-policy.html">Privacy Policy</a></li>
-          <li><a href="/terms-and-conditions.html">Terms</a></li>
-          <li><a href="/Disclaimer.html">Disclaimer</a></li>
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./index.html#text-tools">Text Tools</a></li>
+          <li><a href="./about-us.html">About Us</a></li>
+          <li><a href="./contact-us.html">Contact Us</a></li>
+          <li><a href="./privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="./terms-and-conditions.html">Terms</a></li>
+          <li><a href="./disclaimer.html">Disclaimer</a></li>
         </ul>
         <div class="search-bar">
-          <input type="text" placeholder="Search tools..." aria-label="Search">
+          <input type="text" placeholder="Search text tools..." aria-label="Search text tools">
           <button type="submit" aria-label="Search">
             <i class="fas fa-search"></i>
           </button>
+          <div class="search-suggestions"></div>
         </div>
       </nav>
     </div>
@@ -656,86 +56,105 @@
       <div class="container">
         <div class="tool-content">
           <h1>Unique Username Generator</h1>
-          <p>Generate unique usernames instantly with Mass Tools' free Username Generator. Customize length, character types, and themes for gaming, tech, or fantasy usernames.</p>
+          <p>Generate unique usernames based on names or keywords using Mass Tools' free tool. Customize with numbers, prefixes, suffixes, or random words, and generate multiple usernames at once.</p>
 
-          <div class="settings-area">
-            <div>
-              <label for="length">Username Length:</label>
-              <input type="number" id="length" min="6" max="16" value="8" aria-label="Username length">
-            </div>
-            <div>
-              <label for="theme">Theme:</label>
-              <select id="theme" aria-label="Username theme">
-                <option value="random">Random</option>
-                <option value="gaming">Gaming</option>
-                <option value="tech">Tech</option>
-                <option value="fantasy">Fantasy</option>
-              </select>
-            </div>
+          <div class="input-area">
+            <label for="inputText">Base Name or Keyword:</label>
+            <input type="text" id="inputText" placeholder="Enter a name or keyword (e.g., John, Star)..." aria-label="Input base name or keyword for username generation">
+          </div>
+
+          <div class="input-area">
+            <label for="count">Number of Usernames:</label>
+            <input type="number" id="count" min="1" max="100" value="1" aria-label="Number of usernames to generate">
+          </div>
+
+          <div class="input-area">
+            <label>Customization Options:</label>
             <div class="checkbox-group">
-              <label><input type="checkbox" id="letters" checked> Letters (a-z)</label>
-              <label><input type="checkbox" id="numbers" checked> Numbers (0-9)</label>
-              <label><input type="checkbox" id="special" checked> Special Characters (_,-)</label>
+              <label><input type="checkbox" id="includeNumbers" checked> Include Numbers</label>
+              <label><input type="checkbox" id="includePrefix"> Include Prefix (e.g., x_, cool_)</label>
+              <label><input type="checkbox" id="includeSuffix"> Include Suffix (e.g., _z, pro)</label>
+              <label><input type="checkbox" id="includeRandomWord"> Include Random Word</label>
             </div>
           </div>
 
-          <div class="result-area">
-            <div id="output" class="output" aria-label="Generated username">Click Generate to create a username</div>
+          <div class="input-area">
+            <textarea id="outputText" placeholder="Generated usernames will appear here..." readonly aria-label="Output generated usernames"></textarea>
           </div>
 
           <div class="action-buttons">
-            <button id="generateBtn"><i class="fas fa-sync-alt"></i> Generate</button>
-            <button id="copyBtn" disabled><i class="fas fa-copy"></i> Copy Username</button>
-            <button id="resetBtn"><i class="fas fa-undo"></i> Reset</button>
+            <button id="generateBtn">Generate Usernames</button>
+            <button id="copyBtn" disabled>Copy Results</button>
+            <button id="downloadBtn" disabled>Download Results</button>
+            <button id="resetBtn">Reset</button>
           </div>
 
-          <a class="cta-button" href="/index.html#tools">Explore Our Tools</a>
+          <a class="cta-button" href="./index.html#text-tools">Explore Our Tools</a>
 
           <div class="tool-article">
-            <h2>About the Unique Username Generator</h2>
-            <p>The Unique Username Generator by <a href="/about-us.html">Mass Tools</a> is a free tool to create random, unique usernames for online platforms. Customize your username with length, character types, and themes, all processed securely in your browser.</p>
+            <h2>About the Unique Username Generator Tool</h2>
+            <p>The Unique Username Generator tool by <a href="./about-us.html">Mass Tools</a> creates unique usernames from a base name or keyword. Customize with numbers, prefixes, suffixes, or random words, and generate up to 100 usernames at once.</p>
 
-            <h3>Why Use the Unique Username Generator?</h3>
-            <p>This tool is perfect for creating usernames for various purposes. Use it to:</p>
+            <h3>Why Use This Tool?</h3>
             <ul>
-              <li><strong>Gaming</strong>: Generate cool usernames for gaming platforms like Discord or Steam.</li>
-              <li><strong>Social Media</strong>: Create unique handles for Twitter, Instagram, or TikTok.</li>
-              <li><strong>Professional Use</strong>: Craft tech-themed usernames for GitHub or LinkedIn.</li>
-              <li><strong>Creative Projects</strong>: Make fantasy-themed usernames for forums or storytelling.</li>
+              <li><strong>Creativity</strong>: Generate unique usernames for gaming, social media, or professional platforms.</li>
+              <li><strong>Customization</strong>: Add numbers, prefixes, suffixes, or random words for personalized results.</li>
+              <li><strong>Bulk Generation</strong>: Create multiple usernames in one click, up to 100.</li>
+              <li><strong>Ease of Use</strong>: Simple interface with copy and download options.</li>
             </ul>
 
-            <h3>How to Use the Unique Username Generator</h3>
-            <p>Our Username Generator is easy to use. Follow these steps:</p>
+            <h3>How to Use</h3>
             <ul>
-              <li><strong>Set Length</strong>: Choose a username length (6-16 characters).</li>
-              <li><strong>Select Theme</strong>: Pick a theme (Random, Gaming, Tech, Fantasy) from the dropdown.</li>
-              <li><strong>Choose Character Types</strong>: Check boxes for letters, numbers, or special characters.</li>
-              <li><strong>Generate</strong>: Click "Generate" to create a username.</li>
-              <li><strong>Copy</strong>: Click "Copy Username" to copy to your clipboard.</li>
-              <li><strong>Reset</strong>: Click "Reset" to restore default settings.</li>
-            </ul>
-            <p>The tool works locally in your browser for privacy and supports offline use after loading.</p>
-
-            <h3>Use Cases for Unique Username Generator</h3>
-            <p>This tool is ideal for various scenarios, including:</p>
-            <ul>
-              <li><strong>Online Accounts</strong>: Create usernames for new accounts on websites or apps.</li>
-              <li><strong>Branding</strong>: Generate catchy usernames for personal or business branding.</li>
-              <li><strong>Testing</strong>: Produce usernames for testing user systems or databases.</li>
-              <li><strong>Creative Writing</strong>: Craft usernames for characters in stories or games.</li>
+              <li>Enter a base name or keyword (e.g., "John", "Star").</li>
+              <li>Specify the number of usernames to generate (1–100).</li>
+              <li>Select customization options (numbers, prefixes, suffixes, random words).</li>
+              <li>Click "Generate Usernames" to view results (e.g., "John123", "x_StarCool", "MoonStar_pro").</li>
+              <li>Copy or download the generated usernames.</li>
+              <li>Reset to clear inputs and results.</li>
             </ul>
 
-            <h3>Tips for Using the Unique Username Generator</h3>
-            <p>To get the best results, consider these tips:</p>
+            <h3>Tips</h3>
             <ul>
-              <li><strong>Match the Platform</strong>: Choose themes that suit the platform (e.g., Gaming for Twitch).</li>
-              <li><strong>Keep It Simple</strong>: Use fewer special characters for easy-to-remember usernames.</li>
-              <li><strong>Combine Tools</strong>: Pair with our <a href="/case-converter.html">Case Converter</a>, <a href="/word-counter.html">Word Counter</a>, <a href="/text-to-ascii-converter.html">Text to ASCII Converter</a>, <a href="/lorem-ipsum-generator.html">Lorem Ipsum Generator</a>, <a href="/character-counter.html">Character Counter</a>, <a href="/sort-text.html">Sort Text</a>, <a href="/find-replace-text.html">Find and Replace Text</a>, <a href="/reverse-list.html">Reverse List</a>, <a href="/difference-checker.html">Difference Checker</a>, <a href="/add-prefix-suffix.html">Add Prefix/Suffix</a>, <a href="/tabs-to-spaces.html">Tabs to Spaces</a>, <a href="/spaces-to-tabs.html">Spaces to Tabs</a>, <a href="/pad-text.html">Pad Text</a>, <a href="/word-wrap.html">Word Wrap</a>, <a href="/justify-text.html">Justify Text</a>, <a href="/center-text.html">Center Text</a>, <a href="/upside-down-text.html">Upside Down Text</a>, <a href="/bold-text-generator.html">Bold Text Generator</a>, <a href="/italic-text-generator.html">Italic Text Generator</a>, <a href="/old-english-text-generator.html">Old English Text Generator</a>, <a href="/cursive-text-generator.html">Cursive Text Generator</a>, <a href="/normalize-unicode-text.html">Normalize Unicode Text</a>, <a href="/url-encode-decode.html">URL Encode Decode</a>, <a href="/html-encode-decode.html">HTML Encode Decode</a>, or <a href="/html-escape-unescape.html">HTML Escape Unescape</a> for enhanced text processing.</li>
-              <li><strong>Contact Us</strong>: Need bulk username generation? Email us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a>.</li>
+              <li>Use a short base name for cleaner usernames.</li>
+              <li>Enable multiple customization options for more variety.</li>
+              <li>Generate multiple usernames to find the perfect one.</li>
+              <li>Combine with <a href="./remove-unwanted-characters.html">Remove Unwanted Characters</a> to clean usernames.</li>
+              <li>Contact us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a> for support.</li>
             </ul>
 
-            <h3>Why Choose Mass Tools?</h3>
-            <p>At Mass Tools, we provide free, high-quality tools to simplify your tasks. Our Unique Username Generator joins our suite, including the <a href="/image-to-png-converter.html">Image to PNG Converter</a>, <a href="/image-to-jpg-converter.html">Image to JPG Converter</a>, <a href="/image-to-webp-converter.html">Image to WebP Converter</a>, <a href="/image-to-svg-converter.html">Image to SVG Converter</a>, <a href="/image-to-tiff-converter.html">Image to TIFF Converter</a>, <a href="/image-to-heic-converter.html">Image to HEIC Converter</a>, <a href="/image-to-pdf-converter.html">Image to PDF Converter</a>, <a href="/image-to-bmp-converter.html">Image to BMP Converter</a>, <a href="/image-to-ico-converter.html">Image to ICO Converter</a>, <a href="/image-to-avif-converter.html">Image to AVIF Converter</a>, <a href="/image-to-eps-converter.html">Image to EPS Converter</a>, <a href="/image-to-psd-converter.html">Image to PSD Converter</a>, <a href="/image-to-base64-converter.html">Image to Base64 Converter</a>, <a href="/image-to-dxf-converter.html">Image to DXF Converter</a>, <a href="/image-to-exr-converter.html">Image to EXR Converter</a>, <a href="/pdf-to-image-converter.html">PDF to Image Converter</a>, <a href="/image-resizer-tool.html">Image Resizer Tool</a>, <a href="/image-compressor-tool.html">Image Compressor Tool</a>, <a href="/psd-to-image-converter.html">PSD to Image Converter</a>, <a href="/eps-to-image-converter.html">EPS to Image Converter</a>, <a href="/word-counter.html">Word Counter</a>, <a href="/case-converter.html">Case Converter</a>, <a href="/text-to-ascii-converter.html">Text to ASCII Converter</a>, <a href="/lorem-ipsum-generator.html">Lorem Ipsum Generator</a>, <a href="/character-counter.html">Character Counter</a>, <a href="/sort-text.html">Sort Text</a>, <a href="/find-replace-text.html">Find and Replace Text</a>, <a href="/reverse-list.html">Reverse List</a>, <a href="/difference-checker.html">Difference Checker</a>, <a href="/add-prefix-suffix.html">Add Prefix/Suffix</a>, <a href="/tabs-to-spaces.html">Tabs to Spaces</a>, <a href="/spaces-to-tabs.html">Spaces to Tabs</a>, <a href="/pad-text.html">Pad Text</a>, <a href="/word-wrap.html">Word Wrap</a>, <a personally identifiable information removed>, <a href="/center-text.html">Center Text</a>, <a href="/upside-down-text.html">Upside Down Text</a>, <a href="/bold-text-generator.html">Bold Text Generator</a>, <a href="/italic-text-generator.html">Italic Text Generator</a>, <a href="/old-english-text-generator.html">Old English Text Generator</a>, <a href="/cursive-text-generator.html">Cursive Text Generator</a>, <a href="/normalize-unicode-text.html">Normalize Unicode Text</a>, <a href="/url-encode-decode.html">URL Encode Decode</a>, <a href="/html-encode-decode.html">HTML Encode Decode</a>, and <a href="/html-escape-unescape.html">HTML Escape Unescape</a>. We prioritize privacy, speed, and ease of use. Learn more on our <a href="/about-us.html">About Us</a> page.</p>
+            <h3>Related Tools</h3>
+            <ul>
+              <li><a href="./split-text.html">Split Text</a> - Split text into individual columns or by a new line.</li>
+              <li><a href="./extract-column.html">Extract Column</a> - Extract a specific column from delimited text.</li>
+              <li><a href="./swap-columns.html">Swap Columns</a> - Swap two columns from a delimited text.</li>
+              <li><a href="./reverse-words.html">Reverse Words</a> - Reverse the order of words in text.</li>
+              <li><a href="./reverse-letters.html">Reverse Letters</a> - Reverse the order of letters in text or words.</li>
+              <li><a href="./remove-extra-spaces.html">Remove Extra Spaces</a> - Remove multiple consecutive spaces from text.</li>
+              <li><a href="./remove-duplicate-lines.html">Remove Duplicate Lines</a> - Remove duplicate lines from text.</li>
+              <li><a href="./remove-empty-lines.html">Remove Empty Lines</a> - Remove empty or whitespace-only lines from text.</li>
+              <li><a href="./remove-letter-accents.html">Remove Letter Accents</a> - Remove diacritical marks from letters.</li>
+              <li><a href="./remove-unwanted-characters.html">Remove Unwanted Characters</a> - Remove specified characters from text.</li>
+              <li><a href="./remove-lines-containing.html">Remove Lines Containing/Not Containing</a> - Remove lines based on a specific string.</li>
+              <li><a href="./remove-emojis.html">Remove Emojis</a> - Remove emojis from text.</li>
+              <li><a href="./strip-html-tags.html">Strip HTML Tags</a> - Remove HTML tags from text.</li>
+              <li><a href="./add-line-numbers.html">Add Line Numbers</a> - Add line numbers to text.</li>
+              <li><a href="./replace-quotes.html">Replace Smart/Straight Quotes</a> - Replace smart quotes with straight quotes or vice versa.</li>
+              <li><a href="./tabs-to-spaces.html">Tabs to Spaces Converter</a> - Convert tabs to spaces.</li>
+              <li><a href="./spaces-to-tabs.html">Spaces to Tabs Converter</a> - Convert spaces to tabs.</li>
+              <li><a href="./pad-text.html">Pad Text Converter</a> - Pad text to a specified length.</li>
+              <li><a href="./word-wrap.html">Word Wrap Converter</a> - Wrap text to a specified line length.</li>
+              <li><a href="./justify-text.html">Justify Text Converter</a> - Justify text to a specified line length.</li>
+              <li><a href="./center-text.html">Center Text Converter</a> - Center text within a specified line length.</li>
+              <li><a href="./upside-down-text.html">Upside Down Text Converter</a> - Convert text to upside-down characters.</li>
+              <li><a href="./bold-text.html">Bold Text Generator</a> - Generate bold text using Unicode, HTML, or CSS.</li>
+              <li><a href="./italic-text.html">Italic Text Generator</a> - Generate italic text using Unicode, HTML, or CSS.</li>
+              <li><a href="./old-english-text.html">Old English Text Generator</a> - Generate Old English (Blackletter/Gothic) text using Unicode.</li>
+              <li><a href="./cursive-text.html">Cursive Text Generator</a> - Generate cursive (script) text using Unicode.</li>
+              <li><a href="./normalize-unicode-text.html">Normalize Unicode Text</a> - Normalize Unicode text to standard ASCII.</li>
+              <li><a href="./html-encode-decode.html">HTML Encode Decode</a> - Encode or decode HTML entities.</li>
+              <li><a href="./url-encode-decode.html">URL Encode Decode</a> - Encode or decode URL-safe text.</li>
+              <li><a href="./html-escape-unescape.html">HTML Escape Unescape</a> - Escape or unescape HTML entities.</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -746,24 +165,24 @@
     <div class="container">
       <div class="footer-container">
         <div class="footer-column">
-          <a href="/" class="footer-column-logo">
+          <a href="./index.html" class="footer-column-logo">
             <i class="fas fa-tools footer-column-logo-icon"></i>
             <span>Mass Tools</span>
           </a>
-          <p>Empowering you with free, high-quality online tools.</p>
+          <p>Empowering you with free, high-quality text tools.</p>
         </div>
         <div class="footer-column">
           <ul>
-            <li><a href="/#tools">Tools</a></li>
-            <li><a href="/about-us.html">About Us</a></li>
-            <li><a href="/contact-us.html">Contact Us</a></li>
+            <li><a href="./index.html#text-tools">Text Tools</a></li>
+            <li><a href="./about-us.html">About Us</a></li>
+            <li><a href="./contact-us.html">Contact Us</a></li>
           </ul>
         </div>
         <div class="footer-column">
           <ul>
-            <li><a href="/privacy-policy.html">Privacy Policy</a></li>
-            <li><a href="/terms-and-conditions.html">Terms</a></li>
-            <li><a href="/Disclaimer.html">Disclaimer</a></li>
+            <li><a href="./privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="./terms-and-conditions.html">Terms</a></li>
+            <li><a href="./disclaimer.html">Disclaimer</a></li>
           </ul>
         </div>
       </div>
@@ -779,302 +198,292 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      console.log('Unique Username Generator tool loaded');
-
-      // Mobile menu toggle
+      // Mobile menu and navigation
       const menuToggle = document.getElementById('mobile-menu-toggle');
       const nav = document.getElementById('nav-menu');
       if (menuToggle && nav) {
         menuToggle.addEventListener('change', () => {
           nav.classList.toggle('show', menuToggle.checked);
-          console.log('Mobile menu toggled:', menuToggle.checked);
+          nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+              menuToggle.checked = false;
+              nav.classList.remove('show');
+            });
+          });
         });
       }
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+          const href = anchor.getAttribute('href');
+          const [path, hash] = href.split('#');
+          const isHome = path === './index.html' || path === '' || path === '.';
+          if (isHome && hash && (window.location.pathname === '/index.html' || window.location.pathname === '/')) {
+            e.preventDefault();
+            const target = document.querySelector(`#${hash}`);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth' });
+              history.pushState(null, null, `#${hash}`);
+            }
+          }
+          if (nav && nav.classList.contains('show')) {
+            nav.classList.remove('show');
+            menuToggle.checked = false;
+          }
+        });
+      });
 
       // Scroll-to-top button
       const scrollTopBtn = document.querySelector('.scroll-to-top');
       if (scrollTopBtn) {
         window.addEventListener('scroll', () => {
           scrollTopBtn.classList.toggle('show', window.scrollY > 200);
-          console.log('Scroll-to-top visibility:', window.scrollY > 200);
         });
         scrollTopBtn.addEventListener('click', () => {
           window.scrollTo({ top: 0, behavior: 'smooth' });
-          console.log('Scrolled to top');
         });
       }
 
-      // Smooth scroll for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', (e) => {
-          e.preventDefault();
-          const target = document.querySelector(anchor.getAttribute('href'));
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-          }
-          if (nav && nav.classList.contains('show')) {
-            nav.classList.remove('show');
-            menuToggle.checked = false;
-          }
-        });
-      });
-
-      document.querySelectorAll('a[href*="#"]').forEach(anchor => {
-        anchor.addEventListener('click', (e) => {
-          const href = anchor.getAttribute('href');
-          const [path, hash] = href.split('#');
-          const isHome = path === '/' || path === '' || path === '/index.html';
-          if (isHome && hash && (window.location.pathname === '/' || window.location.pathname === '/index.html')) {
-            e.preventDefault();
-            const target = document.querySelector(`#${hash}`);
-            if (target) {
-              target.scrollIntoView({ behavior: 'smooth' });
-              history.pushState(null, null, `/#${hash}`);
-            }
-          } else {
-            window.location.href = href;
-          }
-          if (nav && nav.classList.contains('show')) {
-            nav.classList.remove('show');
-            menuToggle.checked = false;
-          }
-        });
-      });
-    // Search functionality
+      // Search functionality
       const searchInput = document.querySelector('.search-bar input');
       const searchButton = document.querySelector('.search-bar button');
-      if (searchInput && searchButton) {
-        const tools = [
-          { name: 'Image To JPG Converter', url: '/image-to-jpg-converter.html' },
-          { name: 'Image To PNG Converter', url: '/image-to-png-converter.html' },
-          { name: 'Image To SVG', url: '/image-to-svg-converter.html' },
-          { name: 'Image To WEBP Converter', url: '/image-to-webp-converter.html' },
-          { name: 'Image To TIFF Converter', url: '/image-to-tiff-converter.html' },
-          { name: 'Image To HEIC Converter', url: '/image-to-heic-converter.html' },
-          { name: 'Image To PDF Converter', url: '/image-to-pdf-converter.html' },
-          { name: 'Image To BMP Converter', url: '/image-to-bmp-converter.html' },
-          { name: 'Image To ICO Converter', url: '/image-to-ico-converter.html' },
-          { name: 'Image To AVIF Converter', url: '/image-to-avif-converter.html' },
-          { name: 'Image To EPS Converter', url: '/image-to-eps-converter.html' },
-          { name: 'Image To PSD Converter', url: '/image-to-psd-converter.html' },
-          { name: 'Image To Base64 Converter', url: '/image-to-base64-converter.html' },
-          { name: 'Image To DXF Converter', url: '/image-to-dxf-converter.html' },
-          { name: 'Image To EXR Converter', url: '/image-to-exr-converter.html' },
-          { name: 'PDF To Image Converter', url: '/pdf-to-image-converter.html' },
-          { name: 'Image Resizer Tool', url: '/image-resizer-tool.html' },
-          { name: 'Image Compressor Tool', url: '/image-resizer-tool.html' },
-          { name: 'PSD To Image Converter', url: '/pdf-to-image-converter.html' },
-          { name: 'EPS To Image Converter', url: '/eps-to-image-converter.html' },
-          { name: 'Word Counter', url: '/word-counter.html' },
-          { name: 'Case Converter', url: '/case-converter.html' },
-          { name: 'Text To ASCII', url: '/text-to-ascii-converter.html' },
-          { name: 'Lorem Ipsum Generator', url: '/lorem-ipsum-genrator.html' },
-          { name: 'Character Counter', url: '/character-counter.html' },
-          { name: 'Sort Text', url: '/sort-text.html' },
-          { name: 'Find And Replace', url: '/find-and-replace-text.html' },
-          { name: 'Reverse List', url: '/reverse-list.html' },
-          { name: 'Difference Checker', url: '/difference-checker.html' },
-          { name: 'Add Prefix/Suffix', url: '/add-prefix-suffix.html' },
-          { name: 'Add Line Breaks', url: '/add-line-breaks.html' },
-          { name: 'Remove Line Breaks', url: '/remove-line-breaks.html' },
-          { name: 'Concatenate Text', url: '/concatenate-text.html' },
-          { name: 'Split Text', url: '/split-text.html' },
-          { name: 'Extract Column', url: '/extract-column.html' },
-          { name: 'Swap Column', url: '/swap-column.html' },
-          { name: 'Reverse Words', url: '/reverse-words.html' },
-          { name: 'Reverse Letters', url: '/reverse-letters.html' },
-          { name: 'Remove Extra Spaces', url: '/remove-extra-spaces.html' },
-          { name: 'Remove Duplicate Lines', url: '/remove-duplicate-lines.html' },
-          { name: 'Remove Empty Lines', url: '/remove-empty-lines.html' },
-          { name: 'Remove Letter Accents', url: '/remove-letter-accents.html' },
-          { name: 'Remove Unwanted Characters', url: '/remove-unwanted-characters.html' },
-          { name: 'Remove Lines Containing/Not Containing', url: '/remove-lines-containing.html' },
-          { name: 'Remove Emojis', url: '/remove-emojis.html' },
-          { name: 'Strip HTML Tags', url: '/strip-html-tags.html' },
-          { name: 'Add Line Numbers', url: '/add-line-numbers.html' },
-          { name: 'Replace Smart/Straight Quotes', url: '/replace-quotes.html' },
-          { name: 'Tabs to Spaces Converterter', url: '/tabs-to-spaces.html' },
-          { name: 'Spaces to Tabs Converterter', url: '/spaces-to-tabs.html' },
-          { name: 'Pad Text', url: '/pad-text.html' },
-          { name: 'Word Wrap', url: '/word-wrap.html' },
-          { name: 'Justify Text', url: '/justify-text.html' },
-          { name: 'Center Text', url: '/center-text.html' },
-          { name: 'Upside Down Text', url: '/upside-down-text.html' },
-          { name: 'Bold Text Generator', url: '/bold-text-generator.html' },
-          { name: 'Italic Text Generator', url: '/italic-text-generator.html' },
-          { name: 'Old English Text Generator', url: '/old-english-text-generator.html' },
-          { name: 'Cursive Text Generator', url: '/cursive-text-generator.html' },
-          { name: 'Normalize Unicode Text', url: '/normalize-unicode-text.html' },
-          { name: 'HTML Encode Decode', url: '/html-encode-decode.html' },
-          { name: 'URL Encode Decode', url: '/url-encode-decode.html' },
-          { name: 'HTML Escape Unescape', url: '/html-escape-unescape.html' },
-          { name: 'Unique Username Generator', url: '/unique-username-generator.html' },
-          { name: 'Strong Password Generator', url: '/strong-password-generator.html' },
-          { name: 'Pronounceable Password Generator', url: '/pronounceable-password-generator.html' },
-          { name: 'Random String Generator', url: '/random-string-generator.html' },
-          { name: 'Random Word Generator', url: '/random-word-generator.html' },
-          { name: 'Filler Text', url: '/filler-text-generator.html' },
-          { name: 'Random Number Generator', url: '/random-number-generator.html' },
-          { name: 'Random Email Generator', url: '/random-email-generator.html' },
-          { name: 'Email Extractor', url: '/email-extractor.html' },
-          { name: 'URL Extractor', url: '/url-extractor.html' },
-          { name: 'Online Notepad', url: '/online-notepad.html' },
-          { name: 'Keyword Research Tool', url: '/keyword-research-tool.html' },
-        { name: 'On-Page SEO Analyzer', url: '/on-page-seo-analyzer.html' },
-        { name: 'Technical SEO Auditor', url: '/technical-seo-auditor.html' },
-        { name: 'Backlink Analyzer', url: '/backlink-analyzer.html' },
-        { name: 'Content Optimization Tool', url: '/content-optimization-tool.html' },
-        { name: 'Rank Tracker', url: '/rank-tracker.html' },
-        { name: 'Competitor Analysis Tool', url: '/competitor-analysis-tool.html' },
-        { name: 'SEO Audit and Reporting Tool', url: '/seo-audit-reporting-tool.html' },
-        { name: 'Local SEO Tool', url: '/local-seo-tool.html' },
-        { name: 'AI-Powered SEO Assistant', url: '/ai-seo-assistant.html' },
-        { name: 'QR Code Generator', url: '/qr-code-generator.html' },
-          { name: 'Data Matrix Generator', url: '/data-matrix-generator.html' },
-          { name: 'Barcode Generator', url: '/barcode-generator.html' },
-          { name: 'PDF417 Generator', url: '/pdf417-generator.html' },
-          { name: 'Aztec Code Generator', url: '/aztec-code-generator.html' },
-          { name: 'MaxiCode Generator', url: '/maxicode-generator.html' },
-          { name: 'Code 39 Generator', url: '/code39-generator.html' },
-          { name: 'Code 128 Generator', url: '/code128-generator.html' },
-          { name: 'EAN-13 Generator', url: '/ean13-generator.html' },
+      const suggestionsContainer = document.querySelector('.search-suggestions');
+      const tools = [
+        { name: 'Word Counter', url: './word-counter.html' },
+        { name: 'Case Converter', url: './case-converter.html' },
+        { name: 'Text to ASCII', url: './text-to-ascii-converter.html' },
+        { name: 'Lorem Ipsum Generator', url: './lorem-ipsum-generator.html' },
+        { name: 'Character Counter', url: './character-counter.html' },
+        { name: 'Sort Text', url: './sort-text.html' },
+        { name: 'Find and Replace Text', url: './find-replace-text.html' },
+        { name: 'Reverse List', url: './reverse-list.html' },
+        { name: 'Difference Checker', url: './difference-checker.html' },
+        { name: 'Add Prefix/Suffix', url: './add-prefix-suffix.html' },
+        { name: 'Add Line Breaks', url: './add-line-breaks.html' },
+        { name: 'Remove Line Breaks', url: './remove-line-breaks.html' },
+        { name: 'Split Text', url: './split-text.html' },
+        { name: 'Extract Column', url: './extract-column.html' },
+        { name: 'Concatenate Text', url: './concatenate-text.html' },
+        { name: 'Swap Columns', url: './swap-columns.html' },
+        { name: 'Reverse Words', url: './reverse-words.html' },
+        { name: 'Reverse Letters', url: './reverse-letters.html' },
+        { name: 'Remove Extra Spaces', url: './remove-extra-spaces.html' },
+        { name: 'Remove Duplicate Lines', url: './remove-duplicate-lines.html' },
+        { name: 'Remove Empty Lines', url: './remove-empty-lines.html' },
+        { name: 'Remove Letter Accents', url: './remove-letter-accents.html' },
+        { name: 'Remove Unwanted Characters', url: './remove-unwanted-characters.html' },
+        { name: 'Remove Lines Containing/Not Containing', url: './remove-lines-containing.html' },
+        { name: 'Remove Emojis', url: './remove-emojis.html' },
+        { name: 'Strip HTML Tags', url: './strip-html-tags.html' },
+        { name: 'Add Line Numbers', url: './add-line-numbers.html' },
+        { name: 'Replace Smart/Straight Quotes', url: './replace-quotes.html' },
+        { name: 'Tabs to Spaces Converter', url: './tabs-to-spaces.html' },
+        { name: 'Spaces to Tabs Converter', url: './spaces-to-tabs.html' },
+        { name: 'Pad Text Converter', url: './pad-text.html' },
+        { name: 'Word Wrap Converter', url: './word-wrap.html' },
+        { name: 'Justify Text Converter', url: './justify-text.html' },
+        { name: 'Center Text Converter', url: './center-text.html' },
+        { name: 'Upside Down Text Converter', url: './upside-down-text.html' },
+        { name: 'Bold Text Generator', url: './bold-text.html' },
+        { name: 'Italic Text Generator', url: './italic-text.html' },
+        { name: 'Old English Text Generator', url: './old-english-text.html' },
+        { name: 'Cursive Text Generator', url: './cursive-text.html' },
+        { name: 'Normalize Unicode Text', url: './normalize-unicode-text.html' },
+        { name: 'HTML Encode Decode', url: './html-encode-decode.html' },
+        { name: 'URL Encode Decode', url: './url-encode-decode.html' },
+        { name: 'HTML Escape Unescape', url: './html-escape-unescape.html' },
+        { name: 'Unique Username Generator', url: './unique-username-generator.html' },
+      ];
 
-        ];
+      if (searchInput && searchButton && suggestionsContainer) {
+        const updateSuggestions = (query) => {
+          suggestionsContainer.innerHTML = '';
+          if (query.length < 2) {
+            suggestionsContainer.classList.remove('show');
+            return;
+          }
+          const matches = tools.filter(tool => tool.name.toLowerCase().includes(query.toLowerCase())).slice(0, 5);
+          if (matches.length) {
+            matches.forEach(tool => {
+              const a = document.createElement('a');
+              a.href = tool.url;
+              a.textContent = tool.name;
+              suggestionsContainer.appendChild(a);
+            });
+            suggestionsContainer.classList.add('show');
+          } else {
+            suggestionsContainer.classList.remove('show');
+          }
+        };
+
+        searchInput.addEventListener('input', () => updateSuggestions(searchInput.value));
         searchButton.addEventListener('click', () => {
           const query = searchInput.value.trim().toLowerCase();
           const matchedTool = tools.find(tool => tool.name.toLowerCase().includes(query));
           if (matchedTool) {
             window.location.href = matchedTool.url;
+            searchInput.value = '';
+            suggestionsContainer.classList.remove('show');
           } else {
             alert('No tools found matching your search.');
           }
         });
         searchInput.addEventListener('keypress', (e) => {
-          if (e.key === 'Enter') {
-            searchButton.click();
+          if (e.key === 'Enter') searchButton.click();
+        });
+        document.addEventListener('click', (e) => {
+          if (!searchInput.contains(e.target) && !suggestionsContainer.contains(e.target)) {
+            suggestionsContainer.classList.remove('show');
           }
         });
       }
-      // Tool functionality
-      const lengthInput = document.getElementById('length');
-      const themeSelect = document.getElementById('theme');
-      const lettersCheck = document.getElementById('letters');
-      const numbersCheck = document.getElementById('numbers');
-      const specialCheck = document.getElementById('special');
+
+      // Unique Username Generator functionality
+      const inputText = document.getElementById('inputText');
+      const countInput = document.getElementById('count');
+      const includeNumbers = document.getElementById('includeNumbers');
+      const includePrefix = document.getElementById('includePrefix');
+      const includeSuffix = document.getElementById('includeSuffix');
+      const includeRandomWord = document.getElementById('includeRandomWord');
+      const outputText = document.getElementById('outputText');
       const generateBtn = document.getElementById('generateBtn');
       const copyBtn = document.getElementById('copyBtn');
+      const downloadBtn = document.getElementById('downloadBtn');
       const resetBtn = document.getElementById('resetBtn');
-      const output = document.getElementById('output');
 
-      // Username generation logic
-      const themes = {
-        random: [],
-        gaming: ['Ninja', 'Gamer', 'Pro', 'Elite', 'Shadow', 'Blaze', 'Storm', 'Knight'],
-        tech: ['Code', 'Tech', 'Byte', 'Data', 'Geek', 'Nerd', 'Hack', 'Sys'],
-        fantasy: ['Dragon', 'Wizard', 'Elf', 'Mage', 'Quest', 'Lore', 'Myth', 'Rune']
-      };
-
-      function generateUsername() {
-        const length = parseInt(lengthInput.value);
-        if (length < 6 || length > 16) {
-          alert('Username length must be between 6 and 16 characters.');
-          console.warn('Invalid length:', length);
-          return '';
-        }
-
-        const useLetters = lettersCheck.checked;
-        const useNumbers = numbersCheck.checked;
-        const useSpecial = specialCheck.checked;
-        const theme = themeSelect.value;
-
-        if (!useLetters && !useNumbers && !useSpecial) {
-          alert('Please select at least one character type.');
-          console.warn('No character types selected');
-          return '';
-        }
-
-        let chars = '';
-        if (useLetters) chars += 'abcdefghijklmnopqrstuvwxyz';
-        if (useNumbers) chars += '0123456789';
-        if (useSpecial) chars += '_-';
-
-        let username = '';
-        if (theme !== 'random' && themes[theme].length > 0) {
-          const themeWord = themes[theme][Math.floor(Math.random() * themes[theme].length)];
-          username += themeWord;
-        }
-
-        while (username.length < length) {
-          username += chars.charAt(Math.floor(Math.random() * chars.length));
-        }
-        if (username.length > length) {
-          username = username.slice(0, length);
-        }
-
-        return username;
+      if (!inputText || !countInput || !includeNumbers || !includePrefix || !includeSuffix || !includeRandomWord || !outputText || !generateBtn || !copyBtn || !downloadBtn || !resetBtn) {
+        console.error('Missing elements for Unique Username Generator tool');
+        alert('Tool initialization failed. Please check console for errors.');
+        return;
       }
 
-      // Generate username
-      generateBtn.addEventListener('click', () => {
-        console.log('Generate button clicked');
-        const username = generateUsername();
-        if (username) {
-          output.textContent = username;
-          copyBtn.disabled = false;
-          if (window.gtag) {
-            gtag('event', 'generate_username', {
-              event_category: 'Tool Usage',
-              event_label: `Username Theme: ${themeSelect.value}`,
-              value: parseInt(lengthInput.value)
-            });
-          }
-        } else {
-          output.textContent = 'Click Generate to create a username';
-          copyBtn.disabled = true;
-        }
-      });
+      const prefixes = ['x_', 'cool_', 'super_', 'neo_', 'pro_', 'dark_', 'light_', 'epic_'];
+      const suffixes = ['_x', '_pro', '_z', '_star', '_123', '_cool', '_ninja', '_boss'];
+      const randomWords = ['Moon', 'Star', 'Sky', 'Wolf', 'Fire', 'Ice', 'Shadow', 'Storm', 'Blade', 'Ghost'];
 
-      // Copy username
-      copyBtn.addEventListener('click', () => {
-        console.log('Copy button clicked');
-        if (!output.textContent || output.textContent === 'Click Generate to create a username') {
-          alert('Nothing to copy. Please generate a username first.');
-          console.warn('No username to copy');
-          return;
-        }
-        const textarea = document.createElement('textarea');
-        textarea.value = output.textContent;
-        document.body.appendChild(textarea);
-        textarea.select();
-        try {
-          document.execCommand('copy');
-          alert('Username copied to clipboard!');
-          console.log('Username copied:', output.textContent);
-          if (window.gtag) {
-            gtag('event', 'copy_username', {
-              event_category: 'Tool Usage',
-              event_label: 'Username Copy',
-              value: 1
-            });
-          }
-        } catch (err) {
-          console.error('Copy failed:', err);
-          alert('Failed to copy username.');
-        }
-        document.body.removeChild(textarea);
-      });
+      const generateUsername = (base) => {
+        let username = base.trim().replace(/\s+/g, '') || 'User';
+        if (username.length > 20) username = username.substring(0, 20);
 
-      // Reset settings
-      resetBtn.addEventListener('click', () => {
-        console.log('Reset button clicked');
-        lengthInput.value = 8;
-        themeSelect.value = 'random';
-        lettersCheck.checked = true;
-        numbersCheck.checked = true;
-        specialCheck.checked = true;
-        output.textContent = 'Click Generate to create a username';
+        if (includePrefix.checked && Math.random() > 0.3) {
+          const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+          username = prefix + username;
+        }
+
+        if (includeSuffix.checked && Math.random() > 0.3) {
+          const suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
+          username += suffix;
+        }
+
+        if (includeRandomWord.checked && Math.random() > 0.4) {
+          const word = randomWords[Math.floor(Math.random() * randomWords.length)];
+          username = Math.random() > 0.5 ? word + username : username + word;
+        }
+
+        if (includeNumbers.checked) {
+          const num = Math.floor(Math.random() * 1000);
+          username += num;
+        }
+
+        return username.substring(0, 30);
+      };
+
+      const generateUsernames = (base, count) => {
+        if (!base.trim()) base = 'User';
+        const usernames = new Set();
+        while (usernames.size < count) {
+          usernames.add(generateUsername(base));
+        }
+        return Array.from(usernames).join('\n');
+      };
+
+      const updateResults = (generatedText) => {
+        outputText.value = generatedText;
+        copyBtn.disabled = !generatedText.trim();
+        downloadBtn.disabled = !generatedText.trim();
+        console.log('Output updated:', generatedText);
+      };
+
+      const resetForm = () => {
+        inputText.value = '';
+        countInput.value = '1';
+        includeNumbers.checked = true;
+        includePrefix.checked = false;
+        includeSuffix.checked = false;
+        includeRandomWord.checked = false;
+        outputText.value = '';
         copyBtn.disabled = true;
-        console.log('Settings and output reset');
+        downloadBtn.disabled = true;
+      };
+
+      const performGeneration = () => {
+        const base = inputText.value;
+        let count = parseInt(countInput.value, 10);
+        if (isNaN(count) || count < 1) count = 1;
+        if (count > 100) {
+          count = 100;
+          countInput.value = '100';
+          alert('Maximum 100 usernames can be generated at once.');
+        }
+        const generatedText = generateUsernames(base, count);
+        updateResults(generatedText);
+        gtag('event', 'username_generate', {
+          event_category: 'Tool Usage',
+          event_label: 'Unique Username Generate',
+          value: count
+        });
+      };
+
+      generateBtn.addEventListener('click', performGeneration);
+
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(outputText.value).then(() => {
+          alert('Usernames copied to clipboard!');
+          gtag('event', 'copy_results', {
+            event_category: 'Tool Usage',
+            event_label: 'Unique Username Copy',
+            value: 1
+          });
+        }).catch(error => {
+          console.error('Copy error:', error);
+          alert('Failed to copy usernames. Please try manually.');
+        });
+      });
+
+      downloadBtn.addEventListener('click', () => {
+        const blob = new Blob([outputText.value], { type: 'text/plain' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'usernames-masstools.txt';
+        link.click();
+        URL.revokeObjectURL(link.href);
+        gtag('event', 'download_results', {
+          event_category: 'Tool Usage',
+          event_label: 'Unique Username Download',
+          value: 1
+        });
+      });
+
+      resetBtn.addEventListener('click', resetForm);
+
+      inputText.addEventListener('input', () => {
+        if (inputText.value.trim()) generateBtn.click();
+      });
+      countInput.addEventListener('input', () => {
+        if (inputText.value.trim()) generateBtn.click();
+      });
+      includeNumbers.addEventListener('change', () => {
+        if (inputText.value.trim()) generateBtn.click();
+      });
+      includePrefix.addEventListener('change', () => {
+        if (inputText.value.trim()) generateBtn.click();
+      });
+      includeSuffix.addEventListener('change', () => {
+        if (inputText.value.trim()) generateBtn.click();
+      });
+      includeRandomWord.addEventListener('change', () => {
+        if (inputText.value.trim()) generateBtn.click();
       });
     });
   </script>
