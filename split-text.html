@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Split Text - Mass Tools</title>
-  <meta name="description" content="Split text into columns or lines using a delimiter with Mass Tools' free tool. Ideal for unmerging single-column text. Supports TXT, CSV, and XLSX uploads.">
-  <meta name="keywords" content="split text, text splitter, unmerge text, mass tools, free online tools">
+  <meta name="description" content="Split text into segments with Mass Tools' free tool. Use delimiters, character counts, or regex patterns. Supports txt, CSV, and XLSX uploads.">
+  <meta name="keywords" content="split text, text splitter, mass tools, free online tools">
   <meta name="robots" content="index, follow">
   <link rel="icon" type="image/png" href="./favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -20,38 +20,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <link rel="stylesheet" href="./styles.css">
-  <style>
-    .output-container {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      margin-bottom: 20px;
-      min-height: 100px;
-      border: 1px solid #e0e0e0;
-      padding: 10px;
-      background: #fff;
-    }
-    .output-area {
-      position: relative;
-    }
-    .output-area textarea {
-      width: 100%;
-      min-height: 100px;
-      resize: vertical;
-    }
-    .output-area label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: 500;
-    }
-    .copy-column-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      cursor: pointer;
-      color: #007bff;
-    }
-  </style>
 </head>
 <body>
   <header>
@@ -90,42 +58,39 @@
       <div class="container">
         <div class="tool-content">
           <h1>Split Text</h1>
-          <p>Split text into columns or lines using a delimiter with Mass Tools' free tool. Ideal for unmerging single-column text. Supports TXT, CSV, and XLSX uploads.</p>
+          <p>Split text into segments with Mass Tools' free tool. Use delimiters, character counts, or regex patterns. Supports TXT, CSV, and XLSX uploads.</p>
           
           <div class="input-area">
-            <label for="inputText">Input Text:</label>
-            <textarea id="inputText" placeholder="Paste your text here (e.g., Brown, Paul\nDavis, Mark)..." aria-label="Input text for splitting"></textarea>
-            <div class="upload-area">
-              <i class="fas fa-cloud-upload-alt"></i>
-              <p>Drag and drop TXT, CSV, or XLSX file</p>
-              <input type="file" id="fileInput" accept=".txt,.csv,.xlsx" aria-label="Upload text file">
-            </div>
+            <textarea id="inputText" placeholder="Paste your text here..." aria-label="Input text for splitting"></textarea>
+          </div>
+
+          <div class="upload-area" id="uploadArea">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <p>Drag and drop TXT, CSV, or XLSX file (optional)</p>
+            <input type="file" id="fileInput" accept=".txt,.csv,.xlsx" aria-label="Upload text file">
           </div>
 
           <div class="input-area">
-            <label for="delimiter">Delimiter:</label>
-            <input type="text" id="delimiter" placeholder="Enter delimiter (e.g., comma, space, ', ')..." aria-label="Delimiter for splitting">
             <label for="splitType">Split Type:</label>
             <select id="splitType" aria-label="Split type">
-              <option value="columns">Split into Columns</option>
-              <option value="lines">Split by New Line</option>
+              <option value="delimiter">Delimiter</option>
+              <option value="characters">Character Count</option>
+              <option value="regex">Regex Pattern</option>
             </select>
-            <label><input type="checkbox" id="trimResults" aria-label="Trim results" checked> Trim Results</label>
-            <label><input type="checkbox" id="skipEmpty" aria-label="Skip empty results" checked> Skip Empty Results</label>
-            <label><input type="checkbox" id="useRegex" aria-label="Use regex"> Use Regex</label>
+            <label for="splitValue">Value:</label>
+            <input type="text" id="splitValue" placeholder="Enter delimiter, number, or regex..." aria-label="Split value">
+            <label><input type="checkbox" id="caseSensitive" aria-label="Case sensitive" disabled> Case Sensitive (Regex)</label>
+            <label><input type="checkbox" id="trimSegments" aria-label="Trim segments" checked> Trim Segments</label>
           </div>
 
           <div class="input-area">
-            <label>Results:</label>
-            <div class="output-container" id="outputContainer">
-              <!-- Dynamically populated with output textareas -->
-            </div>
+            <textarea id="outputText" placeholder="Split text will appear here..." readonly aria-label="Output split text"></textarea>
           </div>
 
           <div class="action-buttons">
-            <button id="splitBtn">Split Text</button>
-            <button id="copyAllBtn" disabled>Copy All Results</button>
-            <button id="downloadAllBtn" disabled>Download All Results</button>
+            <button id="splitTextBtn">Split Text</button>
+            <button id="copyBtn" disabled>Copy Results</button>
+            <button id="downloadBtn" disabled>Download Results</button>
             <button id="resetBtn">Reset</button>
           </div>
           <p class="loading" id="loadingIndicator">Processing file...</p>
@@ -134,39 +99,32 @@
 
           <div class="tool-article">
             <h2>About the Split Text Tool</h2>
-            <p>Use this tool to split a text into two columns or more. You can also split text by new line. Please note that you must specify the delimiter whether that be a comma, space, or any valid character. Columns must be separated by the same delimiter and follow the same format or it will not properly extract and split the provided data. Undoing the concatenate function in Excel can be time-consuming. This tool can be handy when you're trying to unmerge a single-column text.</p>
+            <p>The Split Text tool by <a href="./about-us.html">Mass Tools</a> splits text into segments based on delimiters, character counts, or regex patterns. Paste text or upload files for instant splitting.</p>
             
             <h3>Why Use This Tool?</h3>
             <ul>
-              <li><strong>Split into Columns</strong>: Extracts each column and places them into individual cells, the opposite of the concatenate text tool.</li>
-              <li><strong>Split by New Line</strong>: Replaces the delimiter with a line feed (\n) to break text line by line.</li>
-              <li><strong>Data Processing</strong>: Unmerge single-column text from Excel or other sources.</li>
-              <li><strong>Automation</strong>: Streamline text parsing tasks.</li>
+              <li><strong>Data Parsing</strong>: Break text into manageable parts for analysis.</li>
+              <li><strong>Content Formatting</strong>: Split lists, sentences, or data fields.</li>
+              <li><strong>Code Processing</strong>: Separate code or log entries.</li>
+              <li><strong>Text Preparation</strong>: Organize text for further processing.</li>
             </ul>
 
             <h3>How to Use</h3>
             <ul>
               <li>Paste text or upload a TXT, CSV, or XLSX file.</li>
-              <li>Enter a delimiter (e.g., ",", ", ", " ") or regex pattern.</li>
-              <li>Choose split type: Split into Columns or Split by New Line.</li>
-              <li>Enable options: Trim Results, Skip Empty Results, Use Regex.</li>
-              <li>Click "Split Text" to view results in the output box.</li>
-              <li>Copy individual columns or all results, or download as files.</li>
+              <li>Select split type: delimiter, character count, or regex.</li>
+              <li>Enter the delimiter (e.g., ","), number (e.g., "50"), or regex (e.g., "\s+").</li>
+              <li>Choose options: case sensitive (regex) or trim segments.</li>
+              <li>Click "Split Text" to view results.</li>
+              <li>Copy or download the split text.</li>
               <li>Reset to clear inputs and results.</li>
-            </ul>
-
-            <h3>Related Tools</h3>
-            <ul>
-              <li><a href="./concatenate-text.html">Concatenate Text</a> - Combine/merge two documents by concatenating texts line by line.</li>
-              <li><a href="./extract-column.html">Extract Column</a> - Get a specific column from a delimited text.</li>
-              <li><a href="./swap-columns.html">Swap Columns</a> - Swap two columns from a delimited text.</li>
             </ul>
 
             <h3>Tips</h3>
             <ul>
               <li>Use files under 10MB for best performance.</li>
-              <li>Ensure consistent delimiter usage across all lines for accurate splitting.</li>
-              <li>For regex, use valid patterns (e.g., "\s+" for multiple spaces).</li>
+              <li>For regex, ensure valid patterns (e.g., "\s+" for spaces).</li>
+              <li>Combine with <a href="./add-prefix-suffix.html">Add Prefix/Suffix</a> for advanced formatting.</li>
               <li>Contact us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a> for support.</li>
             </ul>
           </div>
@@ -307,10 +265,7 @@
         { name: 'Add Prefix/Suffix', url: './add-prefix-suffix.html' },
         { name: 'Add Line Breaks', url: './add-line-breaks.html' },
         { name: 'Remove Line Breaks', url: './remove-line-breaks.html' },
-        { name: 'Concatenate Text', url: './concatenate-text.html' },
         { name: 'Split Text', url: './split-text.html' },
-        { name: 'Extract Column', url: './extract-column.html' },
-        { name: 'Swap Columns', url: './swap-columns.html' },
       ];
 
       if (searchInput && searchButton && suggestionsContainer) {
@@ -358,169 +313,97 @@
 
       // Split Text functionality
       const inputText = document.getElementById('inputText');
+      const outputText = document.getElementById('outputText');
+      const uploadArea = document.getElementById('uploadArea');
       const fileInput = document.getElementById('fileInput');
-      const uploadArea = document.querySelector('.upload-area');
-      const delimiter = document.getElementById('delimiter');
       const splitType = document.getElementById('splitType');
-      const trimResults = document.getElementById('trimResults');
-      const skipEmpty = document.getElementById('skipEmpty');
-      const useRegex = document.getElementById('useRegex');
-      const outputContainer = document.getElementById('outputContainer');
-      const splitBtn = document.getElementById('splitBtn');
-      const copyAllBtn = document.getElementById('copyAllBtn');
-      const downloadAllBtn = document.getElementById('downloadAllBtn');
+      const splitValue = document.getElementById('splitValue');
+      const caseSensitive = document.getElementById('caseSensitive');
+      const trimSegments = document.getElementById('trimSegments');
+      const splitTextBtn = document.getElementById('splitTextBtn');
+      const copyBtn = document.getElementById('copyBtn');
+      const downloadBtn = document.getElementById('downloadBtn');
       const resetBtn = document.getElementById('resetBtn');
       const loadingIndicator = document.getElementById('loadingIndicator');
 
-      if (!inputText || !fileInput || !uploadArea || !delimiter || !splitType || !trimResults || !skipEmpty || !useRegex || !outputContainer || !splitBtn || !copyAllBtn || !downloadAllBtn || !resetBtn || !loadingIndicator) {
+      if (!inputText || !outputText || !uploadArea || !fileInput || !splitType || !splitValue || !caseSensitive || !trimSegments || !splitTextBtn || !copyBtn || !downloadBtn || !resetBtn || !loadingIndicator) {
         console.error('Missing elements for Split Text tool');
         alert('Tool initialization failed. Please check console for errors.');
         return;
       }
 
-      const splitText = (text, delim, type, doTrim, skipEmptyResults, isRegex) => {
-        if (!text.trim() || !delim) return [];
+      const splitText = (text, type, value, isCaseSensitive, doTrim) => {
+        if (!text.trim() || !value.trim()) return '';
+        let segments;
         try {
-          let results;
-          if (type === 'lines') {
-            if (isRegex) {
-              const regex = new RegExp(delim, 'g');
-              results = text.split(regex);
-            } else {
-              const escapedDelim = delim.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-              results = text.split(escapedDelim);
+          if (type === 'delimiter') {
+            const escapedDelimiter = value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const regex = new RegExp(escapedDelimiter, 'g');
+            segments = text.split(regex);
+          } else if (type === 'characters') {
+            const count = parseInt(value);
+            if (isNaN(count) || count <= 0) {
+              alert('Please enter a valid number for character count.');
+              return text;
             }
-            if (doTrim) {
-              results = results.map(item => item.trim());
+            segments = [];
+            for (let i = 0; i < text.length; i += count) {
+              segments.push(text.slice(i, i + count));
             }
-            if (skipEmptyResults) {
-              results = results.filter(item => item.trim());
-            }
-            return [results];
-          } else {
-            const lines = text.split('\n');
-            if (isRegex) {
-              const regex = new RegExp(delim, 'g');
-              results = lines.map(line => line.split(regex));
-            } else {
-              const escapedDelim = delim.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-              results = lines.map(line => line.split(escapedDelim));
-            }
-            
-            const columnCounts = results.map(row => row.length);
-            const maxColumns = Math.max(...columnCounts);
-            if (new Set(columnCounts).size > 1) {
-              console.warn('Inconsistent column counts detected:', columnCounts);
-            }
-
-            if (doTrim) {
-              results = results.map(row => row.map(item => item.trim()));
-            }
-            if (skipEmptyResults) {
-              results = results.map(row => row.filter(item => item.trim())).filter(row => row.length);
-            }
-
-            return results[0].map((_, colIndex) => results.map(row => row[colIndex] || ''));
+          } else if (type === 'regex') {
+            const regex = new RegExp(value, isCaseSensitive ? 'g' : 'gi');
+            segments = text.split(regex);
           }
+          if (doTrim) {
+            segments = segments.map(segment => segment.trim());
+          }
+          segments = segments.filter(segment => segment !== '');
+          return segments.join('\n');
         } catch (e) {
           console.error('Regex error:', e);
-          alert('Invalid regex pattern. Please check your delimiter.');
-          return [];
+          alert('Invalid regex pattern. Please check your input.');
+          return text;
         }
       };
 
-      const updateResults = (results, type) => {
-        console.log('Updating output container with results:', results);
-        outputContainer.innerHTML = '';
-        if (!results.length) {
-          copyAllBtn.disabled = true;
-          downloadAllBtn.disabled = true;
-          outputContainer.innerHTML = '<p>No results to display.</p>';
-          console.log('No results, cleared output container');
-          return;
-        }
-
-        if (type === 'lines') {
-          const outputArea = document.createElement('div');
-          outputArea.className = 'output-area';
-          outputArea.innerHTML = `
-            <label>Result</label>
-            <textarea readonly aria-label="Split result">${results[0].join('\n')}</textarea>
-            <i class="fas fa-copy copy-column-btn" title="Copy this result"></i>
-          `;
-          outputContainer.appendChild(outputArea);
-          console.log('Appended lines result to outputContainer');
-        } else {
-          results.forEach((column, index) => {
-            const outputArea = document.createElement('div');
-            outputArea.className = 'output-area';
-            outputArea.innerHTML = `
-              <label>Column ${index + 1}</label>
-              <textarea readonly aria-label="Column ${index + 1} result">${column.join('\n')}</textarea>
-              <i class="fas fa-copy copy-column-btn" title="Copy this column"></i>
-            `;
-            outputContainer.appendChild(outputArea);
-            console.log(`Appended column ${index + 1} to outputContainer`);
-          });
-        }
-
-        copyAllBtn.disabled = false;
-        downloadAllBtn.disabled = false;
-
-        document.querySelectorAll('.copy-column-btn').forEach(btn => {
-          btn.addEventListener('click', () => {
-            const textarea = btn.parentElement.querySelector('textarea');
-            navigator.clipboard.writeText(textarea.value).then(() => {
-              alert('Column copied to clipboard!');
-              gtag('event', 'copy_column', {
-                event_category: 'Tool Usage',
-                event_label: 'Split Text Column Copy',
-                value: 1
-              });
-            }).catch(error => {
-              console.error('Copy error:', error);
-              alert('Failed to copy column. Please try manually.');
-            });
-          });
-        });
-
-        console.log('Output container updated successfully');
+      const updateResults = (modifiedText) => {
+        outputText.value = modifiedText;
+        copyBtn.disabled = !modifiedText.trim();
+        downloadBtn.disabled = !modifiedText.trim();
+        console.log('Output updated:', modifiedText);
       };
 
       const resetForm = () => {
         inputText.value = '';
+        outputText.value = '';
         fileInput.value = '';
-        delimiter.value = '';
-        splitType.value = 'columns';
-        trimResults.checked = true;
-        skipEmpty.checked = true;
-        useRegex.checked = false;
-        outputContainer.innerHTML = '';
-        copyAllBtn.disabled = true;
-        downloadAllBtn.disabled = true;
+        splitType.value = 'delimiter';
+        splitValue.value = '';
+        caseSensitive.checked = false;
+        trimSegments.checked = true;
+        caseSensitive.disabled = true;
+        updateResults('');
         loadingIndicator.classList.remove('visible');
-        console.log('Form reset');
       };
 
-      const performSplit = () => {
+      const performSplitText = () => {
         const text = inputText.value;
-        if (text.trim() && delimiter.value.trim()) {
-          const results = splitText(
+        if (text.trim() && splitValue.value.trim()) {
+          const modifiedText = splitText(
             text,
-            delimiter.value,
             splitType.value,
-            trimResults.checked,
-            skipEmpty.checked,
-            useRegex.checked
+            splitValue.value,
+            caseSensitive.checked,
+            trimSegments.checked
           );
-          updateResults(results, splitType.value);
+          updateResults(modifiedText);
           gtag('event', 'split_text', {
             event_category: 'Tool Usage',
             event_label: 'Split Text',
             value: text.length
           });
         } else {
-          updateResults([], splitType.value);
+          updateResults('');
         }
       };
 
@@ -554,8 +437,8 @@
               throw new Error('Unsupported file format or library not loaded');
             }
             inputText.value = text;
-            performSplit();
-            gtag('event', 'split_file', {
+            performSplitText();
+            gtag('event', 'split_text_file', {
               event_category: 'Tool Usage',
               event_label: 'Split Text File',
               value: text.length
@@ -579,6 +462,11 @@
         }
       };
 
+      splitType.addEventListener('change', () => {
+        caseSensitive.disabled = splitType.value !== 'regex';
+        performSplitText();
+      });
+
       uploadArea.addEventListener('dragover', (e) => {
         e.preventDefault();
         uploadArea.classList.add('dragover');
@@ -594,17 +482,14 @@
       uploadArea.addEventListener('click', () => fileInput.click());
       fileInput.addEventListener('change', () => handleFile(fileInput.files[0]));
 
-      splitBtn.addEventListener('click', performSplit);
+      splitTextBtn.addEventListener('click', performSplitText);
 
-      copyAllBtn.addEventListener('click', () => {
-        const allText = Array.from(outputContainer.querySelectorAll('textarea'))
-          .map(textarea => textarea.value)
-          .join('\n\n');
-        navigator.clipboard.writeText(allText).then(() => {
-          alert('All results copied to clipboard!');
-          gtag('event', 'copy_all_results', {
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(outputText.value).then(() => {
+          alert('Results copied to clipboard!');
+          gtag('event', 'copy_results', {
             event_category: 'Tool Usage',
-            event_label: 'Split Text Copy All',
+            event_label: 'Split Text Copy',
             value: 1
           });
         }).catch(error => {
@@ -613,30 +498,26 @@
         });
       });
 
-      downloadAllBtn.addEventListener('click', () => {
-        outputContainer.querySelectorAll('textarea').forEach((textarea, index) => {
-          const blob = new Blob([textarea.value], { type: 'text/plain' });
-          const link = document.createElement('a');
-          link.href = URL.createObjectURL(blob);
-          link.download = `split-column-${index + 1}-masstools.txt`;
-          link.click();
-          URL.revokeObjectURL(link.href);
-        });
-        gtag('event', 'download_all_results', {
+      downloadBtn.addEventListener('click', () => {
+        const blob = new Blob([outputText.value], { type: 'text/plain' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'split-text-masstools.txt';
+        link.click();
+        URL.revokeObjectURL(link.href);
+        gtag('event', 'download_results', {
           event_category: 'Tool Usage',
-          event_label: 'Split Text Download All',
-          value: outputContainer.querySelectorAll('textarea').length
+          event_label: 'Split Text Download',
+          value: 1
         });
       });
 
       resetBtn.addEventListener('click', resetForm);
 
-      inputText.addEventListener('input', performSplit);
-      delimiter.addEventListener('input', performSplit);
-      splitType.addEventListener('change', performSplit);
-      trimResults.addEventListener('change', performSplit);
-      skipEmpty.addEventListener('change', performSplit);
-      useRegex.addEventListener('change', performSplit);
+      inputText.addEventListener('input', performSplitText);
+      splitValue.addEventListener('input', performSplitText);
+      caseSensitive.addEventListener('change', performSplitText);
+      trimSegments.addEventListener('change', performSplitText);
     });
   </script>
 </body>
