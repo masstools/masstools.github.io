@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Random Word Generator - Mass Tools</title>
-  <meta name="description" content="Generate random, pronounceable words with Mass Tools' free tool. Customize word length, add numbers or special characters, and generate multiple words at once.">
+  <meta name="description" content="Generate random, meaningful English words with Mass Tools' free tool. Customize word length range, add numbers or special characters, and generate multiple words at once.">
   <meta name="keywords" content="random word, word generator, mass tools, free online tools">
   <meta name="robots" content="index, follow">
   <link rel="icon" type="image/png" href="./favicon.png">
@@ -56,11 +56,16 @@
       <div class="container">
         <div class="tool-content">
           <h1>Random Word Generator</h1>
-          <p>Generate random, pronounceable words using Mass Tools' free tool. Customize word length, add numbers or special characters, and generate multiple words at once.</p>
+          <p>Generate random, meaningful English words using Mass Tools' free tool. Customize word length range, add numbers or special characters, and generate multiple words at once.</p>
 
           <div class="input-area">
-            <label for="length">Word Length:</label>
-            <input type="number" id="length" min="4" max="20" value="8" aria-label="Word length">
+            <label for="minLength">Minimum Word Length:</label>
+            <input type="number" id="minLength" min="3" max="20" value="4" aria-label="Minimum word length">
+          </div>
+
+          <div class="input-area">
+            <label for="maxLength">Maximum Word Length:</label>
+            <input type="number" id="maxLength" min="3" max="20" value="8" aria-label="Maximum word length">
           </div>
 
           <div class="input-area">
@@ -91,11 +96,11 @@
 
           <div class="tool-article">
             <h2>About the Random Word Generator Tool</h2>
-            <p>The Random Word Generator tool by <a href="./about-us.html">Mass Tools</a> creates pronounceable, random words for creative writing, testing, or unique identifiers. Customize length (4–20 characters), add numbers or special characters, and generate up to 100 words at once.</p>
+            <p>The Random Word Generator tool by <a href="./about-us.html">Mass Tools</a> creates meaningful English words for creative writing, testing, or unique identifiers. Customize the word length range (3–20 characters), add numbers or special characters, and generate up to 100 words at once.</p>
 
             <h3>Why Use This Tool?</h3>
             <ul>
-              <li><strong>Pronounceability</strong>: Generates words that are easier to read and pronounce due to syllable-like patterns.</li>
+              <li><strong>Meaningful Words</strong>: Generates real English words that are recognizable and meaningful.</li>
               <li><strong>Flexibility</strong>: Customize with numbers or special characters for varied use cases.</li>
               <li><strong>Bulk Generation</strong>: Create multiple words in one click, up to 100.</li>
               <li><strong>Ease of Use</strong>: Simple interface with copy and download options.</li>
@@ -103,20 +108,20 @@
 
             <h3>How to Use</h3>
             <ul>
-              <li>Specify the word length (4–20 characters).</li>
+              <li>Specify the minimum and maximum word length (3–20 characters).</li>
               <li>Choose the number of words to generate (1–100).</li>
               <li>Optionally include numbers or special characters for added complexity.</li>
-              <li>Click "Generate Words" to view results (e.g., "kwevadon", "salu9era").</li>
+              <li>Click "Generate Words" to view results (e.g., "apple", "house7", "river!").</li>
               <li>Copy or download the generated words.</li>
               <li>Reset to restore default settings.</li>
             </ul>
 
             <h3>Tips</h3>
             <ul>
-              <li>Use 8–12 characters for balanced pronounceability.</li>
-              <li>Add numbers or special characters for unique identifiers.</li>
+              <li>Use a narrow length range (e.g., 4–6) for consistent word sizes.</li>
+              <li>Add numbers or special characters for unique identifiers or passwords.</li>
               <li>Generate multiple words to choose the most suitable ones.</li>
-              <li>Combine with <a href="./random-string-generator.html">Random String Generator</a> for non-pronounceable random text.</li>
+              <li>Combine with <a href="./random-string-generator.html">Random String Generator</a> for non-meaningful random text.</li>
               <li>Contact us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a> for support.</li>
             </ul>
 
@@ -164,35 +169,35 @@
   </main>
 
   <footer>
-  <div class="container">
-    <div class="footer-container">
-      <div class="footer-column">
-        <a href="./index.html" class="footer-column-logo">
-          <i class="fas fa-tools footer-column-logo-icon"></i>
-          <span>Mass Tools</span>
-        </a>
-        <p>Empowering you with free, high-quality text tools.</p>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-column">
+          <a href="./index.html" class="footer-column-logo">
+            <i class="fas fa-tools footer-column-logo-icon"></i>
+            <span>Mass Tools</span>
+          </a>
+          <p>Empowering you with free, high-quality text tools.</p>
+        </div>
+        <div class="footer-column">
+          <ul>
+            <li><a href="./index.html#text-tools">Text Tools</a></li>
+            <li><a href="./about-us.html">About Us</a></li>
+            <li><a href="./contact-us.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <ul>
+            <li><a href="./privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="./terms-and-conditions.html">Terms</a></li>
+            <li><a href="./disclaimer.html">Disclaimer</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="footer-column">
-        <ul>
-          <li><a href="./index.html#text-tools">Text Tools</a></li>
-          <li><a href="./about-us.html">About Us</a></li>
-          <li><a href="./contact-us.html">Contact Us</a></li>
-        </ul>
-      </div>
-      <div class="footer-column">
-        <ul>
-          <li><a href="./privacy-policy.html">Privacy Policy</a></li>
-          <li><a href="./terms-and-conditions.html">Terms</a></li>
-          <li><a href="./disclaimer.html">Disclaimer</a></li>
-        </ul>
+      <div class="copyright">
+        <p>© 2025 Mass Tools. All rights reserved.</p>
       </div>
     </div>
-    <div class="copyright">
-      <p>© 2025 Mass Tools. All rights reserved.</p>
-    </div>
-  </div>
-</footer>
+  </footer>
 
   <button class="scroll-to-top" aria-label="Scroll to top">
     <i class="fas fa-arrow-up"></i>
@@ -345,8 +350,9 @@
         });
       }
 
-      // Random Word Generator functionality
-      const lengthInput = document.getElementById('length');
+      // Random Word Generator functionality (for meaningful words)
+      const minLengthInput = document.getElementById('minLength');
+      const maxLengthInput = document.getElementById('maxLength');
       const countInput = document.getElementById('count');
       const includeNumbers = document.getElementById('includeNumbers');
       const includeSpecial = document.getElementById('includeSpecial');
@@ -356,63 +362,59 @@
       const downloadBtn = document.getElementById('downloadBtn');
       const resetBtn = document.getElementById('resetBtn');
 
-      if (!lengthInput || !countInput || !includeNumbers || !includeSpecial || !outputText || !generateBtn || !copyBtn || !downloadBtn || !resetBtn) {
+      if (!minLengthInput || !maxLengthInput || !countInput || !includeNumbers || !includeSpecial || !outputText || !generateBtn || !copyBtn || !downloadBtn || !resetBtn) {
         console.error('Missing elements for Random Word Generator tool');
         alert('Tool initialization failed. Please check console for errors.');
         return;
       }
 
-      const consonants = 'bcdfghjklmnpqrstvwxyz';
-      const vowels = 'aeiou';
+      // Predefined list of meaningful English words
+      const wordList = [
+        // 3 letters
+        'add', 'air', 'arm', 'art', 'bad', 'bag', 'bar', 'bed', 'big', 'bit', 'box', 'boy', 'car', 'cat', 'cup', 'cut', 'day', 'dog', 'ear', 'eat', 'end', 'eye', 'fan', 'far', 'fat', 'fit', 'fly', 'fun', 'get', 'gun', 'hat', 'hit', 'hot', 'job', 'key', 'leg', 'let', 'man', 'map', 'net', 'new', 'old', 'pen', 'pet', 'red', 'run', 'set', 'sit', 'sun', 'ten', 'top', 'try', 'use', 'war', 'way', 'win',
+        // 4 letters
+        'able', 'area', 'back', 'ball', 'bank', 'base', 'best', 'bill', 'blue', 'body', 'book', 'cake', 'call', 'card', 'care', 'case', 'cash', 'city', 'club', 'cold', 'cook', 'cool', 'dark', 'data', 'date', 'deal', 'door', 'draw', 'drop', 'easy', 'face', 'fact', 'fall', 'fast', 'feel', 'file', 'fire', 'fish', 'food', 'form', 'free', 'game', 'girl', 'goal', 'gold', 'good', 'hand', 'head', 'home', 'hope', 'idea', 'life', 'line', 'list', 'love', 'main', 'mark', 'mind', 'move', 'name', 'news', 'note', 'open', 'page', 'park', 'part', 'plan', 'play', 'post', 'rest', 'road', 'room', 'rule', 'safe', 'sale', 'shop', 'show', 'side', 'site', 'star', 'step', 'team', 'test', 'time', 'tree', 'trip', 'turn', 'type', 'view', 'wall', 'week', 'wind', 'word', 'work', 'year',
+        // 5 letters
+        'about', 'above', 'after', 'again', 'agree', 'allow', 'alone', 'along', 'apple', 'apply', 'black', 'block', 'board', 'break', 'bring', 'build', 'chair', 'check', 'child', 'class', 'clean', 'clear', 'close', 'cloud', 'color', 'cover', 'daily', 'dance', 'dream', 'drink', 'drive', 'early', 'earth', 'enjoy', 'event', 'field', 'first', 'floor', 'focus', 'force', 'fresh', 'front', 'fruit', 'glass', 'great', 'green', 'group', 'guide', 'happy', 'heart', 'house', 'image', 'issue', 'large', 'learn', 'level', 'light', 'local', 'major', 'model', 'money', 'month', 'music', 'night', 'offer', 'order', 'paper', 'party', 'phone', 'photo', 'piece', 'place', 'plant', 'point', 'power', 'price', 'quick', 'radio', 'range', 'ready', 'right', 'river', 'round', 'score', 'share', 'short', 'skill', 'sleep', 'small', 'smile', 'sound', 'space', 'start', 'state', 'store', 'study', 'style', 'table', 'teach', 'thing', 'think', 'today', 'total', 'touch', 'train', 'water', 'white', 'woman', 'world', 'write',
+        // 6 letters
+        'access', 'action', 'active', 'animal', 'answer', 'attack', 'beauty', 'better', 'beyond', 'bridge', 'bright', 'camera', 'center', 'chance', 'change', 'choice', 'circle', 'coffee', 'common', 'course', 'create', 'design', 'detail', 'direct', 'effect', 'energy', 'family', 'father', 'figure', 'follow', 'forest', 'friend', 'future', 'garden', 'health', 'impact', 'leader', 'letter', 'market', 'member', 'method', 'minute', 'modern', 'moment', 'mother', 'nature', 'number', 'office', 'online', 'parent', 'people', 'period', 'person', 'player', 'policy', 'public', 'record', 'report', 'result', 'school', 'search', 'season', 'second', 'simple', 'social', 'street', 'strong', 'summer', 'system', 'travel', 'update', 'window',
+        // 7 letters
+        'ability', 'account', 'address', 'article', 'balance', 'brother', 'capital', 'central', 'century', 'company', 'control', 'country', 'current', 'display', 'economy', 'example', 'feature', 'general', 'history', 'improve', 'include', 'machine', 'manager', 'meeting', 'morning', 'network', 'picture', 'popular', 'present', 'problem', 'product', 'program', 'project', 'purpose', 'quality', 'science', 'service', 'student', 'subject', 'success', 'support', 'teacher', 'thought', 'version',
+        // 8+ letters
+        'activity', 'analysis', 'approach', 'building', 'business', 'category', 'computer', 'customer', 'decision', 'delivery', 'director', 'distance', 'document', 'education', 'employee', 'evidence', 'exercise', 'favorite', 'feedback', 'function', 'industry', 'interest', 'internet', 'language', 'learning', 'material', 'mountain', 'movement', 'national', 'personal', 'position', 'practice', 'research', 'resource', 'solution', 'standard', 'strategy', 'strength', 'training', 'universe', 'vacation'
+      ];
+
       const numberChars = '0123456789';
       const specialChars = '!@#$%^&*';
 
-      const generateRandomWord = (length, useNumbers, useSpecial) => {
-        let word = '';
-        const useVowel = Math.random() > 0.5; // Start with vowel or consonant
-        for (let i = 0; i < length; i++) {
-          if (i % 2 === (useVowel ? 0 : 1)) {
-            word += vowels[Math.floor(Math.random() * vowels.length)];
-          } else {
-            word += consonants[Math.floor(Math.random() * consonants.length)];
-          }
+      const generateRandomWord = (minLength, maxLength, useNumbers, useSpecial) => {
+        // Filter words by length range
+        const filteredWords = wordList.filter(word => word.length >= minLength && word.length <= maxLength);
+        if (filteredWords.length === 0) {
+          return '';
         }
 
-        // Trim or pad to exact length
-        word = word.slice(0, length);
-        if (word.length < length) {
-          while (word.length < length) {
-            word += vowels[Math.floor(Math.random() * vowels.length)];
-          }
-        }
+        // Select a random word
+        let word = filteredWords[Math.floor(Math.random() * filteredWords.length)];
 
         // Add numbers or special characters if selected
         if (useNumbers && Math.random() > 0.3) {
           const numCount = 1; // Add 1 number
-          const pos = Math.floor(Math.random() * word.length);
-          word = word.slice(0, pos) + numberChars[Math.floor(Math.random() * numberChars.length)] + word.slice(pos + 1);
+          word += numberChars[Math.floor(Math.random() * numberChars.length)];
         }
         if (useSpecial && Math.random() > 0.5) {
           const specCount = 1; // Add 1 special character
-          const pos = Math.floor(Math.random() * word.length);
-          word = word.slice(0, pos) + specialChars[Math.floor(Math.random() * specialChars.length)] + word.slice(pos + 1);
-        }
-
-        // Ensure length is exact
-        word = word.slice(0, length);
-        if (word.length < length) {
-          while (word.length < length) {
-            word += consonants[Math.floor(Math.random() * consonants.length)];
-          }
+          word += specialChars[Math.floor(Math.random() * specialChars.length)];
         }
 
         return word;
       };
 
-      const generateWords = (length, count, useNumbers, useSpecial) => {
+      const generateWords = (minLength, maxLength, count, useNumbers, useSpecial) => {
         const words = [];
         for (let i = 0; i < count; i++) {
-          words.push(generateRandomWord(length, useNumbers, useSpecial));
+          const word = generateRandomWord(minLength, maxLength, useNumbers, useSpecial);
+          if (word) words.push(word);
         }
         return words.join('\n');
       };
@@ -425,7 +427,8 @@
       };
 
       const resetForm = () => {
-        lengthInput.value = '8';
+        minLengthInput.value = '4';
+        maxLengthInput.value = '8';
         countInput.value = '1';
         includeNumbers.checked = false;
         includeSpecial.checked = false;
@@ -435,18 +438,24 @@
       };
 
       const performGeneration = () => {
-        let length = parseInt(lengthInput.value, 10);
+        let minLength = parseInt(minLengthInput.value, 10);
+        let maxLength = parseInt(maxLengthInput.value, 10);
         let count = parseInt(countInput.value, 10);
 
-        if (isNaN(length) || length < 4) {
-          length = 4;
-          lengthInput.value = '4';
-          alert('Word length must be at least 4 characters.');
+        if (isNaN(minLength) || minLength < 3) {
+          minLength = 3;
+          minLengthInput.value = '3';
+          alert('Minimum word length must be at least 3 characters.');
         }
-        if (length > 20) {
-          length = 20;
-          lengthInput.value = '20';
-          alert('Word length cannot exceed 20 characters.');
+        if (isNaN(maxLength) || maxLength > 20) {
+          maxLength = 20;
+          maxLengthInput.value = '20';
+          alert('Maximum word length cannot exceed 20 characters.');
+        }
+        if (minLength > maxLength) {
+          maxLength = minLength;
+          maxLengthInput.value = minLength;
+          alert('Maximum length cannot be less than minimum length.');
         }
         if (isNaN(count) || count < 1) {
           count = 1;
@@ -459,11 +468,16 @@
         }
 
         const generatedText = generateWords(
-          length,
+          minLength,
+          maxLength,
           count,
           includeNumbers.checked,
           includeSpecial.checked
         );
+        if (!generatedText) {
+          alert('No words found in the specified length range.');
+          return;
+        }
         updateResults(generatedText);
         gtag('event', 'random_word_generate', {
           event_category: 'Tool Usage',
@@ -504,7 +518,8 @@
 
       resetBtn.addEventListener('click', resetForm);
 
-      lengthInput.addEventListener('input', performGeneration);
+      minLengthInput.addEventListener('input', performGeneration);
+      maxLengthInput.addEventListener('input', performGeneration);
       countInput.addEventListener('input', performGeneration);
       includeNumbers.addEventListener('change', performGeneration);
       includeSpecial.addEventListener('change', performGeneration);
