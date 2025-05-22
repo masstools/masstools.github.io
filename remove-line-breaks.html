@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Remove Line Breaks - Mass Tools</title>
-  <meta name="description" content="Remove line breaks from text with Mass Tools' free tool. Replace breaks with a delimiter or join lines. Supports TXT, CSV, and XLSX uploads.">
+  <meta name="description" content="Remove line breaks from text with Mass Tools' free tool. Supports TXT, CSV, and XLSX uploads for easy text formatting.">
   <meta name="keywords" content="remove line breaks, text formatter, mass tools, free online tools">
   <meta name="robots" content="index, follow">
   <link rel="icon" type="image/png" href="./favicon.png">
@@ -58,7 +58,7 @@
       <div class="container">
         <div class="tool-content">
           <h1>Remove Line Breaks</h1>
-          <p>Remove line breaks from text with Mass Tools' free tool. Replace breaks with a custom delimiter or join lines. Supports TXT, CSV, and XLSX uploads.</p>
+          <p>Remove line breaks from text with Mass Tools' free tool. Paste text or upload TXT, CSV, or XLSX files to combine lines into a single line or custom format.</p>
           
           <div class="input-area">
             <textarea id="inputText" placeholder="Paste your text here..." aria-label="Input text for removing line breaks"></textarea>
@@ -71,14 +71,13 @@
           </div>
 
           <div class="input-area">
-            <label for="delimiter">Replace Line Breaks With:</label>
-            <input type="text" id="delimiter" placeholder="Enter delimiter (e.g., space, comma) or leave empty..." aria-label="Delimiter to replace line breaks">
+            <label for="replaceWith">Replace Line Breaks With:</label>
+            <input type="text" id="replaceWith" placeholder="e.g., space, comma, or leave empty" aria-label="Replace line breaks with">
             <label><input type="checkbox" id="trimLines" aria-label="Trim lines" checked> Trim Lines</label>
-            <label><input type="checkbox" id="skipEmpty" aria-label="Skip empty lines" checked> Skip Empty Lines</label>
           </div>
 
           <div class="input-area">
-            <textarea id="outputText" placeholder="Text without line breaks will appear here..." readonly aria-label="Output text without line breaks"></textarea>
+            <textarea id="outputText" placeholder="Text with line breaks removed will appear here..." readonly aria-label="Output text with line breaks removed"></textarea>
           </div>
 
           <div class="action-buttons">
@@ -93,21 +92,21 @@
 
           <div class="tool-article">
             <h2>About the Remove Line Breaks Tool</h2>
-            <p>The Remove Line Breaks tool by <a href="./about-us.html">Mass Tools</a> removes line breaks from text, optionally replacing them with a delimiter. Paste text or upload files for instant formatting.</p>
+            <p>The Remove Line Breaks tool by <a href="./about-us.html">Mass Tools</a> removes line breaks from text, combining lines into a single line or custom format. Paste text or upload files for instant formatting.</p>
             
             <h3>Why Use This Tool?</h3>
             <ul>
-              <li><strong>Data Formatting</strong>: Convert multiline text to a single line.</li>
-              <li><strong>Content Editing</strong>: Prepare text for scripts or templates.</li>
-              <li><strong>Data Processing</strong>: Join lists or logs for analysis.</li>
-              <li><strong>Code Editing</strong>: Format code or queries.</li>
+              <li><strong>Data Formatting</strong>: Combine multi-line text for better readability.</li>
+              <li><strong>Code Editing</strong>: Format code or logs into a single line.</li>
+              <li><strong>Content Creation</strong>: Prepare text for specific layouts.</li>
+              <li><strong>Data Processing</strong>: Clean text for analysis or export.</li>
             </ul>
 
             <h3>How to Use</h3>
             <ul>
               <li>Paste text or upload a TXT, CSV, or XLSX file.</li>
-              <li>Enter a delimiter to replace line breaks (e.g., ",") or leave empty to join lines.</li>
-              <li>Choose options: trim lines or skip empty lines.</li>
+              <li>Specify what to replace line breaks with (e.g., space, comma, or empty).</li>
+              <li>Choose option: trim lines to remove extra spaces.</li>
               <li>Click "Remove Line Breaks" to view results.</li>
               <li>Copy or download the modified text.</li>
               <li>Reset to clear inputs and results.</li>
@@ -116,8 +115,8 @@
             <h3>Tips</h3>
             <ul>
               <li>Use files under 10MB for best performance.</li>
-              <li>For CSV/XLSX, ensure single-column data for accurate processing.</li>
-              <li>Combine with <a href="./add-line-breaks.html">Add Line Breaks</a> for reversible formatting.</li>
+              <li>Leave "Replace With" empty to join lines without separators.</li>
+              <li>Combine with <a href="./add-prefix-suffix.html">Add Prefix/Suffix</a> for advanced formatting.</li>
               <li>Contact us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a> for support.</li>
             </ul>
           </div>
@@ -308,31 +307,27 @@
       const outputText = document.getElementById('outputText');
       const uploadArea = document.getElementById('uploadArea');
       const fileInput = document.getElementById('fileInput');
-      const delimiter = document.getElementById('delimiter');
+      const replaceWith = document.getElementById('replaceWith');
       const trimLines = document.getElementById('trimLines');
-      const skipEmpty = document.getElementById('skipEmpty');
       const removeBreaksBtn = document.getElementById('removeBreaksBtn');
       const copyBtn = document.getElementById('copyBtn');
       const downloadBtn = document.getElementById('downloadBtn');
       const resetBtn = document.getElementById('resetBtn');
       const loadingIndicator = document.getElementById('loadingIndicator');
 
-      if (!inputText || !outputText || !uploadArea || !fileInput || !delimiter || !trimLines || !skipEmpty || !removeBreaksBtn || !copyBtn || !downloadBtn || !resetBtn || !loadingIndicator) {
+      if (!inputText || !outputText || !uploadArea || !fileInput || !replaceWith || !trimLines || !removeBreaksBtn || !copyBtn || !downloadBtn || !resetBtn || !loadingIndicator) {
         console.error('Missing elements for Remove Line Breaks tool');
         alert('Tool initialization failed. Please check console for errors.');
         return;
       }
 
-      const removeLineBreaks = (text, delim, doTrim, skipEmptyLines) => {
+      const removeLineBreaks = (text, separator, doTrim) => {
         if (!text.trim()) return '';
-        let lines = text.split('\n');
-        if (skipEmptyLines) {
-          lines = lines.filter(line => line.trim());
-        }
+        let result = text.replace(/(\r\n|\n|\r)/g, separator);
         if (doTrim) {
-          lines = lines.map(line => line.trim());
+          result = result.trim();
         }
-        return lines.join(delim);
+        return result;
       };
 
       const updateResults = (modifiedText) => {
@@ -346,9 +341,8 @@
         inputText.value = '';
         outputText.value = '';
         fileInput.value = '';
-        delimiter.value = '';
+        replaceWith.value = '';
         trimLines.checked = true;
-        skipEmpty.checked = true;
         updateResults('');
         loadingIndicator.classList.remove('visible');
       };
@@ -356,12 +350,8 @@
       const performRemoveBreaks = () => {
         const text = inputText.value;
         if (text.trim()) {
-          const modifiedText = removeLineBreaks(
-            text,
-            delimiter.value,
-            trimLines.checked,
-            skipEmpty.checked
-          );
+          const separator = replaceWith.value || '';
+          const modifiedText = removeLineBreaks(text, separator, trimLines.checked);
           updateResults(modifiedText);
           gtag('event', 'remove_line_breaks', {
             event_category: 'Tool Usage',
@@ -476,9 +466,8 @@
       resetBtn.addEventListener('click', resetForm);
 
       inputText.addEventListener('input', performRemoveBreaks);
-      delimiter.addEventListener('input', performRemoveBreaks);
+      replaceWith.addEventListener('input', performRemoveBreaks);
       trimLines.addEventListener('change', performRemoveBreaks);
-      skipEmpty.addEventListener('change', performRemoveBreaks);
     });
   </script>
 </body>
