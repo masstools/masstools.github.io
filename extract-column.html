@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Extract Column - Mass Tools</title>
-  <meta name="description" content="Extract a specific column from delimited text or files with Mass Tools' free tool. Supports TXT, CSV, and XLSX uploads with delimiter and column selection.">
-  <meta name="keywords" content="extract column, csv column extractor, mass tools, free online tools">
+  <meta name="description" content="Extract a specific column from text using delimiters with Mass Tools' free tool. Supports TXT, CSV, and XLSX uploads.">
+  <meta name="keywords" content="extract column, column extractor, mass tools, free online tools">
   <meta name="robots" content="index, follow">
   <link rel="icon" type="image/png" href="./favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -17,7 +17,6 @@
     gtag('js', new Date());
     gtag('config', 'G-68CX9G7BKF');
   </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <link rel="stylesheet" href="./styles.css">
 </head>
@@ -58,10 +57,10 @@
       <div class="container">
         <div class="tool-content">
           <h1>Extract Column</h1>
-          <p>Extract a specific column from delimited text or files with Mass Tools' free tool. Specify a delimiter and column (by index or header name). Supports TXT, CSV, and XLSX uploads.</p>
-          
+          <p>Extract a specific column from text using delimiters with Mass Tools' free tool. Supports TXT, CSV, and XLSX uploads.</p>
+
           <div class="input-area">
-            <textarea id="inputText" placeholder="Paste your delimited text here (e.g., CSV)..." aria-label="Input text for column extraction"></textarea>
+            <textarea id="inputText" placeholder="Paste your text here (e.g., Collins, Maria Ann)..." aria-label="Input text for column extraction"></textarea>
           </div>
 
           <div class="upload-area" id="uploadArea">
@@ -72,16 +71,10 @@
 
           <div class="input-area">
             <label for="delimiter">Delimiter:</label>
-            <input type="text" id="delimiter" placeholder="e.g., , (comma)" value="," aria-label="Delimiter for splitting columns">
-            <label for="columnSelectionType">Column Selection:</label>
-            <select id="columnSelectionType" aria-label="Column selection type">
-              <option value="index">Column Index (0-based)</option>
-              <option value="header">Header Name</option>
-            </select>
-            <label for="columnValue">Column:</label>
-            <input type="text" id="columnValue" placeholder="Enter index (e.g., 0) or header name..." aria-label="Column value">
-            <label><input type="checkbox" id="hasHeader" aria-label="Has header" checked> First Row is Header</label>
-            <label><input type="checkbox" id="trimValues" aria-label="Trim values" checked> Trim Values</label>
+            <input type="text" id="delimiter" placeholder="Enter delimiter (e.g., ', ')" aria-label="Delimiter for column extraction">
+            <label for="columnNumber">Column Number:</label>
+            <input type="number" id="columnNumber" min="1" placeholder="Enter column number (e.g., 2)" aria-label="Column number">
+            <label><input type="checkbox" id="trimOutput" aria-label="Trim output" checked> Trim Output</label>
           </div>
 
           <div class="input-area">
@@ -92,6 +85,8 @@
             <button id="extractColumnBtn">Extract Column</button>
             <button id="copyBtn" disabled>Copy Results</button>
             <button id="downloadBtn" disabled>Download Results</button>
+            <button id="undoBtn" disabled>Undo</button>
+            <button id="redoBtn" disabled>Redo</button>
             <button id="resetBtn">Reset</button>
           </div>
           <p class="loading" id="loadingIndicator">Processing file...</p>
@@ -100,25 +95,24 @@
 
           <div class="tool-article">
             <h2>About the Extract Column Tool</h2>
-            <p>The Extract Column tool by <a href="./about-us.html">Mass Tools</a> extracts a specific column from delimited text or files based on a column index or header name. Paste text or upload TXT, CSV, or XLSX files for instant results.</p>
-            
+            <p>The Extract Column tool by <a href="./about-us.html">Mass Tools</a> extracts a specific column from delimited text or files. Paste text or upload TXT, CSV, or XLSX files for instant column extraction.</p>
+
             <h3>Why Use This Tool?</h3>
             <ul>
-              <li><strong>Data Extraction</strong>: Isolate specific columns from datasets.</li>
-              <li><strong>CSV Processing</strong>: Extract fields from CSV files.</li>
-              <li><strong>Data Analysis</strong>: Prepare column data for further processing.</li>
-              <li><strong>Content Formatting</strong>: Extract specific data for reports or lists.</li>
+              <li><strong>Data Extraction</strong>: Pull specific columns like names or values from lists.</li>
+              <li><strong>Simplify Analysis</strong>: Isolate relevant data for processing or reporting.</li>
+              <li><strong>Format Conversion</strong>: Extract columns from CSV or Excel for further use.</li>
+              <li><strong>Batch Processing</strong>: Handle large datasets with ease.</li>
             </ul>
 
             <h3>How to Use</h3>
             <ul>
-              <li>Paste delimited text (e.g., CSV) or upload a TXT, CSV, or XLSX file.</li>
-              <li>Specify the delimiter (e.g., "," for CSV).</li>
-              <li>Choose column selection type: index (0-based) or header name.</li>
-              <li>Enter the column index (e.g., "0" for first column) or header name.</li>
-              <li>Check "First Row is Header" if the input has a header row.</li>
-              <li>Check "Trim Values" to remove extra spaces from extracted values.</li>
+              <li>Paste text (e.g., "Collins, Maria Ann") or upload a TXT, CSV, or XLSX file.</li>
+              <li>Enter the delimiter (e.g., ", " for comma and space).</li>
+              <li>Specify the column number to extract (e.g., 2 for first names).</li>
+              <li>Check "Trim Output" to remove extra spaces.</li>
               <li>Click "Extract Column" to view results.</li>
+              <li>Use "Undo" or "Redo" to revert or restore changes.</li>
               <li>Copy or download the extracted column.</li>
               <li>Reset to clear inputs and results.</li>
             </ul>
@@ -126,10 +120,16 @@
             <h3>Tips</h3>
             <ul>
               <li>Use files under 10MB for best performance.</li>
-              <li>Ensure the delimiter matches your input data (e.g., "," for CSV, "\t" for TSV).</li>
-              <li>For header-based extraction, verify the header name matches exactly.</li>
-              <li>Combine with <a href="./add-prefix-suffix.html">Add Prefix/Suffix</a> for advanced formatting.</li>
+              <li>Ensure correct delimiter (e.g., ", " for comma-space, "," for comma).</li>
+              <li>Combine with <a href="./split-text.html">Split Text</a> or <a href="./concatenate-text.html">Concatenate Text</a> for advanced workflows.</li>
               <li>Contact us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a> for support.</li>
+            </ul>
+
+            <h3>Related Tools</h3>
+            <ul>
+              <li><a href="./split-text.html">Split Text</a> - Split text into individual columns or by a new line.</li>
+              <li><a href="./concatenate-text.html">Concatenate Text</a> - Combine or merge two lists/columns line by line.</li>
+              <li><a href="./swap-columns.html">Swap Columns</a> - Swap two columns from a delimited text.</li>
             </ul>
           </div>
         </div>
@@ -176,9 +176,13 @@
     var gk_isXlsx = false;
     var gk_xlsxFileLookup = {};
     var gk_fileData = {};
+    var historyStack = [];
+    var redoStack = [];
+
     function filledCell(cell) {
       return cell !== '' && cell != null;
     }
+
     function loadFileData(filename) {
       if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
         try {
@@ -271,6 +275,8 @@
         { name: 'Remove Line Breaks', url: './remove-line-breaks.html' },
         { name: 'Split Text', url: './split-text.html' },
         { name: 'Extract Column', url: './extract-column.html' },
+        { name: 'Concatenate Text', url: './concatenate-text.html' },
+        { name: 'Swap Columns', url: './swap-columns.html' },
       ];
 
       if (searchInput && searchButton && suggestionsContainer) {
@@ -322,69 +328,51 @@
       const uploadArea = document.getElementById('uploadArea');
       const fileInput = document.getElementById('fileInput');
       const delimiter = document.getElementById('delimiter');
-      const columnSelectionType = document.getElementById('columnSelectionType');
-      const columnValue = document.getElementById('columnValue');
-      const hasHeader = document.getElementById('hasHeader');
-      const trimValues = document.getElementById('trimValues');
+      const columnNumber = document.getElementById('columnNumber');
+      const trimOutput = document.getElementById('trimOutput');
       const extractColumnBtn = document.getElementById('extractColumnBtn');
       const copyBtn = document.getElementById('copyBtn');
       const downloadBtn = document.getElementById('downloadBtn');
+      const undoBtn = document.getElementById('undoBtn');
+      const redoBtn = document.getElementById('redoBtn');
       const resetBtn = document.getElementById('resetBtn');
       const loadingIndicator = document.getElementById('loadingIndicator');
 
-      if (!inputText || !outputText || !uploadArea || !fileInput || !delimiter || !columnSelectionType || !columnValue || !hasHeader || !trimValues || !extractColumnBtn || !copyBtn || !downloadBtn || !resetBtn || !loadingIndicator) {
+      if (!inputText || !outputText || !uploadArea || !fileInput || !delimiter || !columnNumber || !trimOutput || !extractColumnBtn || !copyBtn || !downloadBtn || !undoBtn || !redoBtn || !resetBtn || !loadingIndicator) {
         console.error('Missing elements for Extract Column tool');
         alert('Tool initialization failed. Please check console for errors.');
         return;
       }
 
-      const extractColumn = (text, delim, selectionType, colValue, hasHeaderRow, doTrim) => {
-        if (!text.trim() || !delim.trim() || !colValue.trim()) return '';
-        try {
-          const escapedDelimiter = delim.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-          const regex = new RegExp(escapedDelimiter, 'g');
-          const lines = text.split(/\r?\n/);
-          if (lines.length === 0) return '';
-
-          let columnIndex = -1;
-          const headerRow = hasHeaderRow ? lines[0].split(regex) : null;
-          if (selectionType === 'index') {
-            columnIndex = parseInt(colValue);
-            if (isNaN(columnIndex) || columnIndex < 0) {
-              alert('Please enter a valid column index (0-based).');
-              return '';
-            }
-          } else if (selectionType === 'header' && hasHeaderRow) {
-            if (!headerRow) {
-              alert('No header row found. Please check "First Row is Header" or use index-based selection.');
-              return '';
-            }
-            columnIndex = headerRow.indexOf(colValue.trim());
-            if (columnIndex === -1) {
-              alert(`Header "${colValue}" not found in the first row.`);
-              return '';
-            }
-          } else {
-            alert('Header-based selection requires "First Row is Header" to be checked.');
-            return '';
-          }
-
-          const startIndex = hasHeaderRow ? 1 : 0;
-          const result = lines.slice(startIndex)
-            .map(line => {
-              const columns = line.split(regex);
-              if (columnIndex >= columns.length) return '';
-              return doTrim ? columns[columnIndex].trim() : columns[columnIndex];
-            })
-            .filter(val => val !== '')
-            .join('\n');
-
-          return result;
-        } catch (e) {
-          console.error('Error extracting column:', e);
-          alert('Error processing input. Please check your delimiter or column value.');
+      const extractColumn = (text, delim, colNum, doTrim) => {
+        if (!text.trim() || !delim.trim() || !colNum) return '';
+        const colIndex = parseInt(colNum) - 1;
+        if (colIndex < 0) {
+          alert('Column number must be 1 or higher.');
           return '';
         }
+        try {
+          const escapedDelimiter = delim.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          const regex = new RegExp(escapedDelimiter);
+          const lines = text.split('\n').filter(line => line.trim());
+          const result = lines.map(line => {
+            const columns = line.split(regex);
+            const value = columns[colIndex] || '';
+            return doTrim ? value.trim() : value;
+          }).filter(value => value !== '');
+          return result.join('\n');
+        } catch (e) {
+          console.error('Delimiter error:', e);
+          alert('Invalid delimiter. Please check your input.');
+          return '';
+        }
+      };
+
+      const saveToHistory = (state) => {
+        historyStack.push(state);
+        redoStack.length = 0;
+        undoBtn.disabled = historyStack.length <= 1;
+        redoBtn.disabled = true;
       };
 
       const updateResults = (modifiedText) => {
@@ -398,26 +386,24 @@
         inputText.value = '';
         outputText.value = '';
         fileInput.value = '';
-        delimiter.value = ',';
-        columnSelectionType.value = 'index';
-        columnValue.value = '';
-        hasHeader.checked = true;
-        trimValues.checked = true;
+        delimiter.value = '';
+        columnNumber.value = '';
+        trimOutput.checked = true;
+        historyStack.length = 0;
+        redoStack.length = 0;
+        undoBtn.disabled = true;
+        redoBtn.disabled = true;
         updateResults('');
         loadingIndicator.classList.remove('visible');
       };
 
       const performExtractColumn = () => {
         const text = inputText.value;
-        if (text.trim() && delimiter.value.trim() && columnValue.value.trim()) {
-          const modifiedText = extractColumn(
-            text,
-            delimiter.value,
-            columnSelectionType.value,
-            columnValue.value,
-            hasHeader.checked,
-            trimValues.checked
-          );
+        const delim = delimiter.value;
+        const colNum = columnNumber.value;
+        if (text.trim() && delim.trim() && colNum) {
+          const modifiedText = extractColumn(text, delim, colNum, trimOutput.checked);
+          saveToHistory({ inputText: text, delimiter: delim, columnNumber: colNum, trimOutput: trimOutput.checked, outputText: modifiedText });
           updateResults(modifiedText);
           gtag('event', 'extract_column', {
             event_category: 'Tool Usage',
@@ -484,8 +470,6 @@
         }
       };
 
-      columnSelectionType.addEventListener('change', performExtractColumn);
-
       uploadArea.addEventListener('dragover', (e) => {
         e.preventDefault();
         uploadArea.classList.add('dragover');
@@ -531,13 +515,50 @@
         });
       });
 
+      undoBtn.addEventListener('click', () => {
+        if (historyStack.length > 1) {
+          redoStack.push(historyStack.pop());
+          const prevState = historyStack[historyStack.length - 1];
+          inputText.value = prevState.inputText;
+          delimiter.value = prevState.delimiter;
+          columnNumber.value = prevState.columnNumber;
+          trimOutput.checked = prevState.trimOutput;
+          updateResults(prevState.outputText);
+          undoBtn.disabled = historyStack.length <= 1;
+          redoBtn.disabled = false;
+          gtag('event', 'undo', {
+            event_category: 'Tool Usage',
+            event_label: 'Extract Column Undo',
+            value: 1
+          });
+        }
+      });
+
+      redoBtn.addEventListener('click', () => {
+        if (redoStack.length > 0) {
+          const nextState = redoStack.pop();
+          historyStack.push(nextState);
+          inputText.value = nextState.inputText;
+          delimiter.value = nextState.delimiter;
+          columnNumber.value = nextState.columnNumber;
+          trimOutput.checked = nextState.trimOutput;
+          updateResults(nextState.outputText);
+          undoBtn.disabled = false;
+          redoBtn.disabled = redoStack.length === 0;
+          gtag('event', 'redo', {
+            event_category: 'Tool Usage',
+            event_label: 'Extract Column Redo',
+            value: 1
+          });
+        }
+      });
+
       resetBtn.addEventListener('click', resetForm);
 
       inputText.addEventListener('input', performExtractColumn);
       delimiter.addEventListener('input', performExtractColumn);
-      columnValue.addEventListener('input', performExtractColumn);
-      hasHeader.addEventListener('change', performExtractColumn);
-      trimValues.addEventListener('change', performExtractColumn);
+      columnNumber.addEventListener('input', performExtractColumn);
+      trimOutput.addEventListener('change', performExtractColumn);
     });
   </script>
 </body>
