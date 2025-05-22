@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Extract Column - Mass Tools</title>
-  <meta name="description" content="Extract a specific column from delimited text with Mass Tools' free tool. Supports TXT, CSV, and XLSX uploads.">
-  <meta name="keywords" content="extract column, text column extractor, mass tools, free online tools">
+  <meta name="description" content="Extract a specific column from delimited text or files with Mass Tools' free tool. Supports TXT, CSV, and XLSX uploads with delimiter and column selection.">
+  <meta name="keywords" content="extract column, csv column extractor, mass tools, free online tools">
   <meta name="robots" content="index, follow">
   <link rel="icon" type="image/png" href="./favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -20,38 +20,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <link rel="stylesheet" href="./styles.css">
-  <style>
-    .output-container {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      margin-bottom: 20px;
-      min-height: 100px;
-      border: 1px solid #e0e0e0;
-      padding: 10px;
-      background: #fff;
-    }
-    .output-area {
-      position: relative;
-    }
-    .output-area textarea {
-      width: 100%;
-      min-height: 100px;
-      resize: vertical;
-    }
-    .output-area label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: 500;
-    }
-    .copy-column-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      cursor: pointer;
-      color: #007bff;
-    }
-  </style>
 </head>
 <body>
   <header>
@@ -90,39 +58,40 @@
       <div class="container">
         <div class="tool-content">
           <h1>Extract Column</h1>
-          <p>Extract a specific column from delimited text with Mass Tools' free tool. Ideal for isolating data like names or IDs. Supports TXT, CSV, and XLSX uploads.</p>
+          <p>Extract a specific column from delimited text or files with Mass Tools' free tool. Specify a delimiter and column (by index or header name). Supports TXT, CSV, and XLSX uploads.</p>
           
           <div class="input-area">
-            <label for="inputText">Input Text:</label>
-            <textarea id="inputText" placeholder="Paste your text here (e.g., Brown, Paul\nDavis, Mark)..." aria-label="Input text for column extraction"></textarea>
-            <div class="upload-area">
-              <i class="fas fa-cloud-upload-alt"></i>
-              <p>Drag and drop TXT, CSV, or XLSX file</p>
-              <input type="file" id="fileInput" accept=".txt,.csv,.xlsx" aria-label="Upload text file">
-            </div>
+            <textarea id="inputText" placeholder="Paste your delimited text here (e.g., CSV)..." aria-label="Input text for column extraction"></textarea>
+          </div>
+
+          <div class="upload-area" id="uploadArea">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <p>Drag and drop TXT, CSV, or XLSX file (optional)</p>
+            <input type="file" id="fileInput" accept=".txt,.csv,.xlsx" aria-label="Upload text file">
           </div>
 
           <div class="input-area">
             <label for="delimiter">Delimiter:</label>
-            <input type="text" id="delimiter" placeholder="Enter delimiter (e.g., comma, space, ', ')..." aria-label="Delimiter for splitting">
-            <label for="columnIndex">Column to Extract (1-based):</label>
-            <input type="number" id="columnIndex" min="1" value="1" aria-label="Column number to extract">
-            <label><input type="checkbox" id="trimResults" aria-label="Trim results" checked> Trim Results</label>
-            <label><input type="checkbox" id="skipEmpty" aria-label="Skip empty results" checked> Skip Empty Results</label>
-            <label><input type="checkbox" id="useRegex" aria-label="Use regex"> Use Regex</label>
+            <input type="text" id="delimiter" placeholder="e.g., , (comma)" value="," aria-label="Delimiter for splitting columns">
+            <label for="columnSelectionType">Column Selection:</label>
+            <select id="columnSelectionType" aria-label="Column selection type">
+              <option value="index">Column Index (0-based)</option>
+              <option value="header">Header Name</option>
+            </select>
+            <label for="columnValue">Column:</label>
+            <input type="text" id="columnValue" placeholder="Enter index (e.g., 0) or header name..." aria-label="Column value">
+            <label><input type="checkbox" id="hasHeader" aria-label="Has header" checked> First Row is Header</label>
+            <label><input type="checkbox" id="trimValues" aria-label="Trim values" checked> Trim Values</label>
           </div>
 
           <div class="input-area">
-            <label>Result:</label>
-            <div class="output-container" id="outputContainer">
-              <!-- Dynamically populated with output textarea -->
-            </div>
+            <textarea id="outputText" placeholder="Extracted column will appear here..." readonly aria-label="Output extracted column"></textarea>
           </div>
 
           <div class="action-buttons">
-            <button id="extractBtn">Extract Column</button>
-            <button id="copyBtn" disabled>Copy Result</button>
-            <button id="downloadBtn" disabled>Download Result</button>
+            <button id="extractColumnBtn">Extract Column</button>
+            <button id="copyBtn" disabled>Copy Results</button>
+            <button id="downloadBtn" disabled>Download Results</button>
             <button id="resetBtn">Reset</button>
           </div>
           <p class="loading" id="loadingIndicator">Processing file...</p>
@@ -131,38 +100,35 @@
 
           <div class="tool-article">
             <h2>About the Extract Column Tool</h2>
-            <p>Use this tool to extract a specific column from text where columns are separated by a delimiter (e.g., comma, space). Ideal for isolating data like first names or IDs from a dataset. Columns must be separated by the same delimiter and follow the same format for accurate extraction.</p>
+            <p>The Extract Column tool by <a href="./about-us.html">Mass Tools</a> extracts a specific column from delimited text or files based on a column index or header name. Paste text or upload TXT, CSV, or XLSX files for instant results.</p>
             
             <h3>Why Use This Tool?</h3>
             <ul>
-              <li><strong>Data Isolation</strong>: Extract a single column (e.g., first names) from delimited text.</li>
-              <li><strong>Data Processing</strong>: Simplify analysis by focusing on specific columns.</li>
-              <li><strong>Automation</strong>: Streamline column extraction from large datasets.</li>
+              <li><strong>Data Extraction</strong>: Isolate specific columns from datasets.</li>
+              <li><strong>CSV Processing</strong>: Extract fields from CSV files.</li>
+              <li><strong>Data Analysis</strong>: Prepare column data for further processing.</li>
+              <li><strong>Content Formatting</strong>: Extract specific data for reports or lists.</li>
             </ul>
 
             <h3>How to Use</h3>
             <ul>
-              <li>Paste text or upload a TXT, CSV, or XLSX file.</li>
-              <li>Enter a delimiter (e.g., ",", ", ", " ") or regex pattern.</li>
-              <li>Specify the column number to extract (1-based, e.g., 1 for first column).</li>
-              <li>Enable options: Trim Results, Skip Empty Results, Use Regex.</li>
-              <li>Click "Extract Column" to view the result in the output box.</li>
+              <li>Paste delimited text (e.g., CSV) or upload a TXT, CSV, or XLSX file.</li>
+              <li>Specify the delimiter (e.g., "," for CSV).</li>
+              <li>Choose column selection type: index (0-based) or header name.</li>
+              <li>Enter the column index (e.g., "0" for first column) or header name.</li>
+              <li>Check "First Row is Header" if the input has a header row.</li>
+              <li>Check "Trim Values" to remove extra spaces from extracted values.</li>
+              <li>Click "Extract Column" to view results.</li>
               <li>Copy or download the extracted column.</li>
               <li>Reset to clear inputs and results.</li>
-            </ul>
-
-            <h3>Related Tools</h3>
-            <ul>
-              <li><a href="./split-text.html">Split Text</a> - Split text into multiple columns or lines.</li>
-              <li><a href="./concatenate-text.html">Concatenate Text</a> - Combine/merge two documents by concatenating texts line by line.</li>
-              <li><a href="./swap-columns.html">Swap Columns</a> - Swap two columns from a delimited text.</li>
             </ul>
 
             <h3>Tips</h3>
             <ul>
               <li>Use files under 10MB for best performance.</li>
-              <li>Ensure consistent delimiter usage across all lines for accurate extraction.</li>
-              <li>For regex, use valid patterns (e.g., "\s+" for multiple spaces).</li>
+              <li>Ensure the delimiter matches your input data (e.g., "," for CSV, "\t" for TSV).</li>
+              <li>For header-based extraction, verify the header name matches exactly.</li>
+              <li>Combine with <a href="./add-prefix-suffix.html">Add Prefix/Suffix</a> for advanced formatting.</li>
               <li>Contact us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a> for support.</li>
             </ul>
           </div>
@@ -303,10 +269,8 @@
         { name: 'Add Prefix/Suffix', url: './add-prefix-suffix.html' },
         { name: 'Add Line Breaks', url: './add-line-breaks.html' },
         { name: 'Remove Line Breaks', url: './remove-line-breaks.html' },
-        { name: 'Concatenate Text', url: './concatenate-text.html' },
         { name: 'Split Text', url: './split-text.html' },
         { name: 'Extract Column', url: './extract-column.html' },
-        { name: 'Swap Columns', url: './swap-columns.html' },
       ];
 
       if (searchInput && searchButton && suggestionsContainer) {
@@ -354,144 +318,114 @@
 
       // Extract Column functionality
       const inputText = document.getElementById('inputText');
+      const outputText = document.getElementById('outputText');
+      const uploadArea = document.getElementById('uploadArea');
       const fileInput = document.getElementById('fileInput');
-      const uploadArea = document.querySelector('.upload-area');
       const delimiter = document.getElementById('delimiter');
-      const columnIndex = document.getElementById('columnIndex');
-      const trimResults = document.getElementById('trimResults');
-      const skipEmpty = document.getElementById('skipEmpty');
-      const useRegex = document.getElementById('useRegex');
-      const outputContainer = document.getElementById('outputContainer');
-      const extractBtn = document.getElementById('extractBtn');
+      const columnSelectionType = document.getElementById('columnSelectionType');
+      const columnValue = document.getElementById('columnValue');
+      const hasHeader = document.getElementById('hasHeader');
+      const trimValues = document.getElementById('trimValues');
+      const extractColumnBtn = document.getElementById('extractColumnBtn');
       const copyBtn = document.getElementById('copyBtn');
       const downloadBtn = document.getElementById('downloadBtn');
       const resetBtn = document.getElementById('resetBtn');
       const loadingIndicator = document.getElementById('loadingIndicator');
 
-      if (!inputText || !fileInput || !uploadArea || !delimiter || !columnIndex || !trimResults || !skipEmpty || !useRegex || !outputContainer || !extractBtn || !copyBtn || !downloadBtn || !resetBtn || !loadingIndicator) {
+      if (!inputText || !outputText || !uploadArea || !fileInput || !delimiter || !columnSelectionType || !columnValue || !hasHeader || !trimValues || !extractColumnBtn || !copyBtn || !downloadBtn || !resetBtn || !loadingIndicator) {
         console.error('Missing elements for Extract Column tool');
         alert('Tool initialization failed. Please check console for errors.');
         return;
       }
 
-      const extractColumn = (text, delim, colIndex, doTrim, skipEmptyResults, isRegex) => {
-        if (!text.trim() || !delim || colIndex < 1) return [];
+      const extractColumn = (text, delim, selectionType, colValue, hasHeaderRow, doTrim) => {
+        if (!text.trim() || !delim.trim() || !colValue.trim()) return '';
         try {
-          const lines = text.split('\n');
-          let results;
-          if (isRegex) {
-            const regex = new RegExp(delim, 'g');
-            results = lines.map(line => line.split(regex));
+          const escapedDelimiter = delim.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          const regex = new RegExp(escapedDelimiter, 'g');
+          const lines = text.split(/\r?\n/);
+          if (lines.length === 0) return '';
+
+          let columnIndex = -1;
+          const headerRow = hasHeaderRow ? lines[0].split(regex) : null;
+          if (selectionType === 'index') {
+            columnIndex = parseInt(colValue);
+            if (isNaN(columnIndex) || columnIndex < 0) {
+              alert('Please enter a valid column index (0-based).');
+              return '';
+            }
+          } else if (selectionType === 'header' && hasHeaderRow) {
+            if (!headerRow) {
+              alert('No header row found. Please check "First Row is Header" or use index-based selection.');
+              return '';
+            }
+            columnIndex = headerRow.indexOf(colValue.trim());
+            if (columnIndex === -1) {
+              alert(`Header "${colValue}" not found in the first row.`);
+              return '';
+            }
           } else {
-            const escapedDelim = delim.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            results = lines.map(line => line.split(escapedDelim));
+            alert('Header-based selection requires "First Row is Header" to be checked.');
+            return '';
           }
 
-          // Extract specified column (1-based index)
-          let column = results.map(row => row[colIndex - 1] || '');
+          const startIndex = hasHeaderRow ? 1 : 0;
+          const result = lines.slice(startIndex)
+            .map(line => {
+              const columns = line.split(regex);
+              if (columnIndex >= columns.length) return '';
+              return doTrim ? columns[columnIndex].trim() : columns[columnIndex];
+            })
+            .filter(val => val !== '')
+            .join('\n');
 
-          // Validate column counts
-          const columnCounts = results.map(row => row.length);
-          if (new Set(columnCounts).size > 1) {
-            console.warn('Inconsistent column counts detected:', columnCounts);
-          }
-          if (colIndex > Math.max(...columnCounts)) {
-            console.warn(`Column ${colIndex} does not exist in some rows`);
-            return [];
-          }
-
-          if (doTrim) {
-            column = column.map(item => item.trim());
-          }
-          if (skipEmptyResults) {
-            column = column.filter(item => item.trim());
-          }
-
-          return column;
+          return result;
         } catch (e) {
-          console.error('Regex error:', e);
-          alert('Invalid regex pattern. Please check your delimiter.');
-          return [];
+          console.error('Error extracting column:', e);
+          alert('Error processing input. Please check your delimiter or column value.');
+          return '';
         }
       };
 
-      const updateResults = (results) => {
-        console.log('Updating output container with results:', results);
-        outputContainer.innerHTML = '';
-        if (!results.length) {
-          copyBtn.disabled = true;
-          downloadBtn.disabled = true;
-          outputContainer.innerHTML = '<p>No results to display.</p>';
-          console.log('No results, cleared output container');
-          return;
-        }
-
-        const outputArea = document.createElement('div');
-        outputArea.className = 'output-area';
-        outputArea.innerHTML = `
-          <label>Extracted Column</label>
-          <textarea readonly aria-label="Extracted column result">${results.join('\n')}</textarea>
-          <i class="fas fa-copy copy-column-btn" title="Copy this column"></i>
-        `;
-        outputContainer.appendChild(outputArea);
-        console.log('Appended extracted column to outputContainer');
-
-        copyBtn.disabled = false;
-        downloadBtn.disabled = false;
-
-        document.querySelector('.copy-column-btn').addEventListener('click', () => {
-          const textarea = outputArea.querySelector('textarea');
-          navigator.clipboard.writeText(textarea.value).then(() => {
-            alert('Column copied to clipboard!');
-            gtag('event', 'copy_column', {
-              event_category: 'Tool Usage',
-              event_label: 'Extract Column Copy',
-              value: 1
-            });
-          }).catch(error => {
-            console.error('Copy error:', error);
-            alert('Failed to copy column. Please try manually.');
-          });
-        });
-
-        console.log('Output container updated successfully');
+      const updateResults = (modifiedText) => {
+        outputText.value = modifiedText;
+        copyBtn.disabled = !modifiedText.trim();
+        downloadBtn.disabled = !modifiedText.trim();
+        console.log('Output updated:', modifiedText);
       };
 
       const resetForm = () => {
         inputText.value = '';
+        outputText.value = '';
         fileInput.value = '';
-        delimiter.value = '';
-        columnIndex.value = '1';
-        trimResults.checked = true;
-        skipEmpty.checked = true;
-        useRegex.checked = false;
-        outputContainer.innerHTML = '';
-        copyBtn.disabled = true;
-        downloadBtn.disabled = true;
+        delimiter.value = ',';
+        columnSelectionType.value = 'index';
+        columnValue.value = '';
+        hasHeader.checked = true;
+        trimValues.checked = true;
+        updateResults('');
         loadingIndicator.classList.remove('visible');
-        console.log('Form reset');
       };
 
-      const performExtract = () => {
+      const performExtractColumn = () => {
         const text = inputText.value;
-        const colIndex = parseInt(columnIndex.value, 10);
-        if (text.trim() && delimiter.value.trim() && colIndex >= 1) {
-          const results = extractColumn(
+        if (text.trim() && delimiter.value.trim() && columnValue.value.trim()) {
+          const modifiedText = extractColumn(
             text,
             delimiter.value,
-            colIndex,
-            trimResults.checked,
-            skipEmpty.checked,
-            useRegex.checked
+            columnSelectionType.value,
+            columnValue.value,
+            hasHeader.checked,
+            trimValues.checked
           );
-          updateResults(results);
+          updateResults(modifiedText);
           gtag('event', 'extract_column', {
             event_category: 'Tool Usage',
             event_label: 'Extract Column',
             value: text.length
           });
         } else {
-          updateResults([]);
+          updateResults('');
         }
       };
 
@@ -525,8 +459,8 @@
               throw new Error('Unsupported file format or library not loaded');
             }
             inputText.value = text;
-            performExtract();
-            gtag('event', 'extract_file', {
+            performExtractColumn();
+            gtag('event', 'extract_column_file', {
               event_category: 'Tool Usage',
               event_label: 'Extract Column File',
               value: text.length
@@ -550,6 +484,8 @@
         }
       };
 
+      columnSelectionType.addEventListener('change', performExtractColumn);
+
       uploadArea.addEventListener('dragover', (e) => {
         e.preventDefault();
         uploadArea.classList.add('dragover');
@@ -565,50 +501,43 @@
       uploadArea.addEventListener('click', () => fileInput.click());
       fileInput.addEventListener('change', () => handleFile(fileInput.files[0]));
 
-      extractBtn.addEventListener('click', performExtract);
+      extractColumnBtn.addEventListener('click', performExtractColumn);
 
       copyBtn.addEventListener('click', () => {
-        const textarea = outputContainer.querySelector('textarea');
-        if (textarea) {
-          navigator.clipboard.writeText(textarea.value).then(() => {
-            alert('Result copied to clipboard!');
-            gtag('event', 'copy_result', {
-              event_category: 'Tool Usage',
-              event_label: 'Extract Column Copy All',
-              value: 1
-            });
-          }).catch(error => {
-            console.error('Copy error:', error);
-            alert('Failed to copy result. Please try manually.');
+        navigator.clipboard.writeText(outputText.value).then(() => {
+          alert('Results copied to clipboard!');
+          gtag('event', 'copy_results', {
+            event_category: 'Tool Usage',
+            event_label: 'Extract Column Copy',
+            value: 1
           });
-        }
+        }).catch(error => {
+          console.error('Copy error:', error);
+          alert('Failed to copy results. Please try manually.');
+        });
       });
 
       downloadBtn.addEventListener('click', () => {
-        const textarea = outputContainer.querySelector('textarea');
-        if (textarea) {
-          const blob = new Blob([textarea.value], { type: 'text/plain' });
-          const link = document.createElement('a');
-          link.href = URL.createObjectURL(blob);
-          link.download = `extracted-column-masstools.txt`;
-          link.click();
-          URL.revokeObjectURL(link.href);
-          gtag('event', 'download_result', {
-            event_category: 'Tool Usage',
-            event_label: 'Extract Column Download',
-            value: 1
-          });
-        }
+        const blob = new Blob([outputText.value], { type: 'text/plain' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'extracted-column-masstools.txt';
+        link.click();
+        URL.revokeObjectURL(link.href);
+        gtag('event', 'download_results', {
+          event_category: 'Tool Usage',
+          event_label: 'Extract Column Download',
+          value: 1
+        });
       });
 
       resetBtn.addEventListener('click', resetForm);
 
-      inputText.addEventListener('input', performExtract);
-      delimiter.addEventListener('input', performExtract);
-      columnIndex.addEventListener('input', performExtract);
-      trimResults.addEventListener('change', performExtract);
-      skipEmpty.addEventListener('change', performExtract);
-      useRegex.addEventListener('change', performExtract);
+      inputText.addEventListener('input', performExtractColumn);
+      delimiter.addEventListener('input', performExtractColumn);
+      columnValue.addEventListener('input', performExtractColumn);
+      hasHeader.addEventListener('change', performExtractColumn);
+      trimValues.addEventListener('change', performExtractColumn);
     });
   </script>
 </body>
