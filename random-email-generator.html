@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Email Generator - Mass Tools</title>
+  <meta name="description" content="Generate random email addresses with Mass Tools' free tool. Customize username length, character types, domains, and quantity for testing or temporary use.">
+  <meta name="keywords" content="random email generator, random email, mass tools, free online tools">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/png" href="./favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-68CX9G7BKF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-68CX9G7BKF');
+  </script>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <a href="./index.html" class="logo">
+        <i class="fas fa-tools logo-icon"></i>
+        <span>Mass Tools</span>
+      </a>
+      <input id="mobile-menu-toggle" type="checkbox">
+      <label class="mobile-menu-btn" for="mobile-menu-toggle">
+        <i class="fas fa-bars"></i>
+      </label>
+      <nav id="nav-menu">
+        <ul>
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./index.html#text-tools">Text Tools</a></li>
+          <li><a href="./about-us.html">About Us</a></li>
+          <li><a href="./contact-us.html">Contact Us</a></li>
+          <li><a href="./privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="./terms-and-conditions.html">Terms</a></li>
+          <li><a href="./disclaimer.html">Disclaimer</a></li>
+        </ul>
+        <div class="search-bar">
+          <input type="text" placeholder="Search text tools..." aria-label="Search text tools">
+          <button type="submit" aria-label="Search">
+            <i class="fas fa-search"></i>
+          </button>
+          <div class="search-suggestions"></div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="tool-section">
+      <div class="container">
+        <div class="tool-content">
+          <h1>Random Email Generator</h1>
+          <p>Generate random email addresses using Mass Tools' free tool. Customize username length, character types, domains, and quantity for testing or temporary use.</p>
+
+          <div class="input-area">
+            <label for="usernameLength">Username Length:</label>
+            <input type="number" id="usernameLength" min="4" max="20" value="8" aria-label="Username length">
+          </div>
+
+          <div class="input-area">
+            <label for="count">Number of Emails:</label>
+            <input type="number" id="count" min="1" max="100" value="1" aria-label="Number of emails to generate">
+          </div>
+
+          <div class="input-area">
+            <label>Username Options:</label>
+            <div class="checkbox-group">
+              <label><input type="checkbox" id="includeNumbers"> Include Numbers (0-9)</label>
+              <label><input type="checkbox" id="includeSpecial"> Include Special Characters (.-_)</label>
+            </div>
+          </div>
+
+          <div class="input-area">
+            <label for="domain">Domain:</label>
+            <select id="domain" aria-label="Select email domain">
+              <option value="gmail.com" selected>gmail.com</option>
+              <option value="yahoo.com">yahoo.com</option>
+              <option value="hotmail.com">hotmail.com</option>
+              <option value="outlook.com">outlook.com</option>
+              <option value="custom">Custom Domain</option>
+            </select>
+            <input type="text" id="customDomain" placeholder="Enter custom domain (e.g., example.com)" style="display: none;" aria-label="Custom domain">
+          </div>
+
+          <div class="input-area">
+            <textarea id="outputText" placeholder="Generated emails will appear here..." readonly aria-label="Output generated emails"></textarea>
+          </div>
+
+          <div class="action-buttons">
+            <button id="generateBtn">Generate Emails</button>
+            <button id="copyBtn" disabled>Copy Results</button>
+            <button id="downloadBtn" disabled>Download Results</button>
+            <button id="resetBtn">Reset</button>
+          </div>
+
+          <a class="cta-button" href="./index.html#text-tools">Explore Our Tools</a>
+
+          <div class="tool-article">
+            <h2>About the Random Email Generator Tool</h2>
+            <p>The Random Email Generator tool by <a href="./about-us.html">Mass Tools</a> creates random email addresses for testing, development, or temporary use. Customize username length (4–20 characters), character types, domains, and generate up to 100 emails at once.</p>
+
+            <h3>Why Use This Tool?</h3>
+            <ul>
+              <li><strong>Testing</strong>: Generate disposable emails for software testing or form submissions.</li>
+              <li><strong>Customization</strong>: Adjust username length, include numbers or special characters, and choose or customize domains.</li>
+              <li><strong>Bulk Generation</strong>: Create multiple emails in one click, up to 100.</li>
+              <li><strong>Ease of Use</strong>: Simple interface with copy and download options.</li>
+            </ul>
+
+            <h3>How to Use</h3>
+            <ul>
+              <li>Specify the username length (4–20 characters).</li>
+              <li>Choose the number of emails to generate (1–100).</li>
+              <li>Optionally include numbers or special characters (.-_) in usernames.</li>
+              <li>Select a domain (e.g., gmail.com) or enter a custom domain.</li>
+              <li>Click "Generate Emails" to view results (e.g., "kwefalonz@gmail.com").</li>
+              <li>Copy or download the generated emails.</li>
+              <li>Reset to restore default settings.</li>
+            </ul>
+
+            <h3>Tips</h3>
+            <ul>
+              <li>Use longer usernames (8+ characters) for uniqueness.</li>
+              <li>Include numbers or special characters for varied usernames.</li>
+              <li>Use custom domains for specific testing scenarios (e.g., company domains).</li>
+              <li>Combine with <a href="./unique-username-generator.html">Unique Username Generator</a> for custom username patterns.</li>
+              <li>Contact us at <a href="mailto:byrolaa@gmail.com">byrolaa@gmail.com</a> for support.</li>
+            </ul>
+
+            <h3>Related Tools</h3>
+            <ul>
+              <li><a href="./split-text.html">Split Text</a> - Split text into individual columns or by a new line.</li>
+              <li><a href="./extract-column.html">Extract Column</a> - Extract a specific column from delimited text.</li>
+              <li><a href="./swap-columns.html">Swap Columns</a> - Swap two columns from a delimited text.</li>
+              <li><a href="./reverse-words.html">Reverse Words</a> - Reverse the order of words in text.</li>
+              <li><a href="./reverse-letters.html">Reverse Letters</a> - Reverse the order of letters in text or words.</li>
+              <li><a href="./remove-extra-spaces.html">Remove Extra Spaces</a> - Remove multiple consecutive spaces from text.</li>
+              <li><a href="./remove-duplicate-lines.html">Remove Duplicate Lines</a> - Remove duplicate lines from text.</li>
+              <li><a href="./remove-empty-lines.html">Remove Empty Lines</a> - Remove empty or whitespace-only lines from text.</li>
+              <li><a href="./remove-letter-accents.html">Remove Letter Accents</a> - Remove diacritical marks from letters.</li>
+              <li><a href="./remove-unwanted-characters.html">Remove Unwanted Characters</a> - Remove specified characters from text.</li>
+              <li><a href="./remove-lines-containing.html">Remove Lines Containing/Not Containing</a> - Remove lines based on a specific string.</li>
+              <li><a href="./remove-emojis.html">Remove Emojis</a> - Remove emojis from text.</li>
+              <li><a href="./strip-html-tags.html">Strip HTML Tags</a> - Remove HTML tags from text.</li>
+              <li><a href="./add-line-numbers.html">Add Line Numbers</a> - Add line numbers to text.</li>
+              <li><a href="./replace-quotes.html">Replace Smart/Straight Quotes</a> - Replace smart quotes with straight quotes or vice versa.</li>
+              <li><a href="./tabs-to-spaces.html">Tabs to Spaces Converter</a> - Convert tabs to spaces.</li>
+              <li><a href="./spaces-to-tabs.html">Spaces to Tabs Converter</a> - Convert spaces to tabs.</li>
+              <li><a href="./pad-text.html">Pad Text Converter</a> - Pad text to a specified length.</li>
+              <li><a href="./word-wrap.html">Word Wrap Converter</a> - Wrap text to a specified line length.</li>
+              <li><a href="./justify-text.html">Justify Text Converter</a> - Justify text to a specified line length.</li>
+              <li><a href="./center-text.html">Center Text Converter</a> - Center text within a specified line length.</li>
+              <li><a href="./upside-down-text.html">Upside Down Text Converter</a> - Convert text to upside-down characters.</li>
+              <li><a href="./bold-text.html">Bold Text Generator</a> - Generate bold text using Unicode, HTML, or CSS.</li>
+              <li><a href="./italic-text.html">Italic Text Generator</a> - Generate italic text using Unicode, HTML, or CSS.</li>
+              <li><a href="./old-english-text.html">Old English Text Generator</a> - Generate Old English (Blackletter/Gothic) text using Unicode.</li>
+              <li><a href="./cursive-text.html">Cursive Text Generator</a> - Generate cursive (script) text using Unicode.</li>
+              <li><a href="./normalize-unicode-text.html">Normalize Unicode Text</a> - Normalize Unicode text to standard ASCII.</li>
+              <li><a href="./html-encode-decode.html">HTML Encode Decode</a> - Encode or decode HTML entities.</li>
+              <li><a href="./url-encode-decode.html">URL Encode Decode</a> - Encode or decode URL-safe text.</li>
+              <li><a href="./html-escape-unescape.html">HTML Escape Unescape</a> - Escape or unescape HTML entities.</li>
+              <li><a href="./unique-username-generator.html">Unique Username Generator</a> - Generate unique usernames.</li>
+              <li><a href="./strong-password-generator.html">Strong Password Generator</a> - Generate strong, random passwords.</li>
+              <li><a href="./pronounceable-password-generator.html">Pronounceable Password Generator</a> - Generate pronounceable, memorable passwords.</li>
+              <li><a href="./random-string-generator.html">Random String Generator</a> - Generate random strings for tokens or IDs.</li>
+              <li><a href="./random-number-generator.html">Random Number Generator</a> - Generate random numbers for lotteries or testing.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-column">
+          <a href="./index.html" class="footer-column-logo">
+            <i class="fas fa-tools footer-column-logo-icon"></i>
+            <span>Mass Tools</span>
+          </a>
+          <p>Empowering you with free, high-quality text tools.</p>
+        </div>
+        <div class="footer-column">
+          <ul>
+            <li><a href="./index.html#text-tools">Text Tools</a></li>
+            <li><a href="./about-us.html">About Us</a></li>
+            <li><a href="./contact-us.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <ul>
+            <li><a href="./privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="./terms-and-conditions.html">Terms</a></li>
+            <li><a href="./disclaimer.html">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2025 Mass Tools. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-to-top" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Mobile menu and navigation
+      const menuToggle = document.getElementById('mobile-menu-toggle');
+      const nav = document.getElementById('nav-menu');
+      if (menuToggle && nav) {
+        menuToggle.addEventListener('change', () => {
+          nav.classList.toggle('show', menuToggle.checked);
+          nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+              menuToggle.checked = false;
+              nav.classList.remove('show');
+            });
+          });
+        });
+      }
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+          const href = anchor.getAttribute('href');
+          const [path, hash] = href.split('#');
+          const isHome = path === './index.html' || path === '' || path === '.';
+          if (isHome && hash && (window.location.pathname === '/index.html' || window.location.pathname === '/')) {
+            e.preventDefault();
+            const target = document.querySelector(`#${hash}`);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth' });
+              history.pushState(null, null, `#${hash}`);
+            }
+          }
+          if (nav && nav.classList.contains('show')) {
+            nav.classList.remove('show');
+            menuToggle.checked = false;
+          }
+        });
+      });
+
+      // Scroll-to-top button
+      const scrollTopBtn = document.querySelector('.scroll-to-top');
+      if (scrollTopBtn) {
+        window.addEventListener('scroll', () => {
+          scrollTopBtn.classList.toggle('show', window.scrollY > 200);
+        });
+        scrollTopBtn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+
+      // Search functionality
+      const searchInput = document.querySelector('.search-bar input');
+      const searchButton = document.querySelector('.search-bar button');
+      const suggestionsContainer = document.querySelector('.search-suggestions');
+      const tools = [
+        { name: 'Word Counter', url: './word-counter.html' },
+        { name: 'Case Converter', url: './case-converter.html' },
+        { name: 'Text to ASCII', url: './text-to-ascii-converter.html' },
+        { name: 'Lorem Ipsum Generator', url: './lorem-ipsum-generator.html' },
+        { name: 'Character Counter', url: './character-counter.html' },
+        { name: 'Sort Text', url: './sort-text.html' },
+        { name: 'Find and Replace Text', url: './find-replace-text.html' },
+        { name: 'Reverse List', url: './reverse-list.html' },
+        { name: 'Difference Checker', url: './difference-checker.html' },
+        { name: 'Add Prefix/Suffix', url: './add-prefix-suffix.html' },
+        { name: 'Add Line Breaks', url: './add-line-breaks.html' },
+        { name: 'Remove Line Breaks', url: './remove-line-breaks.html' },
+        { name: 'Split Text', url: './split-text.html' },
+        { name: 'Extract Column', url: './extract-column.html' },
+        { name: 'Concatenate Text', url: './concatenate-text.html' },
+        { name: 'Swap Columns', url: './swap-columns.html' },
+        { name: 'Reverse Words', url: './reverse-words.html' },
+        { name: 'Reverse Letters', url: './reverse-letters.html' },
+        { name: 'Remove Extra Spaces', url: './remove-extra-spaces.html' },
+        { name: 'Remove Duplicate Lines', url: './remove-duplicate-lines.html' },
+        { name: 'Remove Empty Lines', url: './remove-empty-lines.html' },
+        { name: 'Remove Letter Accents', url: './remove-letter-accents.html' },
+        { name: 'Remove Unwanted Characters', url: './remove-unwanted-characters.html' },
+        { name: 'Remove Lines Containing/Not Containing', url: './remove-lines-containing.html' },
+        { name: 'Remove Emojis', url: './remove-emojis.html' },
+        { name: 'Strip HTML Tags', url: './strip-html-tags.html' },
+        { name: 'Add Line Numbers', url: './add-line-numbers.html' },
+        { name: 'Replace Smart/Straight Quotes', url: './replace-quotes.html' },
+        { name: 'Tabs to Spaces Converter', url: './tabs-to-spaces.html' },
+        { name: 'Spaces to Tabs Converter', url: './spaces-to-tabs.html' },
+        { name: 'Pad Text Converter', url: './pad-text.html' },
+        { name: 'Word Wrap Converter', url: './word-wrap.html' },
+        { name: 'Justify Text Converter', url: './justify-text.html' },
+        { name: 'Center Text Converter', url: './center-text.html' },
+        { name: 'Upside Down Text Converter', url: './upside-down-text.html' },
+        { name: 'Bold Text Generator', url: './bold-text.html' },
+        { name: 'Italic Text Generator', url: './italic-text.html' },
+        { name: 'Old English Text Generator', url: './old-english-text.html' },
+        { name: 'Cursive Text Generator', url: './cursive-text.html' },
+        { name: 'Normalize Unicode Text', url: './normalize-unicode-text.html' },
+        { name: 'HTML Encode Decode', url: './html-encode-decode.html' },
+        { name: 'URL Encode Decode', url: './url-encode-decode.html' },
+        { name: 'HTML Escape Unescape', url: './html-escape-unescape.html' },
+        { name: 'Unique Username Generator', url: './unique-username-generator.html' },
+        { name: 'Strong Password Generator', url: './strong-password-generator.html' },
+        { name: 'Pronounceable Password Generator', url: './pronounceable-password-generator.html' },
+        { name: 'Random String Generator', url: './random-string-generator.html' },
+        { name: 'Random Number Generator', url: './random-number-generator.html' },
+        { name: 'Random Email Generator', url: './random-email-generator.html' },
+      ];
+
+      if (searchInput && searchButton && suggestionsContainer) {
+        const updateSuggestions = (query) => {
+          suggestionsContainer.innerHTML = '';
+          if (query.length < 2) {
+            suggestionsContainer.classList.remove('show');
+            return;
+          }
+          const matches = tools.filter(tool => tool.name.toLowerCase().includes(query.toLowerCase())).slice(0, 5);
+          if (matches.length) {
+            matches.forEach(tool => {
+              const a = document.createElement('a');
+              a.href = tool.url;
+              a.textContent = tool.name;
+              suggestionsContainer.appendChild(a);
+            });
+            suggestionsContainer.classList.add('show');
+          } else {
+            suggestionsContainer.classList.remove('show');
+          }
+        };
+
+        searchInput.addEventListener('input', () => updateSuggestions(searchInput.value));
+        searchButton.addEventListener('click', () => {
+          const query = searchInput.value.trim().toLowerCase();
+          const matchedTool = tools.find(tool => tool.name.toLowerCase().includes(query));
+          if (matchedTool) {
+            window.location.href = matchedTool.url;
+            searchInput.value = '';
+            suggestionsContainer.classList.remove('show');
+          } else {
+            alert('No tools found matching your search.');
+          }
+        });
+        searchInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') searchButton.click();
+        });
+        document.addEventListener('click', (e) => {
+          if (!searchInput.contains(e.target) && !suggestionsContainer.contains(e.target)) {
+            suggestionsContainer.classList.remove('show');
+          }
+        });
+      }
+
+      // Random Email Generator functionality
+      const usernameLengthInput = document.getElementById('usernameLength');
+      const countInput = document.getElementById('count');
+      const includeNumbers = document.getElementById('includeNumbers');
+      const includeSpecial = document.getElementById('includeSpecial');
+      const domainSelect = document.getElementById('domain');
+      const customDomainInput = document.getElementById('customDomain');
+      const outputText = document.getElementById('outputText');
+      const generateBtn = document.getElementById('generateBtn');
+      const copyBtn = document.getElementById('copyBtn');
+      const downloadBtn = document.getElementById('downloadBtn');
+      const resetBtn = document.getElementById('resetBtn');
+
+      if (!usernameLengthInput || !countInput || !includeNumbers || !includeSpecial || !domainSelect || !customDomainInput || !outputText || !generateBtn || !copyBtn || !downloadBtn || !resetBtn) {
+        console.error('Missing elements for Random Email Generator tool');
+        alert('Tool initialization failed. Please check console for errors.');
+        return;
+      }
+
+      const letters = 'abcdefghijklmnopqrstuvwxyz';
+      const numbers = '0123456789';
+      const specialChars = '.-_';
+
+      const generateUsername = (length, useNumbers, useSpecial) => {
+        let chars = letters;
+        if (useNumbers) chars += numbers;
+        if (useSpecial) chars += specialChars;
+
+        let username = '';
+        for (let i = 0; i < length; i++) {
+          const randomIndex = Math.floor(Math.random() * chars.length);
+          username += chars[randomIndex];
+        }
+
+        // Ensure username starts with a letter (common email requirement)
+        if (!letters.includes(username[0])) {
+          username = letters[Math.floor(Math.random() * letters.length)] + username.slice(1);
+        }
+
+        return username;
+      };
+
+      const generateEmails = (length, count, useNumbers, useSpecial, domain) => {
+        const emails = new Set();
+        while (emails.size < count) {
+          const username = generateUsername(length, useNumbers, useSpecial);
+          emails.add(`${username}@${domain}`);
+        }
+        return Array.from(emails).join('\n');
+      };
+
+      const validateDomain = (domain) => {
+        const domainRegex = /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        return domainRegex.test(domain);
+      };
+
+      const updateResults = (generatedText) => {
+        outputText.value = generatedText;
+        copyBtn.disabled = !generatedText.trim();
+        downloadBtn.disabled = !generatedText.trim();
+        console.log('Output updated:', generatedText);
+      };
+
+      const resetForm = () => {
+        usernameLengthInput.value = '8';
+        countInput.value = '1';
+        includeNumbers.checked = false;
+        includeSpecial.checked = false;
+        domainSelect.value = 'gmail.com';
+        customDomainInput.style.display = 'none';
+        customDomainInput.value = '';
+        outputText.value = '';
+        copyBtn.disabled = true;
+        downloadBtn.disabled = true;
+      };
+
+      const performGeneration = () => {
+        let length = parseInt(usernameLengthInput.value, 10);
+        let count = parseInt(countInput.value, 10);
+        let domain = domainSelect.value;
+
+        if (isNaN(length) || length < 4) {
+          length = 4;
+          usernameLengthInput.value = '4';
+          alert('Username length must be at least 4 characters.');
+        }
+        if (length > 20) {
+          length = 20;
+          usernameLengthInput.value = '20';
+          alert('Username length cannot exceed 20 characters.');
+        }
+        if (isNaN(count) || count < 1) {
+          count = 1;
+          countInput.value = '1';
+        }
+        if (count > 100) {
+          count = 100;
+          countInput.value = '100';
+          alert('Maximum 100 emails can be generated at once.');
+        }
+        if (domain === 'custom') {
+          domain = customDomainInput.value.trim();
+          if (!validateDomain(domain)) {
+            alert('Please enter a valid custom domain (e.g., example.com).');
+            return;
+          }
+        }
+
+        const generatedText = generateEmails(
+          length,
+          count,
+          includeNumbers.checked,
+          includeSpecial.checked,
+          domain
+        );
+        updateResults(generatedText);
+        gtag('event', 'random_email_generate', {
+          event_category: 'Tool Usage',
+          event_label: 'Random Email Generate',
+          value: count
+        });
+      };
+
+      domainSelect.addEventListener('change', () => {
+        customDomainInput.style.display = domainSelect.value === 'custom' ? 'block' : 'none';
+        performGeneration();
+      });
+
+      generateBtn.addEventListener('click', performGeneration);
+
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(outputText.value).then(() => {
+          alert('Emails copied to clipboard!');
+          gtag('event', 'copy_results', {
+            event_category: 'Tool Usage',
+            event_label: 'Random Email Copy',
+            value: 1
+          });
+        }).catch(error => {
+          console.error('Copy error:', error);
+          alert('Failed to copy emails. Please try manually.');
+        });
+      });
+
+      downloadBtn.addEventListener('click', () => {
+        const blob = new Blob([outputText.value], { type: 'text/plain' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'random-emails-masstools.txt';
+        link.click();
+        URL.revokeObjectURL(link.href);
+        gtag('event', 'download_results', {
+          event_category: 'Tool Usage',
+          event_label: 'Random Email Download',
+          value: 1
+        });
+      });
+
+      resetBtn.addEventListener('click', resetForm);
+
+      usernameLengthInput.addEventListener('input', performGeneration);
+      countInput.addEventListener('input', performGeneration);
+      includeNumbers.addEventListener('change', performGeneration);
+      includeSpecial.addEventListener('change', performGeneration);
+      customDomainInput.addEventListener('input', () => {
+        if (domainSelect.value === 'custom') performGeneration();
+      });
+    });
+  </script>
+</body>
+</html>
