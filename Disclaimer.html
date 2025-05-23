@@ -4,12 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Disclaimer - Mass Tools</title>
-  <meta name="description" content="Read the Disclaimer for Mass Tools, outlining limitations of liability and usage terms for our free online tools.">
-  <meta name="keywords" content="mass tools disclaimer, free web tools, online utilities">
+  <meta name="description" content="Read Mass Tools' Disclaimer to understand the limitations and responsibilities regarding the use of our free online tools and services.">
+  <meta name="keywords" content="mass tools disclaimer, service limitations, online tools">
   <meta name="robots" content="index, follow">
-<link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="icon" type="image/png" href="./favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="./styles.css">
   <!-- Google Tag Manager (Google Analytics) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-68CX9G7BKF"></script>
   <script>
@@ -18,499 +19,11 @@
     gtag('js', new Date());
     gtag('config', 'G-68CX9G7BKF');
   </script>
-  <style>
-    :root {
-      --primary-color: #FF4500;
-      --secondary-color: #FFA500;
-      --dark-color: #1A1A1A;
-      --light-color: #F8F9FA;
-      --text-color: #2C2C2C;
-      --text-light: #6C757D;
-      --border-radius: 12px;
-      --transition: all 0.3s ease;
-      --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
-
-    body {
-      background: var(--light-color);
-      color: var(--text-color);
-      font-size: 16px;
-      line-height: 1.7;
-      scrollbar-width: none;
-    }
-
-    body::-webkit-scrollbar {
-      display: none;
-    }
-
-    .progress-bar, [class*="progress"], [id*="progress"] {
-      display: none !important;
-    }
-
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    header {
-      background: var(--light-color);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .header-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 16px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      font-size: 24px;
-      font-weight: 800;
-      margin-left: 8px;
-    }
-
-    .logo-icon {
-      font-size: 24px;
-      color: var(--primary-color);
-    }
-
-    .logo span {
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 16px;
-    }
-
-    nav ul li a {
-      text-decoration: none;
-      color: var(--text-color);
-      font-weight: 500;
-      font-size: 14px;
-      padding: 8px 12px;
-      border-radius: var(--border-radius);
-      transition: var(--transition);
-    }
-
-    nav ul li a:hover {
-      background: var(--primary-color);
-      color: var(--light-color);
-      text-decoration: none;
-    }
-
-    .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 24px;
-      color: var(--text-color);
-      cursor: pointer;
-      margin-right: 8px;
-    }
-
-    #mobile-menu-toggle {
-      display: none;
-    }
-
-    .search-bar {
-      display: flex;
-      align-items: center;
-      background: #fff;
-      border: 1px solid #e0e0e0;
-      border-radius: 50px;
-      padding: 6px 12px;
-      transition: var(--transition);
-      max-width: 200px;
-    }
-
-    .search-bar:hover, .search-bar:focus-within {
-      border-color: var(--primary-color);
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .search-bar input {
-      border: none;
-      outline: none;
-      font-size: 13px;
-      padding: 6px;
-      width: 100%;
-    }
-
-    .search-bar button {
-      background: none;
-      border: none;
-      color: var(--text-light);
-      font-size: 14px;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .search-bar button:hover {
-      color: var(--primary-color);
-    }
-
-    .disclaimer-section {
-      padding: 80px 0;
-      background: var(--light-color);
-    }
-
-    .disclaimer-content {
-      max-width: 800px;
-      margin: 0 auto;
-      background: #fff;
-      padding: 32px;
-      border-radius: var(--border-radius);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    }
-
-    .disclaimer-content h1 {
-      font-size: 36px;
-      color: var(--dark-color);
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    .disclaimer-content h2 {
-      font-size: 24px;
-      color: var(--dark-color);
-      margin: 24px 0 12px;
-    }
-
-    .disclaimer-content h3 {
-      font-size: 20px;
-      color: var(--dark-color);
-      margin: 20px 0 10px;
-    }
-
-    .disclaimer-content p {
-      font-size: 15px;
-      color: var(--text-color);
-      margin-bottom: 12px;
-    }
-
-    .disclaimer-content ul {
-      list-style: none;
-      margin: 12px 0;
-      padding-left: 20px;
-    }
-
-    .disclaimer-content ul li {
-      font-size: 15px;
-      color: var(--text-color);
-      margin-bottom: 8px;
-      position: relative;
-    }
-
-    .disclaimer-content ul li::before {
-      content: '✔';
-      color: var(--primary-color);
-      position: absolute;
-      left: -20px;
-    }
-
-    .disclaimer-content a {
-      color: var(--primary-color);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .disclaimer-content a:hover {
-      text-decoration: underline;
-    }
-
-    .disclaimer-content .cta-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--gradient);
-      color: #FFFFFF !important;
-      padding: 10px 24px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 14px;
-      transition: var(--transition);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      margin-top: 16px;
-    }
-
-    .disclaimer-content .cta-button:hover {
-      background: var(--primary-color);
-      color: #FFFFFF !important;
-      transform: translateY(-4px);
-      text-decoration: none;
-    }
-
-    footer {
-      background: var(--dark-color);
-      color: var(--light-color);
-      padding: 40px 0 20px;
-    }
-
-    .footer-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 24px;
-      margin-bottom: 24px;
-    }
-
-    .footer-column-logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      font-size: 24px;
-      font-weight: 800;
-    }
-
-    .footer-column-logo-icon {
-      font-size: 24px;
-      color: var(--primary-color);
-    }
-
-    .footer-column-logo span {
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .footer-column ul {
-      list-style: none;
-    }
-
-    .footer-column ul li {
-      margin-bottom: 10px;
-    }
-
-    .footer-column ul li a {
-      color: #CED4DA;
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .footer-column ul li a:hover {
-      color: var(--primary-color);
-      text-decoration: none;
-    }
-
-    .copyright {
-      text-align: center;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      font-size: 13px;
-    }
-
-    .scroll-to-top {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: var(--gradient);
-      color: var(--light-color);
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-      z-index: 1000;
-      cursor: pointer;
-    }
-
-    .scroll-to-top i {
-      -webkit-text-stroke: 0;
-      color: var(--light-color);
-    }
-
-    .scroll-to-top:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-    }
-
-    .scroll-to-top.show {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
-    @media (min-width: 992px) {
-      .tools-container {
-        grid-template-columns: repeat(4, 1fr) !important;
-      }
-    }
-
-    @media (max-width: 992px) {
-      .search-bar {
-        max-width: 180px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .container {
-        padding: 0 16px !important;
-      }
-      .header-container {
-        padding: 12px 16px;
-      }
-      .mobile-menu-btn {
-        display: block;
-      }
-      nav {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: rgba(255, 255, 255, 0.98);
-        padding: 20px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        flex-direction: column;
-        align-items: flex-start;
-        border-radius: 0 0 12px 12px;
-        border: 1px solid #e0e0e0;
-        width: 100%;
-        box-sizing: border-box;
-      }
-      nav.show {
-        display: flex !important;
-      }
-      nav ul {
-        flex-direction: column;
-        gap: 18px;
-        width: 100%;
-      }
-      nav ul li a {
-        font-size: 18px;
-        padding: 12px 20px;
-        width: 100%;
-        text-align: left;
-        border-radius: 8px;
-      }
-      .search-bar {
-        margin-top: 20px;
-        width: 100%;
-        max-width: none;
-        padding: 10px 20px;
-        border-radius: 50px;
-      }
-      .search-bar input {
-        font-size: 15px;
-        padding: 8px;
-      }
-      .search-bar button {
-        font-size: 16px;
-      }
-      .disclaimer-section {
-        padding: 60px 0;
-      }
-      .disclaimer-content h1 {
-        font-size: 30px;
-      }
-      .disclaimer-content .cta-button {
-        padding: 8px 16px;
-        font-size: 13px;
-      }
-    }
-
-    @media (max-width: 576px) {
-      .container {
-        padding: 0 16px !important;
-      }
-      .header-container {
-        padding: 10px 16px !important;
-        margin: 0;
-      }
-      .logo {
-        font-size: 20px;
-        margin-left: 0;
-      }
-      .logo-icon {
-        font-size: 20px;
-      }
-      .mobile-menu-btn {
-        margin-right: 0;
-      }
-      .search-bar {
-        padding: 8px 16px;
-        margin: 16px 0;
-        max-width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .search-bar input {
-        font-size: 14px;
-      }
-      .disclaimer-content {
-        padding: 24px;
-      }
-      .disclaimer-content h1 {
-        font-size: 26px;
-      }
-      .disclaimer-content h2 {
-        font-size: 20px;
-      }
-      .disclaimer-content h3 {
-        font-size: 18px;
-      }
-      .disclaimer-content p, .disclaimer-content ul li {
-        font-size: 14px;
-      }
-      .disclaimer-content .cta-button {
-        padding: 8px 16px;
-        font-size: 13px;
-      }
-      .scroll-to-top {
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
-        bottom: 16px;
-        right: 16px;
-      }
-      .footer-column-logo {
-        font-size: 20px;
-      }
-      .footer-column-logo-icon {
-        font-size: 20px;
-      }
-    }
-  </style>
 </head>
 <body>
   <header>
     <div class="container header-container">
-      <a href="/" class="logo">
+      <a href="./index.html" class="logo">
         <i class="fas fa-tools logo-icon"></i>
         <span>Mass Tools</span>
       </a>
@@ -520,71 +33,81 @@
       </label>
       <nav id="nav-menu">
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/#tools">Tools</a></li>
-          <li><a href="/about-us.html">About Us</a></li>
-          <li><a href="/contact-us.html">Contact Us</a></li>
-          <li><a href="/privacy-policy.html">Privacy Policy</a></li>
-          <li><a href="/terms-and-conditions.html">Terms</a></li>
-          <li><a href="/Disclaimer.html">Disclaimer</a></li>
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./index.html#text-tools">Text Tools</a></li>
+          <li><a href="./about-us.html">About Us</a></li>
+          <li><a href="./contact-us.html">Contact Us</a></li>
+          <li><a href="./privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="./terms-and-conditions.html">Terms</a></li>
+          <li><a href="./disclaimer.html">Disclaimer</a></li>
         </ul>
         <div class="search-bar">
-          <input type="text" placeholder="Search tools..." aria-label="Search">
+          <input type="text" placeholder="Search text tools..." aria-label="Search text tools">
           <button type="submit" aria-label="Search">
             <i class="fas fa-search"></i>
           </button>
+          <div class="search-suggestions"></div>
         </div>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="disclaimer-section">
+    <section class="tool-section">
       <div class="container">
-        <div class="disclaimer-content">
+        <div class="tool-content">
           <h1>Disclaimer</h1>
-          <p>Last updated: December 08, 2024</p>
           <h2>Interpretation and Definitions</h2>
           <h3>Interpretation</h3>
           <p>The words of which the initial letter is capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.</p>
+
           <h3>Definitions</h3>
           <p>For the purposes of this Disclaimer:</p>
           <ul>
-            <li><p><strong>Company</strong> (referred to as either "the Company", "We", "Us" or "Our" in this Disclaimer) refers to Mass Tools.</p></li>
-            <li><p><strong>Service</strong> refers to the Website.</p></li>
-            <li><p><strong>You</strong> means the individual accessing the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</p></li>
-            <li><p><strong>Website</strong> refers to Mass Tools, accessible from <a href="https://masstools.github.io" rel="external nofollow noopener" target="_blank">https://masstools.github.io</a></p></li>
+            <li><strong>Company</strong> (referred to as either "the Company", "We", "Us" or "Our" in this Disclaimer) refers to Mass Tools.</li>
+            <li><strong>Service</strong> refers to the Website.</li>
+            <li><strong>You</strong> means the individual accessing the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</li>
+            <li><strong>Website</strong> refers to Mass Tools, accessible from <a href="https://masstools.github.io" target="_blank" rel="noopener">https://masstools.github.io</a>.</li>
           </ul>
+
           <h2>Disclaimer</h2>
           <p>The information contained on the Service is for general information purposes only.</p>
           <p>The Company assumes no responsibility for errors or omissions in the contents of the Service.</p>
-          <p>In no event shall the Company be liable for any special, direct, indirect, consequential, or incidental damages or any damages whatsoever, whether in an action of contract, negligence or other tort, arising out of or in connection with the use of the Service or the contents of the Service. The Company reserves the right to make additions, deletions, or modifications to the contents on the Service at any time without prior notice. This Disclaimer has been created with the help of the <a href="https://www.termsfeed.com/disclaimer-generator/" target="_blank" rel="noopener">Disclaimer Generator</a>.</p>
+          <p>In no event shall the Company be liable for any special, direct, indirect, consequential, or incidental damages or any damages whatsoever, whether in an action of contract, negligence or other tort, arising out of or in connection with the use of the Service or the contents of the Service. The Company reserves the right to make additions, deletions, or modifications to the contents on the Service at any time without prior notice.</p>
           <p>The Company does not warrant that the Service is free of viruses or other harmful components.</p>
+
           <h2>External Links Disclaimer</h2>
           <p>The Service may contain links to external websites that are not provided or maintained by or in any way affiliated with the Company.</p>
           <p>Please note that the Company does not guarantee the accuracy, relevance, timeliness, or completeness of any information on these external websites.</p>
+
           <h2>Errors and Omissions Disclaimer</h2>
           <p>The information given by the Service is for general guidance on matters of interest only. Even if the Company takes every precaution to ensure that the content of the Service is both current and accurate, errors can occur. Plus, given the changing nature of laws, rules and regulations, there may be delays, omissions or inaccuracies in the information contained on the Service.</p>
           <p>The Company is not responsible for any errors or omissions, or for the results obtained from the use of this information.</p>
+
           <h2>Fair Use Disclaimer</h2>
           <p>The Company may use copyrighted material which has not always been specifically authorized by the copyright owner. The Company is making such material available for criticism, comment, news reporting, teaching, scholarship, or research.</p>
           <p>The Company believes this constitutes a "fair use" of any such copyrighted material as provided for in section 107 of the United States Copyright law.</p>
           <p>If You wish to use copyrighted material from the Service for your own purposes that go beyond fair use, You must obtain permission from the copyright owner.</p>
+
           <h2>Views Expressed Disclaimer</h2>
           <p>The Service may contain views and opinions which are those of the authors and do not necessarily reflect the official policy or position of any other author, agency, organization, employer or company, including the Company.</p>
           <p>Comments published by users are their sole responsibility and the users will take full responsibility, liability and blame for any libel or litigation that results from something written in or as a direct result of something written in a comment. The Company is not liable for any comment published by users and reserves the right to delete any comment for any reason whatsoever.</p>
+
           <h2>No Responsibility Disclaimer</h2>
           <p>The information on the Service is provided with the understanding that the Company is not herein engaged in rendering legal, accounting, tax, or other professional advice and services. As such, it should not be used as a substitute for consultation with professional accounting, tax, legal or other competent advisers.</p>
           <p>In no event shall the Company or its suppliers be liable for any special, incidental, indirect, or consequential damages whatsoever arising out of or in connection with your access or use or inability to access or use the Service.</p>
+
           <h2>"Use at Your Own Risk" Disclaimer</h2>
           <p>All information in the Service is provided "as is", with no guarantee of completeness, accuracy, timeliness or of the results obtained from the use of this information, and without warranty of any kind, express or implied, including, but not limited to warranties of performance, merchantability and fitness for a particular purpose.</p>
           <p>The Company will not be liable to You or anyone else for any decision made or action taken in reliance on the information given by the Service or for any consequential, special or similar damages, even if advised of the possibility of such damages.</p>
+
           <h2>Contact Us</h2>
           <p>If you have any questions about this Disclaimer, You can contact Us:</p>
           <ul>
-            <li><p>By email: <a href="mailto:byrolaa@gmail.com" rel="noopener">byrolaa@gmail.com</a></p></li>
+            <li>By email: <a href="mailto:byrolaa@gmail.com" rel="noopener">byrolaa@gmail.com</a></li>
           </ul>
-          <a class="cta-button" href="/#tools">Explore Our Tools</a>
+
+          <a class="cta-button" href="./index.html#text-tools">Explore Our Tools</a>
         </div>
       </div>
     </section>
@@ -594,7 +117,7 @@
     <div class="container">
       <div class="footer-container">
         <div class="footer-column">
-          <a href="/" class="footer-column-logo">
+          <a href="./index.html" class="footer-column-logo">
             <i class="fas fa-tools footer-column-logo-icon"></i>
             <span>Mass Tools</span>
           </a>
@@ -602,16 +125,16 @@
         </div>
         <div class="footer-column">
           <ul>
-            <li><a href="/#tools">Tools</a></li>
-            <li><a href="/about-us.html">About Us</a></li>
-            <li><a href="/contact-us.html">Contact Us</a></li>
+            <li><a href="./index.html#text-tools">Text Tools</a></li>
+            <li><a href="./about-us.html">About Us</a></li>
+            <li><a href="./contact-us.html">Contact Us</a></li>
           </ul>
         </div>
         <div class="footer-column">
           <ul>
-            <li><a href="/privacy-policy.html">Privacy Policy</a></li>
-            <li><a href="/terms-and-conditions.html">Terms</a></li>
-            <li><a href="/Disclaimer.html">Disclaimer</a></li>
+            <li><a href="./privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="./terms-and-conditions.html">Terms</a></li>
+            <li><a href="./disclaimer.html">Disclaimer</a></li>
           </ul>
         </div>
       </div>
@@ -625,159 +148,6 @@
     <i class="fas fa-arrow-up"></i>
   </button>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const menuToggle = document.getElementById('mobile-menu-toggle');
-      const nav = document.getElementById('nav-menu');
-      if (menuToggle && nav) {
-        menuToggle.addEventListener('change', () => {
-          nav.classList.toggle('show', menuToggle.checked);
-        });
-      }
-
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', (e) => {
-          e.preventDefault();
-          const target = document.querySelector(anchor.getAttribute('href'));
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-          }
-          if (nav && nav.classList.contains('show')) {
-            nav.classList.remove('show');
-            menuToggle.checked = false;
-          }
-        });
-      });
-
-      const scrollTopBtn = document.querySelector('.scroll-to-top');
-      if (scrollTopBtn) {
-        window.addEventListener('scroll', () => {
-          if (window.scrollY > 200) {
-            scrollTopBtn.classList.add('show');
-          } else {
-            scrollTopBtn.classList.remove('show');
-          }
-        });
-        scrollTopBtn.addEventListener('click', () => {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-      }
-
-      const searchInput = document.querySelector('.search-bar input');
-      const searchButton = document.querySelector('.search-bar button');
-      if (searchInput && searchButton) {
-        const tools = [
-         { name: 'Image To JPG Converter', url: '/image-to-jpg-converter.html' },
-          { name: 'Image To PNG Converter', url: '/image-to-png-converter.html' },
-          { name: 'Image To SVG', url: '/image-to-svg-converter.html' },
-          { name: 'Image To WEBP Converter', url: '/image-to-webp-converter.html' },
-          { name: 'Image To TIFF Converter', url: '/image-to-tiff-converter.html' },
-          { name: 'Image To HEIC Converter', url: '/image-to-heic-converter.html' },
-          { name: 'Image To PDF Converter', url: '/image-to-pdf-converter.html' },
-          { name: 'Image To BMP Converter', url: '/image-to-bmp-converter.html' },
-          { name: 'Image To ICO Converter', url: '/image-to-ico-converter.html' },
-          { name: 'Image To AVIF Converter', url: '/image-to-avif-converter.html' },
-          { name: 'Image To EPS Converter', url: '/image-to-eps-converter.html' },
-          { name: 'Image To PSD Converter', url: '/image-to-psd-converter.html' },
-          { name: 'Image To Base64 Converter', url: '/image-to-base64-converter.html' },
-          { name: 'Image To DXF Converter', url: '/image-to-dxf-converter.html' },
-          { name: 'Image To EXR Converter', url: '/image-to-exr-converter.html' },
-          { name: 'PDF To Image Converter', url: '/pdf-to-image-converter.html' },
-          { name: 'Image Resizer Tool', url: '/image-resizer-tool.html' },
-          { name: 'Image Compressor Tool', url: '/image-resizer-tool.html' },
-          { name: 'PSD To Image Converter', url: '/pdf-to-image-converter.html' },
-          { name: 'EPS To Image Converter', url: '/eps-to-image-converter.html' },
-          { name: 'Word Counter', url: '/word-counter.html' },
-          { name: 'Case Converter', url: '/case-converter.html' },
-          { name: 'Text To ASCII', url: '/text-to-ascii-converter.html' },
-          { name: 'Lorem Ipsum Generator', url: '/lorem-ipsum-genrator.html' },
-          { name: 'Character Counter', url: '/character-counter.html' },
-          { name: 'Sort Text', url: '/sort-text.html' },
-          { name: 'Find And Replace', url: '/find-and-replace-text.html' },
-          { name: 'Reverse List', url: '/reverse-list.html' },
-          { name: 'Difference Checker', url: '/difference-checker.html' },
-          { name: 'Add Prefix/Suffix', url: '/add-prefix-suffix.html' },
-          { name: 'Add Line Breaks', url: '/add-line-breaks.html' },
-          { name: 'Remove Line Breaks', url: '/remove-line-breaks.html' },
-          { name: 'Concatenate Text', url: '/concatenate-text.html' },
-          { name: 'Split Text', url: '/split-text.html' },
-          { name: 'Extract Column', url: '/extract-column.html' },
-          { name: 'Swap Column', url: '/swap-column.html' },
-          { name: 'Reverse Words', url: '/reverse-words.html' },
-          { name: 'Reverse Letters', url: '/reverse-letters.html' },
-          { name: 'Remove Extra Spaces', url: '/remove-extra-spaces.html' },
-          { name: 'Remove Duplicate Lines', url: '/remove-duplicate-lines.html' },
-          { name: 'Remove Empty Lines', url: '/remove-empty-lines.html' },
-          { name: 'Remove Letter Accents', url: '/remove-letter-accents.html' },
-          { name: 'Remove Unwanted Characters', url: '/remove-unwanted-characters.html' },
-          { name: 'Remove Lines Containing/Not Containing', url: '/remove-lines-containing.html' },
-          { name: 'Remove Emojis', url: '/remove-emojis.html' },
-          { name: 'Strip HTML Tags', url: '/strip-html-tags.html' },
-          { name: 'Add Line Numbers', url: '/add-line-numbers.html' },
-          { name: 'Replace Smart/Straight Quotes', url: '/replace-quotes.html' },
-          { name: 'Tabs to Spaces Converterter', url: '/tabs-to-spaces.html' },
-          { name: 'Spaces to Tabs Converterter', url: '/spaces-to-tabs.html' },
-          { name: 'Pad Text', url: '/pad-text.html' },
-          { name: 'Word Wrap', url: '/word-wrap.html' },
-          { name: 'Justify Text', url: '/justify-text.html' },
-          { name: 'Center Text', url: '/center-text.html' },
-          { name: 'Upside Down Text', url: '/upside-down-text.html' },
-          { name: 'Bold Text Generator', url: '/bold-text-generator.html' },
-          { name: 'Italic Text Generator', url: '/italic-text-generator.html' },
-          { name: 'Old English Text Generator', url: '/old-english-text-generator.html' },
-          { name: 'Cursive Text Generator', url: '/cursive-text-generator.html' },
-          { name: 'Normalize Unicode Text', url: '/normalize-unicode-text.html' },
-          { name: 'HTML Encode Decode', url: '/html-encode-decode.html' },
-          { name: 'URL Encode Decode', url: '/url-encode-decode.html' },
-          { name: 'HTML Escape Unescape', url: '/html-escape-unescape.html' },
-          { name: 'Unique Username Generator', url: '/unique-username-generator.html' },
-          { name: 'Strong Password Generator', url: '/strong-password-generator.html' },
-          { name: 'Pronounceable Password Generator', url: '/pronounceable-password-generator.html' },
-          { name: 'Random String Generator', url: '/random-string-generator.html' },
-          { name: 'Random Word Generator', url: '/random-word-generator.html' },
-          { name: 'Filler Text', url: '/filler-text-generator.html' },
-          { name: 'Random Number Generator', url: '/random-number-generator.html' },
-          { name: 'Random Email Generator', url: '/random-email-generator.html' },
-          { name: 'Email Extractor', url: '/email-extractor.html' },
-          { name: 'URL Extractor', url: '/url-extractor.html' },
-          { name: 'Online Notepad', url: '/online-notepad.html' },
-          { name: 'Keyword Research Tool', url: '/keyword-research-tool.html' },
-        { name: 'On-Page SEO Analyzer', url: '/on-page-seo-analyzer.html' },
-        { name: 'Technical SEO Auditor', url: '/technical-seo-auditor.html' },
-        { name: 'Backlink Analyzer', url: '/backlink-analyzer.html' },
-        { name: 'Content Optimization Tool', url: '/content-optimization-tool.html' },
-        { name: 'Rank Tracker', url: '/rank-tracker.html' },
-        { name: 'Competitor Analysis Tool', url: '/competitor-analysis-tool.html' },
-        { name: 'SEO Audit and Reporting Tool', url: '/seo-audit-reporting-tool.html' },
-        { name: 'Local SEO Tool', url: '/local-seo-tool.html' },
-        { name: 'AI-Powered SEO Assistant', url: '/ai-seo-assistant.html' },
-        { name: 'QR Code Generator', url: '/qr-code-generator.html' },
-          { name: 'Data Matrix Generator', url: '/data-matrix-generator.html' },
-          { name: 'Barcode Generator', url: '/barcode-generator.html' },
-          { name: 'PDF417 Generator', url: '/pdf417-generator.html' },
-          { name: 'Aztec Code Generator', url: '/aztec-code-generator.html' },
-          { name: 'MaxiCode Generator', url: '/maxicode-generator.html' },
-          { name: 'Code 39 Generator', url: '/code39-generator.html' },
-          { name: 'Code 128 Generator', url: '/code128-generator.html' },
-          { name: 'EAN-13 Generator', url: '/ean13-generator.html' },
-
-        ];
-        searchButton.addEventListener('click', () => {
-          const query = searchInput.value.trim().toLowerCase();
-          const matchedTool = tools.find(tool => tool.name.toLowerCase().includes(query));
-          if (matchedTool) {
-            window.location.href = matchedTool.url;
-          } else {
-            alert('No tools found matching your search.');
-          }
-        });
-        searchInput.addEventListener('keypress', (e) => {
-          if (e.key === 'Enter') {
-            searchButton.click();
-          }
-        });
-      }
-    });
-  </script>
+  <script src="./scripts.js"></script>
 </body>
 </html>
